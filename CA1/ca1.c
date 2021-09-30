@@ -26,6 +26,22 @@ double GetNumericInput() {
 }
 
 // Functions to calculate properties for differnt objects.
+//2d square
+void Calculate2dSquareProperties() {
+    double edge;
+    double perimeter, area;
+
+    printf("\nPlease provide these necessary parameters:\n");
+    printf("Edge: ");
+    height = GetNumericInput();
+
+    perimeter = 4 * edge;
+    area = pow(edge, 2);
+
+    printf("\nCalculation results:\nPerimeter: %.2lf\tArea: %.2lf\n\n", perimeter, area);
+}
+
+//2d rectangle
 void CalculateRectangleProperties() {
     double width, height;
     double perimeter, area;
@@ -42,6 +58,7 @@ void CalculateRectangleProperties() {
     printf("\nCalculation results:\nPerimeter: %.2lf\tArea: %.2lf\n\n", perimeter, area);
 }
 
+//2d circle
 void CalculateCircleProperties() {
     double radius;
     double circumference, area;
@@ -56,6 +73,7 @@ void CalculateCircleProperties() {
     printf("\nCalculation results:\nCircumference: %.2lf\tArea: %.2lf\n\n", circumference, area);
 }
 
+// 3d block //change name here 
 void CalculateCubeProperties() {
     double length, width, height;
     double surface_area, volume;
@@ -74,6 +92,7 @@ void CalculateCubeProperties() {
     printf("\nCalculation results:\nSurface area: %.2lf\tVolume: %.2lf\n\n", surface_area, volume);
 }
 
+//3d Cone
 void CalculateConeProperties() {
     double radius, height;
     double surface_area, volume;
@@ -89,6 +108,38 @@ void CalculateConeProperties() {
 
     printf("\nCalculation results:\nSurface area: %.2lf\tVolume: %.2lf\n\n", surface_area, volume);
 }
+
+// 3d circle 
+void Calculate3dCircleProperties() {
+    double radius;
+    double surface_area, volume;
+
+    printf("\nPlease provide these necessary parameters:\n");
+    printf("Radius: ");
+    radius = GetNumericInput();
+
+    surface_area = 4.0 * M_PI * pow(radius, 2);
+    volume = M_PI * pow(radius, 3) * 4.0  / 3.0;
+
+    printf("\nCalculation results:\nSurface area: %.2lf\tVolume: %.2lf\n\n", surface_area, volume);
+}
+
+// 3d Cube
+void Calculate3dCubeProperties() {
+    double edge;
+    double surface_area, volume;
+
+    printf("\nPlease provide these necessary parameters:\n");
+    printf("Edge: ");
+    length = GetNumericInput();
+
+    surface_area = 6 * edge;
+    volume = pow(edge, 3);
+
+    printf("\nCalculation results:\nSurface area: %.2lf\tVolume: %.2lf\n\n", surface_area, volume);
+}
+
+
 
 // Let user decide whether to calculate properties again or exit this program.
 bool ContinueCalculationOrNot() {
@@ -120,6 +171,17 @@ void main() {
     printf("Program-Calculate Properties of a Object:\n\n");
 
     while (true) {
+        // My consideration
+        // Add a typein -- choice for 2d or 3d calculation 
+        // How about unit? Unit conversion?
+        // Do we need to provide equation? 
+        printf("Select a object from the following list and key in your choice :\n2D\n3D\n\n(Type \"exit\" to leave the program.)\n\n");
+        printf("Type in your choice here: ");
+        
+        scanf...
+            
+            
+            
         printf("Select a object from the following list and key in its name:\nRectangle\tCircle\nCube\t\tCone\n\n(Type \"exit\" to leave the program.)\n\n");
         printf("Type in your choice here: ");
 
