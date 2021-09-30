@@ -82,10 +82,10 @@ void Print3DObjectProperties(int inputUnit, double surface_area, double volume) 
             break;
     }
 }
-bool ContinueInThisDimensionOrNot() { // Let user decide whether to calculate properties again or exit this program.
+bool ExitProgramOrNot() {
     char exit_program_input[4]; 
 
-    printf("Type in \"yes\" if you want to calculate for another object in this dimension. Key in anything else to reselect object's dimension.\n");
+    printf("Type in \"yes\" if you want to calculate again. Key in anything else to exit the program.\n");
     printf("Your choice: ");
 
     scanf("%s", exit_program_input);
@@ -94,6 +94,23 @@ bool ContinueInThisDimensionOrNot() { // Let user decide whether to calculate pr
     }
 
     if (strcmp(exit_program_input, "yes") != 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+bool ContinueInThisDimensionOrNot() { // Let user decide whether to calculate properties again or exit this program.
+    char process_control_input[4]; 
+
+    printf("Type in \"yes\" if you want to calculate for another object in this dimension. Key in anything else to reselect object's dimension.\n");
+    printf("Your choice: ");
+
+    scanf("%s", process_control_input);
+    for(int i = 0; process_control_input[i]; i++) {
+        process_control_input[i] = tolower(process_control_input[i]);
+    }
+
+    if (strcmp(process_control_input, "yes") != 0) {
         return true;
     } else {
         printf("\n============================================================================");
@@ -249,6 +266,7 @@ void Calculate3DConeProperties() {
 
 void main() {
     char object_dimension[3], object_name[10];
+    bool exit_program = false;
 
     printf("****************************************************************************\n");
     printf("********************* Nanyang Technological University *********************\n");
@@ -280,6 +298,7 @@ void main() {
             }
         }
         
+        // Actions based on the previous input.
         if (strcmp(object_dimension, "exit") == 0) {
             break;
         } else {
@@ -297,16 +316,33 @@ void main() {
 
                     if (strcmp(object_name, "rectangle") == 0) { 
                         Calculate2DRectangleProperties(false);
-                        if (ContinueInThisDimensionOrNot()) break;
-                        
 
+                        exit_program = ExitProgramOrNot();
+                        if (!exit_program) {
+                            if (ContinueInThisDimensionOrNot()) break;
+                        } else {
+                            break;
+                        }
+                        
                     } else if (strcmp(object_name, "square") == 0) {
                         Calculate2DRectangleProperties(true);
-                        if (ContinueInThisDimensionOrNot()) break;
+                        
+                        exit_program = ExitProgramOrNot();
+                        if (!exit_program) {
+                            if (ContinueInThisDimensionOrNot()) break;
+                        } else {
+                            break;
+                        }
 
                     } else if (strcmp(object_name, "circle") == 0) {
                         Calculate2DCircleProperties(false);
-                        if (ContinueInThisDimensionOrNot()) break;
+                        
+                        exit_program = ExitProgramOrNot();
+                        if (!exit_program) {
+                            if (ContinueInThisDimensionOrNot()) break;
+                        } else {
+                            break;
+                        }
 
                     } else if (strcmp(object_name, "back") == 0) {
                         break;
@@ -334,19 +370,43 @@ void main() {
 
                     if (strcmp(object_name, "cuboid") == 0) { 
                         Calculate3DCuboidProperties(false);
-                        if (ContinueInThisDimensionOrNot()) break;
+                        
+                        exit_program = ExitProgramOrNot();
+                        if (!exit_program) {
+                            if (ContinueInThisDimensionOrNot()) break;
+                        } else {
+                            break;
+                        }
 
                     } else if (strcmp(object_name, "cube") == 0) {
                         Calculate3DCuboidProperties(true);
-                        if (ContinueInThisDimensionOrNot()) break;
+                        
+                        exit_program = ExitProgramOrNot();
+                        if (!exit_program) {
+                            if (ContinueInThisDimensionOrNot()) break;
+                        } else {
+                            break;
+                        }
 
                     } else if (strcmp(object_name, "sphere") == 0) {
                         Calculate3DSphereProperties(false);
-                        if (ContinueInThisDimensionOrNot()) break;
+                        
+                        exit_program = ExitProgramOrNot();
+                        if (!exit_program) {
+                            if (ContinueInThisDimensionOrNot()) break;
+                        } else {
+                            break;
+                        }
 
                     } else if (strcmp(object_name, "cone") == 0) {
                         Calculate3DConeProperties(false); 
-                        if (ContinueInThisDimensionOrNot()) break;
+                        
+                        exit_program = ExitProgramOrNot();
+                        if (!exit_program) {
+                            if (ContinueInThisDimensionOrNot()) break;
+                        } else {
+                            break;
+                        }
 
                     } else if (strcmp(object_name, "back") == 0) {
                         break;
@@ -363,12 +423,15 @@ void main() {
                 }
             }
 
+            if (exit_program) {
+                break;
+            }
+
             if (strcmp(object_name, "back") == 0) {
                 continue;
             } else if (strcmp(object_name, "exit") == 0) {
                 break;
             }
         }
-        
     }
 }
