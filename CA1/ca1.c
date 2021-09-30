@@ -49,18 +49,18 @@ bool ContinueCalculationOrNot() { // Let user decide whether to calculate proper
 
 // Functions to calculate properties for differnt objects.
 // 2D objects:
-void Calculate2DRectangleProperties(bool isCube) {
+void Calculate2DRectangleProperties(bool isSquare) {
     double width, height;
     double perimeter, area;
 
     printf("\nPlease provide these necessary parameters:\n");
-    if (isCube) {
+    if (isSquare) {
         printf("Side length: ");
     } else {
         printf("Width: ");
     }
     width = GetNumericInput();
-    if (isCube) {
+    if (isSquare) {
         height = width;
     } else {
         printf("Height: ");
@@ -112,7 +112,7 @@ void Calculate3DCuboidProperties(bool isCube) {
 
     printf("\nCalculation results:\nSurface area: %.2lf\tVolume: %.2lf\n\n", surface_area, volume);
 }
-void Calculate3DCircleProperties() {
+void Calculate3DSphereProperties() {
     double radius;
     double surface_area, volume;
 
@@ -217,7 +217,7 @@ void main() {
                 } else { // Calculate 3D object's properties.
                     printf("\nSelect a object from the following list and key in its name:\n");
                     printf("Type \"back\" to reselect the object dimension, type \"exit\" to leave the program):\n");
-                    printf("Cuboid\t\tCube\nCircle\t\tCone\n");
+                    printf("Cuboid\t\tCube\nSphere\t\tCone\n");
                     printf("Type in your choice here: ");
         
                     scanf("%s", object_name);
@@ -233,8 +233,8 @@ void main() {
                         Calculate3DCuboidProperties(true);
                         if (ContinueCalculationOrNot()) break;
 
-                    } else if (strcmp(object_name, "circle") == 0) {
-                        Calculate3DCircleProperties(false);
+                    } else if (strcmp(object_name, "sphere") == 0) {
+                        Calculate3DSphereProperties(false);
                         if (ContinueCalculationOrNot()) break;
 
                     } else if (strcmp(object_name, "cone") == 0) {
@@ -250,7 +250,7 @@ void main() {
                     } else { // Let user type again if the input string is different from all desired ones.
                         printf("\n============================================================================\n");
                         printf("============== Invalid input! Please follow the instructions! ==============\n");
-                        printf("====== (Key in \"Cuboid\", \"Cube\", \"Circle\", \"Cone\", \"Back\" or \"Exit\".) ======\n");
+                        printf("====== (Key in \"Cuboid\", \"Cube\", \"Sphere\", \"Cone\", \"Back\" or \"Exit\".) ======\n");
                         printf("============================================================================\n\n");
                     }
                 }
