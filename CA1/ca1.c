@@ -270,7 +270,7 @@ void main() {
 
     printf("****************************************************************************\n");
     printf("********************* Nanyang Technological University *********************\n");
-    printf("********** Realtime System for Mechatronics Software (MA4830)-CA1 **********\n");
+    printf("********** Realtime Software for Mechatronic Systems (MA4830)-CA1 **********\n");
     printf("****************************************************************************\n");
     printf("********************************* Program **********************************\n");
     printf("********************* Calculate Properties of an Object ********************\n");
