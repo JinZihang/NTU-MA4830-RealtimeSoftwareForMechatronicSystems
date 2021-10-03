@@ -28,6 +28,7 @@ double GetNumericInput() {
     return numeric_input;
 }
 int SelectInputUnit() {
+    int i;
     char input_value[3];
 
     printf("\nSelect the input unit:\n");
@@ -36,7 +37,7 @@ int SelectInputUnit() {
 
     while (true) {
         scanf("%s", input_value);
-        for (int i = 0; input_value[i]; i++) {
+        for (i = 0; input_value[i]; i++) {
             input_value[i] = tolower(input_value[i]);
         }
 
@@ -58,38 +59,70 @@ int SelectInputUnit() {
         }
     }
 }
+void Print2DObjectProperties(bool isRectangle, int inputUnit, double perimeterOrCircumference, double area) {
+    printf("\nCalculation results:\n");
+
+    if (isRectangle) {
+        printf("Perimeter:\n\t");
+    } else {
+        printf("Circumference:\n\t");
+    }
+    
+    switch (inputUnit) {
+        case 1:
+            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference, perimeterOrCircumference*10, perimeterOrCircumference*1E2, perimeterOrCircumference*1E3);
+            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area, area*1E2, area*1E4, area*1E6);
+            break;
+    
+        case 2:
+            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference/10, perimeterOrCircumference, perimeterOrCircumference*10, perimeterOrCircumference*1E2);
+            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area/1E2, area, area*1E2, area*1E4);
+            break;
+
+        case 3:
+            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference/1E2, perimeterOrCircumference/10, perimeterOrCircumference, perimeterOrCircumference*10);
+            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area/1E4, area/1E2, area, area*1E2);
+            break;
+
+        default:
+            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference/1E3, perimeterOrCircumference/1E2, perimeterOrCircumference/10, perimeterOrCircumference);
+            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area/1E6, area/1E4, area/1E2, area);
+            break;
+    }
+}
 void Print3DObjectProperties(int inputUnit, double surface_area, double volume) {
     printf("\nCalculation results:\n");
     switch (inputUnit) {
         case 1:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area, surface_area/10E2, surface_area/10E4, surface_area/10E6);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume, volume/10E3, volume/10E6, volume/10E9);
+            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area, surface_area*1E2, surface_area*1E4, surface_area*1E6);
+            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume, volume*1E3, volume*1E6, volume*1E9);
             break;
     
         case 2:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area*10E2, surface_area, surface_area/10E2, surface_area/10E4);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume*10E3, volume, volume/10E3, volume/10E6);
+            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area/1E2, surface_area, surface_area*1E2, surface_area*1E4);
+            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume/1E3, volume, volume*1E3, volume*1E6);
             break;
 
         case 3:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area*10E4, surface_area*10E2, surface_area, surface_area/10E2);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume*10E6, volume*10E3, volume, volume/10E3);
+            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area/1E4, surface_area/1E2, surface_area, surface_area*1E2);
+            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume/1E6, volume/1E3, volume, volume*1E3);
             break;
 
         default:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area*10E6, surface_area*10E4, surface_area*10E2, surface_area);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume*10E9, volume*10E6, volume*10E3, volume);
+            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area/1E6, surface_area/1E4, surface_area/1E2, surface_area);
+            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume/1E9, volume/1E6, volume/1E3, volume);
             break;
     }
 }
 bool ExitProgramOrNot() {
+    int i;
     char exit_program_input[4]; 
 
     printf("Type in \"yes\" if you want to calculate again. Key in anything else to exit the program.\n");
     printf("Your choice: ");
 
     scanf("%s", exit_program_input);
-    for(int i = 0; exit_program_input[i]; i++) {
+    for(i = 0; exit_program_input[i]; i++) {
         exit_program_input[i] = tolower(exit_program_input[i]);
     }
 
@@ -100,13 +133,14 @@ bool ExitProgramOrNot() {
     }
 }
 bool ContinueInThisDimensionOrNot() { // Let user decide whether to calculate properties again or exit this program.
+    int i;
     char process_control_input[4]; 
 
     printf("Type in \"yes\" if you want to calculate for another object in this dimension. Key in anything else to reselect object's dimension.\n");
     printf("Your choice: ");
 
     scanf("%s", process_control_input);
-    for(int i = 0; process_control_input[i]; i++) {
+    for(i = 0; process_control_input[i]; i++) {
         process_control_input[i] = tolower(process_control_input[i]);
     }
 
@@ -143,28 +177,7 @@ void Calculate2DRectangleProperties(bool isSquare) {
     perimeter = 2 * (width + height);
     area = width * height;
 
-    printf("\nCalculation results:\n");
-    switch (inputUnit) {
-        case 1:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeter, perimeter/10, perimeter/10E2, perimeter/10E3);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area, area/10E2, area/10E4, area/10E6);
-            break;
-    
-        case 2:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeter*10, perimeter, perimeter/10, perimeter/10E2);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area*10E2, area, area/10E2, area/10E4);
-            break;
-
-        case 3:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeter*10E2, perimeter*10, perimeter, perimeter/10);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area*10E4, area*10E2, area, area/10E2);
-            break;
-
-        default:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeter*10E3, perimeter*10E2, perimeter*10, perimeter);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area*10E6, area*10E4, area*10E2, area);
-            break;
-    }
+    Print2DObjectProperties(true, inputUnit, perimeter, area);
 }
 void Calculate2DCircleProperties() {
     int inputUnit;
@@ -179,28 +192,7 @@ void Calculate2DCircleProperties() {
     circumference = 2 * M_PI * radius;
     area = M_PI * pow(radius, 2);
 
-    printf("\nCalculation results:\n");
-    switch (inputUnit) {
-        case 1:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", circumference, circumference/10, circumference/10E2, circumference/10E3);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area, area/10E2, area/10E4, area/10E6);
-            break;
-    
-        case 2:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", circumference*10, circumference, circumference/10, circumference/10E2);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area*10E2, area, area/10E2, area/10E4);
-            break;
-
-        case 3:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", circumference*10E2, circumference*10, circumference, circumference/10);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area*10E4, area*10E2, area, area/10E2);
-            break;
-
-        default:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", circumference*10E3, circumference*10E2, circumference*10, circumference);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area*10E6, area*10E4, area*10E2, area);
-            break;
-    }
+    Print2DObjectProperties(false, inputUnit, circumference, area);
 }
 // 3D Objects:
 void Calculate3DCuboidProperties(bool isCube) {
@@ -265,7 +257,8 @@ void Calculate3DConeProperties() {
 }
 
 void main() {
-    char object_dimension[3], object_name[10];
+    int i;
+    char object_dimension[4], object_name[10];
     bool exit_program = false;
 
     printf("****************************************************************************\n");
@@ -283,7 +276,7 @@ void main() {
             printf("Type in your choice here: ");
 
             scanf("%s", object_dimension);
-            for (int i = 0; object_dimension[i]; i++) { // Conver the input characters to lower-case for string comparison.
+            for (i = 0; object_dimension[i]; i++) { // Conver the input characters to lower-case for string comparison.
                 object_dimension[i] = tolower(object_dimension[i]);
             }
 
@@ -305,12 +298,12 @@ void main() {
             while (true) {
                 if (strcmp(object_dimension, "2d") == 0) { // Calculate 2D object's properties.
                     printf("\nSelect a object from the following list and key in its name:\n");
-                    printf("Type \"back\" to reselect the object dimension, type \"exit\" to leave the program):\n");
+                    printf("Type \"back\" to reselect the object dimension, type \"exit\" to leave the program:\n");
                     printf("Rectangle\tSquare\nCircle\n");
                     printf("Type in your choice here: ");
         
                     scanf("%s", object_name);
-                    for (int i = 0; object_name[i]; i++) {
+                    for (i = 0; object_name[i]; i++) {
                         object_name[i] = tolower(object_name[i]);
                     }
 
@@ -364,7 +357,7 @@ void main() {
                     printf("Type in your choice here: ");
         
                     scanf("%s", object_name);
-                    for (int i = 0; object_name[i]; i++) {
+                    for (i = 0; object_name[i]; i++) {
                         object_name[i] = tolower(object_name[i]);
                     }
 
