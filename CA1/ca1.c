@@ -352,7 +352,7 @@ void main() {
 
                 } else { // Calculate 3D object's properties.
                     printf("\nSelect a object from the following list and key in its name:\n");
-                    printf("Type \"back\" to reselect the object dimension, type \"exit\" to leave the program):\n");
+                    printf("Type \"back\" to reselect the object dimension, type \"exit\" to leave the program:\n");
                     printf("Cuboid\t\tCube\nSphere\t\tCone\n");
                     printf("Type in your choice here: ");
         
