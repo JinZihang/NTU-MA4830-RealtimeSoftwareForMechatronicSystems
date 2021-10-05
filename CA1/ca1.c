@@ -8,7 +8,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-// Process control functions.
+// Input control:
 double GetNumericInput() {
     char input_value[10];
     double numeric_input;
@@ -59,34 +59,45 @@ int SelectInputUnit() {
         }
     }
 }
+
+// Print calculation results:
 void Print2DObjectProperties(bool isRectangle, int inputUnit, double perimeterOrCircumference, double area) {
     printf("\nCalculation results:\n");
+    printf("    ______________________________________________________________________________________________\n");
 
     if (isRectangle) {
-        printf("Perimeter:\n\t");
+        printf("   |    Perimeter  | ");
     } else {
-        printf("Circumference:\n\t");
+        printf("   | Circumference | ");
     }
     
     switch (inputUnit) {
         case 1:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference, perimeterOrCircumference*10, perimeterOrCircumference*1E2, perimeterOrCircumference*1E3);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area, area*1E2, area*1E4, area*1E6);
+            printf("%12.2g m   | %12.2g dm   | %12.2g cm   | %12.2g mm   |\n", perimeterOrCircumference, perimeterOrCircumference*10, perimeterOrCircumference*1E2, perimeterOrCircumference*1E3);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
+            printf("   |      Area     | %12.2g m^2 | %12.2g dm^2 | %12.2g cm^2 | %12.2g mm^2 |\n", area, area*1E2, area*1E4, area*1E6);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
             break;
     
         case 2:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference/10, perimeterOrCircumference, perimeterOrCircumference*10, perimeterOrCircumference*1E2);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area/1E2, area, area*1E2, area*1E4);
+            printf("%12.2g m   | %12.2g dm   | %12.2g cm   | %12.2g mm   |\n", perimeterOrCircumference/10, perimeterOrCircumference, perimeterOrCircumference*10, perimeterOrCircumference*1E2);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
+            printf("   |      Area     | %12.2g m^2 | %12.2g dm^2 | %12.2g cm^2 | %12.2g mm^2 |\n", area/1E2, area, area*1E2, area*1E4);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
             break;
 
         case 3:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference/1E2, perimeterOrCircumference/10, perimeterOrCircumference, perimeterOrCircumference*10);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area/1E4, area/1E2, area, area*1E2);
+            printf("%12.2g m   | %12.2g dm   | %12.2g cm   | %12.2g mm   |\n", perimeterOrCircumference/1E2, perimeterOrCircumference/10, perimeterOrCircumference, perimeterOrCircumference*10);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
+            printf("   |      Area     | %12.2g m^2 | %12.2g dm^2 | %12.2g cm^2 | %12.2g mm^2 |\n", area/1E4, area/1E2, area, area*1E2);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
             break;
 
         default:
-            printf("Circumference:\n\t%.3gm = %.3gdm = %.3gcm = %.3gmm\n", perimeterOrCircumference/1E3, perimeterOrCircumference/1E2, perimeterOrCircumference/10, perimeterOrCircumference);
-            printf("Area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n\n", area/1E6, area/1E4, area/1E2, area);
+            printf("%12.2g m   | %12.2g dm   | %12.2g cm   | %12.2g mm   |\n", perimeterOrCircumference/1E3, perimeterOrCircumference/1E2, perimeterOrCircumference/10, perimeterOrCircumference);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
+            printf("   |      Area     | %12.2g m^2 | %12.2g dm^2 | %12.2g cm^2 | %12.2g mm^2 |\n", area/1E6, area/1E4, area/1E2, area);
+            printf("   |_______________|__________________|___________________|___________________|___________________|\n");
             break;
     }
 }
@@ -94,61 +105,36 @@ void Print3DObjectProperties(int inputUnit, double surface_area, double volume) 
     printf("\nCalculation results:\n");
     switch (inputUnit) {
         case 1:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area, surface_area*1E2, surface_area*1E4, surface_area*1E6);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume, volume*1E3, volume*1E6, volume*1E9);
+            printf("    _________________________________________________________________________________________________________\n");
+            printf("   |    Surface area  | %12.2g m^2   | %12.2g dm^2   | %12.2g cm^2   | %12.2g mm^2   |\n", surface_area, surface_area*1E2, surface_area*1E4, surface_area*1E6);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
+            printf("   |      Volume      | %12.2g m^3   | %12.2g dm^3   | %12.2g cm^3   | %12.2g mm^3   |\n", volume, volume*1E3, volume*1E6, volume*1E9);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
             break;
     
         case 2:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area/1E2, surface_area, surface_area*1E2, surface_area*1E4);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume/1E3, volume, volume*1E3, volume*1E6);
+            printf("    _________________________________________________________________________________________________________\n");
+            printf("   |    Surface area  | %12.2g m^2   | %12.2g dm^2   | %12.2g cm^2   | %12.2g mm^2   |\n", surface_area/1E2, surface_area, surface_area*1E2, surface_area*1E4);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
+            printf("   |      Volume      | %12.2g m^3   | %12.2g dm^3   | %12.2g cm^3   | %12.2g mm^3   |\n", volume/1E3, volume, volume*1E3, volume*1E6);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
             break;
 
         case 3:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area/1E4, surface_area/1E2, surface_area, surface_area*1E2);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume/1E6, volume/1E3, volume, volume*1E3);
+            printf("    _________________________________________________________________________________________________________\n");
+            printf("   |    Surface area  | %12.2g m^2   | %12.2g dm^2   | %12.2g cm^2   | %12.2g mm^2   |\n", surface_area/1E4, surface_area/1E2, surface_area, surface_area*1E2);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
+            printf("   |      Volume      | %12.2g m^3   | %12.2g dm^3   | %12.2g cm^3   | %12.2g mm^3   |\n", volume/1E6, volume/1E3, volume, volume*1E3);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
             break;
 
         default:
-            printf("Surface area:\n\t%.3gm^2 = %.3gdm^2 = %.3gcm^2 = %.3gmm^2\n", surface_area/1E6, surface_area/1E4, surface_area/1E2, surface_area);
-            printf("Volume:\n\t%.3gm^3 = %.3gdm^3 = %.3gcm^3 = %.3gmm^3\n\n", volume/1E9, volume/1E6, volume/1E3, volume);
+            printf("    _________________________________________________________________________________________________________\n");
+            printf("   |    Surface area  | %12.2g m^2   | %12.2g dm^2   | %12.2g cm^2   | %12.2g mm^2   |\n", surface_area/1E6, surface_area/1E4, surface_area/1E2, surface_area);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
+            printf("   |      Volume      | %12.2g m^3   | %12.2g dm^3   | %12.2g cm^3   | %12.2g mm^3   |\n", volume/1E9, volume/1E6, volume/1E3, volume);
+            printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
             break;
-    }
-}
-bool ExitProgramOrNot() {
-    int i;
-    char exit_program_input[4]; 
-
-    printf("Type in \"yes\" if you want to calculate again. Key in anything else to exit the program.\n");
-    printf("Your choice: ");
-
-    scanf("%s", exit_program_input);
-    for(i = 0; exit_program_input[i]; i++) {
-        exit_program_input[i] = tolower(exit_program_input[i]);
-    }
-
-    if (strcmp(exit_program_input, "yes") != 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-bool ContinueInThisDimensionOrNot() { // Let user decide whether to calculate properties again or exit this program.
-    int i;
-    char process_control_input[4]; 
-
-    printf("Type in \"yes\" if you want to calculate for another object in this dimension. Key in anything else to reselect object's dimension.\n");
-    printf("Your choice: ");
-
-    scanf("%s", process_control_input);
-    for(i = 0; process_control_input[i]; i++) {
-        process_control_input[i] = tolower(process_control_input[i]);
-    }
-
-    if (strcmp(process_control_input, "yes") != 0) {
-        return true;
-    } else {
-        printf("\n============================================================================");
-        return false;
     }
 }
 
@@ -254,6 +240,45 @@ void Calculate3DConeProperties() {
     volume = M_PI * pow(radius, 2) * height / 3.0;
 
     Print3DObjectProperties(inputUnit, surface_area, volume);
+}
+
+// Process controls:
+bool ExitProgramOrNot() {
+    int i;
+    char exit_program_input[4]; 
+
+    printf("Type in \"yes\" if you want to calculate again. Key in anything else to exit the program.\n");
+    printf("Your choice: ");
+
+    scanf("%s", exit_program_input);
+    for(i = 0; exit_program_input[i]; i++) {
+        exit_program_input[i] = tolower(exit_program_input[i]);
+    }
+
+    if (strcmp(exit_program_input, "yes") != 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+bool ContinueInThisDimensionOrNot() { // Let user decide whether to calculate properties again or exit this program.
+    int i;
+    char process_control_input[4]; 
+
+    printf("Type in \"yes\" if you want to calculate for another object in this dimension. Key in anything else to reselect object's dimension.\n");
+    printf("Your choice: ");
+
+    scanf("%s", process_control_input);
+    for(i = 0; process_control_input[i]; i++) {
+        process_control_input[i] = tolower(process_control_input[i]);
+    }
+
+    if (strcmp(process_control_input, "yes") != 0) {
+        return true;
+    } else {
+        printf("\n============================================================================");
+        return false;
+    }
 }
 
 void main() {
