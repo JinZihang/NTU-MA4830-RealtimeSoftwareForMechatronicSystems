@@ -310,8 +310,8 @@ void main() {
                 break;
             } else { // Let user type again if the input is different from all desired ones.
                 printf("\n============================================================================\n");
-                printf("************** Invalid input! Please follow the instructions! **************\n");
-                printf("************************** (Key in \"2D\" or \"3D\".) **************************\n");
+                printf("============== Invalid input! Please follow the instructions! ==============\n");
+                printf("========================== (Key in \"2D\" or \"3D\".) ==========================\n");
                 printf("============================================================================\n\n");
             }
         }
