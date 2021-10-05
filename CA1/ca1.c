@@ -138,7 +138,7 @@ void Print3DObjectProperties(int inputUnit, double surface_area, double volume) 
     }
 }
 
-// Functions to calculate properties for differnt objects.
+// Functions to calculate properties for differnt objects:
 // 2D objects:
 void Calculate2DRectangleProperties(bool isSquare) {
     int inputUnit;
