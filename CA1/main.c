@@ -18,21 +18,14 @@ int main()
     int dimension, i;
     enum shape shape;
     struct History history;
-    char *filename = "title.txt";
-    FILE *fptr = NULL;
+    char *filename = "title.txt"; //can be moved to main argument
 
-    for (i = 0; i<7; i++) {
+    for (i = 0; i < 7; i++)
+    {
         history.count[i] = 0;
     }
-    
 
-    // Print the title.
-    if ((fptr = fopen(filename, "r")) == NULL)
-    {
-        fprintf(stderr, "error opening %s\n", filename);
-        return 1;
-    }
-    PrintImage(fptr);
+    PrintTitle(filename);
 
     while (true)
     { // outer loop

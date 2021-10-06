@@ -9,10 +9,22 @@
 
 void PrintImage(FILE *fptr)
 {
-    char read_string[MAX_LEN];
+    char readString[MAX_LEN];
 
-    while (fgets(read_string, sizeof(read_string), fptr) != NULL)
-        printf("%s", read_string);
+    while (fgets(readString, sizeof(readString), fptr) != NULL)
+        printf("%s", readString);
+}
+
+void PrintTitle(char *filename)
+{
+    FILE *fptr = NULL;
+
+    if ((fptr = fopen(filename, "r")) == NULL)
+    {
+        fprintf(stderr, "error opening %s\n", filename);
+        exit(1);
+    }
+    PrintImage(fptr);
 }
 
 void DimensionSelectionInstructions()
