@@ -22,7 +22,7 @@ struct Circle
 {
     double radius;
     double circumference;
-    
+
     double area;
 };
 
@@ -59,6 +59,17 @@ struct Cone
 
     double area;
     double volume;
+};
+
+struct History
+{
+    struct Rectangle rectangles[10];
+    struct Square squares[10];
+    struct Circle circles[10];
+    struct Cuboid cuboids[10];
+    struct Cube cubes[10];
+    struct Sphere spheres[10];
+    struct Cone cones[10];
 };
 
 #endif

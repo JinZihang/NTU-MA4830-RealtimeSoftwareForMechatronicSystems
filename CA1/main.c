@@ -17,6 +17,7 @@ int main()
 {
     int dimension;
     enum shape shape;
+    struct History history;
     char *filename = "title.txt";
     FILE *fptr = NULL;
 
@@ -35,15 +36,15 @@ int main()
 
         GeometrySelection(&shape, dimension);
 
-        CalculateProperties(shape);
+        CalculateProperties(shape, &history);
 
         //     // calculation function (shape_or_object_selected) -> calculation_result
-            //      // unit = unit selection
-            //      // param = param selection
-            // cal
-            //      // display(unit, result) ->  
+        //      // unit = unit selection
+        //      // param = param selection
+        // cal
+        //      // display(unit, result) ->
 
-                /// reurn 
+        /// reurn
         //     // histroy/calculate/exit
     }
 
