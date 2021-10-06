@@ -7,7 +7,7 @@
 #include "struct.h"
 #include "enum.h"
 
-double GetParamterInput(void (*paramInstructions)())
+double GetParameterInput(void (*paramInstructions)())
 {
     char *endptr, buffer[100];
     double number;
@@ -44,23 +44,23 @@ void CalculateProperties(enum shape shape, struct History *history)
         switch (unit)
         {
         case m:
-            history->rectangles[history->count[0]].width = GetParamterInput(WidthSelectionInstructions);
-            history->rectangles[history->count[0]].length = GetParamterInput(LengthSelectionInstructions);
+            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions);
+            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions);
             break;
 
         case dm:
-            history->rectangles[history->count[0]].width = GetParamterInput(WidthSelectionInstructions) / 1E1;
-            history->rectangles[history->count[0]].length = GetParamterInput(LengthSelectionInstructions) / 1E1;
+            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / 1E1;
+            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
             break;
 
         case cm:
-            history->rectangles[history->count[0]].width = GetParamterInput(WidthSelectionInstructions) / 1E2;
-            history->rectangles[history->count[0]].length = GetParamterInput(LengthSelectionInstructions) / 1E2;
+            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / 1E2;
+            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
             break;
 
         case mm:
-            history->rectangles[history->count[0]].width = GetParamterInput(WidthSelectionInstructions) / 1E3;
-            history->rectangles[history->count[0]].length = GetParamterInput(LengthSelectionInstructions) / 1E3;
+            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / 1E3;
+            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
             break;
         }
 
@@ -77,19 +77,19 @@ void CalculateProperties(enum shape shape, struct History *history)
         switch (unit)
         {
         case m:
-            history->squares[history->count[1]].length = GetParamterInput(LengthSelectionInstructions);
+            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions);
             break;
 
         case dm:
-            history->squares[history->count[1]].length = GetParamterInput(LengthSelectionInstructions) / 1E1;
+            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
             break;
 
         case cm:
-            history->squares[history->count[1]].length = GetParamterInput(LengthSelectionInstructions) / 1E2;
+            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
             break;
 
         case mm:
-            history->squares[history->count[1]].length = GetParamterInput(LengthSelectionInstructions) / 1E3;
+            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
             break;
         }
 
@@ -106,19 +106,19 @@ void CalculateProperties(enum shape shape, struct History *history)
         switch (unit)
         {
         case m:
-            history->circles[history->count[2]].radius = GetParamterInput(RadiusSelectionInstructions);
+            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions);
             break;
 
         case dm:
-            history->circles[history->count[2]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E1;
+            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E1;
             break;
 
         case cm:
-            history->circles[history->count[2]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E2;
+            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E2;
             break;
 
         case mm:
-            history->circles[history->count[2]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E3;
+            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E3;
             break;
         }
 
@@ -135,27 +135,27 @@ void CalculateProperties(enum shape shape, struct History *history)
         switch (unit)
         {
         case m:
-            history->cuboids[history->count[3]].width = GetParamterInput(WidthSelectionInstructions);
-            history->cuboids[history->count[3]].length = GetParamterInput(LengthSelectionInstructions);
-            history->cuboids[history->count[3]].height = GetParamterInput(HeightSelectionInstructions);
+            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions);
+            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions);
+            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions);
             break;
 
         case dm:
-            history->cuboids[history->count[3]].width = GetParamterInput(WidthSelectionInstructions) / 1E1;
-            history->cuboids[history->count[3]].length = GetParamterInput(LengthSelectionInstructions) / 1E1;
-            history->cuboids[history->count[3]].height = GetParamterInput(HeightSelectionInstructions) / 1E1;
+            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / 1E1;
+            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
+            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / 1E1;
             break;
 
         case cm:
-            history->cuboids[history->count[3]].width = GetParamterInput(WidthSelectionInstructions) / 1E2;
-            history->cuboids[history->count[3]].length = GetParamterInput(LengthSelectionInstructions) / 1E2;
-            history->cuboids[history->count[3]].height = GetParamterInput(HeightSelectionInstructions) / 1E2;
+            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / 1E2;
+            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
+            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / 1E2;
             break;
 
         case mm:
-            history->cuboids[history->count[3]].width = GetParamterInput(WidthSelectionInstructions) / 1E3;
-            history->cuboids[history->count[3]].length = GetParamterInput(LengthSelectionInstructions) / 1E3;
-            history->cuboids[history->count[3]].height = GetParamterInput(HeightSelectionInstructions) / 1E3;
+            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / 1E3;
+            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
+            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / 1E3;
             break;
         }
 
@@ -172,19 +172,19 @@ void CalculateProperties(enum shape shape, struct History *history)
         switch (unit)
         {
         case m:
-            history->cubes[history->count[4]].length = GetParamterInput(LengthSelectionInstructions);
+            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions);
             break;
 
         case dm:
-            history->cubes[history->count[4]].length = GetParamterInput(LengthSelectionInstructions) / 1E1;
+            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
             break;
 
         case cm:
-            history->cubes[history->count[4]].length = GetParamterInput(LengthSelectionInstructions) / 1E2;
+            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
             break;
 
         case mm:
-            history->cubes[history->count[4]].length = GetParamterInput(LengthSelectionInstructions) / 1E3;
+            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
             break;
         }
 
@@ -202,23 +202,23 @@ void CalculateProperties(enum shape shape, struct History *history)
         switch (unit)
         {
         case m:
-            history->cones[history->count[5]].radius = GetParamterInput(RadiusSelectionInstructions);
-            history->cones[history->count[5]].height = GetParamterInput(HeightSelectionInstructions);
+            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions);
+            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions);
             break;
 
         case dm:
-            history->cones[history->count[5]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E1;
-            history->cones[history->count[5]].height = GetParamterInput(HeightSelectionInstructions) / 1E1;
+            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E1;
+            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / 1E1;
             break;
 
         case cm:
-            history->cones[history->count[5]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E2;
-            history->cones[history->count[5]].height = GetParamterInput(HeightSelectionInstructions) / 1E2;
+            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E2;
+            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / 1E2;
             break;
 
         case mm:
-            history->cones[history->count[5]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E3;
-            history->cones[history->count[5]].height = GetParamterInput(HeightSelectionInstructions) / 1E3;
+            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E3;
+            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / 1E3;
             break;
         }
 
@@ -235,19 +235,19 @@ void CalculateProperties(enum shape shape, struct History *history)
         switch (unit)
         {
         case m:
-            history->spheres[history->count[6]].radius = GetParamterInput(RadiusSelectionInstructions);
+            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions);
             break;
 
         case dm:
-            history->spheres[history->count[6]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E1;
+            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E1;
             break;
 
         case cm:
-            history->spheres[history->count[6]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E2;
+            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E2;
             break;
 
         case mm:
-            history->spheres[history->count[6]].radius = GetParamterInput(RadiusSelectionInstructions) / 1E3;
+            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E3;
             break;
         }
 
@@ -263,4 +263,10 @@ void CalculateProperties(enum shape shape, struct History *history)
     }
 }
 
+// void CalculateHistory(struct History *history)
+// {
+//     enum shape shape;
+
+//     GeometrySelection(&shape, dimension);
+// }
 #endif

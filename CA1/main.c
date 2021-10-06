@@ -32,19 +32,17 @@ int main()
         DimensionSelection(&dimension);
         printf("Dimension selected is %d\n", dimension);
 
-        if (GeometrySelection(&shape, dimension))
+        if (!GeometrySelection(&shape, dimension))
         {
-            CalculateProperties(shape, &history);
+            continue;
         }
 
-        //     // calculation function (shape_or_object_selected) -> calculation_result
-        //      // unit = unit selection
-        //      // param = param selection
-        // cal
-        //      // display(unit, result) ->
+        CalculateProperties(shape, &history);
 
-        /// reurn
-        //     // histroy/calculate/exit
+        while (ProcessSelection())
+        {
+            printf("Calculate history\n");
+        }
     }
 
     return 0;

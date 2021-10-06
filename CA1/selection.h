@@ -291,9 +291,49 @@ void UnitSelection(enum unit *unit)
     }
 }
 
-void ProcessSelection()
+bool ProcessSelection()
 {
+    char *input, *inputLowercase;
+    unsigned char *char_ptr;
+
     ProcessSelectionInstructions();
+
+    while (true)
+    {
+        // Get input and convert the input to lowercase.
+        if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+        fgets(input, 100 * sizeof(char), stdin);
+        inputLowercase = strdup(input);
+        free(input);
+        char_ptr = (unsigned char *)inputLowercase;
+        while (*char_ptr)
+        {
+            *char_ptr = tolower(*char_ptr);
+            char_ptr++;
+        }
+
+        // Actions based on the input.
+        if (strcmp(inputLowercase, "history\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
+        {
+            return true;
+        }
+        else if (strcmp(inputLowercase, "calculate\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
+        {
+            return false;
+        }
+        else if (strcmp(inputLowercase, "exit\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
+        {
+            exit(0);
+        }
+        else
+        {
+            WrongProcessInput();
+        }
+    }
 }
 
 #endif

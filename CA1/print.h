@@ -146,8 +146,17 @@ void ProcessSelectionInstructions()
     printf("Type in\n");
     printf("1. History\t- To view the calculation history.\n");
     printf("2. Calculate\t- To calculate again.\n");
-    printf("2. Exit\t- To leave the program.\n");
+    printf("3. Exit\t- To leave the program.\n");
     printf("Your choice: ");
+}
+
+void WrongProcessInput()
+{
+    printf("\n============================================================================\n");
+    printf("============== Invalid input! Please follow the instructions! ==============\n");
+    printf("============ Key in \"History\", \"Calculate\" or \"Exit\" ===========\n");
+    printf("============================================================================\n\n");
+    printf("Type in your choice here: ");
 }
 
 void ParamaterSelectionInstructions(char *parameter)
