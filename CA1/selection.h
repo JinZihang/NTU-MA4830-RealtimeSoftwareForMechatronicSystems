@@ -244,27 +244,27 @@ void UnitSelection(enum unit *unit)
         fgets(input, 100 * sizeof(char), stdin);
 
         // Actions based on the input.
-        if (strcmp(input, "m") == 0)
+        if (strcmp(input, "m\n") == 0)
         {
             *unit = m;
             free(input);
             return;
         }
-        else if (strcmp(input, "dm") == 0)
+        else if (strcmp(input, "dm\n") == 0)
         {
-            *unit = m;
+            *unit = dm;
             free(input);
             return;
         }
-        else if (strcmp(input, "cm") == 0)
+        else if (strcmp(input, "cm\n") == 0)
         {
-            *unit = m;
+            *unit = cm;
             free(input);
             return;
         }
-        else if (strcmp(input, "mm") == 0)
+        else if (strcmp(input, "mm\n") == 0)
         {
-            *unit = m;
+            *unit = mm;
             free(input);
             return;
         }

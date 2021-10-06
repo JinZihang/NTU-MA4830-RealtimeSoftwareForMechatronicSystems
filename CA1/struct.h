@@ -63,6 +63,7 @@ struct Cone
 
 struct History
 {
+    int count[7];
     struct Rectangle rectangles[10];
     struct Square squares[10];
     struct Circle circles[10];

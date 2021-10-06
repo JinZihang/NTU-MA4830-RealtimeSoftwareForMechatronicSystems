@@ -15,11 +15,16 @@
 
 int main()
 {
-    int dimension;
+    int dimension, i;
     enum shape shape;
     struct History history;
     char *filename = "title.txt";
     FILE *fptr = NULL;
+
+    for (i = 0; i<7; i++) {
+        history.count[i] = 0;
+    }
+    
 
     // Print the title.
     if ((fptr = fopen(filename, "r")) == NULL)

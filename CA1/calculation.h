@@ -7,57 +7,73 @@
 #include "struct.h"
 #include "enum.h"
 
-double input() {
-    fgets()
+double GetNumericInput()
+{
+    char input_value[10];
+    double numeric_input;
+
+    while (true)
+    {
+        scanf("%s", input_value);
+
+        numeric_input = strtod(input_value, NULL);
+        if (numeric_input != 0)
+        {
+            break;
+        }
+        else
+        {
+            printf("Invalid input! Please enter a numeric value!\n");
+            printf("Enter again here: ");
+        }
+    }
+
+    return numeric_input;
 }
 
-void CalculateProperties(enum shape shape, struct History *history) {
+void CalculateProperties(enum shape shape, struct History *history)
+{
     enum unit unit;
+    int index, test;
 
     UnitSelection(&unit);
 
-    int rectangleCount = 0;
-
     switch (shape)
     {
     case Rectangle:
-        switch (unit)
-        {
-        case /* constant-expression */:
-            /* code */
-            break;
-        
-        }
-        history->rectangles[rectangleCount].length = input();
-        history->rectangles[rectangleCount].width = input();
 
-        history->rectangles[rectangleCount].perimeter = 2*(width + height);
-        history->rectangles[rectangleCount].area = width * height;
+        test = GetNumericInput();
+        printf("%lf", test);
+        // switch (unit)
+        // {
+        // case m:
+        //     history->rectangles[history->count[0]].width = GetNumericInput();
+        //     history->rectangles[history->count[0]].length = GetNumericInput();
+        //     break;
 
-        CalculateProperties(unit, shape, result_1, result_2);
-        break;
-    
-    default:
-        break;
+        // case dm:
+        //     history->rectangles[history->count[0]].width = GetNumericInput() / 1E1;
+        //     history->rectangles[history->count[0]].length = GetNumericInput() / 1E1;
+        //     break;
+
+        // case cm:
+        //     history->rectangles[history->count[0]].width = GetNumericInput() / 1E2;
+        //     history->rectangles[history->count[0]].length = GetNumericInput() / 1E2;
+        //     break;
+
+        // case mm:
+        //     history->rectangles[history->count[0]].width = GetNumericInput() / 1E3;
+        //     history->rectangles[history->count[0]].length = GetNumericInput() / 1E3;
+        //     break;
+
+        //     history->rectangles[history->count[0]].perimeter = 2 * (history->rectangles[history->count[0]].width + history->rectangles[history->count[0]].length);
+        //     history->rectangles[history->count[0]].area = history->rectangles[history->count[0]].width * history->rectangles[history->count[0]].length;
+
+        //     DisplayResults(shape, history->rectangles[history->count[0]].width, history->rectangles[history->count[0]].length);
+        //     history->count[0]++;
+        //     break;
+        // }
     }
-
-
-    // input param; -> width and height
-
-    // calculation steps -> result 1 result 2
-
-    CalculationResults(unit, shape, result_1, result_2);
-    
-    switch (shape)
-    {
-    case Rectangle:
-        history->rectangles[rectangleCount].length = 2;
-        history->rectangles[rectangleCount].width = 3;
-        history->rectangles[rectangleCount].area = 6;
-        history->rectangles[rectangleCount].perimeter = 10;
-        break;
-    default:
-        break;
-    }
+}
 
 #endif
