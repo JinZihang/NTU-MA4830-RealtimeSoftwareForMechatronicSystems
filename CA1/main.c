@@ -29,8 +29,6 @@ int main()
     while (true)
     { // outer loop
         dimension = DimensionSelection();
-        if (dimension == -1)
-            return 0;
         printf("%d", dimension);
         
     //     int dimensionResult = 2;

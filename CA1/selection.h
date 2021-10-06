@@ -14,48 +14,48 @@
 #include "print.h"
 #include "enum.h"
 
-void ShapeSelection(enum shape *shapeResult, int dimensionResult)
-{
-    switch (dimensionResult)
-    {
-    case 2:
-        Selection2D(shapeResult);
-        printf("2D");
-        break;
-    case 3:
-        // Selection3D(shapeResult);
-        printf("3D");
-        break;
-    default:
-        printf("Invalid dimension\n");
-    }
-}
+// void ShapeSelection(enum shape *shapeResult, int dimensionResult)
+// {
+//     switch (dimensionResult)
+//     {
+//     case 2:
+//         Selection2D(shapeResult);
+//         printf("2D");
+//         break;
+//     case 3:
+//         // Selection3D(shapeResult);
+//         printf("3D");
+//         break;
+//     default:
+//         printf("Invalid dimension\n");
+//     }
+// }
 
-void Selection2D(enum shape *shapeResult)
-{
-    int shapeNumber = 1;
+// void Selection2D(enum shape *shapeResult)
+// {
+//     int shapeNumber = 1;
 
-    printf("1. Rectangle\n2. Square\n3. Triangle\n4. Circle\n");
-    printf("Enter your choice: ");
-    switch (shapeNumber)
-    {
-    case 1:
-        *shapeResult = Rectangle;
-        break;
-    case 2:
-        *shapeResult = Square;
-        break;
-    case 3:
-        *shapeResult = Triangle;
-        break;
-    case 4:
-        *shapeResult = Circle;
-        break;
-    default:
-        printf("2D shape selection fail");
-        break;
-    }
-}
+//     printf("1. Rectangle\n2. Square\n3. Triangle\n4. Circle\n");
+//     printf("Enter your choice: ");
+//     switch (shapeNumber)
+//     {
+//     case 1:
+//         *shapeResult = Rectangle;
+//         break;
+//     case 2:
+//         *shapeResult = Square;
+//         break;
+//     case 3:
+//         *shapeResult = Triangle;
+//         break;
+//     case 4:
+//         *shapeResult = Circle;
+//         break;
+//     default:
+//         printf("2D shape selection fail");
+//         break;
+//     }
+// }
 
 // void Selection3D(enum shape *shapeResult)
 // {
@@ -96,7 +96,8 @@ int DimensionSelection() {
         }
 
         // Get input and convert the input to lowercase.
-        scanf("%99s", input);
+        // scanf("%99s", input);
+        fgets(input, 100 * sizeof(char), stdin);
         inputLowercase = strdup(input);
         char_ptr = (unsigned char *)inputLowercase;
         while(*char_ptr) {
@@ -104,24 +105,28 @@ int DimensionSelection() {
             char_ptr++;
         }
 
+        // printf("\n\ntest:\n");
+        // printf("%s", input);
+        // printf("test\n");
+
         // Actions based on the input.
-        if (strcmp(inputLowercase, "2d") == 0 || strcmp(inputLowercase, "1") == 0) {
+        if (strcmp(inputLowercase, "2d\n") == 0 || strcmp(inputLowercase, "1\n") == 0) {
             free(input);
             free(inputLowercase);
             free(char_ptr);
             return 2;
 
-        } else if (strcmp(inputLowercase, "3d") == 0 || strcmp(inputLowercase, "2") == 0) {
+        } else if (strcmp(inputLowercase, "3d\n") == 0 || strcmp(inputLowercase, "2\n") == 0) {
             free(input);
             free(inputLowercase);
             free(char_ptr);
             return 3;
 
-        } else if (strcmp(inputLowercase, "exit") == 0) {
+        } else if (strcmp(inputLowercase, "exit\n") == 0) {
             free(input);
             free(inputLowercase);
             free(char_ptr);
-            return -1;
+            exit(0);
 
         } else {
             WrongDimensionInput();
