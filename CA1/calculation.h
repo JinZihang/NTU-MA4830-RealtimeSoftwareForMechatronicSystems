@@ -266,5 +266,13 @@ void CalculateProperties(enum shape shape, struct History *history)
 void CalculateHistoricalProperties(struct History *history)
 {
     enum shape shape;
+
+    ShapeAndObjectSelection(&shape);
+
+    switch (shape)
+    {
+    case Rectangle:
+        break;
+    }
 }
 #endif

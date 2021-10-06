@@ -189,9 +189,18 @@ void HeightSelectionInstructions()
 void ShapeAndObjectSelectionInstructions()
 {
     printf("\n============================================================================\n");
-    printf("Select the shape and the object\n");
+    printf("Select any of the option\n");
     printf("1. Rectangle\n2. Square\n3. Circle\n");
     printf("4. Cuboid\n5. Cube\n6. Cone\n7. Sphere\n");
+    printf("Type in your choice here: ");
+}
+
+void WrongShapeAndObjectInput()
+{
+    printf("\n============================================================================\n");
+    printf("============== Invalid input! Please follow the instructions! ==============\n");
+    printf("============ Key in \"Rectangle\", \"Square\", \"Circle\", \"Cuboid\", \"Cube\", \"Cone\", \"Sphere\" ===========\n");
+    printf("============================================================================\n\n");
     printf("Type in your choice here: ");
 }
 
