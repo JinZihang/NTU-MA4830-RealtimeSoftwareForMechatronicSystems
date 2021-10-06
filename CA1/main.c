@@ -9,9 +9,11 @@
 #include <math.h>
 
 #include "print.h"
+#include "selection.h"
 
 int main()
 {
+    int dimension;
     char *filename = "title.txt";
     FILE *fptr = NULL;
 
@@ -21,7 +23,10 @@ int main()
         return 1;
     }
 
-    print_image(fptr);
+    PrintImage(fptr);
+
+    dimension = DimensionSelection();
+    printf("%d", dimension);
 
     while(true) { // outer loop
         // key in dimension -> dimension_result
