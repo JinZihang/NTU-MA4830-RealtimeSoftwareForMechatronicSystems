@@ -28,13 +28,14 @@ int main()
     PrintTitle(filename);
 
     while (true)
-    { // outer loop
+    {
         DimensionSelection(&dimension);
         printf("Dimension selected is %d\n", dimension);
 
-        GeometrySelection(&shape, dimension);
-
-        CalculateProperties(shape, &history);
+        if (GeometrySelection(&shape, dimension))
+        {
+            CalculateProperties(shape, &history);
+        }
 
         //     // calculation function (shape_or_object_selected) -> calculation_result
         //      // unit = unit selection

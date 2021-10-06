@@ -14,7 +14,7 @@
 #include "print.h"
 #include "enum.h"
 
-void ShapeSelection(int *shapeNumber)
+bool ShapeSelection(int *shapeNumber)
 {
     char *input, *inputLowercase;
     unsigned char *char_ptr;
@@ -43,17 +43,21 @@ void ShapeSelection(int *shapeNumber)
         if (strcmp(inputLowercase, "rectangle\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
         {
             *shapeNumber = 1;
-            return;
+            return true;
         }
         else if (strcmp(inputLowercase, "square\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
         {
             *shapeNumber = 2;
-            return;
+            return true;
         }
         else if (strcmp(inputLowercase, "circle\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
         {
             *shapeNumber = 3;
-            return;
+            return true;
+        }
+        else if (strcmp(inputLowercase, "back\n") == 0)
+        {
+            return false;
         }
         else if (strcmp(inputLowercase, "exit\n") == 0)
         {
@@ -66,7 +70,7 @@ void ShapeSelection(int *shapeNumber)
     }
 }
 
-void ObjectSelection(int *shapeNumber)
+bool ObjectSelection(int *shapeNumber)
 {
     char *input, *inputLowercase;
     unsigned char *char_ptr;
@@ -95,22 +99,26 @@ void ObjectSelection(int *shapeNumber)
         if (strcmp(inputLowercase, "cuboid\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
         {
             *shapeNumber = 1;
-            return;
+            return true;
         }
         else if (strcmp(inputLowercase, "cube\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
         {
             *shapeNumber = 2;
-            return;
+            return true;
         }
         else if (strcmp(inputLowercase, "cone\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
         {
             *shapeNumber = 3;
-            return;
+            return true;
         }
         else if (strcmp(inputLowercase, "sphere\n") == 0 || strcmp(inputLowercase, "4\n") == 0)
         {
             *shapeNumber = 4;
-            return;
+            return true;
+        }
+        else if (strcmp(inputLowercase, "back\n") == 0)
+        {
+            return false;
         }
         else if (strcmp(inputLowercase, "exit\n") == 0)
         {
@@ -123,61 +131,69 @@ void ObjectSelection(int *shapeNumber)
     }
 }
 
-void GeometrySelection(enum shape *shape, int dimension)
+bool GeometrySelection(enum shape *shape, int dimension)
 {
     int shapeNumber;
 
     switch (dimension)
     {
     case 2:
-        ShapeSelection(&shapeNumber);
-        switch (shapeNumber)
+        if (ShapeSelection(&shapeNumber))
         {
-        case 1:
-            *shape = Rectangle;
-            printf("Rectangle selected\n");
-            break;
-        case 2:
-            *shape = Square;
-            printf("Square selected\n");
-            break;
-        case 3:
-            *shape = Circle;
-            printf("Circle selected\n");
-            break;
-        default:
-            break;
+            switch (shapeNumber)
+            {
+            case 1:
+                *shape = Rectangle;
+                printf("Rectangle selected\n");
+                break;
+            case 2:
+                *shape = Square;
+                printf("Square selected\n");
+                break;
+            case 3:
+                *shape = Circle;
+                printf("Circle selected\n");
+                break;
+            }
+        }
+        else
+        {
+            return false;
         }
         break;
     case 3:
-        ObjectSelection(&shapeNumber);
-        switch (shapeNumber)
+        if (ObjectSelection(&shapeNumber))
         {
-        case 1:
-            *shape = Cuboid;
-            printf("Cuboid selected\n");
-            break;
-        case 2:
-            *shape = Cube;
-            printf("Cube selected\n");
-            break;
-        case 3:
-            *shape = Cone;
-            printf("Cone selected\n");
-            break;
-        case 4:
-            *shape = Sphere;
-            printf("Sphere selected\n");
-            break;
-        default:
-            break;
+            switch (shapeNumber)
+            {
+            case 1:
+                *shape = Cuboid;
+                printf("Cuboid selected\n");
+                break;
+            case 2:
+                *shape = Cube;
+                printf("Cube selected\n");
+                break;
+            case 3:
+                *shape = Cone;
+                printf("Cone selected\n");
+                break;
+            case 4:
+                *shape = Sphere;
+                printf("Sphere selected\n");
+                break;
+            }
+        }
+        else
+        {
+            return false;
         }
         break;
     default:
         printf("Invalid dimension\n");
         break;
     }
-    return;
+    return true;
 }
 
 void DimensionSelection(int *dimension)
@@ -275,7 +291,8 @@ void UnitSelection(enum unit *unit)
     }
 }
 
-void ProcessSelection() {
+void ProcessSelection()
+{
     ProcessSelectionInstructions();
 }
 

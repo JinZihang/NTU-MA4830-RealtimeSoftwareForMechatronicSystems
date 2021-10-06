@@ -53,7 +53,7 @@ void NoMemoryAlert()
 void ShapeSelectionInstructions()
 {
     printf("\n============================================================================\n");
-    printf("Calculate which 2D Shape? Type \"Exit\" if you want to leave the program:\n");
+    printf("Calculate which 2D Shape? Type \"Exit\" if you want to leave the program or \"Back\" if you want to reselect the dimension:\n");
     printf("1. Rectangle\n2. Square\n3. Circle\n");
     printf("Type in your choice here: ");
 }
@@ -64,6 +64,7 @@ void WrongShapeInput()
     printf("============== Invalid input! Please follow the instructions! ==============\n");
     printf("============ Key in \"Rectangle\", \"Square\", \"Circle\" ===========\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
+    printf("===================== Type \"Back\" to reselect the dimension. ====================\n");
     printf("============================================================================\n\n");
     printf("Type in your choice here: ");
 }
@@ -71,7 +72,7 @@ void WrongShapeInput()
 void ObjectSelectionInstructions()
 {
     printf("\n============================================================================\n");
-    printf("Calculate which 3D Object? Type \"Exit\" if you want to leave the program:\n");
+    printf("Calculate which 3D Object? Type \"Exit\" if you want to leave the program or \"Back\" if you want to reselect the dimension:\n");
     printf("1. Cuboid\n2. Cube\n3. Cone\n4. Sphere\n");
     printf("Type in your choice here: ");
 }
@@ -82,6 +83,7 @@ void WrongObjectInput()
     printf("============== Invalid input! Please follow the instructions! ==============\n");
     printf("============ Key in \"Cuboid\", \"Cube\", \"Cone\", \"Sphere\" ===========\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
+    printf("===================== Type \"Back\" to reselect the dimension. ====================\n");
     printf("============================================================================\n\n");
     printf("Type in your choice here: ");
 }
@@ -148,25 +150,31 @@ void ProcessSelectionInstructions()
     printf("Your choice: ");
 }
 
-void LengthSelectionInstructions()
+void ParamaterSelectionInstructions(char *parameter)
 {
     printf("\n============================================================================\n");
-    printf("Enter the length parameter\n");
+    printf("Enter the %s parameter\n", parameter);
     printf("Type in your choice here: ");
+}
+
+void LengthSelectionInstructions()
+{
+    ParamaterSelectionInstructions("length");
 }
 
 void WidthSelectionInstructions()
 {
-    printf("\n============================================================================\n");
-    printf("Enter the width parameter\n");
-    printf("Type in your choice here: ");
+    ParamaterSelectionInstructions("width");
 }
 
 void RadiusSelectionInstructions()
 {
-    printf("\n============================================================================\n");
-    printf("Enter the radius parameter\n");
-    printf("Type in your choice here: ");
+    ParamaterSelectionInstructions("radius");
+}
+
+void HeightSelectionInstructions()
+{
+    ParamaterSelectionInstructions("height");
 }
 
 #endif
