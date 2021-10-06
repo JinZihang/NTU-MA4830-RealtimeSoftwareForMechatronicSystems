@@ -130,7 +130,7 @@ void DimensionSelection(int *dimension)
     }
 }
 
-enum unit UnitSelection()
+void UnitSelection(enum unit *unit)
 {
     char *input;
 
@@ -149,23 +149,27 @@ enum unit UnitSelection()
         // Actions based on the input.
         if (strcmp(input, "m") == 0)
         {
+            *unit = m;
             free(input);
-            return m;
+            return;
         }
         else if (strcmp(input, "dm") == 0)
         {
+            *unit = m;
             free(input);
-            return dm;
+            return;
         }
         else if (strcmp(input, "cm") == 0)
         {
+            *unit = m;
             free(input);
-            return cm;
+            return;
         }
         else if (strcmp(input, "mm") == 0)
         {
+            *unit = m;
             free(input);
-            return mm;
+            return;
         }
         else
         {
