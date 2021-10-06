@@ -1,3 +1,6 @@
+#ifndef SELECTION
+#define SELECTION
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,3 +12,5 @@
 #include <math.h>
 
 #include "print.h"
+
+#endif
