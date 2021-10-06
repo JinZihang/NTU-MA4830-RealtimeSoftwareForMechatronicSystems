@@ -8,7 +8,20 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-int main() {
+#include "print.h"
+
+int main()
+{
+    char *filename = "title.txt";
+    FILE *fptr = NULL;
+
+    if ((fptr = fopen(filename, "r")) == NULL)
+    {
+        fprintf(stderr, "error opening %s\n", filename);
+        return 1;
+    }
+
+    print_image(fptr);
 
     return 0;
 }
