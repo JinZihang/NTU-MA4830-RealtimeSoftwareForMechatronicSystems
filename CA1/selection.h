@@ -178,4 +178,8 @@ void UnitSelection(enum unit *unit)
     }
 }
 
+void ProcessSelection() {
+    ProcessSelectionInstructions();
+}
+
 #endif

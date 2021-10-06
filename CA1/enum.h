@@ -7,8 +7,8 @@ enum shape
     Square,
     Circle,
     Triangle,
-    Cube,
     Cuboid,
+    Cube,
     Sphere,
     Cone
 };
