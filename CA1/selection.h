@@ -83,15 +83,18 @@
 //     }
 // }
 
-int DimensionSelection() {
+void DimensionSelection(int *dimension)
+{
     char *input, *inputLowercase;
     unsigned char *char_ptr;
 
     DimensionSelectionInstructions();
 
-    while(true) {
+    while (true)
+    {
         // Get input and convert the input to lowercase.
-        if((input=(char *)malloc(100 * sizeof(char))) == NULL) {
+        if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
+        {
             NoMemoryAlert();
             exit(1);
         }
@@ -99,58 +102,73 @@ int DimensionSelection() {
         inputLowercase = strdup(input);
         free(input);
         char_ptr = (unsigned char *)inputLowercase;
-        while(*char_ptr) {
+        while (*char_ptr)
+        {
             *char_ptr = tolower(*char_ptr);
             char_ptr++;
         }
 
         // Actions based on the input.
-        if (strcmp(inputLowercase, "2d\n") == 0 || strcmp(inputLowercase, "1\n") == 0) {
-            return 2;
-
-        } else if (strcmp(inputLowercase, "3d\n") == 0 || strcmp(inputLowercase, "2\n") == 0) {
-            return 3;
-
-        } else if (strcmp(inputLowercase, "exit\n") == 0) {
+        if (strcmp(inputLowercase, "2d\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
+        {
+            *dimension = 2;
+            return;
+        }
+        else if (strcmp(inputLowercase, "3d\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
+        {
+            *dimension = 3;
+            return;
+        }
+        else if (strcmp(inputLowercase, "exit\n") == 0)
+        {
             exit(0);
-
-        } else {
+        }
+        else
+        {
             WrongDimensionInput();
         }
     }
 }
 
-enum unit UnitSelection() {
+enum unit UnitSelection()
+{
     char *input;
 
     UnitSelectionInstructions();
 
-    while (true) {
+    while (true)
+    {
         // Read the input.
-        if((input=(char *)malloc(100 * sizeof(char))) == NULL) {
+        if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
+        {
             NoMemoryAlert();
             exit(1);
         }
         fgets(input, 100 * sizeof(char), stdin);
 
         // Actions based on the input.
-        if(strcmp(input, "m") == 0) {
+        if (strcmp(input, "m") == 0)
+        {
             free(input);
             return m;
-
-        } else if (strcmp(input, "dm") == 0) {
+        }
+        else if (strcmp(input, "dm") == 0)
+        {
             free(input);
             return dm;
-
-        } else if (strcmp(input, "cm") == 0) {
+        }
+        else if (strcmp(input, "cm") == 0)
+        {
             free(input);
             return cm;
-
-        } else if (strcmp(input, "mm") == 0) {
+        }
+        else if (strcmp(input, "mm") == 0)
+        {
             free(input);
             return mm;
-
-        } else {
+        }
+        else
+        {
             WrongUnitInput();
         }
     }
