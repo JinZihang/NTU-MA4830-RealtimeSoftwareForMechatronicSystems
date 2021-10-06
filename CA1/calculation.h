@@ -263,10 +263,8 @@ void CalculateProperties(enum shape shape, struct History *history)
     }
 }
 
-// void CalculateHistory(struct History *history)
-// {
-//     enum shape shape;
-
-//     GeometrySelection(&shape, dimension);
-// }
+void CalculateHistoricalProperties(struct History *history)
+{
+    enum shape shape;
+}
 #endif

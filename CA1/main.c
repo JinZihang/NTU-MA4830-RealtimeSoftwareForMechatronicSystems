@@ -41,7 +41,7 @@ int main()
 
         while (ProcessSelection())
         {
-            printf("Calculate history\n");
+            CalculateHistoricalProperties(&history);
         }
     }
 

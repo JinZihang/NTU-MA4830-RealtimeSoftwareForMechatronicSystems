@@ -186,4 +186,13 @@ void HeightSelectionInstructions()
     ParamaterSelectionInstructions("height");
 }
 
+void ShapeAndObjectSelectionInstructions()
+{
+    printf("\n============================================================================\n");
+    printf("Select the shape and the object\n");
+    printf("1. Rectangle\n2. Square\n3. Circle\n");
+    printf("4. Cuboid\n5. Cube\n6. Cone\n7. Sphere\n");
+    printf("Type in your choice here: ");
+}
+
 #endif
