@@ -23,5 +23,18 @@ int main()
 
     print_image(fptr);
 
+    while(true) { // outer loop
+        // key in dimension -> dimension_result
+        
+        // object selection(dimension_result) -> shape_or_object_selected
+
+        // calculation function (shape_or_object_selected) -> calculation_result
+            // unit selection
+            // param selection
+
+        // display(calculatioon_result)
+        // histroy/calculate/exit
+    }
+
     return 0;
 }
