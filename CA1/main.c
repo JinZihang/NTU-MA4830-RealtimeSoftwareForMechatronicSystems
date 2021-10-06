@@ -15,6 +15,7 @@
 int main()
 {
     int dimension;
+    enum shape shape;
     char *filename = "title.txt";
     FILE *fptr = NULL;
 
@@ -29,12 +30,9 @@ int main()
     while (true)
     { // outer loop
         DimensionSelection(&dimension);
-        printf("Dimension selected is %d", dimension);
+        printf("Dimension selected is %d\n", dimension);
 
-        //     int dimensionResult = 2;
-        //     // object selection(dimension_result) -> shape_or_object_selected
-        //     enum shape shapeResult;
-        //     ShapeSelection(&shapeResult, dimensionResult);
+        GeometrySelection(&shape, dimension);
 
         //     // calculation function (shape_or_object_selected) -> calculation_result
         //     // unit selection
