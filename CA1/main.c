@@ -14,16 +14,21 @@
 
 int main()
 {
+    int dimension;
     char *filename = "title.txt";
     FILE *fptr = NULL;
 
+    // Print the title.
     if ((fptr = fopen(filename, "r")) == NULL)
     {
         fprintf(stderr, "error opening %s\n", filename);
         return 1;
     }
+    PrintImage(fptr);
 
-    print_image(fptr);
+    dimension = DimensionSelection();
+    if (dimension == -1)
+        return 0;
 
     while (true)
     { // outer loop
