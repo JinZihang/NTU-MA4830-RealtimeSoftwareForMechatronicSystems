@@ -9,32 +9,32 @@
 
 double GetNumericInput()
 {
-    char input_value[10];
-    double numeric_input;
+    char *endptr, buffer[100];
+    double number;
 
-    while (true)
+    while (fgets(buffer, sizeof(buffer), stdin))
     {
-        scanf("%s", input_value);
-
-        numeric_input = strtod(input_value, NULL);
-        if (numeric_input != 0)
+        number = strtod(buffer, &endptr);
+        if (endptr == buffer || *endptr != '\n')
         {
-            break;
+            printf("Please enter a number: ");
+        }
+        else if (number < 0)
+        {
+            printf("Please enter a positive number: ");
         }
         else
         {
-            printf("Invalid input! Please enter a numeric value!\n");
-            printf("Enter again here: ");
+            return number;
         }
     }
-
-    return numeric_input;
 }
 
 void CalculateProperties(enum shape shape, struct History *history)
 {
     enum unit unit;
-    int index, test;
+    int index;
+    double test;
 
     UnitSelection(&unit);
 
