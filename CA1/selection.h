@@ -8,4 +8,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include "print.h"
+int DimensionSelection() {
+    PrintDimensionSelection();
+
+    
+}
