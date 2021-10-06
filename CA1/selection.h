@@ -14,9 +14,10 @@
 #include "print.h"
 
 int DimensionSelection() {
-    PrintDimensionSelection();
+    char *input, *inputLowercase;
+    unsigned char *char_ptr;
 
-    char *input;
+    PrintDimensionSelection();
 
     while(true) {
         if((input=(char *)malloc(100 * sizeof(char))) == NULL) {
@@ -24,15 +25,16 @@ int DimensionSelection() {
             return -1;
         }
 
+        // Get input and convert the input to lowercase.
         scanf("%99s", input);
-
-        char *inputLowercase = strdup(input);
-        unsigned char *char_ptr = (unsigned char *)inputLowercase;
+        inputLowercase = strdup(input);
+        char_ptr = (unsigned char *)inputLowercase;
         while(*char_ptr) {
             *char_ptr = tolower(*char_ptr);
             char_ptr++;
         }
 
+        // Actions based on the input.
         if (strcmp(inputLowercase, "2d") == 0 || strcmp(inputLowercase, "1") == 0) {
             free(input);
             free(inputLowercase);
