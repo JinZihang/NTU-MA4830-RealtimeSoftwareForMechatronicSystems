@@ -6,7 +6,6 @@ enum shape
     Rectangle,
     Square,
     Circle,
-    Triangle,
     Cuboid,
     Cube,
     Sphere,

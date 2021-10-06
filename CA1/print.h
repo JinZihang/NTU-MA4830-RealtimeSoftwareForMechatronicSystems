@@ -42,7 +42,7 @@ void ShapeSelectionInstructions()
 {
     printf("\n============================================================================\n");
     printf("Calculate which 2D Shape? Type \"Exit\" if you want to leave the program:\n");
-    printf("1. Rectangle\n2. Square\n3. Triangle\n4. Circle\n");
+    printf("1. Rectangle\n2. Square\n3. Circle\n");
     printf("Type in your choice here: ");
 }
 
@@ -50,7 +50,7 @@ void WrongShapeInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("============ Key in \"Rectangle\", \"Square\", \"Triangle\", \"Circle\" ===========\n");
+    printf("============ Key in \"Rectangle\", \"Square\", \"Circle\" ===========\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
     printf("============================================================================\n\n");
     printf("Type in your choice here: ");

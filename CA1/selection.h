@@ -50,14 +50,9 @@ void ShapeSelection(int *shapeNumber)
             *shapeNumber = 2;
             return;
         }
-        else if (strcmp(inputLowercase, "triangle\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
+        else if (strcmp(inputLowercase, "circle\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
         {
             *shapeNumber = 3;
-            return;
-        }
-        else if (strcmp(inputLowercase, "circle\n") == 0 || strcmp(inputLowercase, "4\n") == 0)
-        {
-            *shapeNumber = 4;
             return;
         }
         else if (strcmp(inputLowercase, "exit\n") == 0)
@@ -147,10 +142,6 @@ void GeometrySelection(enum shape *shape, int dimension)
             printf("Square selected\n");
             break;
         case 3:
-            *shape = Triangle;
-            printf("Triangle selected\n");
-            break;
-        case 4:
             *shape = Circle;
             printf("Circle selected\n");
             break;
