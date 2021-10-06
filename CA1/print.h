@@ -148,4 +148,25 @@ void ProcessSelectionInstructions()
     printf("Your choice: ");
 }
 
+void LengthSelectionInstructions()
+{
+    printf("\n============================================================================\n");
+    printf("Enter the length parameter\n");
+    printf("Type in your choice here: ");
+}
+
+void WidthSelectionInstructions()
+{
+    printf("\n============================================================================\n");
+    printf("Enter the width parameter\n");
+    printf("Type in your choice here: ");
+}
+
+void RadiusSelectionInstructions()
+{
+    printf("\n============================================================================\n");
+    printf("Enter the radius parameter\n");
+    printf("Type in your choice here: ");
+}
+
 #endif
