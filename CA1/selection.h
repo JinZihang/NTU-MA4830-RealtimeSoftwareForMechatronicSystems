@@ -22,7 +22,7 @@ int DimensionSelection() {
     while(true) {
         if((input=(char *)malloc(100 * sizeof(char))) == NULL) {
             NoMemoryAlert();
-            return -1;
+            exit(1);
         }
 
         // Get input and convert the input to lowercase.

@@ -17,16 +17,15 @@ int main()
     char *filename = "title.txt";
     FILE *fptr = NULL;
 
-    if ((fptr = fopen(filename, "r")) == NULL)
-    {
+    // Print the title.
+    if ((fptr = fopen(filename, "r")) == NULL) {
         fprintf(stderr, "error opening %s\n", filename);
         return 1;
     }
-
     PrintImage(fptr);
 
     dimension = DimensionSelection();
-    printf("%d", dimension);
+    if (dimension == -1) return 0;
 
     while(true) { // outer loop
         // key in dimension -> dimension_result
