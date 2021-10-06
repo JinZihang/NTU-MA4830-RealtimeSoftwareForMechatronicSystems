@@ -13,4 +13,12 @@ enum shape
     Cone
 };
 
+enum unit
+{
+    m,
+    dm,
+    cm,
+    mm
+};
+
 #endif
