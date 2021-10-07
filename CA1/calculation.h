@@ -330,21 +330,20 @@ void CalculateHistoricalProperties(struct History *history)
 {
     enum shape shape;
     int i, parameters;
-    double *means, *stds;
+    double *means, *stdevs;
 
     ShapeAndObjectSelection(&shape);
 
     switch (shape)
     {
     case Rectangle:
-        parameters = 4;
         if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
         }
 
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        if ((stdevs = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
@@ -353,7 +352,7 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < parameters; i++)
         {
             means[i] = 0;
-            stds[i] = 0;
+            stdevs[i] = 0;
         }
 
         for (i = 0; i < history->count[0]; i++)
@@ -373,26 +372,26 @@ void CalculateHistoricalProperties(struct History *history)
 
         for (i = 0; i < history->count[0]; i++)
         {
-            stds[0] += pow(history->rectangles[i].width - means[0], 2);
-            stds[1] += pow(history->rectangles[i].length - means[1], 2);
-            stds[2] += pow(history->rectangles[i].perimeter - means[2], 2);
-            stds[3] += pow(history->rectangles[i].area - means[3], 2);
+            stdevs[0] += pow(history->rectangles[i].width - means[0], 2);
+            stdevs[1] += pow(history->rectangles[i].length - means[1], 2);
+            stdevs[2] += pow(history->rectangles[i].perimeter - means[2], 2);
+            stdevs[3] += pow(history->rectangles[i].area - means[3], 2);
         }
 
-        stds[0] = sqrt(stds[0] / history->count[0]);
-        stds[1] = sqrt(stds[1] / history->count[0]);
-        stds[2] = sqrt(stds[2] / history->count[0]);
-        stds[3] = sqrt(stds[3] / history->count[0]);
+        stdevs[0] = sqrt(stdevs[0] / history->count[0]);
+        stdevs[1] = sqrt(stdevs[1] / history->count[0]);
+        stdevs[2] = sqrt(stdevs[2] / history->count[0]);
+        stdevs[3] = sqrt(stdevs[3] / history->count[0]);
 
         printf("width mean: %lf\n", means[0]);
         printf("length mean: %lf\n", means[1]);
         printf("perimeter mean: %lf\n", means[2]);
         printf("area mean: %lf\n", means[3]);
 
-        printf("width std: %lf\n", stds[0]);
-        printf("length std: %lf\n", stds[1]);
-        printf("perimeter std: %lf\n", stds[2]);
-        printf("area std: %lf\n", stds[3]);
+        printf("width std: %lf\n", stdevs[0]);
+        printf("length std: %lf\n", stdevs[1]);
+        printf("perimeter std: %lf\n", stdevs[2]);
+        printf("area std: %lf\n", stdevs[3]);
         break;
     case Square:
         parameters = 3;
@@ -403,7 +402,7 @@ void CalculateHistoricalProperties(struct History *history)
             exit(1);
         }
 
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        if ((stdevs = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
@@ -412,7 +411,7 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < parameters; i++)
         {
             means[i] = 0;
-            stds[i] = 0;
+            stdevs[i] = 0;
         }
 
         for (i = 0; i < history->count[1]; i++)
@@ -430,22 +429,22 @@ void CalculateHistoricalProperties(struct History *history)
 
         for (i = 0; i < history->count[1]; i++)
         {
-            stds[0] += pow(history->squares[i].length - means[0], 2);
-            stds[1] += pow(history->squares[i].perimeter - means[1], 2);
-            stds[2] += pow(history->squares[i].area - means[2], 2);
+            stdevs[0] += pow(history->squares[i].length - means[0], 2);
+            stdevs[1] += pow(history->squares[i].perimeter - means[1], 2);
+            stdevs[2] += pow(history->squares[i].area - means[2], 2);
         }
 
-        stds[0] = sqrt(stds[0] / history->count[1]);
-        stds[1] = sqrt(stds[1] / history->count[1]);
-        stds[2] = sqrt(stds[2] / history->count[1]);
+        stdevs[0] = sqrt(stdevs[0] / history->count[1]);
+        stdevs[1] = sqrt(stdevs[1] / history->count[1]);
+        stdevs[2] = sqrt(stdevs[2] / history->count[1]);
 
         printf("length mean: %lf\n", means[0]);
         printf("perimeter mean: %lf\n", means[1]);
         printf("area mean: %lf\n", means[2]);
 
-        printf("length std: %lf\n", stds[0]);
-        printf("perimeter std: %lf\n", stds[1]);
-        printf("area std: %lf\n", stds[2]);
+        printf("length std: %lf\n", stdevs[0]);
+        printf("perimeter std: %lf\n", stdevs[1]);
+        printf("area std: %lf\n", stdevs[2]);
         break;
     case Circle:
         parameters = 3;
@@ -456,7 +455,7 @@ void CalculateHistoricalProperties(struct History *history)
             exit(1);
         }
 
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        if ((stdevs = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
@@ -465,7 +464,7 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < parameters; i++)
         {
             means[i] = 0;
-            stds[i] = 0;
+            stdevs[i] = 0;
         }
 
         for (i = 0; i < history->count[2]; i++)
@@ -483,22 +482,22 @@ void CalculateHistoricalProperties(struct History *history)
 
         for (i = 0; i < history->count[2]; i++)
         {
-            stds[0] += pow(history->circles[i].radius - means[0], 2);
-            stds[1] += pow(history->circles[i].circumference - means[1], 2);
-            stds[2] += pow(history->circles[i].area - means[2], 2);
+            stdevs[0] += pow(history->circles[i].radius - means[0], 2);
+            stdevs[1] += pow(history->circles[i].circumference - means[1], 2);
+            stdevs[2] += pow(history->circles[i].area - means[2], 2);
         }
 
-        stds[0] = sqrt(stds[0] / history->count[2]);
-        stds[1] = sqrt(stds[1] / history->count[2]);
-        stds[2] = sqrt(stds[2] / history->count[2]);
+        stdevs[0] = sqrt(stdevs[0] / history->count[2]);
+        stdevs[1] = sqrt(stdevs[1] / history->count[2]);
+        stdevs[2] = sqrt(stdevs[2] / history->count[2]);
 
         printf("radius mean: %lf\n", means[0]);
         printf("perimeter mean: %lf\n", means[1]);
         printf("area mean: %lf\n", means[2]);
 
-        printf("radius std: %lf\n", stds[0]);
-        printf("perimeter std: %lf\n", stds[1]);
-        printf("area std: %lf\n", stds[2]);
+        printf("radius std: %lf\n", stdevs[0]);
+        printf("perimeter std: %lf\n", stdevs[1]);
+        printf("area std: %lf\n", stdevs[2]);
         break;
     case Cuboid:
         parameters = 5;
@@ -509,7 +508,7 @@ void CalculateHistoricalProperties(struct History *history)
             exit(1);
         }
 
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        if ((stdevs = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
@@ -518,7 +517,7 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < parameters; i++)
         {
             means[i] = 0;
-            stds[i] = 0;
+            stdevs[i] = 0;
         }
 
         for (i = 0; i < history->count[3]; i++)
@@ -540,18 +539,18 @@ void CalculateHistoricalProperties(struct History *history)
 
         for (i = 0; i < history->count[3]; i++)
         {
-            stds[0] += pow(history->cuboids[i].length - means[0], 2);
-            stds[1] += pow(history->cuboids[i].width - means[1], 2);
-            stds[2] += pow(history->cuboids[i].height - means[2], 2);
-            stds[3] += pow(history->cuboids[i].volume - means[3], 2);
-            stds[4] += pow(history->cuboids[i].area - means[4], 2);
+            stdevs[0] += pow(history->cuboids[i].length - means[0], 2);
+            stdevs[1] += pow(history->cuboids[i].width - means[1], 2);
+            stdevs[2] += pow(history->cuboids[i].height - means[2], 2);
+            stdevs[3] += pow(history->cuboids[i].volume - means[3], 2);
+            stdevs[4] += pow(history->cuboids[i].area - means[4], 2);
         }
 
-        stds[0] = sqrt(stds[0] / history->count[3]);
-        stds[1] = sqrt(stds[1] / history->count[3]);
-        stds[2] = sqrt(stds[2] / history->count[3]);
-        stds[3] = sqrt(stds[3] / history->count[3]);
-        stds[4] = sqrt(stds[4] / history->count[3]);
+        stdevs[0] = sqrt(stdevs[0] / history->count[3]);
+        stdevs[1] = sqrt(stdevs[1] / history->count[3]);
+        stdevs[2] = sqrt(stdevs[2] / history->count[3]);
+        stdevs[3] = sqrt(stdevs[3] / history->count[3]);
+        stdevs[4] = sqrt(stdevs[4] / history->count[3]);
         break;
     case Cube:
         parameters = 3;
@@ -562,7 +561,7 @@ void CalculateHistoricalProperties(struct History *history)
             exit(1);
         }
 
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        if ((stdevs = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
@@ -571,7 +570,7 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < parameters; i++)
         {
             means[i] = 0;
-            stds[i] = 0;
+            stdevs[i] = 0;
         }
 
         for (i = 0; i < history->count[4]; i++)
@@ -587,22 +586,22 @@ void CalculateHistoricalProperties(struct History *history)
 
         for (i = 0; i < history->count[4]; i++)
         {
-            stds[0] += pow(history->cubes[i].length - means[0], 2);
-            stds[1] += pow(history->cubes[i].area - means[1], 2);
-            stds[2] += pow(history->cubes[i].volume - means[2], 2);
+            stdevs[0] += pow(history->cubes[i].length - means[0], 2);
+            stdevs[1] += pow(history->cubes[i].area - means[1], 2);
+            stdevs[2] += pow(history->cubes[i].volume - means[2], 2);
         }
 
-        stds[0] = sqrt(stds[0] / history->count[4]);
-        stds[1] = sqrt(stds[1] / history->count[4]);
-        stds[2] = sqrt(stds[2] / history->count[4]);
+        stdevs[0] = sqrt(stdevs[0] / history->count[4]);
+        stdevs[1] = sqrt(stdevs[1] / history->count[4]);
+        stdevs[2] = sqrt(stdevs[2] / history->count[4]);
 
         printf("length mean: %lf\n", means[0]);
         printf("area mean: %lf\n", means[1]);
         printf("volume mean: %lf\n", means[2]);
 
-        printf("length std: %lf\n", stds[0]);
-        printf("area std: %lf\n", stds[1]);
-        printf("volume std: %lf\n", stds[2]);
+        printf("length std: %lf\n", stdevs[0]);
+        printf("area std: %lf\n", stdevs[1]);
+        printf("volume std: %lf\n", stdevs[2]);
         break;
     case Cone:
         parameters = 4;
@@ -613,7 +612,7 @@ void CalculateHistoricalProperties(struct History *history)
             exit(1);
         }
 
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        if ((stdevs = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
@@ -622,7 +621,7 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < parameters; i++)
         {
             means[i] = 0;
-            stds[i] = 0;
+            stdevs[i] = 0;
         }
 
         for (i = 0; i < history->count[5]; i++)
@@ -642,16 +641,16 @@ void CalculateHistoricalProperties(struct History *history)
 
         for (i = 0; i < history->count[5]; i++)
         {
-            stds[0] += pow(history->cones[i].radius - means[0], 2);
-            stds[1] += pow(history->cones[i].height - means[1], 2);
-            stds[2] += pow(history->cones[i].volume - means[2], 2);
-            stds[3] += pow(history->cones[i].area - means[3], 2);
+            stdevs[0] += pow(history->cones[i].radius - means[0], 2);
+            stdevs[1] += pow(history->cones[i].height - means[1], 2);
+            stdevs[2] += pow(history->cones[i].volume - means[2], 2);
+            stdevs[3] += pow(history->cones[i].area - means[3], 2);
         }
 
-        stds[0] = sqrt(stds[0] / history->count[5]);
-        stds[1] = sqrt(stds[1] / history->count[5]);
-        stds[2] = sqrt(stds[2] / history->count[5]);
-        stds[3] = sqrt(stds[3] / history->count[5]);
+        stdevs[0] = sqrt(stdevs[0] / history->count[5]);
+        stdevs[1] = sqrt(stdevs[1] / history->count[5]);
+        stdevs[2] = sqrt(stdevs[2] / history->count[5]);
+        stdevs[3] = sqrt(stdevs[3] / history->count[5]);
         break;
     case Sphere:
         parameters = 3;
@@ -662,7 +661,7 @@ void CalculateHistoricalProperties(struct History *history)
             exit(1);
         }
 
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        if ((stdevs = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
@@ -671,7 +670,7 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < parameters; i++)
         {
             means[i] = 0;
-            stds[i] = 0;
+            stdevs[i] = 0;
         }
 
         for (i = 0; i < history->count[6]; i++)
@@ -687,26 +686,26 @@ void CalculateHistoricalProperties(struct History *history)
 
         for (i = 0; i < history->count[6]; i++)
         {
-            stds[0] += pow(history->spheres[i].radius - means[0], 2);
-            stds[1] += pow(history->spheres[i].volume - means[1], 2);
-            stds[2] += pow(history->spheres[i].area - means[2], 2);
+            stdevs[0] += pow(history->spheres[i].radius - means[0], 2);
+            stdevs[1] += pow(history->spheres[i].volume - means[1], 2);
+            stdevs[2] += pow(history->spheres[i].area - means[2], 2);
         }
 
-        stds[0] = sqrt(stds[0] / history->count[6]);
-        stds[1] = sqrt(stds[1] / history->count[6]);
-        stds[2] = sqrt(stds[2] / history->count[6]);
+        stdevs[0] = sqrt(stdevs[0] / history->count[6]);
+        stdevs[1] = sqrt(stdevs[1] / history->count[6]);
+        stdevs[2] = sqrt(stdevs[2] / history->count[6]);
 
         printf("radius mean: %lf\n", means[0]);
         printf("volume mean: %lf\n", means[1]);
         printf("area mean: %lf\n", means[2]);
 
-        printf("radius std: %lf\n", stds[0]);
-        printf("volume std: %lf\n", stds[1]);
-        printf("area std: %lf\n", stds[2]);
+        printf("radius std: %lf\n", stdevs[0]);
+        printf("volume std: %lf\n", stdevs[1]);
+        printf("area std: %lf\n", stdevs[2]);
         break;
     }
     free(means);
-    free(stds);
+    free(stdevs);
 }
 
 #endif
