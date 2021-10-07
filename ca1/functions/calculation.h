@@ -333,6 +333,7 @@ void CalculateHistoricalProperties(struct History *history)
     switch (shape)
     {
     case Rectangle:
+        parameters = 4;
         if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
         {
             NoMemoryAlert();
@@ -377,6 +378,9 @@ void CalculateHistoricalProperties(struct History *history)
         stds[2] = sqrt(stds[2] / history->count[0]);
         stds[3] = sqrt(stds[3] / history->count[0]);
 
+        DisplayHistoryTable(shape, history, means, stds);
+        free(means);
+        free(stds);
         break;
 
     case Square:
@@ -422,6 +426,9 @@ void CalculateHistoricalProperties(struct History *history)
         stds[1] = sqrt(stds[1] / history->count[1]);
         stds[2] = sqrt(stds[2] / history->count[1]);
 
+        DisplayHistoryTable(shape, history, means, stds);
+        free(means);
+        free(stds);
         break;
 
     case Circle:
@@ -467,6 +474,9 @@ void CalculateHistoricalProperties(struct History *history)
         stds[1] = sqrt(stds[1] / history->count[2]);
         stds[2] = sqrt(stds[2] / history->count[2]);
 
+        DisplayHistoryTable(shape, history, means, stds);
+        free(means);
+        free(stds);
         break;
 
     case Cuboid:
@@ -520,6 +530,9 @@ void CalculateHistoricalProperties(struct History *history)
         stds[3] = sqrt(stds[3] / history->count[3]);
         stds[4] = sqrt(stds[4] / history->count[3]);
 
+        DisplayHistoryTable(shape, history, means, stds);
+        free(means);
+        free(stds);
         break;
 
     case Cube:
@@ -565,6 +578,9 @@ void CalculateHistoricalProperties(struct History *history)
         stds[1] = sqrt(stds[1] / history->count[4]);
         stds[2] = sqrt(stds[2] / history->count[4]);
 
+        DisplayHistoryTable(shape, history, means, stds);
+        free(means);
+        free(stds);
         break;
 
     case Sphere:
@@ -610,6 +626,9 @@ void CalculateHistoricalProperties(struct History *history)
         stds[1] = sqrt(stds[1] / history->count[5]);
         stds[2] = sqrt(stds[2] / history->count[5]);
 
+        DisplayHistoryTable(shape, history, means, stds);
+        free(means);
+        free(stds);
         break;
 
     case Cone:
@@ -658,14 +677,12 @@ void CalculateHistoricalProperties(struct History *history)
         stds[1] = sqrt(stds[1] / history->count[6]);
         stds[2] = sqrt(stds[2] / history->count[6]);
         stds[3] = sqrt(stds[3] / history->count[6]);
-        
+
+        DisplayHistoryTable(shape, history, means, stds);
+        free(means);
+        free(stds);
         break;
     }
-
-    DisplayHistoryTable(shape, history, means, stds);
-
-    free(means);
-    free(stds);
 }
 
 #endif
