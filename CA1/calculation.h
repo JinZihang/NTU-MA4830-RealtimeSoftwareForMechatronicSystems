@@ -269,8 +269,8 @@ void CalculateProperties(enum shape shape, struct History *history)
     case Cuboid:
         GetCuboidParameter(&(*history), &unit);
 
-        history->cuboids[history->count[3]].volume = history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].length * history->cuboids[history->count[3]].height;
         history->cuboids[history->count[3]].area = 2 * (history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].length + history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].height + history->cuboids[history->count[3]].length * history->cuboids[history->count[3]].height);
+        history->cuboids[history->count[3]].volume = history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].length * history->cuboids[history->count[3]].height;
 
         DisplayResults(shape, history->cuboids[history->count[3]].area, history->cuboids[history->count[3]].volume);
         history->count[3]++;
@@ -278,8 +278,8 @@ void CalculateProperties(enum shape shape, struct History *history)
     case Cube:
         GetCubeParameter(&(*history), &unit);
 
-        history->cubes[history->count[4]].volume = history->cubes[history->count[4]].length * history->cubes[history->count[4]].length * history->cubes[history->count[4]].length;
         history->cubes[history->count[4]].area = 6 * history->cubes[history->count[4]].length * history->cubes[history->count[4]].length;
+        history->cubes[history->count[4]].volume = history->cubes[history->count[4]].length * history->cubes[history->count[4]].length * history->cubes[history->count[4]].length;
 
         DisplayResults(shape, history->cubes[history->count[4]].area, history->cubes[history->count[4]].volume);
         history->count[4]++;
@@ -288,8 +288,8 @@ void CalculateProperties(enum shape shape, struct History *history)
     case Cone:
         GetConeParameter(&(*history), &unit);
 
-        history->cones[history->count[5]].volume = M_PI * history->cones[history->count[5]].radius * history->cones[history->count[5]].radius * history->cones[history->count[5]].height / 3;
         history->cones[history->count[5]].area = M_PI * history->cones[history->count[5]].radius * (history->cones[history->count[5]].radius + sqrt(history->cones[history->count[5]].radius * history->cones[history->count[5]].radius + history->cones[history->count[5]].height * history->cones[history->count[5]].height));
+        history->cones[history->count[5]].volume = M_PI * history->cones[history->count[5]].radius * history->cones[history->count[5]].radius * history->cones[history->count[5]].height / 3;
 
         DisplayResults(shape, history->cones[history->count[5]].area, history->cones[history->count[5]].volume);
         history->count[5]++;
@@ -297,8 +297,8 @@ void CalculateProperties(enum shape shape, struct History *history)
     case Sphere:
         GetSphereParameter(&(*history), &unit);
 
-        history->spheres[history->count[6]].volume = 4 / 3 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
         history->spheres[history->count[6]].area = 4 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
+        history->spheres[history->count[6]].volume = 4 / 3 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
 
         DisplayResults(shape, history->spheres[history->count[6]].area, history->spheres[history->count[6]].volume);
         history->count[6]++;
@@ -479,8 +479,8 @@ void CalculateHistoricalProperties(struct History *history)
             means[0] += history->cuboids[i].length;
             means[1] += history->cuboids[i].width;
             means[2] += history->cuboids[i].height;
-            means[3] += history->cuboids[i].volume;
-            means[4] += history->cuboids[i].area;
+            means[3] += history->cuboids[i].area;
+            means[4] += history->cuboids[i].volume;
         }
 
         means[0] /= history->count[3];
@@ -494,8 +494,8 @@ void CalculateHistoricalProperties(struct History *history)
             stds[0] += pow(history->cuboids[i].length - means[0], 2);
             stds[1] += pow(history->cuboids[i].width - means[1], 2);
             stds[2] += pow(history->cuboids[i].height - means[2], 2);
-            stds[3] += pow(history->cuboids[i].volume - means[3], 2);
-            stds[4] += pow(history->cuboids[i].area - means[4], 2);
+            stds[3] += pow(history->cuboids[i].area - means[3], 2);
+            stds[4] += pow(history->cuboids[i].volume - means[4], 2);
         }
 
         stds[0] = sqrt(stds[0] / history->count[3]);
@@ -503,7 +503,7 @@ void CalculateHistoricalProperties(struct History *history)
         stds[2] = sqrt(stds[2] / history->count[3]);
         stds[3] = sqrt(stds[3] / history->count[3]);
         stds[4] = sqrt(stds[4] / history->count[3]);
-        
+
         break;
 
     case Cube:
@@ -576,8 +576,9 @@ void CalculateHistoricalProperties(struct History *history)
         {
             means[0] += history->cones[i].radius;
             means[1] += history->cones[i].height;
-            means[2] += history->cones[i].volume;
-            means[3] += history->cones[i].area;
+            means[2] += history->cones[i].area;
+            means[3] += history->cones[i].volume;
+            
         }
 
         means[0] /= history->count[5];
@@ -589,8 +590,9 @@ void CalculateHistoricalProperties(struct History *history)
         {
             stds[0] += pow(history->cones[i].radius - means[0], 2);
             stds[1] += pow(history->cones[i].height - means[1], 2);
-            stds[2] += pow(history->cones[i].volume - means[2], 2);
-            stds[3] += pow(history->cones[i].area - means[3], 2);
+            stds[2] += pow(history->cones[i].area - means[2], 2);
+            stds[3] += pow(history->cones[i].volume - means[3], 2);
+            
         }
 
         stds[0] = sqrt(stds[0] / history->count[5]);
@@ -598,6 +600,7 @@ void CalculateHistoricalProperties(struct History *history)
         stds[2] = sqrt(stds[2] / history->count[5]);
         stds[3] = sqrt(stds[3] / history->count[5]);
         break;
+
     case Sphere:
         parameters = 3;
 
@@ -622,8 +625,8 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < history->count[6]; i++)
         {
             means[0] += history->spheres[i].radius;
-            means[1] += history->spheres[i].volume;
-            means[2] += history->spheres[i].area;
+            means[1] += history->spheres[i].area;
+            means[2] += history->spheres[i].volume;
         }
 
         means[0] /= history->count[6];
@@ -633,8 +636,8 @@ void CalculateHistoricalProperties(struct History *history)
         for (i = 0; i < history->count[6]; i++)
         {
             stds[0] += pow(history->spheres[i].radius - means[0], 2);
-            stds[1] += pow(history->spheres[i].volume - means[1], 2);
-            stds[2] += pow(history->spheres[i].area - means[2], 2);
+            stds[1] += pow(history->spheres[i].area - means[1], 2);
+            stds[2] += pow(history->spheres[i].volume - means[2], 2);
         }
 
         stds[0] = sqrt(stds[0] / history->count[6]);

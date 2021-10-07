@@ -13,7 +13,7 @@
 #include "enum.h"
 #include "calculation.h"
 
-int main() // can take arguments
+int main()
 {
     int dimension, i;
     enum shape shape;
@@ -30,7 +30,6 @@ int main() // can take arguments
     while (true)
     {
         DimensionSelection(&dimension);
-        // printf("Dimension selected is %d\n", dimension);
 
         if (!GeometrySelection(&shape, dimension))
         {

@@ -317,9 +317,9 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
             printf("   |______________________|__________________|____________________|____________________|\n");
         }
 
-        printf("   |         Mean         | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[2], means[1]);
+        printf("   |         Mean         | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2]);
         printf("   |______________________|__________________|____________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[2], stds[1]);
+        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2]);
         printf("   |______________________|__________________|____________________|____________________|\n");
 
         break;
@@ -336,9 +336,9 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
             printf("   |______________________|__________________|__________________|____________________|____________________|\n");
         }
 
-        printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[3], means[2]);
+        printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2], means[3]);
         printf("   |______________________|__________________|__________________|____________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[3], stds[2]);
+        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2], stds[3]);
         printf("   |______________________|__________________|__________________|____________________|____________________|\n");
 
         break;
