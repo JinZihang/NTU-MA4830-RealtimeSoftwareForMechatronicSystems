@@ -12,12 +12,12 @@
 #define HUNDREDS 100
 #define THOUSANDS 1000
 
-double GetParameterInput(void (*paramInstructions)())
+double GetParameterInput(void (*paramInstructions)(char *parameter), char *parameter)
 {
     char *endptr, buffer[100];
     double number;
 
-    (*paramInstructions)();
+    (*paramInstructions)(parameter);
 
     while (fgets(buffer, sizeof(buffer), stdin))
     {
@@ -39,8 +39,8 @@ double GetParameterInput(void (*paramInstructions)())
 
 void AssignRectangleParameter(struct History *history, int base)
 {
-    history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / base;
-    history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / base;
+    history->rectangles[history->count[0]].width = GetParameterInput(ParamaterSelectionInstructions, "width") / base;
+    history->rectangles[history->count[0]].length = GetParameterInput(ParamaterSelectionInstructions, "length") / base;
 }
 
 void GetRectangleParameter(struct History *history, enum unit *unit)
@@ -67,7 +67,7 @@ void GetRectangleParameter(struct History *history, enum unit *unit)
 
 void AssignSquareParameter(struct History *history, int base)
 {
-    history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / base;
+    history->squares[history->count[1]].length = GetParameterInput(ParamaterSelectionInstructions, "length") / base;
 }
 
 void GetSquareParameter(struct History *history, enum unit *unit)
@@ -94,7 +94,7 @@ void GetSquareParameter(struct History *history, enum unit *unit)
 
 void AssignCircleParameter(struct History *history, int base)
 {
-    history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / base;
+    history->circles[history->count[2]].radius = GetParameterInput(ParamaterSelectionInstructions, "radius") / base;
 }
 
 void GetCircleParameter(struct History *history, enum unit *unit)
@@ -121,9 +121,9 @@ void GetCircleParameter(struct History *history, enum unit *unit)
 
 void AssignCuboidParameter(struct History *history, int base)
 {
-    history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / base;
-    history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / base;
-    history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / base;
+    history->cuboids[history->count[3]].width = GetParameterInput(ParamaterSelectionInstructions, "width") / base;
+    history->cuboids[history->count[3]].length = GetParameterInput(ParamaterSelectionInstructions, "length") / base;
+    history->cuboids[history->count[3]].height = GetParameterInput(ParamaterSelectionInstructions, "height") / base;
 }
 
 void GetCuboidParameter(struct History *history, enum unit *unit)
@@ -150,7 +150,7 @@ void GetCuboidParameter(struct History *history, enum unit *unit)
 
 void AssignCubeParameter(struct History *history, int base)
 {
-    history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / base;
+    history->cubes[history->count[4]].length = GetParameterInput(ParamaterSelectionInstructions, "length") / base;
 }
 
 void GetCubeParameter(struct History *history, enum unit *unit)
@@ -177,8 +177,8 @@ void GetCubeParameter(struct History *history, enum unit *unit)
 
 void AssignConeParameter(struct History *history, int base)
 {
-    history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / base;
-    history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / base;
+    history->cones[history->count[5]].radius = GetParameterInput(ParamaterSelectionInstructions, "radius") / base;
+    history->cones[history->count[5]].height = GetParameterInput(ParamaterSelectionInstructions, "height") / base;
 }
 
 void GetConeParameter(struct History *history, enum unit *unit)
@@ -205,7 +205,7 @@ void GetConeParameter(struct History *history, enum unit *unit)
 
 void AssignSphereParameter(struct History *history, int base)
 {
-    history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / base;
+    history->spheres[history->count[6]].radius = GetParameterInput(ParamaterSelectionInstructions, "radius") / base;
 }
 
 void GetSphereParameter(struct History *history, enum unit *unit)

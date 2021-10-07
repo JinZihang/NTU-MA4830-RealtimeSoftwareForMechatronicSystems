@@ -166,26 +166,6 @@ void ParamaterSelectionInstructions(char *parameter)
     printf("Type in your choice here: ");
 }
 
-void LengthSelectionInstructions()
-{
-    ParamaterSelectionInstructions("length");
-}
-
-void WidthSelectionInstructions()
-{
-    ParamaterSelectionInstructions("width");
-}
-
-void RadiusSelectionInstructions()
-{
-    ParamaterSelectionInstructions("radius");
-}
-
-void HeightSelectionInstructions()
-{
-    ParamaterSelectionInstructions("height");
-}
-
 void ShapeAndObjectSelectionInstructions()
 {
     printf("Select any of the option\n");
