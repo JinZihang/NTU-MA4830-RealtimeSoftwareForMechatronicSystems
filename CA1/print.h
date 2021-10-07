@@ -47,13 +47,14 @@ void WrongDimensionInput()
 
 void NoMemoryAlert()
 {
-    printf("Not enough memory!");
+    printf("\n============================================================================\n");
+    printf("============================ Not enough memory! ============================\n");
+    printf("============================================================================\n\n");
 }
 
 void ShapeSelectionInstructions()
 {
-    printf("\n============================================================================\n");
-    printf("Calculate which 2D Shape? Type \"Exit\" if you want to leave the program or \"Back\" if you want to reselect the dimension:\n");
+    printf("\nSelect the shape to calculate its properties. Type \"Exit\" if you want to leave the program or \"Back\" if you want to reselect the dimension:\n");
     printf("1. Rectangle\n2. Square\n3. Circle\n");
     printf("Type in your choice here: ");
 }
@@ -62,17 +63,16 @@ void WrongShapeInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("============ Key in \"Rectangle\", \"Square\", \"Circle\" ===========\n");
+    printf("================ Key in \"Rectangle\", \"Square\" or \"Circle\". ================\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
-    printf("===================== Type \"Back\" to reselect the dimension. ====================\n");
+    printf("================== Type \"Back\" to reselect the dimension. ==================\n");
     printf("============================================================================\n\n");
     printf("Type in your choice here: ");
 }
 
 void ObjectSelectionInstructions()
 {
-    printf("\n============================================================================\n");
-    printf("Calculate which 3D Object? Type \"Exit\" if you want to leave the program or \"Back\" if you want to reselect the dimension:\n");
+    printf("\nSelect the object to calculate its properties. Type \"Exit\" if you want to leave the program or \"Back\" if you want to reselect the dimension:\n");
     printf("1. Cuboid\n2. Cube\n3. Cone\n4. Sphere\n");
     printf("Type in your choice here: ");
 }
@@ -81,9 +81,9 @@ void WrongObjectInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("============ Key in \"Cuboid\", \"Cube\", \"Cone\", \"Sphere\" ===========\n");
+    printf("============ Key in \"Cuboid\", \"Cube\", \"Cone\" or \"Sphere\". ===========\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
-    printf("===================== Type \"Back\" to reselect the dimension. ====================\n");
+    printf("=================== Type \"Back\" to reselect the dimension. =================\n");
     printf("============================================================================\n\n");
     printf("Type in your choice here: ");
 }
@@ -91,7 +91,7 @@ void WrongObjectInput()
 void UnitSelectionInstructions()
 {
     printf("\nSelect the input unit:\n");
-    printf("m\tdm\tcm\tmm\n");
+    printf("1. m\n2. dm\n3. cm\n4. mm\n");
     printf("Your choice: ");
 }
 
@@ -100,6 +100,7 @@ void WrongUnitInput()
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
     printf("================== Enter \"m\", \"dm\", \"cm\" or \"mm\". ==================\n");
+    printf("================== Or enter the choice index: \"1\", \"2\",\"3\" or \"4\". ==================\n");
     printf("============================================================================\n\n");
     printf("Enter again here: ");
 }
@@ -109,6 +110,7 @@ void DisplayResults(enum shape shape, double result_1, double result_2)
     bool is2D = false;
 
     printf("\nCalculation results:\n");
+    printf("    _________________________________________________________________________________________________________\n");
 
     if (shape == Rectangle || shape == Square || shape == Circle)
     {
@@ -133,7 +135,6 @@ void DisplayResults(enum shape shape, double result_1, double result_2)
     }
     else
     {
-        printf("    _________________________________________________________________________________________________________\n");
         printf("   |    Surface area  | %12.2g m^2   | %12.2g dm^2   | %12.2g cm^2   | %12.2g mm^2   |\n", result_1, result_1 * 1E2, result_1 * 1E4, result_1 * 1E6);
         printf("   |__________________|____________________|_____________________|_____________________|_____________________|\n");
         printf("   |      Volume      | %12.2g m^3   | %12.2g dm^3   | %12.2g cm^3   | %12.2g mm^3   |\n", result_2, result_2 * 1E3, result_2 * 1E6, result_2 * 1E9);
@@ -161,7 +162,6 @@ void WrongProcessInput()
 
 void ParamaterSelectionInstructions(char *parameter)
 {
-    printf("\n============================================================================\n");
     printf("Enter the %s parameter\n", parameter);
     printf("Type in your choice here: ");
 }
@@ -188,7 +188,6 @@ void HeightSelectionInstructions()
 
 void ShapeAndObjectSelectionInstructions()
 {
-    printf("\n============================================================================\n");
     printf("Select any of the option\n");
     printf("1. Rectangle\n2. Square\n3. Circle\n");
     printf("4. Cuboid\n5. Cube\n6. Cone\n7. Sphere\n");

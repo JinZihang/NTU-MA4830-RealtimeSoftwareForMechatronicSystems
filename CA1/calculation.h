@@ -247,7 +247,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         printf("Area is %lf\n", history->rectangles[history->count[0]].area);
         printf("Perimeter is %lf\n", history->rectangles[history->count[0]].perimeter);
 
-        // DisplayResults(shape, history->rectangles[history->count[0]].perimeter, history->rectangles[history->count[0]].area);
+        DisplayResults(shape, history->rectangles[history->count[0]].perimeter, history->rectangles[history->count[0]].area);
         history->count[0]++;
         break;
     case Square:
@@ -271,7 +271,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         printf("Circumference is %lf\n", history->circles[history->count[2]].circumference);
         printf("Area is %lf\n", history->circles[history->count[2]].area);
 
-        // DisplayResults(shape, history->circles[history->count[2]].circumference, history->circles[history->count[2]].area);
+        DisplayResults(shape, history->circles[history->count[2]].circumference, history->circles[history->count[2]].area);
         history->count[2]++;
         break;
     case Cuboid:
@@ -365,4 +365,5 @@ void CalculateHistoricalProperties(struct History *history)
         break;
     }
 }
+
 #endif
