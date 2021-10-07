@@ -15,9 +15,8 @@
 #include "enum.h"
 
 char *toLower(char *string) {
-    unsigned char *char_ptr;
-
-    char_ptr = (unsigned char *)string;
+    unsigned char *char_ptr = (unsigned char *)string;
+    
     while (*char_ptr)
     {
         *char_ptr = tolower(*char_ptr);

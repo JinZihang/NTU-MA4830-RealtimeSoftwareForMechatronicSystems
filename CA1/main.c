@@ -25,7 +25,7 @@ int main() // can take arguments
         history.count[i] = 0;
     }
 
-    PrintTitle(filename);
+    DisplayTitle(filename);
 
     while (true)
     {
