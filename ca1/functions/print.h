@@ -208,140 +208,201 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 {
     int i;
 
-    printf("\nCalculation Histroy of ");
-
     switch (shape)
     {
     case Rectangle:
-        printf("Rectangle\n");
-        printf("    ____________________________________________________________________________________________________\n");
-        printf("   |         Index        |       Width      |       Lenth      |     Perimeter    |        Area        |\n");
-        printf("   |______________________|__________________|__________________|__________________|____________________|\n");
-
-        for (i = 0; i < history->count[0]; i++)
+        if (history->count[0] == 0)
         {
-            printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->rectangles[i].width, history->rectangles[i].length, history->rectangles[i].perimeter, history->rectangles[i].area);
+            printf("\n============================================================================\n");
+            printf("================ The rectangle calculation history is empty. ===============\n");
+            printf("============================================================================\n");
+        }
+        else
+        {
+            printf("\nCalculation Histroy of Rectangle\n");
+            printf("    ____________________________________________________________________________________________________\n");
+            printf("   |         Index        |       Width      |       Lenth      |     Perimeter    |        Area        |\n");
+            printf("   |______________________|__________________|__________________|__________________|____________________|\n");
+
+            for (i = 0; i < history->count[0]; i++)
+            {
+                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->rectangles[i].width, history->rectangles[i].length, history->rectangles[i].perimeter, history->rectangles[i].area);
+                printf("   |______________________|__________________|__________________|__________________|____________________|\n");
+            }
+
+            printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", means[0], means[1], means[2], means[3]);
+            printf("   |______________________|__________________|__________________|__________________|____________________|\n");
+            printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", stds[0], stds[1], stds[2], stds[3]);
             printf("   |______________________|__________________|__________________|__________________|____________________|\n");
         }
-
-        printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", means[0], means[1], means[2], means[3]);
-        printf("   |______________________|__________________|__________________|__________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", stds[0], stds[1], stds[2], stds[3]);
-        printf("   |______________________|__________________|__________________|__________________|____________________|\n");
 
         break;
 
     case Square:
-        printf("Square\n");
-        printf("    _________________________________________________________________________________\n");
-        printf("   |         Index        |    Side Lenth    |     Perimeter    |        Area        |\n");
-        printf("   |______________________|__________________|__________________|____________________|\n");
-
-        for (i = 0; i < history->count[1]; i++)
+        if (history->count[1] == 0)
         {
-            printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->squares[i].length, history->squares[i].perimeter, history->squares[i].area);
+            printf("\n============================================================================\n");
+            printf("================= The square calculation history is empty. =================\n");
+            printf("============================================================================\n");
+        }
+        else
+        {
+            printf("\nCalculation Histroy of Square\n");
+            printf("    _________________________________________________________________________________\n");
+            printf("   |         Index        |    Side Lenth    |     Perimeter    |        Area        |\n");
+            printf("   |______________________|__________________|__________________|____________________|\n");
+
+            for (i = 0; i < history->count[1]; i++)
+            {
+                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->squares[i].length, history->squares[i].perimeter, history->squares[i].area);
+                printf("   |______________________|__________________|__________________|____________________|\n");
+            }
+
+            printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", means[0], means[1], means[2]);
+            printf("   |______________________|__________________|__________________|____________________|\n");
+            printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", stds[0], stds[1], stds[2]);
             printf("   |______________________|__________________|__________________|____________________|\n");
         }
-
-        printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", means[0], means[1], means[2]);
-        printf("   |______________________|__________________|__________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", stds[0], stds[1], stds[2]);
-        printf("   |______________________|__________________|__________________|____________________|\n");
 
         break;
 
     case Circle:
-        printf("Circle\n");
-        printf("    _________________________________________________________________________________\n");
-        printf("   |         Index        |      Radius      |   Circumference  |        Area        |\n");
-        printf("   |______________________|__________________|__________________|____________________|\n");
-
-        for (i = 0; i < history->count[2]; i++)
+        if (history->count[2] == 0)
         {
-            printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->circles[i].radius, history->circles[i].circumference, history->squares[i].area);
+            printf("\n============================================================================\n");
+            printf("================= The circle calculation history is empty. =================\n");
+            printf("============================================================================\n");
+        }
+        else
+        {
+            printf("\nCalculation Histroy of Circle\n");
+            printf("    _________________________________________________________________________________\n");
+            printf("   |         Index        |      Radius      |   Circumference  |        Area        |\n");
+            printf("   |______________________|__________________|__________________|____________________|\n");
+
+            for (i = 0; i < history->count[2]; i++)
+            {
+                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->circles[i].radius, history->circles[i].circumference, history->squares[i].area);
+                printf("   |______________________|__________________|__________________|____________________|\n");
+            }
+
+            printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", means[0], means[1], means[2]);
+            printf("   |______________________|__________________|__________________|____________________|\n");
+            printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", stds[0], stds[1], stds[2]);
             printf("   |______________________|__________________|__________________|____________________|\n");
         }
-
-        printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", means[0], means[1], means[2]);
-        printf("   |______________________|__________________|__________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", stds[0], stds[1], stds[2]);
-        printf("   |______________________|__________________|__________________|____________________|\n");
 
         break;
 
     case Cuboid:
-        printf("Cuboid\n");
-        printf("    _________________________________________________________________________________________________________________________\n");
-        printf("   |         Index        |       Width      |       Lenth      |      Height      |    Surface Area    |       Volume       |\n");
-        printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
-
-        for (i = 0; i < history->count[3]; i++)
+        if (history->count[3] == 0)
         {
-            printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cuboids[i].width, history->cuboids[i].length, history->cuboids[i].height, history->cuboids[i].area, history->cuboids[i].volume);
+            printf("\n============================================================================\n");
+            printf("================= The cuboid calculation history is empty. =================\n");
+            printf("============================================================================\n");
+        }
+        else
+        {
+            printf("\nCalculation Histroy of Cuboid\n");
+            printf("    _________________________________________________________________________________________________________________________\n");
+            printf("   |         Index        |       Width      |       Lenth      |      Height      |    Surface Area    |       Volume       |\n");
+            printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
+
+            for (i = 0; i < history->count[3]; i++)
+            {
+                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cuboids[i].width, history->cuboids[i].length, history->cuboids[i].height, history->cuboids[i].area, history->cuboids[i].volume);
+                printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
+            }
+
+            printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2], means[3], means[4]);
+            printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
+            printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2], stds[3], stds[4]);
             printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
         }
-
-        printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2], means[3], means[4]);
-        printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2], stds[3], stds[4]);
-        printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
 
         break;
 
     case Cube:
-        printf("Cube\n");
-        printf("    ___________________________________________________________________________________\n");
-        printf("   |         Index        |    Side Length   |    Surface Area    |       Volume       |\n");
-        printf("   |______________________|__________________|____________________|____________________|\n");
-
-        for (i = 0; i < history->count[4]; i++)
+        if (history->count[4] == 0)
         {
-            printf("   |           %d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cubes[i].length, history->cubes[i].area, history->cubes[i].volume);
+            printf("\n============================================================================\n");
+            printf("================== The cube calculation history is empty. ==================\n");
+            printf("============================================================================\n");
+        }
+        else
+        {
+            printf("\nCalculation Histroy of Cube\n");
+            printf("    ___________________________________________________________________________________\n");
+            printf("   |         Index        |    Side Length   |    Surface Area    |       Volume       |\n");
+            printf("   |______________________|__________________|____________________|____________________|\n");
+
+            for (i = 0; i < history->count[4]; i++)
+            {
+                printf("   |           %d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cubes[i].length, history->cubes[i].area, history->cubes[i].volume);
+                printf("   |______________________|__________________|____________________|____________________|\n");
+            }
+
+            printf("   |         Mean         | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2]);
+            printf("   |______________________|__________________|____________________|____________________|\n");
+            printf("   |  Standard Deviation  | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2]);
             printf("   |______________________|__________________|____________________|____________________|\n");
         }
-
-        printf("   |         Mean         | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2]);
-        printf("   |______________________|__________________|____________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2]);
-        printf("   |______________________|__________________|____________________|____________________|\n");
 
         break;
 
     case Sphere:
-        printf("Sphere\n");
-        printf("    ___________________________________________________________________________________\n");
-        printf("   |         Index        |      Radius      |    Surface Area    |       Volume       |\n");
-        printf("   |______________________|__________________|____________________|____________________|\n");
-
-        for (i = 0; i < history->count[5]; i++)
+        if (history->count[5] == 0)
         {
-            printf("   |           %d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->spheres[i].radius, history->spheres[i].area, history->spheres[i].volume);
+            printf("\n============================================================================\n");
+            printf("================= The sphere calculation history is empty. =================\n");
+            printf("============================================================================\n");
+        }
+        else
+        {
+            printf("\nCalculation Histroy of Sphere\n");
+            printf("    ___________________________________________________________________________________\n");
+            printf("   |         Index        |      Radius      |    Surface Area    |       Volume       |\n");
+            printf("   |______________________|__________________|____________________|____________________|\n");
+
+            for (i = 0; i < history->count[5]; i++)
+            {
+                printf("   |           %d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->spheres[i].radius, history->spheres[i].area, history->spheres[i].volume);
+                printf("   |______________________|__________________|____________________|____________________|\n");
+            }
+
+            printf("   |         Mean         | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2]);
+            printf("   |______________________|__________________|____________________|____________________|\n");
+            printf("   |  Standard Deviation  | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2]);
             printf("   |______________________|__________________|____________________|____________________|\n");
         }
-
-        printf("   |         Mean         | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2]);
-        printf("   |______________________|__________________|____________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2]);
-        printf("   |______________________|__________________|____________________|____________________|\n");
 
         break;
 
     case Cone:
-        printf("Cone\n");
-        printf("    ______________________________________________________________________________________________________\n");
-        printf("   |         Index        |      Radius      |      Height      |    Surface Area    |       Volume       |\n");
-        printf("   |______________________|__________________|__________________|____________________|____________________|\n");
-
-        for (i = 0; i < history->count[6]; i++)
+        if (history->count[6] == 0)
         {
-            printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cones[i].radius, history->cones[i].height, history->cones[i].area, history->cones[i].volume);
+            printf("\n============================================================================\n");
+            printf("================== The cone calculation history is empty. ==================\n");
+            printf("============================================================================\n");
+        }
+        else
+        {
+            printf("\nCalculation Histroy of Cone\n");
+            printf("    ______________________________________________________________________________________________________\n");
+            printf("   |         Index        |      Radius      |      Height      |    Surface Area    |       Volume       |\n");
+            printf("   |______________________|__________________|__________________|____________________|____________________|\n");
+
+            for (i = 0; i < history->count[6]; i++)
+            {
+                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cones[i].radius, history->cones[i].height, history->cones[i].area, history->cones[i].volume);
+                printf("   |______________________|__________________|__________________|____________________|____________________|\n");
+            }
+
+            printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2], means[3]);
+            printf("   |______________________|__________________|__________________|____________________|____________________|\n");
+            printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2], stds[3]);
             printf("   |______________________|__________________|__________________|____________________|____________________|\n");
         }
-
-        printf("   |         Mean         | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", means[0], means[1], means[2], means[3]);
-        printf("   |______________________|__________________|__________________|____________________|____________________|\n");
-        printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", stds[0], stds[1], stds[2], stds[3]);
-        printf("   |______________________|__________________|__________________|____________________|____________________|\n");
 
         break;
     }
