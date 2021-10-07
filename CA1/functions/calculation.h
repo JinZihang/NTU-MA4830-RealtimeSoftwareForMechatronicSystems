@@ -1,12 +1,16 @@
 #ifndef CALCULATION
 #define CALCULATION
 
-#include "selection.h"
-#include "print.h"
 #include <stdbool.h>
 
-#include "struct.h"
-#include "enum.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+#include "../datatypes/enum.h"
+#include "../datatypes/struct.h"
+
+#include "print.h"
+#include "selection.h"
 
 #define ONES 1
 #define TENS 10
@@ -15,7 +19,7 @@
 
 double GetParameterInput(void (*paramInstructions)(char *parameter), char *parameter)
 {
-    char *endptr, buffer[100];
+    char *endptr, buffer[100]; // Change to use malloc and free the memory after use.
     double number;
 
     (*paramInstructions)(parameter);
@@ -25,11 +29,11 @@ double GetParameterInput(void (*paramInstructions)(char *parameter), char *param
         number = strtod(buffer, &endptr);
         if (endptr == buffer || *endptr != '\n')
         {
-            printf("Please enter a number: ");
+            NumericInputAlert(false);
         }
         else if (number < 0)
         {
-            printf("Please enter a positive number: ");
+            NumericInputAlert(true);
         }
         else
         {

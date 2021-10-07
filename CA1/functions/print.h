@@ -3,8 +3,8 @@
 
 #include <stdbool.h>
 
-#include "struct.h"
-#include "enum.h"
+#include "../datatypes/enum.h"
+#include "../datatypes/struct.h"
 
 #define MAX_LEN 128
 

@@ -3,16 +3,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <ctype.h>
 #include <string.h>
 #include <stdbool.h>
 
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include "../datatypes/enum.h"
 
 #include "print.h"
-#include "enum.h"
 
 char *toLower(char *string) {
     unsigned char *char_ptr = (unsigned char *)string;

@@ -8,24 +8,24 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include "print.h"
-#include "selection.h"
-#include "enum.h"
-#include "calculation.h"
+#include "datatypes/enum.h"
+#include "datatypes/struct.h"
 
-int main()
+#include "functions/print.h"
+#include "functions/selection.h"
+#include "functions/calculation.h"
+
+int main() // Use program arguments to display program info & etc.
 {
     int dimension, i;
     enum shape shape;
     struct History history;
-    char *filename = "title.txt";
-
-    for (i = 0; i < 7; i++)
+    for (i = 0; i < 7; i++) // Initialize history count.
     {
         history.count[i] = 0;
     }
 
-    DisplayTitle(filename);
+    DisplayTitle("assets/title.txt");
 
     while (true)
     {
