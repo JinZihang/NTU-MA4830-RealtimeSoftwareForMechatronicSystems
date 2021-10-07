@@ -13,12 +13,12 @@
 #include "enum.h"
 #include "calculation.h"
 
-int main()
+int main() // can take arguments
 {
     int dimension, i;
     enum shape shape;
     struct History history;
-    char *filename = "title.txt"; //can be moved to main argument
+    char *filename = "title.txt";
 
     for (i = 0; i < 7; i++)
     {

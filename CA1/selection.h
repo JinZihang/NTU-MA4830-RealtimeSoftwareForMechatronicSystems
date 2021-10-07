@@ -14,56 +14,59 @@
 #include "print.h"
 #include "enum.h"
 
+char *toLower(char *string) {
+    unsigned char *char_ptr;
+
+    char_ptr = (unsigned char *)string;
+    while (*char_ptr)
+    {
+        *char_ptr = tolower(*char_ptr);
+        char_ptr++;
+    }
+}
+
 bool ShapeSelection(enum shape *shape)
 {
-    char *input, *inputLowercase;
-    unsigned char *char_ptr;
+    char *input;
 
     ShapeSelectionInstructions();
 
     while (true)
     {
-        // Get input and convert the input to lowercase.
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
         }
         fgets(input, 100 * sizeof(char), stdin);
-        inputLowercase = strdup(input);
-        free(input);
-        char_ptr = (unsigned char *)inputLowercase;
-        while (*char_ptr)
-        {
-            *char_ptr = tolower(*char_ptr);
-            char_ptr++;
-        }
+        toLower(input);
 
-        // Actions based on the input.
-        if (strcmp(inputLowercase, "rectangle\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
+        if (strcmp(input, "rectangle\n") == 0 || strcmp(input, "1\n") == 0)
         {
+            free(input);
             *shape = Rectangle;
-            printf("You have selected a rectangle.\n");
             return true;
         }
-        else if (strcmp(inputLowercase, "square\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
+        else if (strcmp(input, "square\n") == 0 || strcmp(input, "2\n") == 0)
         {
+            free(input);
             *shape = Square;
-            printf("You have selected a square.\n");
             return true;
         }
-        else if (strcmp(inputLowercase, "circle\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
+        else if (strcmp(input, "circle\n") == 0 || strcmp(input, "3\n") == 0)
         {
+            free(input);
             *shape = Circle;
-            printf("You have selected a circle.\n");
             return true;
         }
-        else if (strcmp(inputLowercase, "back\n") == 0)
+        else if (strcmp(input, "back\n") == 0)
         {
+            free(input);
             return false;
         }
-        else if (strcmp(inputLowercase, "exit\n") == 0)
+        else if (strcmp(input, "exit\n") == 0)
         {
+            free(input);
             exit(0);
         }
         else
@@ -75,60 +78,52 @@ bool ShapeSelection(enum shape *shape)
 
 bool ObjectSelection(enum shape *shape)
 {
-    char *input, *inputLowercase;
-    unsigned char *char_ptr;
+    char *input;
 
     ObjectSelectionInstructions();
 
     while (true)
-    {
-        // Get input and convert the input to lowercase.
+    {   
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
         }
         fgets(input, 100 * sizeof(char), stdin);
-        inputLowercase = strdup(input);
-        free(input);
-        char_ptr = (unsigned char *)inputLowercase;
-        while (*char_ptr)
-        {
-            *char_ptr = tolower(*char_ptr);
-            char_ptr++;
-        }
+        toLower(input);
 
-        // Actions based on the input.
-        if (strcmp(inputLowercase, "cuboid\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
+        if (strcmp(input, "cuboid\n") == 0 || strcmp(input, "1\n") == 0)
         {
+            free(input);
             *shape = Cuboid;
-            printf("You have selected a cuboid.\n");
             return true;
         }
-        else if (strcmp(inputLowercase, "cube\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
+        else if (strcmp(input, "cube\n") == 0 || strcmp(input, "2\n") == 0)
         {
+            free(input);
             *shape = Cube;
-            printf("You have selected a cube.\n");
             return true;
         }
-        else if (strcmp(inputLowercase, "cone\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
+        else if (strcmp(input, "cone\n") == 0 || strcmp(input, "3\n") == 0)
         {
+            free(input);
             *shape = Cone;
-            printf("You have selected a cone.\n");
             return true;
         }
-        else if (strcmp(inputLowercase, "sphere\n") == 0 || strcmp(inputLowercase, "4\n") == 0)
+        else if (strcmp(input, "sphere\n") == 0 || strcmp(input, "4\n") == 0)
         {
+            free(input);
             *shape = Sphere;
-            printf("You have selected a sphere.\n");
             return true;
         }
-        else if (strcmp(inputLowercase, "back\n") == 0)
+        else if (strcmp(input, "back\n") == 0)
         {
+            free(input);
             return false;
         }
-        else if (strcmp(inputLowercase, "exit\n") == 0)
+        else if (strcmp(input, "exit\n") == 0)
         {
+            free(input);
             exit(0);
         }
         else
@@ -148,51 +143,41 @@ bool GeometrySelection(enum shape *shape, int dimension)
     case 3:
         return ObjectSelection(&(*shape));
         break;
-    default:
-        printf("Invalid dimension\n");
-        break;
     }
     return false;
 }
 
 void DimensionSelection(int *dimension)
 {
-    char *input, *inputLowercase;
-    unsigned char *char_ptr;
+    char *input;
 
     DimensionSelectionInstructions();
 
     while (true)
     {
-        // Get input and convert the input to lowercase.
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
         }
         fgets(input, 100 * sizeof(char), stdin);
-        inputLowercase = strdup(input);
-        free(input);
-        char_ptr = (unsigned char *)inputLowercase;
-        while (*char_ptr)
-        {
-            *char_ptr = tolower(*char_ptr);
-            char_ptr++;
-        }
+        toLower(input);
 
-        // Actions based on the input.
-        if (strcmp(inputLowercase, "2d\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
+        if (strcmp(input, "2d\n") == 0 || strcmp(input, "1\n") == 0)
         {
+            free(input);
             *dimension = 2;
             return;
         }
-        else if (strcmp(inputLowercase, "3d\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
+        else if (strcmp(input, "3d\n") == 0 || strcmp(input, "2\n") == 0)
         {
+            free(input);
             *dimension = 3;
             return;
         }
-        else if (strcmp(inputLowercase, "exit\n") == 0)
+        else if (strcmp(input, "exit\n") == 0)
         {
+            free(input);
             exit(0);
         }
         else
@@ -210,15 +195,14 @@ void UnitSelection(enum unit *unit)
 
     while (true)
     {
-        // Read the input.
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
         }
         fgets(input, 100 * sizeof(char), stdin);
+        toLower(input);
 
-        // Actions based on the input.
         if (strcmp(input, "m\n") == 0 || strcmp(input, "1\n") == 0)
         {
             *unit = m;
@@ -252,40 +236,33 @@ void UnitSelection(enum unit *unit)
 
 bool ProcessSelection()
 {
-    char *input, *inputLowercase;
-    unsigned char *char_ptr;
+    char *input;
 
     ProcessSelectionInstructions();
 
     while (true)
     {
-        // Get input and convert the input to lowercase.
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
         }
         fgets(input, 100 * sizeof(char), stdin);
-        inputLowercase = strdup(input);
-        free(input);
-        char_ptr = (unsigned char *)inputLowercase;
-        while (*char_ptr)
-        {
-            *char_ptr = tolower(*char_ptr);
-            char_ptr++;
-        }
+        toLower(input);
 
-        // Actions based on the input.
-        if (strcmp(inputLowercase, "history\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
+        if (strcmp(input, "history\n") == 0 || strcmp(input, "1\n") == 0)
         {
+            free(input);
             return true;
         }
-        else if (strcmp(inputLowercase, "calculate\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
+        else if (strcmp(input, "calculate\n") == 0 || strcmp(input, "2\n") == 0)
         {
+            free(input);
             return false;
         }
-        else if (strcmp(inputLowercase, "exit\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
+        else if (strcmp(input, "exit\n") == 0 || strcmp(input, "3\n") == 0)
         {
+            free(input);
             exit(0);
         }
         else
@@ -297,74 +274,66 @@ bool ProcessSelection()
 
 void ShapeAndObjectSelection(enum shape *shape)
 {
-    char *input, *inputLowercase;
-    unsigned char *char_ptr;
+    char *input;
 
     ShapeAndObjectSelectionInstructions();
 
     while (true)
     {
-        // Get input and convert the input to lowercase.
+        
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();
             exit(1);
         }
         fgets(input, 100 * sizeof(char), stdin);
-        inputLowercase = strdup(input);
-        free(input);
-        char_ptr = (unsigned char *)inputLowercase;
-        while (*char_ptr)
-        {
-            *char_ptr = tolower(*char_ptr);
-            char_ptr++;
-        }
+        toLower(input);
 
-        // Actions based on the input.
-        if (strcmp(inputLowercase, "rectangle\n") == 0 || strcmp(inputLowercase, "1\n") == 0)
+        if (strcmp(input, "rectangle\n") == 0 || strcmp(input, "1\n") == 0)
         {
+            free(input);
             *shape = Rectangle;
-            printf("You have selected a rectangle.\n");
             return;
         }
-        else if (strcmp(inputLowercase, "square\n") == 0 || strcmp(inputLowercase, "2\n") == 0)
+        else if (strcmp(input, "square\n") == 0 || strcmp(input, "2\n") == 0)
         {
+            free(input);
             *shape = Square;
-            printf("You have selected a square.\n");
             return;
         }
-        else if (strcmp(inputLowercase, "circle\n") == 0 || strcmp(inputLowercase, "3\n") == 0)
+        else if (strcmp(input, "circle\n") == 0 || strcmp(input, "3\n") == 0)
         {
+            free(input);
             *shape = Circle;
-            printf("You have selected a circle.\n");
             return;
         }
-        else if (strcmp(inputLowercase, "cuboid\n") == 0 || strcmp(inputLowercase, "4\n") == 0)
+        else if (strcmp(input, "cuboid\n") == 0 || strcmp(input, "4\n") == 0)
         {
+            free(input);
             *shape = Cuboid;
-            printf("You have selected a cuboid.\n");
             return;
         }
-        else if (strcmp(inputLowercase, "cube\n") == 0 || strcmp(inputLowercase, "5\n") == 0)
+        else if (strcmp(input, "cube\n") == 0 || strcmp(input, "5\n") == 0)
         {
+            free(input);
             *shape = Cube;
-            printf("You have selected a cube.\n");
             return;
         }
-        else if (strcmp(inputLowercase, "cone\n") == 0 || strcmp(inputLowercase, "6\n") == 0)
+        else if (strcmp(input, "cone\n") == 0 || strcmp(input, "6\n") == 0)
         {
+            free(input);
             *shape = Cone;
-            printf("You have selected a cone.\n");
             return;
         }
-        else if (strcmp(inputLowercase, "sphere\n") == 0 || strcmp(inputLowercase, "7\n") == 0)
+        else if (strcmp(input, "sphere\n") == 0 || strcmp(input, "7\n") == 0)
         {
+            free(input);
             *shape = Sphere;
-            printf("You have selected a sphere.\n");
             return;
         }
-        else if (strcmp(inputLowercase, "exit\n") == 0)
+        else if (strcmp(input, "exit\n") == 0)
         {
+            free(input);
             exit(0);
         }
         else
@@ -373,4 +342,5 @@ void ShapeAndObjectSelection(enum shape *shape)
         }
     }
 }
+
 #endif

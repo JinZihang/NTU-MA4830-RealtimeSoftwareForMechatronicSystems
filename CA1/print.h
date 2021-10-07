@@ -42,7 +42,7 @@ void WrongDimensionInput()
     printf("============ Key in \"2D\", \"3D\" or the choice index (\"1\" or \"2\"). ===========\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
     printf("============================================================================\n\n");
-    printf("Type in your choice here: ");
+    printf("Type in your choice again here: ");
 }
 
 void NoMemoryAlert()
@@ -63,11 +63,11 @@ void WrongShapeInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("================ Key in \"Rectangle\", \"Square\" or \"Circle\". ================\n");
+    printf("================= Key in \"Rectangle\", \"Square\" or \"Circle\". ================\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
     printf("================== Type \"Back\" to reselect the dimension. ==================\n");
     printf("============================================================================\n\n");
-    printf("Type in your choice here: ");
+    printf("Type in your choice again here: ");
 }
 
 void ObjectSelectionInstructions()
@@ -81,26 +81,26 @@ void WrongObjectInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("============ Key in \"Cuboid\", \"Cube\", \"Cone\" or \"Sphere\". ===========\n");
+    printf("=============== Key in \"Cuboid\", \"Cube\", \"Cone\" or \"Sphere\". ===============\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
     printf("=================== Type \"Back\" to reselect the dimension. =================\n");
     printf("============================================================================\n\n");
-    printf("Type in your choice here: ");
+    printf("Type in your choice again here: ");
 }
 
 void UnitSelectionInstructions()
 {
     printf("\nSelect the input unit:\n");
     printf("1. m\n2. dm\n3. cm\n4. mm\n");
-    printf("Your choice: ");
+    printf("Select unit: ");
 }
 
 void WrongUnitInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("================== Enter \"m\", \"dm\", \"cm\" or \"mm\". ==================\n");
-    printf("================== Or enter the choice index: \"1\", \"2\",\"3\" or \"4\". ==================\n");
+    printf("====================== Enter \"m\", \"dm\", \"cm\" or \"mm\". ======================\n");
+    printf("============= Or enter the choice index: \"1\", \"2\", \"3\" or \"4\". =============\n");
     printf("============================================================================\n\n");
     printf("Enter again here: ");
 }
@@ -110,7 +110,7 @@ void DisplayResults(enum shape shape, double result_1, double result_2)
     bool is2D = false;
 
     printf("\nCalculation results:\n");
-    printf("    _________________________________________________________________________________________________________\n");
+    printf("    ______________________________________________________________________________________________\n");
 
     if (shape == Rectangle || shape == Square || shape == Circle)
     {
@@ -148,7 +148,7 @@ void ProcessSelectionInstructions()
     printf("1. History\t- To view the calculation history.\n");
     printf("2. Calculate\t- To calculate again.\n");
     printf("3. Exit\t- To leave the program.\n");
-    printf("Your choice: ");
+    printf("Enter your choice here: ");
 }
 
 void WrongProcessInput()
@@ -157,12 +157,12 @@ void WrongProcessInput()
     printf("============== Invalid input! Please follow the instructions! ==============\n");
     printf("============ Key in \"History\", \"Calculate\" or \"Exit\" ===========\n");
     printf("============================================================================\n\n");
-    printf("Type in your choice here: ");
+    printf("Type in your choice again here: ");
 }
 
 void ParamaterSelectionInstructions(char *parameter)
 {
-    printf("Enter the %s parameter\n", parameter);
+    printf("\nEnter the %s parameter\n", parameter);
     printf("Type in your choice here: ");
 }
 
@@ -180,7 +180,24 @@ void WrongShapeAndObjectInput()
     printf("============== Invalid input! Please follow the instructions! ==============\n");
     printf("============ Key in \"Rectangle\", \"Square\", \"Circle\", \"Cuboid\", \"Cube\", \"Cone\", \"Sphere\" ===========\n");
     printf("============================================================================\n\n");
-    printf("Type in your choice here: ");
+    printf("Type in your choice again here: ");
+}
+
+void NumericInputAlert(bool isNumeric)
+{
+    if (isNumeric)
+    {
+        printf("\n============================================================================\n");
+        printf("========================= Enter a positive number! =========================\n");
+        printf("============================================================================\n");
+    }
+    else
+    {
+        printf("\n============================================================================\n");
+        printf("============================== Enter a number! =============================\n");
+        printf("============================================================================\n");
+    }
+    printf("Enter again here: ");
 }
 
 #endif
