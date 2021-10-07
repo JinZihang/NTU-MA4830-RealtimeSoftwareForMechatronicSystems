@@ -329,40 +329,383 @@ void CalculateProperties(enum shape shape, struct History *history)
 void CalculateHistoricalProperties(struct History *history)
 {
     enum shape shape;
-    int i;
-    float mean_result_1 = 0, mean_result_2 = 0, std_result_1, std_result_2;
+    int i, parameters;
+    double *means, *stds;
 
     ShapeAndObjectSelection(&shape);
 
     switch (shape)
     {
     case Rectangle:
+        parameters = 4;
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
         for (i = 0; i < history->count[0]; i++)
         {
-            mean_result_1 += history->rectangles[i].perimeter;
-            mean_result_2 += history->rectangles[i].area;
+            means[0] += history->rectangles[i].width;
+            means[1] += history->rectangles[i].length;
+            means[2] += history->rectangles[i].perimeter;
+            means[3] += history->rectangles[i].area;
 
             DisplayResults(shape, history->rectangles[i].perimeter, history->rectangles[i].area);
         }
 
-        mean_result_1 /= history->count[0];
-        mean_result_2 /= history->count[0];
+        means[0] /= history->count[0];
+        means[1] /= history->count[0];
+        means[2] /= history->count[0];
+        means[3] /= history->count[0];
 
         for (i = 0; i < history->count[0]; i++)
         {
-            std_result_1 += pow(history->rectangles[i].perimeter - mean_result_1, 2);
-            std_result_2 += pow(history->rectangles[i].area - mean_result_2, 2);
+            stds[0] += pow(history->rectangles[i].width - means[0], 2);
+            stds[1] += pow(history->rectangles[i].length - means[1], 2);
+            stds[2] += pow(history->rectangles[i].perimeter - means[2], 2);
+            stds[3] += pow(history->rectangles[i].area - means[3], 2);
         }
 
-        std_result_1 = sqrt(std_result_1 / history->count[0]);
-        std_result_2 = sqrt(std_result_2 / history->count[0]);
+        stds[0] = sqrt(stds[0] / history->count[0]);
+        stds[1] = sqrt(stds[1] / history->count[0]);
+        stds[2] = sqrt(stds[2] / history->count[0]);
+        stds[3] = sqrt(stds[3] / history->count[0]);
 
-        printf("mean1: %lf\n", mean_result_1);
-        printf("mean2: %lf\n", mean_result_2);
+        printf("width mean: %lf\n", means[0]);
+        printf("length mean: %lf\n", means[1]);
+        printf("perimeter mean: %lf\n", means[2]);
+        printf("area mean: %lf\n", means[3]);
 
-        printf("std1: %lf\n", std_result_1);
-        printf("std2: %lf\n", std_result_2);
+        printf("width std: %lf\n", stds[0]);
+        printf("length std: %lf\n", stds[1]);
+        printf("perimeter std: %lf\n", stds[2]);
+        printf("area std: %lf\n", stds[3]);
+        break;
+    case Square:
+        parameters = 3;
+
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
+        for (i = 0; i < history->count[1]; i++)
+        {
+            means[0] += history->squares[i].length;
+            means[1] += history->squares[i].perimeter;
+            means[2] += history->squares[i].area;
+
+            DisplayResults(shape, history->squares[i].perimeter, history->squares[i].area);
+        }
+
+        means[0] /= history->count[1];
+        means[1] /= history->count[1];
+        means[2] /= history->count[1];
+
+        for (i = 0; i < history->count[1]; i++)
+        {
+            stds[0] += pow(history->squares[i].length - means[0], 2);
+            stds[1] += pow(history->squares[i].perimeter - means[1], 2);
+            stds[2] += pow(history->squares[i].area - means[2], 2);
+        }
+
+        stds[0] = sqrt(stds[0] / history->count[1]);
+        stds[1] = sqrt(stds[1] / history->count[1]);
+        stds[2] = sqrt(stds[2] / history->count[1]);
+
+        printf("length mean: %lf\n", means[0]);
+        printf("perimeter mean: %lf\n", means[1]);
+        printf("area mean: %lf\n", means[2]);
+
+        printf("length std: %lf\n", stds[0]);
+        printf("perimeter std: %lf\n", stds[1]);
+        printf("area std: %lf\n", stds[2]);
+        break;
+    case Circle:
+        parameters = 3;
+
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
+        for (i = 0; i < history->count[2]; i++)
+        {
+            means[0] += history->circles[i].radius;
+            means[1] += history->circles[i].circumference;
+            means[2] += history->circles[i].area;
+
+            DisplayResults(shape, history->circles[i].circumference, history->circles[i].area);
+        }
+
+        means[0] /= history->count[2];
+        means[1] /= history->count[2];
+        means[2] /= history->count[2];
+
+        for (i = 0; i < history->count[2]; i++)
+        {
+            stds[0] += pow(history->circles[i].radius - means[0], 2);
+            stds[1] += pow(history->circles[i].circumference - means[1], 2);
+            stds[2] += pow(history->circles[i].area - means[2], 2);
+        }
+
+        stds[0] = sqrt(stds[0] / history->count[2]);
+        stds[1] = sqrt(stds[1] / history->count[2]);
+        stds[2] = sqrt(stds[2] / history->count[2]);
+
+        printf("radius mean: %lf\n", means[0]);
+        printf("perimeter mean: %lf\n", means[1]);
+        printf("area mean: %lf\n", means[2]);
+
+        printf("radius std: %lf\n", stds[0]);
+        printf("perimeter std: %lf\n", stds[1]);
+        printf("area std: %lf\n", stds[2]);
+        break;
+    case Cuboid:
+        parameters = 5;
+
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
+        for (i = 0; i < history->count[3]; i++)
+        {
+            means[0] += history->cuboids[i].length;
+            means[1] += history->cuboids[i].width;
+            means[2] += history->cuboids[i].height;
+            means[3] += history->cuboids[i].volume;
+            means[4] += history->cuboids[i].area;
+
+            DisplayResults(shape, history->cuboids[i].volume, history->cuboids[i].area);
+        }
+
+        means[0] /= history->count[3];
+        means[1] /= history->count[3];
+        means[2] /= history->count[3];
+        means[3] /= history->count[3];
+        means[4] /= history->count[3];
+
+        for (i = 0; i < history->count[3]; i++)
+        {
+            stds[0] += pow(history->cuboids[i].length - means[0], 2);
+            stds[1] += pow(history->cuboids[i].width - means[1], 2);
+            stds[2] += pow(history->cuboids[i].height - means[2], 2);
+            stds[3] += pow(history->cuboids[i].volume - means[3], 2);
+            stds[4] += pow(history->cuboids[i].area - means[4], 2);
+        }
+
+        stds[0] = sqrt(stds[0] / history->count[3]);
+        stds[1] = sqrt(stds[1] / history->count[3]);
+        stds[2] = sqrt(stds[2] / history->count[3]);
+        stds[3] = sqrt(stds[3] / history->count[3]);
+        stds[4] = sqrt(stds[4] / history->count[3]);
+        break;
+    case Cube:
+        parameters = 3;
+
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
+        for (i = 0; i < history->count[4]; i++)
+        {
+            means[0] += history->cubes[i].length;
+            means[1] += history->cubes[i].area;
+            means[2] += history->cubes[i].volume;
+        }
+
+        means[0] /= history->count[4];
+        means[1] /= history->count[4];
+        means[2] /= history->count[4];
+
+        for (i = 0; i < history->count[4]; i++)
+        {
+            stds[0] += pow(history->cubes[i].length - means[0], 2);
+            stds[1] += pow(history->cubes[i].area - means[1], 2);
+            stds[2] += pow(history->cubes[i].volume - means[2], 2);
+        }
+
+        stds[0] = sqrt(stds[0] / history->count[4]);
+        stds[1] = sqrt(stds[1] / history->count[4]);
+        stds[2] = sqrt(stds[2] / history->count[4]);
+
+        printf("length mean: %lf\n", means[0]);
+        printf("area mean: %lf\n", means[1]);
+        printf("volume mean: %lf\n", means[2]);
+
+        printf("length std: %lf\n", stds[0]);
+        printf("area std: %lf\n", stds[1]);
+        printf("volume std: %lf\n", stds[2]);
+        break;
+    case Cone:
+        parameters = 4;
+
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
+        for (i = 0; i < history->count[5]; i++)
+        {
+            means[0] += history->cones[i].radius;
+            means[1] += history->cones[i].height;
+            means[2] += history->cones[i].volume;
+            means[3] += history->cones[i].area;
+
+            DisplayResults(shape, history->cones[i].volume, history->cones[i].area);
+        }
+
+        means[0] /= history->count[5];
+        means[1] /= history->count[5];
+        means[2] /= history->count[5];
+        means[3] /= history->count[5];
+
+        for (i = 0; i < history->count[5]; i++)
+        {
+            stds[0] += pow(history->cones[i].radius - means[0], 2);
+            stds[1] += pow(history->cones[i].height - means[1], 2);
+            stds[2] += pow(history->cones[i].volume - means[2], 2);
+            stds[3] += pow(history->cones[i].area - means[3], 2);
+        }
+
+        stds[0] = sqrt(stds[0] / history->count[5]);
+        stds[1] = sqrt(stds[1] / history->count[5]);
+        stds[2] = sqrt(stds[2] / history->count[5]);
+        stds[3] = sqrt(stds[3] / history->count[5]);
+        break;
+    case Sphere:
+        parameters = 3;
+
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
+        for (i = 0; i < history->count[6]; i++)
+        {
+            means[0] += history->spheres[i].radius;
+            means[1] += history->spheres[i].volume;
+            means[2] += history->spheres[i].area;
+        }
+
+        means[0] /= history->count[6];
+        means[1] /= history->count[6];
+        means[2] /= history->count[6];
+
+        for (i = 0; i < history->count[6]; i++)
+        {
+            stds[0] += pow(history->spheres[i].radius - means[0], 2);
+            stds[1] += pow(history->spheres[i].volume - means[1], 2);
+            stds[2] += pow(history->spheres[i].area - means[2], 2);
+        }
+
+        stds[0] = sqrt(stds[0] / history->count[6]);
+        stds[1] = sqrt(stds[1] / history->count[6]);
+        stds[2] = sqrt(stds[2] / history->count[6]);
+
+        printf("radius mean: %lf\n", means[0]);
+        printf("volume mean: %lf\n", means[1]);
+        printf("area mean: %lf\n", means[2]);
+
+        printf("radius std: %lf\n", stds[0]);
+        printf("volume std: %lf\n", stds[1]);
+        printf("area std: %lf\n", stds[2]);
         break;
     }
+    free(means);
+    free(stds);
 }
 #endif
