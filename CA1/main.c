@@ -30,7 +30,7 @@ int main()
     while (true)
     {
         DimensionSelection(&dimension);
-        printf("Dimension selected is %d\n", dimension);
+        // printf("Dimension selected is %d\n", dimension);
 
         if (!GeometrySelection(&shape, dimension))
         {
