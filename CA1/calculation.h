@@ -3,6 +3,7 @@
 
 #include "selection.h"
 #include "print.h"
+#include <stdbool.h>
 
 #include "struct.h"
 #include "enum.h"
@@ -244,9 +245,6 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->rectangles[history->count[0]].perimeter = 2 * (history->rectangles[history->count[0]].width + history->rectangles[history->count[0]].length);
         history->rectangles[history->count[0]].area = history->rectangles[history->count[0]].width * history->rectangles[history->count[0]].length;
 
-        printf("Area is %lf\n", history->rectangles[history->count[0]].area);
-        printf("Perimeter is %lf\n", history->rectangles[history->count[0]].perimeter);
-
         DisplayResults(shape, history->rectangles[history->count[0]].perimeter, history->rectangles[history->count[0]].area);
         history->count[0]++;
         break;
@@ -256,10 +254,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->squares[history->count[1]].perimeter = 4 * history->squares[history->count[1]].length;
         history->squares[history->count[1]].area = history->squares[history->count[1]].length * history->squares[history->count[1]].length;
 
-        printf("Area is %lf\n", history->squares[history->count[1]].area);
-        printf("Perimeter is %lf\n", history->squares[history->count[1]].perimeter);
-
-        // DisplayResults(shape, history->squares[history->count[1]].perimeter, history->squares[history->count[1]].area);
+        DisplayResults(shape, history->squares[history->count[1]].perimeter, history->squares[history->count[1]].area);
         history->count[1]++;
         break;
     case Circle:
@@ -267,9 +262,6 @@ void CalculateProperties(enum shape shape, struct History *history)
 
         history->circles[history->count[2]].circumference = 2 * M_PI * history->circles[history->count[2]].radius;
         history->circles[history->count[2]].area = M_PI * history->circles[history->count[2]].radius * history->circles[history->count[2]].radius;
-
-        printf("Circumference is %lf\n", history->circles[history->count[2]].circumference);
-        printf("Area is %lf\n", history->circles[history->count[2]].area);
 
         DisplayResults(shape, history->circles[history->count[2]].circumference, history->circles[history->count[2]].area);
         history->count[2]++;
@@ -280,10 +272,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->cuboids[history->count[3]].volume = history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].length * history->cuboids[history->count[3]].height;
         history->cuboids[history->count[3]].area = 2 * (history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].length + history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].height + history->cuboids[history->count[3]].length * history->cuboids[history->count[3]].height);
 
-        printf("Volume is %lf\n", history->cuboids[history->count[3]].volume);
-        printf("Area is %lf\n", history->cuboids[history->count[3]].area);
-
-        // DisplayResults(shape, history->cuboids[history->count[3]].area, history->cuboids[history->count[3]].volume);
+        DisplayResults(shape, history->cuboids[history->count[3]].area, history->cuboids[history->count[3]].volume);
         history->count[3]++;
         break;
     case Cube:
@@ -292,10 +281,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->cubes[history->count[4]].volume = history->cubes[history->count[4]].length * history->cubes[history->count[4]].length * history->cubes[history->count[4]].length;
         history->cubes[history->count[4]].area = 6 * history->cubes[history->count[4]].length * history->cubes[history->count[4]].length;
 
-        printf("Volume is %lf\n", history->cubes[history->count[4]].volume);
-        printf("Area is %lf\n", history->cubes[history->count[4]].area);
-
-        // DisplayResults(shape, history->cubes[history->count[4]].area, history->cubes[history->count[4]].volume);
+        DisplayResults(shape, history->cubes[history->count[4]].area, history->cubes[history->count[4]].volume);
         history->count[4]++;
         break;
 
@@ -305,10 +291,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->cones[history->count[5]].volume = M_PI * history->cones[history->count[5]].radius * history->cones[history->count[5]].radius * history->cones[history->count[5]].height / 3;
         history->cones[history->count[5]].area = M_PI * history->cones[history->count[5]].radius * (history->cones[history->count[5]].radius + sqrt(history->cones[history->count[5]].radius * history->cones[history->count[5]].radius + history->cones[history->count[5]].height * history->cones[history->count[5]].height));
 
-        printf("Volume is %lf\n", history->cones[history->count[5]].volume);
-        printf("Area is %lf\n", history->cones[history->count[5]].area);
-
-        // DisplayResults(shape, history->cones[history->count[5]].area, history->cones[history->count[5]].volume);
+        DisplayResults(shape, history->cones[history->count[5]].area, history->cones[history->count[5]].volume);
         history->count[5]++;
         break;
     case Sphere:
@@ -317,10 +300,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->spheres[history->count[6]].volume = 4 / 3 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
         history->spheres[history->count[6]].area = 4 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
 
-        printf("Volume is %lf\n", history->spheres[history->count[6]].volume);
-        printf("Area is %lf\n", history->spheres[history->count[6]].area);
-
-        // DisplayResults(shape, history->spheres[history->count[6]].area, history->spheres[history->count[6]].volume);
+        DisplayResults(shape, history->spheres[history->count[6]].area, history->spheres[history->count[6]].volume);
         history->count[6]++;
         break;
     }
