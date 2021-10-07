@@ -74,7 +74,7 @@ void WrongShapeInput()
 void ObjectSelectionInstructions()
 {
     printf("\nSelect the object to calculate its properties. Type \"Exit\" if you want to leave the program or \"Back\" if you want to reselect the dimension:\n");
-    printf("1. Cuboid\n2. Cube\n3. Cone\n4. Sphere\n");
+    printf("1. Cuboid\n2. Cube\n3. Sphere\n4. Cone\n");
     printf("Type in your choice here: ");
 }
 
@@ -82,7 +82,7 @@ void WrongObjectInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("=============== Key in \"Cuboid\", \"Cube\", \"Cone\" or \"Sphere\". ===============\n");
+    printf("=============== Key in \"Cuboid\", \"Cube\", \"Sphere\" or \"Cone\". ===============\n");
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
     printf("=================== Type \"Back\" to reselect the dimension. =================\n");
     printf("============================================================================\n\n");
@@ -172,7 +172,7 @@ void ShapeAndObjectSelectionInstructions()
 {
     printf("\nSelect any of the option\n");
     printf("1. Rectangle\n2. Square\n3. Circle\n");
-    printf("4. Cuboid\n5. Cube\n6. Cone\n7. Sphere\n");
+    printf("4. Cuboid\n5. Cube\n6. Sphere\n7. Cone\n");
     printf("Type in your choice here: ");
 }
 
@@ -180,7 +180,7 @@ void WrongShapeAndObjectInput()
 {
     printf("\n============================================================================\n");
     printf("============== Invalid input! Please follow the instructions! ==============\n");
-    printf("============ Key in \"Rectangle\", \"Square\", \"Circle\", \"Cuboid\", \"Cube\", \"Cone\", \"Sphere\" ===========\n");
+    printf("============ Key in \"Rectangle\", \"Square\", \"Circle\", \"Cuboid\", \"Cube\", \"Sphere\", \"Cone\" ===========\n");
     printf("============================================================================\n\n");
     printf("Type in your choice again here: ");
 }
@@ -311,7 +311,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
         printf("   |         Index        |      Radius      |    Surface Area    |       Volume       |\n");
         printf("   |______________________|__________________|____________________|____________________|\n");
 
-        for (i = 0; i < history->count[6]; i++)
+        for (i = 0; i < history->count[5]; i++)
         {
             printf("   |           %d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->spheres[i].radius, history->spheres[i].area, history->spheres[i].volume);
             printf("   |______________________|__________________|____________________|____________________|\n");
@@ -330,7 +330,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
         printf("   |         Index        |      Radius      |      Height      |    Surface Area    |       Volume       |\n");
         printf("   |______________________|__________________|__________________|____________________|____________________|\n");
 
-        for (i = 0; i < history->count[5]; i++)
+        for (i = 0; i < history->count[6]; i++)
         {
             printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cones[i].radius, history->cones[i].height, history->cones[i].area, history->cones[i].volume);
             printf("   |______________________|__________________|__________________|____________________|____________________|\n");

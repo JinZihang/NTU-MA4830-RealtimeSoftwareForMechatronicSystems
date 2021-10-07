@@ -103,16 +103,16 @@ bool ObjectSelection(enum shape *shape)
             *shape = Cube;
             return true;
         }
-        else if (strcmp(input, "cone\n") == 0 || strcmp(input, "3\n") == 0)
-        {
-            free(input);
-            *shape = Cone;
-            return true;
-        }
-        else if (strcmp(input, "sphere\n") == 0 || strcmp(input, "4\n") == 0)
+        else if (strcmp(input, "sphere\n") == 0 || strcmp(input, "3\n") == 0)
         {
             free(input);
             *shape = Sphere;
+            return true;
+        }
+        else if (strcmp(input, "cone\n") == 0 || strcmp(input, "4\n") == 0)
+        {
+            free(input);
+            *shape = Cone;
             return true;
         }
         else if (strcmp(input, "back\n") == 0)
@@ -318,16 +318,16 @@ void ShapeAndObjectSelection(enum shape *shape)
             *shape = Cube;
             return;
         }
-        else if (strcmp(input, "cone\n") == 0 || strcmp(input, "6\n") == 0)
-        {
-            free(input);
-            *shape = Cone;
-            return;
-        }
-        else if (strcmp(input, "sphere\n") == 0 || strcmp(input, "7\n") == 0)
+        else if (strcmp(input, "sphere\n") == 0 || strcmp(input, "6\n") == 0)
         {
             free(input);
             *shape = Sphere;
+            return;
+        }
+        else if (strcmp(input, "cone\n") == 0 || strcmp(input, "7\n") == 0)
+        {
+            free(input);
+            *shape = Cone;
             return;
         }
         else if (strcmp(input, "exit\n") == 0)

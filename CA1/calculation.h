@@ -176,37 +176,9 @@ void GetCubeParameter(struct History *history, enum unit *unit)
     }
 }
 
-void AssignConeParameter(struct History *history, int base)
-{
-    history->cones[history->count[5]].radius = GetParameterInput(ParamaterSelectionInstructions, "radius") / base;
-    history->cones[history->count[5]].height = GetParameterInput(ParamaterSelectionInstructions, "height") / base;
-}
-
-void GetConeParameter(struct History *history, enum unit *unit)
-{
-    switch (*unit)
-    {
-    case m:
-        AssignConeParameter(&(*history), ONES);
-        break;
-
-    case dm:
-        AssignConeParameter(&(*history), TENS);
-        break;
-
-    case cm:
-        AssignConeParameter(&(*history), HUNDREDS);
-        break;
-
-    case mm:
-        AssignConeParameter(&(*history), THOUSANDS);
-        break;
-    }
-}
-
 void AssignSphereParameter(struct History *history, int base)
 {
-    history->spheres[history->count[6]].radius = GetParameterInput(ParamaterSelectionInstructions, "radius") / base;
+    history->spheres[history->count[5]].radius = GetParameterInput(ParamaterSelectionInstructions, "radius") / base;
 }
 
 void GetSphereParameter(struct History *history, enum unit *unit)
@@ -231,6 +203,34 @@ void GetSphereParameter(struct History *history, enum unit *unit)
     }
 }
 
+void AssignConeParameter(struct History *history, int base)
+{
+    history->cones[history->count[6]].radius = GetParameterInput(ParamaterSelectionInstructions, "radius") / base;
+    history->cones[history->count[6]].height = GetParameterInput(ParamaterSelectionInstructions, "height") / base;
+}
+
+void GetConeParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignConeParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignConeParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignConeParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignConeParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
 void CalculateProperties(enum shape shape, struct History *history)
 {
     enum unit unit;
@@ -247,7 +247,9 @@ void CalculateProperties(enum shape shape, struct History *history)
 
         DisplayResults(shape, history->rectangles[history->count[0]].perimeter, history->rectangles[history->count[0]].area);
         history->count[0]++;
+
         break;
+
     case Square:
         GetSquareParameter(&(*history), &unit);
 
@@ -256,7 +258,9 @@ void CalculateProperties(enum shape shape, struct History *history)
 
         DisplayResults(shape, history->squares[history->count[1]].perimeter, history->squares[history->count[1]].area);
         history->count[1]++;
+
         break;
+
     case Circle:
         GetCircleParameter(&(*history), &unit);
 
@@ -265,7 +269,9 @@ void CalculateProperties(enum shape shape, struct History *history)
 
         DisplayResults(shape, history->circles[history->count[2]].circumference, history->circles[history->count[2]].area);
         history->count[2]++;
+
         break;
+
     case Cuboid:
         GetCuboidParameter(&(*history), &unit);
 
@@ -274,7 +280,9 @@ void CalculateProperties(enum shape shape, struct History *history)
 
         DisplayResults(shape, history->cuboids[history->count[3]].area, history->cuboids[history->count[3]].volume);
         history->count[3]++;
+
         break;
+
     case Cube:
         GetCubeParameter(&(*history), &unit);
 
@@ -283,25 +291,29 @@ void CalculateProperties(enum shape shape, struct History *history)
 
         DisplayResults(shape, history->cubes[history->count[4]].area, history->cubes[history->count[4]].volume);
         history->count[4]++;
+
+        break;
+
+    case Sphere:
+        GetSphereParameter(&(*history), &unit);
+
+        history->spheres[history->count[5]].area = 4 * M_PI * history->spheres[history->count[5]].radius * history->spheres[history->count[5]].radius;
+        history->spheres[history->count[5]].volume = 4 / 3 * M_PI * history->spheres[history->count[5]].radius * history->spheres[history->count[5]].radius * history->spheres[history->count[5]].radius;
+
+        DisplayResults(shape, history->spheres[history->count[5]].area, history->spheres[history->count[5]].volume);
+        history->count[5]++;
+        
         break;
 
     case Cone:
         GetConeParameter(&(*history), &unit);
 
-        history->cones[history->count[5]].area = M_PI * history->cones[history->count[5]].radius * (history->cones[history->count[5]].radius + sqrt(history->cones[history->count[5]].radius * history->cones[history->count[5]].radius + history->cones[history->count[5]].height * history->cones[history->count[5]].height));
-        history->cones[history->count[5]].volume = M_PI * history->cones[history->count[5]].radius * history->cones[history->count[5]].radius * history->cones[history->count[5]].height / 3;
+        history->cones[history->count[6]].area = M_PI * history->cones[history->count[6]].radius * (history->cones[history->count[6]].radius + sqrt(history->cones[history->count[6]].radius * history->cones[history->count[6]].radius + history->cones[history->count[6]].height * history->cones[history->count[6]].height));
+        history->cones[history->count[6]].volume = M_PI * history->cones[history->count[6]].radius * history->cones[history->count[6]].radius * history->cones[history->count[6]].height / 3;
 
-        DisplayResults(shape, history->cones[history->count[5]].area, history->cones[history->count[5]].volume);
-        history->count[5]++;
-        break;
-    case Sphere:
-        GetSphereParameter(&(*history), &unit);
-
-        history->spheres[history->count[6]].area = 4 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
-        history->spheres[history->count[6]].volume = 4 / 3 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
-
-        DisplayResults(shape, history->spheres[history->count[6]].area, history->spheres[history->count[6]].volume);
+        DisplayResults(shape, history->cones[history->count[6]].area, history->cones[history->count[6]].volume);
         history->count[6]++;
+
         break;
     }
 }
@@ -550,6 +562,51 @@ void CalculateHistoricalProperties(struct History *history)
         stds[2] = sqrt(stds[2] / history->count[4]);
 
         break;
+    
+    case Sphere:
+        parameters = 3;
+
+        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
+        {
+            NoMemoryAlert();
+            exit(1);
+        }
+
+        for (i = 0; i < parameters; i++)
+        {
+            means[i] = 0;
+            stds[i] = 0;
+        }
+
+        for (i = 0; i < history->count[5]; i++)
+        {
+            means[0] += history->spheres[i].radius;
+            means[1] += history->spheres[i].area;
+            means[2] += history->spheres[i].volume;
+        }
+
+        means[0] /= history->count[5];
+        means[1] /= history->count[5];
+        means[2] /= history->count[5];
+
+        for (i = 0; i < history->count[5]; i++)
+        {
+            stds[0] += pow(history->spheres[i].radius - means[0], 2);
+            stds[1] += pow(history->spheres[i].area - means[1], 2);
+            stds[2] += pow(history->spheres[i].volume - means[2], 2);
+        }
+
+        stds[0] = sqrt(stds[0] / history->count[5]);
+        stds[1] = sqrt(stds[1] / history->count[5]);
+        stds[2] = sqrt(stds[2] / history->count[5]);
+
+        break;
 
     case Cone:
         parameters = 4;
@@ -572,7 +629,7 @@ void CalculateHistoricalProperties(struct History *history)
             stds[i] = 0;
         }
 
-        for (i = 0; i < history->count[5]; i++)
+        for (i = 0; i < history->count[6]; i++)
         {
             means[0] += history->cones[i].radius;
             means[1] += history->cones[i].height;
@@ -581,12 +638,12 @@ void CalculateHistoricalProperties(struct History *history)
             
         }
 
-        means[0] /= history->count[5];
-        means[1] /= history->count[5];
-        means[2] /= history->count[5];
-        means[3] /= history->count[5];
+        means[0] /= history->count[6];
+        means[1] /= history->count[6];
+        means[2] /= history->count[6];
+        means[3] /= history->count[6];
 
-        for (i = 0; i < history->count[5]; i++)
+        for (i = 0; i < history->count[6]; i++)
         {
             stds[0] += pow(history->cones[i].radius - means[0], 2);
             stds[1] += pow(history->cones[i].height - means[1], 2);
@@ -595,55 +652,10 @@ void CalculateHistoricalProperties(struct History *history)
             
         }
 
-        stds[0] = sqrt(stds[0] / history->count[5]);
-        stds[1] = sqrt(stds[1] / history->count[5]);
-        stds[2] = sqrt(stds[2] / history->count[5]);
-        stds[3] = sqrt(stds[3] / history->count[5]);
-        break;
-
-    case Sphere:
-        parameters = 3;
-
-        if ((means = (double *)malloc(parameters * sizeof(double))) == NULL)
-        {
-            NoMemoryAlert();
-            exit(1);
-        }
-
-        if ((stds = (double *)malloc(parameters * sizeof(double))) == NULL)
-        {
-            NoMemoryAlert();
-            exit(1);
-        }
-
-        for (i = 0; i < parameters; i++)
-        {
-            means[i] = 0;
-            stds[i] = 0;
-        }
-
-        for (i = 0; i < history->count[6]; i++)
-        {
-            means[0] += history->spheres[i].radius;
-            means[1] += history->spheres[i].area;
-            means[2] += history->spheres[i].volume;
-        }
-
-        means[0] /= history->count[6];
-        means[1] /= history->count[6];
-        means[2] /= history->count[6];
-
-        for (i = 0; i < history->count[6]; i++)
-        {
-            stds[0] += pow(history->spheres[i].radius - means[0], 2);
-            stds[1] += pow(history->spheres[i].area - means[1], 2);
-            stds[2] += pow(history->spheres[i].volume - means[2], 2);
-        }
-
         stds[0] = sqrt(stds[0] / history->count[6]);
         stds[1] = sqrt(stds[1] / history->count[6]);
         stds[2] = sqrt(stds[2] / history->count[6]);
-
+        stds[3] = sqrt(stds[3] / history->count[6]);
         break;
     }
 
