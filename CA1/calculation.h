@@ -7,6 +7,11 @@
 #include "struct.h"
 #include "enum.h"
 
+#define ONES 1
+#define TENS 10
+#define HUNDREDS 100
+#define THOUSANDS 1000
+
 double GetParameterInput(void (*paramInstructions)())
 {
     char *endptr, buffer[100];
@@ -32,6 +37,199 @@ double GetParameterInput(void (*paramInstructions)())
     }
 }
 
+void AssignRectangleParameter(struct History *history, int base)
+{
+    history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / base;
+    history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / base;
+}
+
+void GetRectangleParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignRectangleParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignRectangleParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignRectangleParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignRectangleParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
+void AssignSquareParameter(struct History *history, int base)
+{
+    history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / base;
+}
+
+void GetSquareParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignSquareParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignSquareParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignSquareParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignSquareParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
+void AssignCircleParameter(struct History *history, int base)
+{
+    history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / base;
+}
+
+void GetCircleParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignCircleParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignCircleParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignCircleParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignCircleParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
+void AssignCuboidParameter(struct History *history, int base)
+{
+    history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / base;
+    history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / base;
+    history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / base;
+}
+
+void GetCuboidParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignCuboidParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignCuboidParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignCuboidParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignCuboidParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
+void AssignCubeParameter(struct History *history, int base)
+{
+    history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / base;
+}
+
+void GetCubeParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignCubeParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignCubeParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignCubeParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignCubeParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
+void AssignConeParameter(struct History *history, int base)
+{
+    history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / base;
+    history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / base;
+}
+
+void GetConeParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignConeParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignConeParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignConeParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignConeParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
+void AssignSphereParameter(struct History *history, int base)
+{
+    history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / base;
+}
+
+void GetSphereParameter(struct History *history, enum unit *unit)
+{
+    switch (*unit)
+    {
+    case m:
+        AssignSphereParameter(&(*history), ONES);
+        break;
+
+    case dm:
+        AssignSphereParameter(&(*history), TENS);
+        break;
+
+    case cm:
+        AssignSphereParameter(&(*history), HUNDREDS);
+        break;
+
+    case mm:
+        AssignSphereParameter(&(*history), THOUSANDS);
+        break;
+    }
+}
+
 void CalculateProperties(enum shape shape, struct History *history)
 {
     enum unit unit;
@@ -41,28 +239,7 @@ void CalculateProperties(enum shape shape, struct History *history)
     switch (shape)
     {
     case Rectangle:
-        switch (unit)
-        {
-        case m:
-            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions);
-            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions);
-            break;
-
-        case dm:
-            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / 1E1;
-            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
-            break;
-
-        case cm:
-            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / 1E2;
-            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
-            break;
-
-        case mm:
-            history->rectangles[history->count[0]].width = GetParameterInput(WidthSelectionInstructions) / 1E3;
-            history->rectangles[history->count[0]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
-            break;
-        }
+        GetRectangleParameter(&(*history), &unit);
 
         history->rectangles[history->count[0]].perimeter = 2 * (history->rectangles[history->count[0]].width + history->rectangles[history->count[0]].length);
         history->rectangles[history->count[0]].area = history->rectangles[history->count[0]].width * history->rectangles[history->count[0]].length;
@@ -74,24 +251,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->count[0]++;
         break;
     case Square:
-        switch (unit)
-        {
-        case m:
-            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions);
-            break;
-
-        case dm:
-            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
-            break;
-
-        case cm:
-            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
-            break;
-
-        case mm:
-            history->squares[history->count[1]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
-            break;
-        }
+        GetSquareParameter(&(*history), &unit);
 
         history->squares[history->count[1]].perimeter = 4 * history->squares[history->count[1]].length;
         history->squares[history->count[1]].area = history->squares[history->count[1]].length * history->squares[history->count[1]].length;
@@ -103,24 +263,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->count[1]++;
         break;
     case Circle:
-        switch (unit)
-        {
-        case m:
-            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions);
-            break;
-
-        case dm:
-            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E1;
-            break;
-
-        case cm:
-            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E2;
-            break;
-
-        case mm:
-            history->circles[history->count[2]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E3;
-            break;
-        }
+        GetCircleParameter(&(*history), &unit);
 
         history->circles[history->count[2]].circumference = 2 * M_PI * history->circles[history->count[2]].radius;
         history->circles[history->count[2]].area = M_PI * history->circles[history->count[2]].radius * history->circles[history->count[2]].radius;
@@ -132,32 +275,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->count[2]++;
         break;
     case Cuboid:
-        switch (unit)
-        {
-        case m:
-            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions);
-            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions);
-            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions);
-            break;
-
-        case dm:
-            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / 1E1;
-            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
-            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / 1E1;
-            break;
-
-        case cm:
-            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / 1E2;
-            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
-            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / 1E2;
-            break;
-
-        case mm:
-            history->cuboids[history->count[3]].width = GetParameterInput(WidthSelectionInstructions) / 1E3;
-            history->cuboids[history->count[3]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
-            history->cuboids[history->count[3]].height = GetParameterInput(HeightSelectionInstructions) / 1E3;
-            break;
-        }
+        GetCuboidParameter(&(*history), &unit);
 
         history->cuboids[history->count[3]].volume = history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].length * history->cuboids[history->count[3]].height;
         history->cuboids[history->count[3]].area = 2 * (history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].length + history->cuboids[history->count[3]].width * history->cuboids[history->count[3]].height + history->cuboids[history->count[3]].length * history->cuboids[history->count[3]].height);
@@ -169,24 +287,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->count[3]++;
         break;
     case Cube:
-        switch (unit)
-        {
-        case m:
-            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions);
-            break;
-
-        case dm:
-            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / 1E1;
-            break;
-
-        case cm:
-            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / 1E2;
-            break;
-
-        case mm:
-            history->cubes[history->count[4]].length = GetParameterInput(LengthSelectionInstructions) / 1E3;
-            break;
-        }
+        GetCubeParameter(&(*history), &unit);
 
         history->cubes[history->count[4]].volume = history->cubes[history->count[4]].length * history->cubes[history->count[4]].length * history->cubes[history->count[4]].length;
         history->cubes[history->count[4]].area = 6 * history->cubes[history->count[4]].length * history->cubes[history->count[4]].length;
@@ -199,28 +300,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         break;
 
     case Cone:
-        switch (unit)
-        {
-        case m:
-            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions);
-            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions);
-            break;
-
-        case dm:
-            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E1;
-            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / 1E1;
-            break;
-
-        case cm:
-            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E2;
-            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / 1E2;
-            break;
-
-        case mm:
-            history->cones[history->count[5]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E3;
-            history->cones[history->count[5]].height = GetParameterInput(HeightSelectionInstructions) / 1E3;
-            break;
-        }
+        GetConeParameter(&(*history), &unit);
 
         history->cones[history->count[5]].volume = M_PI * history->cones[history->count[5]].radius * history->cones[history->count[5]].radius * history->cones[history->count[5]].height / 3;
         history->cones[history->count[5]].area = M_PI * history->cones[history->count[5]].radius * (history->cones[history->count[5]].radius + sqrt(history->cones[history->count[5]].radius * history->cones[history->count[5]].radius + history->cones[history->count[5]].height * history->cones[history->count[5]].height));
@@ -232,24 +312,7 @@ void CalculateProperties(enum shape shape, struct History *history)
         history->count[5]++;
         break;
     case Sphere:
-        switch (unit)
-        {
-        case m:
-            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions);
-            break;
-
-        case dm:
-            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E1;
-            break;
-
-        case cm:
-            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E2;
-            break;
-
-        case mm:
-            history->spheres[history->count[6]].radius = GetParameterInput(RadiusSelectionInstructions) / 1E3;
-            break;
-        }
+        GetSphereParameter(&(*history), &unit);
 
         history->spheres[history->count[6]].volume = 4 / 3 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
         history->spheres[history->count[6]].area = 4 * M_PI * history->spheres[history->count[6]].radius * history->spheres[history->count[6]].radius;
