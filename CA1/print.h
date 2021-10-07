@@ -144,7 +144,7 @@ void DisplayResults(enum shape shape, double result_1, double result_2)
 
 void ProcessSelectionInstructions()
 {
-    printf("Type in\n");
+    printf("\nType in\n");
     printf("1. History\t- To view the calculation history.\n");
     printf("2. Calculate\t- To calculate again.\n");
     printf("3. Exit\t- To leave the program.\n");
@@ -168,7 +168,7 @@ void ParamaterSelectionInstructions(char *parameter)
 
 void ShapeAndObjectSelectionInstructions()
 {
-    printf("Select any of the option\n");
+    printf("\nSelect any of the option\n");
     printf("1. Rectangle\n2. Square\n3. Circle\n");
     printf("4. Cuboid\n5. Cube\n6. Cone\n7. Sphere\n");
     printf("Type in your choice here: ");
