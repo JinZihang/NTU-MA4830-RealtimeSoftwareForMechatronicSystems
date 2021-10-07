@@ -266,12 +266,39 @@ void CalculateProperties(enum shape shape, struct History *history)
 void CalculateHistoricalProperties(struct History *history)
 {
     enum shape shape;
+    int i;
+    float mean_result_1 = 0, mean_result_2 = 0, std_result_1, std_result_2;
 
     ShapeAndObjectSelection(&shape);
 
     switch (shape)
     {
     case Rectangle:
+        for (i = 0; i < history->count[0]; i++)
+        {
+            mean_result_1 += history->rectangles[i].perimeter;
+            mean_result_2 += history->rectangles[i].area;
+
+            DisplayResults(shape, history->rectangles[i].perimeter, history->rectangles[i].area);
+        }
+
+        mean_result_1 /= history->count[0];
+        mean_result_2 /= history->count[0];
+
+        for (i = 0; i < history->count[0]; i++)
+        {
+            std_result_1 += pow(history->rectangles[i].perimeter - mean_result_1, 2);
+            std_result_2 += pow(history->rectangles[i].area - mean_result_2, 2);
+        }
+
+        std_result_1 = sqrt(std_result_1 / history->count[0]);
+        std_result_2 = sqrt(std_result_2 / history->count[0]);
+
+        printf("mean1: %lf\n", mean_result_1);
+        printf("mean2: %lf\n", mean_result_2);
+
+        printf("std1: %lf\n", std_result_1);
+        printf("std2: %lf\n", std_result_2);
         break;
     }
 }
