@@ -306,7 +306,7 @@ void CalculateProperties(enum shape shape, struct History *history)
 
         DisplayResults(shape, history->spheres[history->count[5]].area, history->spheres[history->count[5]].volume);
         history->count[5]++;
-        
+
         break;
 
     case Cone:
@@ -566,7 +566,7 @@ void CalculateHistoricalProperties(struct History *history)
         stds[2] = sqrt(stds[2] / history->count[4]);
 
         break;
-    
+
     case Sphere:
         parameters = 3;
 
@@ -639,7 +639,6 @@ void CalculateHistoricalProperties(struct History *history)
             means[1] += history->cones[i].height;
             means[2] += history->cones[i].area;
             means[3] += history->cones[i].volume;
-            
         }
 
         means[0] /= history->count[6];
@@ -653,13 +652,13 @@ void CalculateHistoricalProperties(struct History *history)
             stds[1] += pow(history->cones[i].height - means[1], 2);
             stds[2] += pow(history->cones[i].area - means[2], 2);
             stds[3] += pow(history->cones[i].volume - means[3], 2);
-            
         }
 
         stds[0] = sqrt(stds[0] / history->count[6]);
         stds[1] = sqrt(stds[1] / history->count[6]);
         stds[2] = sqrt(stds[2] / history->count[6]);
         stds[3] = sqrt(stds[3] / history->count[6]);
+        
         break;
     }
 

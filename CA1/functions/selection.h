@@ -11,9 +11,10 @@
 
 #include "print.h"
 
-char *toLower(char *string) {
+char *toLower(char *string)
+{
     unsigned char *char_ptr = (unsigned char *)string;
-    
+
     while (*char_ptr)
     {
         *char_ptr = tolower(*char_ptr);
@@ -79,7 +80,7 @@ bool ObjectSelection(enum shape *shape)
     ObjectSelectionInstructions();
 
     while (true)
-    {   
+    {
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();
@@ -276,7 +277,7 @@ void ShapeAndObjectSelection(enum shape *shape)
 
     while (true)
     {
-        
+
         if ((input = (char *)malloc(100 * sizeof(char))) == NULL)
         {
             NoMemoryAlert();

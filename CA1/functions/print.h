@@ -22,10 +22,17 @@ void DisplayTitle(char *filename)
 
     if ((fptr = fopen(filename, "r")) == NULL)
     {
-        fprintf(stderr, "error opening %s\n", filename);
+        fprintf(stderr, "Error opening %s!\n", filename);
         exit(1);
     }
     DisplayImage(fptr);
+}
+
+void NoMemoryAlert()
+{
+    printf("\n============================================================================\n");
+    printf("============================ Not enough memory! ============================\n");
+    printf("============================================================================\n\n");
 }
 
 void DimensionSelectionInstructions()
@@ -44,13 +51,6 @@ void WrongDimensionInput()
     printf("===================== Type \"Exit\" to leave the program. ====================\n");
     printf("============================================================================\n\n");
     printf("Type in your choice again here: ");
-}
-
-void NoMemoryAlert()
-{
-    printf("\n============================================================================\n");
-    printf("============================ Not enough memory! ============================\n");
-    printf("============================================================================\n\n");
 }
 
 void ShapeSelectionInstructions()
@@ -144,6 +144,29 @@ void DisplayResults(enum shape shape, double result_1, double result_2)
     }
 }
 
+void ParamaterSelectionInstructions(char *parameter)
+{
+    printf("\nEnter the %s parameter\n", parameter);
+    printf("Enter the value here: ");
+}
+
+void NumericInputAlert(bool isNumeric)
+{
+    if (isNumeric)
+    {
+        printf("\n============================================================================\n");
+        printf("========================= Enter a positive number! =========================\n");
+        printf("============================================================================\n");
+    }
+    else
+    {
+        printf("\n============================================================================\n");
+        printf("============================== Enter a number! =============================\n");
+        printf("============================================================================\n");
+    }
+    printf("Enter again here: ");
+}
+
 void ProcessSelectionInstructions()
 {
     printf("\nSelect:\n");
@@ -162,12 +185,6 @@ void WrongProcessInput()
     printf("Type in your choice again here: ");
 }
 
-void ParamaterSelectionInstructions(char *parameter)
-{
-    printf("\nEnter the %s parameter\n", parameter);
-    printf("Type in your choice here: ");
-}
-
 void ShapeAndObjectSelectionInstructions()
 {
     printf("\nSelect any of the option\n");
@@ -183,23 +200,6 @@ void WrongShapeAndObjectInput()
     printf("============ Key in \"Rectangle\", \"Square\", \"Circle\", \"Cuboid\", \"Cube\", \"Sphere\", \"Cone\" ===========\n");
     printf("============================================================================\n\n");
     printf("Type in your choice again here: ");
-}
-
-void NumericInputAlert(bool isNumeric)
-{
-    if (isNumeric)
-    {
-        printf("\n============================================================================\n");
-        printf("========================= Enter a positive number! =========================\n");
-        printf("============================================================================\n");
-    }
-    else
-    {
-        printf("\n============================================================================\n");
-        printf("============================== Enter a number! =============================\n");
-        printf("============================================================================\n");
-    }
-    printf("Enter again here: ");
 }
 
 void DisplayHistoryTable(enum shape shape, struct History *history, double *means, double *stds)
@@ -245,7 +245,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
         printf("   |______________________|__________________|__________________|____________________|\n");
         printf("   |  Standard Deviation  | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", stds[0], stds[1], stds[2]);
         printf("   |______________________|__________________|__________________|____________________|\n");
-        
+
         break;
 
     case Circle:
