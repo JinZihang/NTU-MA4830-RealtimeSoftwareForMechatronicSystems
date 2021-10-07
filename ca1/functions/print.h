@@ -226,7 +226,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 
             for (i = 0; i < history->count[0]; i++)
             {
-                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->rectangles[i].width, history->rectangles[i].length, history->rectangles[i].perimeter, history->rectangles[i].area);
+                printf("   | %11d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i + 1, history->rectangles[i].width, history->rectangles[i].length, history->rectangles[i].perimeter, history->rectangles[i].area);
                 printf("   |______________________|__________________|__________________|__________________|____________________|\n");
             }
 
@@ -254,7 +254,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 
             for (i = 0; i < history->count[1]; i++)
             {
-                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->squares[i].length, history->squares[i].perimeter, history->squares[i].area);
+                printf("   | %11d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i + 1, history->squares[i].length, history->squares[i].perimeter, history->squares[i].area);
                 printf("   |______________________|__________________|__________________|____________________|\n");
             }
 
@@ -282,7 +282,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 
             for (i = 0; i < history->count[2]; i++)
             {
-                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i, history->circles[i].radius, history->circles[i].circumference, history->squares[i].area);
+                printf("   | %11d          | %12.2g m   | %12.2g m   | %12.2g m^2   |\n", i + 1, history->circles[i].radius, history->circles[i].circumference, history->squares[i].area);
                 printf("   |______________________|__________________|__________________|____________________|\n");
             }
 
@@ -310,7 +310,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 
             for (i = 0; i < history->count[3]; i++)
             {
-                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cuboids[i].width, history->cuboids[i].length, history->cuboids[i].height, history->cuboids[i].area, history->cuboids[i].volume);
+                printf("   | %11d          | %12.2g m   | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i + 1, history->cuboids[i].width, history->cuboids[i].length, history->cuboids[i].height, history->cuboids[i].area, history->cuboids[i].volume);
                 printf("   |______________________|__________________|__________________|__________________|____________________|____________________|\n");
             }
 
@@ -338,7 +338,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 
             for (i = 0; i < history->count[4]; i++)
             {
-                printf("   |           %d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cubes[i].length, history->cubes[i].area, history->cubes[i].volume);
+                printf("   | %11d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i + 1, history->cubes[i].length, history->cubes[i].area, history->cubes[i].volume);
                 printf("   |______________________|__________________|____________________|____________________|\n");
             }
 
@@ -366,7 +366,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 
             for (i = 0; i < history->count[5]; i++)
             {
-                printf("   |           %d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->spheres[i].radius, history->spheres[i].area, history->spheres[i].volume);
+                printf("   | %11d          | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i + 1, history->spheres[i].radius, history->spheres[i].area, history->spheres[i].volume);
                 printf("   |______________________|__________________|____________________|____________________|\n");
             }
 
@@ -394,7 +394,7 @@ void DisplayHistoryTable(enum shape shape, struct History *history, double *mean
 
             for (i = 0; i < history->count[6]; i++)
             {
-                printf("   |           %d          | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i, history->cones[i].radius, history->cones[i].height, history->cones[i].area, history->cones[i].volume);
+                printf("   | %11d          | %12.2g m   | %12.2g m   | %12.2g m^2   | %12.2g m^3   |\n", i + 1, history->cones[i].radius, history->cones[i].height, history->cones[i].area, history->cones[i].volume);
                 printf("   |______________________|__________________|__________________|____________________|____________________|\n");
             }
 
