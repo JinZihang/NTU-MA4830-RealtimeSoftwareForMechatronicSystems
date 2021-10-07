@@ -19,7 +19,7 @@
 
 double GetParameterInput(void (*paramInstructions)(char *parameter), char *parameter)
 {
-    char *endptr, buffer[100]; // Change to use malloc and free the memory after use.
+    char *endptr, buffer[100];
     double number;
 
     (*paramInstructions)(parameter);

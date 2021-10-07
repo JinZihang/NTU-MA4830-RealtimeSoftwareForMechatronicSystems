@@ -15,7 +15,7 @@
 #include "functions/selection.h"
 #include "functions/calculation.h"
 
-int main() // Use program arguments to display program info & etc.
+int main()
 {
     int dimension, i;
     enum shape shape;
