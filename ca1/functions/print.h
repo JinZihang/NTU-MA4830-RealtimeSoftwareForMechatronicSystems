@@ -1,6 +1,8 @@
 #ifndef PRINT
 #define PRINT
 
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #include "../datatypes/enum.h"
