@@ -31,7 +31,7 @@ double GetParameterInput(void (*paramInstructions)(char *parameter), char *param
         {
             NumericInputAlert(false);
         }
-        else if (number < 0)
+        else if (number <= 0)
         {
             NumericInputAlert(true);
         }
