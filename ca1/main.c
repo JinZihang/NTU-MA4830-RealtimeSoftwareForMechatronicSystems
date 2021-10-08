@@ -20,7 +20,9 @@ int main()
     int dimension, i;
     enum shape shape;
     struct History history;
-    for (i = 0; i < 7; i++) // Initialize history count.
+
+    // Initialize history count.
+    for (i = 0; i < 7; i++)
     {
         history.count[i] = 0;
     }
