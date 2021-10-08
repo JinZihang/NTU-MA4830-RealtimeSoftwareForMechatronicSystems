@@ -15,12 +15,14 @@
 #include "functions/selection.h"
 #include "functions/calculation.h"
 
-int main() // Use program arguments to display program info & etc.
+int main()
 {
     int dimension, i;
     enum shape shape;
     struct History history;
-    for (i = 0; i < 7; i++) // Initialize history count.
+
+    // Initialize history count.
+    for (i = 0; i < 7; i++)
     {
         history.count[i] = 0;
     }
