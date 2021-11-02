@@ -1,10 +1,10 @@
 #ifndef ENUM
 #define ENUM
 
-enum form
+enum waveform
 {
     Sine,
-    Square,
+    Rectangle,
     Triangle,
     Sawtooth,
 };
