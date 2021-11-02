@@ -6,9 +6,6 @@
 #include <string.h>
 #include <stdbool.h>
 
-#include "../datatypes/enum.h"
-#include "../datatypes/struct.h"
-
 char *SliceString(char *ori_str, int start_index) {
     unsigned int i;
     char *sliced_str;

@@ -1,6 +1,9 @@
 #ifndef INITIALIZATION
 #define INITIALIZATION
 
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
 
 #include "../datatypes/struct.h"
 

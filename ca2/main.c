@@ -1,15 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 
-#include "datatypes/enum.h"
 #include "datatypes/struct.h"
-
 #include "functions/initialization.h"
 #include "helper.h"
 #include "functions/wave_generator_pcie.h"
 
-#define USING_LAB_PC    false
+#define USING_LAB_PC 0
+
+#if USING_LAB_PC
+#include <hw/pci.h>
+#endif
 
 int main(int argc, char **argv) {
     void *hdl;
