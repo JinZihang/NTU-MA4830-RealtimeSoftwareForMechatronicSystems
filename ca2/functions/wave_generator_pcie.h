@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "../datatypes/enum.h"
+#include "../datatypes/struct.h"
 
 #define USING_LAB_PC 0
 #if USING_LAB_PC
@@ -79,6 +81,27 @@ void InitializePCIe(void *hdl) {
 // Set to 5V, Unipolar 16 bit offset map. 0V->0x0000 mid >0x7fff 5V->0xffff
 // PCIe: 12 bit
 //******************************************************************************
+
+void GenerateWave(struct wave* wave)
+{   
+    switch (wave->waveform)
+    {
+    case Sine:
+        printf("Sine\n");
+        break;
+    case Rectangle:
+        printf("Rectangle\n");
+        break;
+    case Triangle:
+        printf("Triangle\n");
+        break;
+    case Sawtooth:
+        printf("Sawtooth\n");
+        break;
+    default:
+        break;
+    }
+}
 
 void GenerateSineWave() {
     unsigned int i, j, data[100];

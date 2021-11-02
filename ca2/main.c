@@ -17,8 +17,9 @@ int main() {
     struct wave wave;
     wave.waveform = Sine;
     wave.amplitude = 1.0;
+    wave.frequency = 2.0;
 
-    printf("%f", wave.amplitude);
+    GenerateWave(&wave);
 
     return 0;
 }
