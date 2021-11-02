@@ -7,10 +7,16 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <unistd.h>
+#include <sys/mman.h>
+
+#define USING_LAB_PC 0
+#if USING_LAB_PC
+
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
-#include <sys/mman.h>
+
+#endif
 
 // Define registers for PCIe-DAS1602
 #define    INTERRUPT    iobase[1] + 4       // Badr1 + 4 - PCIe 32-bit
@@ -26,40 +32,46 @@
 #define    ADC_Gain     iobase[3] + 7       // Badr3 + 7 - unipolar 5V : 0x01
 
 void InitializePCIe(void *hdl) {
-    struct pci_dev_info info;
+    #if USING_LAB_PC
+        struct pci_dev_info info;
+    #endif
 
-    printf("\fInitialize PCIe-DAS1602.\n\n");
+    printf("\fInitializing PCIe-DAS1602.\n\n");
 
-    memset(&info, 0, sizeof(info));
-    if (pci_attach(0) < 0) {
-        perror("pci_attach");
-        exit(EXIT_FAILURE);
-    }
-
-    info.VendorId = 0x1307;
-    info.DeviceId = 0x115;
-
-    if ((hdl = pci_attach_device(0, PCI_SHARE | PCI_INIT_ALL, 0, &info)) == 0) {
-        perror("pci_attach_device");
-        exit(EXIT_FAILURE);
-    }
-
-    for (i = 0; i < 6; i++) {
-        if (info.BaseAddressSize[i] > 0) {
-            printf("Aperture %d  Base 0x%x Length %d Type %s.\n", i,
-                   PCI_IS_MEM(info.CpuBaseAddress[i]) ? (int) PCI_MEM_ADDR(info.CpuBaseAddress[i]) :
-                   (int) PCI_IO_ADDR(info.CpuBaseAddress[i]), info.BaseAddressSize[i],
-                   PCI_IS_MEM(info.CpuBaseAddress[i]) ? "MEM" : "IO");
+    #if USING_LAB_PC
+        memset(&info, 0, sizeof(info));
+        if (pci_attach(0) < 0) {
+            perror("pci_attach");
+            exit(EXIT_FAILURE);
         }
-    }
 
-    printf("IRQ: %d.\n", info.Irq);
+        info.VendorId = 0x1307;
+        info.DeviceId = 0x115;
 
-    // Modify thread control privity.
-    if (ThreadCtl(_NTO_TCTL_IO, 0) == -1) {
-        perror("ThreadCtl");
-        exit(1);
-    }
+        if ((hdl = pci_attach_device(0, PCI_SHARE | PCI_INIT_ALL, 0, &info)) == 0) {
+            perror("pci_attach_device");
+            exit(EXIT_FAILURE);
+        }
+
+        for (i = 0; i < 6; i++) {
+            if (info.BaseAddressSize[i] > 0) {
+                printf("Aperture %d  Base 0x%x Length %d Type %s.\n", i,
+                       PCI_IS_MEM(info.CpuBaseAddress[i]) ? (int) PCI_MEM_ADDR(info.CpuBaseAddress[i]) :
+                       (int) PCI_IO_ADDR(info.CpuBaseAddress[i]), info.BaseAddressSize[i],
+                       PCI_IS_MEM(info.CpuBaseAddress[i]) ? "MEM" : "IO");
+            }
+        }
+
+        printf("IRQ: %d.\n", info.Irq);
+
+        // Modify thread control privity.
+        if (ThreadCtl(_NTO_TCTL_IO, 0) == -1) {
+            perror("ThreadCtl");
+            exit(1);
+        }
+    #endif
+
+    printf("Initialization completed.");
 }
 
 //******************************************************************************
@@ -72,17 +84,21 @@ void GenerateSineWave() {
     unsigned int i, j, data[100];
     double delta, dummy;
 
+    printf("Generating sine wave.\n");
+
     delta = (2 * M_PI) / 50;
     for (i = 0; i < 50; i++) {
         dummy = ((sinf((float) (i * delta))) + 1.0) * 0x0800;
         data[i] = (unsigned) dummy;
     }
 
-    printf("Generating sine wave.\n");
-
     for (i = 0; i < 0xfffffff; i++) {
         for (j = 0; j < 50; j++) {
+            #if USING_LAB_PC
             out16(DAC0_Data, data[j]);
+            #else
+            printf("Output to DAC0_Data: %x\n", data[j]);
+            #endif
         }
     }
 
@@ -96,7 +112,11 @@ void GenerateRectangleWave() {
 
     for (i = 0; i < 0xfffffff; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
+            #if USING_LAB_PC
             out16(DAC0_Data, ((j > 0x0800) ? 0 : 0x0fff));
+            #else
+            printf("Output to DAC0_Data: %x\n", ((j > 0x0800) ? 0 : 0x0fff));
+            #endif
         }
     }
 
@@ -110,7 +130,11 @@ void GenerateSawtoothWave() {
 
     for (i = 0; i < 0xfffffff; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
+            #if USING_LAB_PC
             out16(DAC0_Data, (i & 0x0fff));
+            #else
+            printf("Output to DAC0_Data: %x\n", (i & 0x0fff));
+            #endif
         }
     }
 
@@ -125,7 +149,11 @@ void GenerateTriangleWave() {
 
     for (i = 0; i < 0xfffffff; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
+            #if USING_LAB_PC
             out16(DAC0_Data, slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
+            #else
+            printf("Output to DAC0_Data: %x\n", slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
+            #endif
         }
         slope_dir = !slope_dir;
     }
