@@ -70,9 +70,7 @@ wave WaveInitialization(int argc, char **argv) {
                 fprintf(stderr, "Wrong waveform parameter\n");
                 exit(1);
             }
-        }
-
-        if (strncmp(argv[i], "amplitude=", 10) == 0) {
+        } else if (strncmp(argv[i], "amplitude=", 10) == 0) {
             if (strlen(argv[i]) == 10) {
                 fprintf(stderr, "Empty declaration not allowed!\n");
                 exit(1);
@@ -89,9 +87,7 @@ wave WaveInitialization(int argc, char **argv) {
                 wave.amplitude = atof(arg_amplitude);
                 has_amplitude_arg = true;
             }
-        }
-
-        if (strncmp(argv[i], "frequency=", 10) == 0) {
+        } else if (strncmp(argv[i], "frequency=", 10) == 0) {
             if (strlen(argv[i]) == 10) {
                 fprintf(stderr, "Empty frequency not allowed!\n");
                 exit(1);
@@ -108,6 +104,9 @@ wave WaveInitialization(int argc, char **argv) {
                 wave.frequency = atof(arg_frequency);
                 has_frequency_arg = true;
             }
+        } else {
+            fprintf(stderr, "Unexpected argument exists!\n");
+            exit(1);
         }
     }
 
