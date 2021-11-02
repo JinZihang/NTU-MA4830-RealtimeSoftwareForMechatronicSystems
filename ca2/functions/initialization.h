@@ -61,7 +61,6 @@ wave WaveInitialization(int argc, char **argv) {
             arg_amplitude = SliceString(argv[i], 10);
 
             if(IsFloat(arg_amplitude)) {
-                printf("%s\n", arg_amplitude);
                 wave.amplitude = atof(arg_amplitude);
                 has_amplitude_arg = true;
             }
@@ -81,7 +80,6 @@ wave WaveInitialization(int argc, char **argv) {
             arg_frequency = SliceString(argv[i], 10);
 
             if(IsFloat(arg_frequency)) {
-                printf("%s\n", arg_frequency);
                 wave.frequency = atof(arg_frequency);
                 has_frequency_arg = true;
             }
