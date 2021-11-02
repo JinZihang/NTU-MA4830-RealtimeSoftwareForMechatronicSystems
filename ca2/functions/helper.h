@@ -10,7 +10,7 @@ char *SliceString(char *ori_str, int start_index) {
     unsigned int i;
     char *sliced_str;
 
-    if(strlen(ori_str)-1 < start_index) {
+    if (strlen(ori_str) - 1 < start_index) {
         fprintf(stderr, "SliceString: Start position is greater than the string length!\n");
         exit(1);
     }
@@ -22,7 +22,7 @@ char *SliceString(char *ori_str, int start_index) {
     for (i = 0; i < strlen(ori_str) - start_index; i++) {
         sliced_str[i] = ori_str[i + start_index];
     }
-    free((void*)sliced_str);
+    free((void *) sliced_str);
 
     return sliced_str;
 }
@@ -33,7 +33,7 @@ bool IsFloat(char *str) {
 
     ret = sscanf(str, "%f %n", &ignore, &len);
 
-    return ret==1 && !str[len];
+    return ret == 1 && !str[len];
 }
 
 #endif HELPER

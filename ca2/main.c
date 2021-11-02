@@ -16,12 +16,12 @@ int main(int argc, char **argv) {
     struct wave wave;
 
     wave = WaveInitialization()
-    InitializePCIe(hdl);
+    PCIeInitialization(hdl);
     GenerateWave(&wave);
 
     printf("Program ended.\n");
-    #if USING_LAB_PC
-        pci_detach_device(hdl);
-    #endif
+#if USING_LAB_PC
+    pci_detach_device(hdl);
+#endif
     return 0;
 }

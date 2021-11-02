@@ -6,18 +6,16 @@
 #include <stdbool.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "../datatypes/enum.h"
+
 #include "../datatypes/struct.h"
 
 #define USING_LAB_PC 0
 #if USING_LAB_PC
-
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
-
 #endif
 
 // Define registers for PCIe-DAS1602
@@ -32,49 +30,6 @@
 #define    CLK_Pace     iobase[3] + 5       // Badr3 + 5 - S/W Pacer : XXXX XX0X
 #define    ADC_Enable   iobase[3] + 6       // Badr3 + 6 - Brst_off Conv_EN:0x01
 #define    ADC_Gain     iobase[3] + 7       // Badr3 + 7 - unipolar 5V : 0x01
-
-void InitializePCIe(void *hdl) {
-    #if USING_LAB_PC
-        struct pci_dev_info info;
-    #endif
-
-    printf("\fInitializing PCIe-DAS1602.\n");
-
-    #if USING_LAB_PC
-        memset(&info, 0, sizeof(info));
-        if (pci_attach(0) < 0) {
-            perror("pci_attach");
-            exit(EXIT_FAILURE);
-        }
-
-        info.VendorId = 0x1307;
-        info.DeviceId = 0x115;
-
-        if ((hdl = pci_attach_device(0, PCI_SHARE | PCI_INIT_ALL, 0, &info)) == 0) {
-            perror("pci_attach_device");
-            exit(EXIT_FAILURE);
-        }
-
-        for (i = 0; i < 6; i++) {
-            if (info.BaseAddressSize[i] > 0) {
-                printf("Aperture %d  Base 0x%x Length %d Type %s.\n", i,
-                       PCI_IS_MEM(info.CpuBaseAddress[i]) ? (int) PCI_MEM_ADDR(info.CpuBaseAddress[i]) :
-                       (int) PCI_IO_ADDR(info.CpuBaseAddress[i]), info.BaseAddressSize[i],
-                       PCI_IS_MEM(info.CpuBaseAddress[i]) ? "MEM" : "IO");
-            }
-        }
-
-        printf("IRQ: %d.\n", info.Irq);
-
-        // Modify thread control privity.
-        if (ThreadCtl(_NTO_TCTL_IO, 0) == -1) {
-            perror("ThreadCtl");
-            exit(1);
-        }
-    #endif
-
-    printf("Initialization completed.");
-}
 
 //******************************************************************************
 // D/A Port Functions
@@ -116,11 +71,11 @@ void GenerateRectangleWave() {
 
     for (i = 0; i < 0xfffffff; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
-            #if USING_LAB_PC
+#if USING_LAB_PC
             out16(DAC0_Data, ((j > 0x0800) ? 0 : 0x0fff));
-            #else
+#else
             printf("Output to DAC0_Data: %x\n", ((j > 0x0800) ? 0 : 0x0fff));
-            #endif
+#endif
         }
     }
 
@@ -134,11 +89,11 @@ void GenerateSawtoothWave() {
 
     for (i = 0; i < 0xfffffff; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
-            #if USING_LAB_PC
+#if USING_LAB_PC
             out16(DAC0_Data, (i & 0x0fff));
-            #else
+#else
             printf("Output to DAC0_Data: %x\n", (i & 0x0fff));
-            #endif
+#endif
         }
     }
 
@@ -153,11 +108,11 @@ void GenerateTriangleWave() {
 
     for (i = 0; i < 0xfffffff; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
-            #if USING_LAB_PC
+#if USING_LAB_PC
             out16(DAC0_Data, slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
-            #else
+#else
             printf("Output to DAC0_Data: %x\n", slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
-            #endif
+#endif
         }
         slope_dir = !slope_dir;
     }
@@ -165,25 +120,23 @@ void GenerateTriangleWave() {
     printf("Triangle wave output ended.\n");
 }
 
-void GenerateWave(struct wave* wave)
-{   
-    switch (wave->waveform)
-    {
-    case Sine:
-        printf("Sine\n");
-        GenerateSineWave(wave->amplitude, wave->frequency);
-        break;
-    case Rectangle:
-        printf("Rectangle\n");
-        break;
-    case Triangle:
-        printf("Triangle\n");
-        break;
-    case Sawtooth:
-        printf("Sawtooth\n");
-        break;
-    default:
-        break;
+void GenerateWave(struct wave *wave) {
+    switch (wave->waveform) {
+        case Sine:
+            printf("Sine\n");
+            GenerateSineWave(wave->amplitude, wave->frequency);
+            break;
+        case Rectangle:
+            printf("Rectangle\n");
+            break;
+        case Triangle:
+            printf("Triangle\n");
+            break;
+        case Sawtooth:
+            printf("Sawtooth\n");
+            break;
+        default:
+            break;
     }
 }
 
