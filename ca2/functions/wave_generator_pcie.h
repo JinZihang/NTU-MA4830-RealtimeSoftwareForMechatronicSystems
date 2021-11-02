@@ -88,6 +88,7 @@ void GenerateWave(struct wave* wave)
     {
     case Sine:
         printf("Sine\n");
+        GenerateSineWave(wave->amplitude, wave->frequency);
         break;
     case Rectangle:
         printf("Rectangle\n");
@@ -103,15 +104,15 @@ void GenerateWave(struct wave* wave)
     }
 }
 
-void GenerateSineWave() {
+void GenerateSineWave(double amplitude, double frequency) {
     unsigned int i, j, data[100];
-    double delta, dummy;
+    double omega, dummy;
 
     printf("Generating sine wave.\n");
 
-    delta = (2 * M_PI) / 50;
-    for (i = 0; i < 50; i++) {
-        dummy = ((sinf((float) (i * delta))) + 1.0) * 0x0800;
+    omega = 2 * M_PI * frequency;
+    for (i = 0; i < 100; i++) {
+        dummy = ((sinf((float) (i * omega))) + 1.0) * 0x0800;
         data[i] = (unsigned) dummy;
     }
 
