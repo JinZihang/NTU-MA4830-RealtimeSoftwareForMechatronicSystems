@@ -6,6 +6,8 @@
 #include <stdbool.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "../datatypes/enum.h"
+#include "../datatypes/struct.h"
 
 #define USING_LAB_PC 0
 #if USING_LAB_PC
@@ -80,27 +82,29 @@ void InitializePCIe(void *hdl) {
 // PCIe: 12 bit
 //******************************************************************************
 
-void GenerateSineWave() {
+void GenerateSineWave(double amplitude, double frequency) {
     unsigned int i, j, data[100];
-    double delta, dummy;
+    double omega, dummy;
 
     printf("Generating sine wave.\n");
 
-    delta = (2 * M_PI) / 50;
-    for (i = 0; i < 50; i++) {
-        dummy = ((sinf((float) (i * delta))) + 1.0) * 0x0800;
-        data[i] = (unsigned) dummy;
+    omega = 2 * M_PI / 100;
+    for (i = 0; i < 100; i++) {
+        dummy = ((amplitude * sinf((float) (omega * i))) + amplitude);
+        // dummy = ((sinf((float) (i * omega))) + 1.0) * 0x0800;
+        // data[i] = (unsigned) dummy;
+        printf("%f\n", dummy);
     }
 
-    for (i = 0; i < 0xfffffff; i++) {
-        for (j = 0; j < 50; j++) {
-            #if USING_LAB_PC
-            out16(DAC0_Data, data[j]);
-            #else
-            printf("Output to DAC0_Data: %x\n", data[j]);
-            #endif
-        }
-    }
+    // for (i = 0; i < 100; i++) {
+    //     for (j = 0; j < 100; j++) {
+    //         #if USING_LAB_PC
+    //         out16(DAC0_Data, data[j]);
+    //         #else
+    //         printf("Output to DAC0_Data: %d\n", data[j]);
+    //         #endif
+    //     }
+    // }
 
     printf("Sine wave output ended.\n");
 }
@@ -159,6 +163,28 @@ void GenerateTriangleWave() {
     }
 
     printf("Triangle wave output ended.\n");
+}
+
+void GenerateWave(struct wave* wave)
+{   
+    switch (wave->waveform)
+    {
+    case Sine:
+        printf("Sine\n");
+        GenerateSineWave(wave->amplitude, wave->frequency);
+        break;
+    case Rectangle:
+        printf("Rectangle\n");
+        break;
+    case Triangle:
+        printf("Triangle\n");
+        break;
+    case Sawtooth:
+        printf("Sawtooth\n");
+        break;
+    default:
+        break;
+    }
 }
 
 #endif
