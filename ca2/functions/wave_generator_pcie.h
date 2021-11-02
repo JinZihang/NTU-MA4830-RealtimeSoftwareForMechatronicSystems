@@ -82,49 +82,29 @@ void InitializePCIe(void *hdl) {
 // PCIe: 12 bit
 //******************************************************************************
 
-void GenerateWave(struct wave* wave)
-{   
-    switch (wave->waveform)
-    {
-    case Sine:
-        printf("Sine\n");
-        GenerateSineWave(wave->amplitude, wave->frequency);
-        break;
-    case Rectangle:
-        printf("Rectangle\n");
-        break;
-    case Triangle:
-        printf("Triangle\n");
-        break;
-    case Sawtooth:
-        printf("Sawtooth\n");
-        break;
-    default:
-        break;
-    }
-}
-
 void GenerateSineWave(double amplitude, double frequency) {
     unsigned int i, j, data[100];
     double omega, dummy;
 
     printf("Generating sine wave.\n");
 
-    omega = 2 * M_PI * frequency;
+    omega = 2 * M_PI / 100;
     for (i = 0; i < 100; i++) {
-        dummy = ((sinf((float) (i * omega))) + 1.0) * 0x0800;
-        data[i] = (unsigned) dummy;
+        dummy = ((amplitude * sinf((float) (omega * i))) + amplitude);
+        // dummy = ((sinf((float) (i * omega))) + 1.0) * 0x0800;
+        // data[i] = (unsigned) dummy;
+        printf("%f\n", dummy);
     }
 
-    for (i = 0; i < 0xfffffff; i++) {
-        for (j = 0; j < 50; j++) {
-            #if USING_LAB_PC
-            out16(DAC0_Data, data[j]);
-            #else
-            printf("Output to DAC0_Data: %x\n", data[j]);
-            #endif
-        }
-    }
+    // for (i = 0; i < 100; i++) {
+    //     for (j = 0; j < 100; j++) {
+    //         #if USING_LAB_PC
+    //         out16(DAC0_Data, data[j]);
+    //         #else
+    //         printf("Output to DAC0_Data: %d\n", data[j]);
+    //         #endif
+    //     }
+    // }
 
     printf("Sine wave output ended.\n");
 }
@@ -183,6 +163,28 @@ void GenerateTriangleWave() {
     }
 
     printf("Triangle wave output ended.\n");
+}
+
+void GenerateWave(struct wave* wave)
+{   
+    switch (wave->waveform)
+    {
+    case Sine:
+        printf("Sine\n");
+        GenerateSineWave(wave->amplitude, wave->frequency);
+        break;
+    case Rectangle:
+        printf("Rectangle\n");
+        break;
+    case Triangle:
+        printf("Triangle\n");
+        break;
+    case Sawtooth:
+        printf("Sawtooth\n");
+        break;
+    default:
+        break;
+    }
 }
 
 #endif
