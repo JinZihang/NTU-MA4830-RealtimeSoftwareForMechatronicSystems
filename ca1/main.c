@@ -19,7 +19,7 @@ int main()
         history.count[i] = 0;
     }
 
-    // CMake path, use different path to run from different directory. For example, "./assets/title.txt".
+    // CMake path, use different path to run from different directory. For example, "assets/title.txt".
     DisplayTitle("../ca1/assets/title.txt");
 
     while (true)
