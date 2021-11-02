@@ -36,7 +36,7 @@ void InitializePCIe(void *hdl) {
         struct pci_dev_info info;
     #endif
 
-    printf("\fInitializing PCIe-DAS1602.\n\n");
+    printf("\fInitializing PCIe-DAS1602.\n");
 
     #if USING_LAB_PC
         memset(&info, 0, sizeof(info));
