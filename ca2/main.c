@@ -1,25 +1,27 @@
-#include "functions/wave_generator_pcie.h"
-#include "datatypes/struct.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
 #include "datatypes/enum.h"
+#include "datatypes/struct.h"
 
-#define USING_LAB_PC 0
+#include "functions/initialization.h"
+#include "helper.h"
+#include "functions/wave_generator_pcie.h"
 
-int main() {
+#define USING_LAB_PC    false
+
+int main(int argc, char **argv) {
     void *hdl;
+    struct wave wave;
 
+    wave = WaveInitialization()
     InitializePCIe(hdl);
+    GenerateWave(&wave);
 
     printf("Program ended.\n");
     #if USING_LAB_PC
         pci_detach_device(hdl);
     #endif
-
-    struct wave wave;
-    wave.waveform = Sine;
-    wave.amplitude = 2.0;
-    wave.frequency = 2.0;
-
-    GenerateWave(&wave);
-
     return 0;
 }

@@ -5,8 +5,8 @@ enum waveform
 {
     Sine,
     Rectangle,
-    Triangle,
     Sawtooth,
+    Triangle,
 };
 
 #endif
