@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
-project(ca2 C)
+project(metronome)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(functions)
-
-add_executable(ca2
-        functions/wave_generator_pcie.h
-        main.c)
+add_executable(metronome main.c)
+add_library(metronome_lib initialization.c wave_generator_pcie.c helper.c)
+target_link_libraries(metronome metronome_lib)

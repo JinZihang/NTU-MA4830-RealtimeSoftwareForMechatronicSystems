@@ -1,9 +1,8 @@
 #include <stdio.h>
 
-#include "datatypes/struct.h"
-#include "functions/initialization.h"
-#include "helper.h"
-#include "functions/wave_generator_pcie.h"
+#include "struct.h"
+#include "initialization.h"
+#include "wave_generator_pcie.h"
 
 #define USING_LAB_PC 0
 
@@ -11,17 +10,25 @@
 #include <hw/pci.h>
 #endif
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
     void *hdl;
-    struct wave wave;
+    struct Wave wave;
 
-    wave = WaveInitialization()
-    PCIeInitialization(hdl);
-    GenerateWave(&wave);
+    // int i = 0;
+    // for (i = 0; i < argc; i++) {
+    //     printf("argv[%d] = %s\n", i, argv[i]);
+    // }
+
+     WaveInitialization(&wave, argc, argv);
+    // PCIeInitialization(hdl);
+     GenerateWave(&wave);
 
     printf("Program ended.\n");
-#if USING_LAB_PC
-    pci_detach_device(hdl);
-#endif
+
+    #if USING_LAB_PC
+        pci_detach_device(hdl);
+    #endif
+
     return 0;
 }
