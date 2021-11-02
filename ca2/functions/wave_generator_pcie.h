@@ -6,12 +6,12 @@
 #include <stdbool.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include <unistd.h>
-#include <sys/mman.h>
 
 #define USING_LAB_PC 0
 #if USING_LAB_PC
 
+#include <unistd.h>
+#include <sys/mman.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
