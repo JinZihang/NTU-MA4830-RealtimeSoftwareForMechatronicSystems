@@ -11,10 +11,10 @@
 #if USING_LAB_PC
 
 #include <unistd.h>
-#include <sys/mman.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
+#include <sys/mman.h>
 
 #endif
 
