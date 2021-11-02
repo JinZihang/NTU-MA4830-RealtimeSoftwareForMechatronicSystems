@@ -1,12 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include <ctype.h>
-#include <string.h>
 #include <stdbool.h>
-
-#define _USE_MATH_DEFINES
-#include <math.h>
 
 #include "datatypes/enum.h"
 #include "datatypes/struct.h"
@@ -27,7 +19,7 @@ int main()
         history.count[i] = 0;
     }
 
-    DisplayTitle("assets/title.txt");
+    DisplayTitle("../ca1/assets/title.txt"); // "assets/title.txt" for VS Code.
 
     while (true)
     {
