@@ -3,11 +3,11 @@
 
 #include "enum.h"
 
-struct wave
+struct Wave
 {
-    double frequency;
-    double amplitude;
     enum waveform waveform;
+    double amplitude;
+    double frequency;
 };
 
 #endif
