@@ -19,7 +19,8 @@ int main()
         history.count[i] = 0;
     }
 
-    DisplayTitle("../ca1/assets/title.txt"); // "assets/title.txt" for VS Code.
+    // CMake path, use different path to run from different directory. For example, "./assets/title.txt".
+    DisplayTitle("../ca1/assets/title.txt");
 
     while (true)
     {
