@@ -3,4 +3,4 @@
 
 void GenerateWave(struct Wave *wave);
 
-#endif //METRONOME_WAVE_GENERATOR_PCIE_H
+#endif

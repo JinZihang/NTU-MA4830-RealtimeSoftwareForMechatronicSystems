@@ -5,4 +5,4 @@ char *SliceString(char *ori_str, int start_index);
 
 bool IsFloat(char *str);
 
-#endif //METRONOME_HELPER_H
+#endif
