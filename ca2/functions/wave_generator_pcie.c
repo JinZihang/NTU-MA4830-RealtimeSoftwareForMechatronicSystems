@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "../datatypes/struct.h"
@@ -39,23 +40,79 @@ void GenerateSineWave(double amplitude, double frequency) {
 
     omega = 2 * M_PI / 100;
     for (i = 0; i < 100; i++) {
-        dummy = ((amplitude * sinf((float) (omega * i))) + amplitude);
-        // dummy = ((sinf((float) (i * omega))) + 1.0) * 0x0800;
-        // data[i] = (unsigned) dummy;
+//        dummy = ((amplitude * sinf((float) (omega * i))) + amplitude);
+         dummy = ((sinf((float) (i * omega))) + 1.0) * 0x0800;
+         data[i] = (unsigned) dummy;
         printf("%f\n", dummy);
     }
 
-    // for (i = 0; i < 100; i++) {
-    //     for (j = 0; j < 100; j++) {
-    //         #if USING_LAB_PC
-    //         out16(DAC0_Data, data[j]);
-    //         #else
-    //         printf("Output to DAC0_Data: %d\n", data[j]);
-    //         #endif
-    //     }
-    // }
+     for (i = 0; i < 100000000; i++) {
+         for (j = 0; j < 100; j++) {
+             #if USING_LAB_PC
+             out16(DAC0_Data, data[j]);
+             #else
+             printf("Output to DAC0_Data: %d\n", data[j]);
+             #endif
+         }
+     }
 
     printf("Sine wave output ended.\n");
+}
+
+void GenerateRectangleWave() {
+    unsigned int i, j;
+
+    printf("Generating rectangle wave.\n");
+
+    for (i = 0; i < 0xfffffff; i++) {
+        for (j = 0x0000; j < 0x0fff; j++) {
+        #if USING_LAB_PC
+            out16(DAC0_Data, ((j > 0x0800) ? 0 : 0x0fff));
+        #else
+            printf("Output to DAC0_Data: %x\n", ((j > 0x0800) ? 0 : 0x0fff));
+        #endif
+        }
+    }
+
+    printf("Rectangle wave output ended.\n");
+}
+
+void GenerateSawtoothWave() {
+    unsigned int i, j;
+
+    printf("Generating sawtooth wave.\n");
+
+    for (i = 0; i < 0xfffffff; i++) {
+        for (j = 0x0000; j < 0x0fff; j++) {
+        #if USING_LAB_PC
+            out16(DAC0_Data, (i & 0x0fff));
+        #else
+            printf("Output to DAC0_Data: %x\n", (i & 0x0fff));
+        #endif
+        }
+    }
+
+    printf("Sawtooth wave output ended.\n");
+}
+
+void GenerateTriangleWave() {
+    unsigned int i, j;
+    bool slope_dir = true;
+
+    printf("Generating triangle wave.\n");
+
+    for (i = 0; i < 0xfffffff; i++) {
+        for (j = 0x0000; j < 0x0fff; j++) {
+#if USING_LAB_PC
+            out16(DAC0_Data, slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
+#else
+            printf("Output to DAC0_Data: %x\n", slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
+#endif
+        }
+        slope_dir = !slope_dir;
+    }
+
+    printf("Triangle wave output ended.\n");
 }
 
 void GenerateWave(struct Wave *wave){
@@ -67,12 +124,15 @@ void GenerateWave(struct Wave *wave){
             break;
         case Rectangle:
             printf("Rectangle\n");
+            GenerateRectangleWave();
             break;
         case Triangle:
             printf("Triangle\n");
+            GenerateTriangleWave();
             break;
         case Sawtooth:
             printf("Sawtooth\n");
+            GenerateSawtoothWave();
             break;
         default:
             break;
