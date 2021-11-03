@@ -23,8 +23,7 @@
 #define    ADC_Enable   iobase[3] + 6       // Badr3 + 6 - Brst_off Conv_EN:0x01
 #define    ADC_Gain     iobase[3] + 7       // Badr3 + 7 - unipolar 5V : 0x01
 
-void PCIeInitialization(void *hdl)
-{
+void PCIeInitialization(void *hdl) {
 #if USING_LAB_PC
     int badr[5];        // PCI 2.2 assigns 6 IO base addresses
     struct pci_dev_info info;

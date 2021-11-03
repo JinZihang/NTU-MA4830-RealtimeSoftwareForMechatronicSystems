@@ -100,5 +100,5 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
     if (!has_amplitude_arg) wave->amplitude = 10;
     if (!has_frequency_arg) wave->frequency = 15;
 
-    printf("Wave initialization finished.");
+    printf("Wave initialization finished.\n");
 }

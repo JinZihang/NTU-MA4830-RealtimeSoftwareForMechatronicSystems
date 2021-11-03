@@ -12,8 +12,7 @@
 #include <hw/pci.h>
 #endif
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     void *hdl;
     struct Wave wave;
     uintptr_t iobase[6];
@@ -26,7 +25,7 @@ int main(int argc, char **argv)
 
 //    GenerateWave(&wave);
 
-    printf("\nProgram ended.\n");
-    //pci_detach_device(hdl);
+    printf("Program ended.\n");
+//    pci_detach_device(hdl);
     return 0;
 }
