@@ -37,17 +37,18 @@ void ArgumentInstructions() {
 }
 
 void Error_InvalidArgument() {
-    fprintf(stderr, "Invalid argument exists!\nCheck whether there is any incomplete or duplicate declaration");
-    printf("Use --h to show argument instructions\n");
+    fprintf(stderr, "Invalid program arguments!\n");
+    fprintf(stderr, "Check whether there exists any incomplete, duplicate, or incompatible declaration.\n");
+    fprintf(stderr, "Use --h to view program argument instructions.\n");
 }
 
 void Error_InvalidValue() {
     fprintf(stderr, "Invalid parameter value exists!\n");
-    printf("Use --h to show argument instructions\n");
+    fprintf(stderr, "Use --h to view program argument instructions.\n");
 }
 
 void WaveInitializationComplete(struct Wave *wave) {
-    printf("Wave initialization finished:\n");
+    printf("Wave initialization finished.\n");
     printf("____________________________\n");
     printf("\tWaveform:\t");
     switch (wave->waveform) {
