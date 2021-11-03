@@ -28,13 +28,12 @@ void ArgumentInstructions() {
     printf("\t\t--a\treplace the default wave amplitude with your own value (default is 10)\n");
     printf("\t\t--f\treplace the default wave frequency with your own value (default is 10)\n");
     printf("notes\n");
-    printf("\t\t--h, --f cannot be used together with other arguments\n");
-    printf("\t\tincomplete or duplicate declarations are not allowed\n");
-    printf("\t\tamplitude and frequency arguments only accept positive numeric values\n");
+    printf("\t\t*\t--h, --f cannot be used together with other arguments\n");
+    printf("\t\t*\tincomplete or duplicate declarations are not allowed\n");
+    printf("\t\t*\tamplitude and frequency arguments only accept positive numeric values\n");
     printf("examples\n");
-    printf("\t\tvalid: ./main --f=data.txt\n\t\tvalid: ./main --w=sine --frequency=16.5\n");
-    printf("\t\tinvalid: ./main --h --f\n\t\tinvalid: ./main --f=data.txt --w=triangle\n");
-    printf("\t\tinvalid: ./main --w=sine --w=rectangle\n\t\tinvalid: ./main --f=\n");
+    printf("\t\tvalid:\t\t./main --f=data.txt\n\t\tvalid:\t\t./main --w=sine --frequency=16.5\n");
+    printf("\t\tinvalid:\t./main -f --frequency=23\n\t\tinvalid:\t./main --w=sine --w=rectangle\n");
 }
 
 void Error_InvalidArgument() {
