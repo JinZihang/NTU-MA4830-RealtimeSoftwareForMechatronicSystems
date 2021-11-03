@@ -15,11 +15,6 @@ int main(int argc, char **argv)
     void *hdl;
     struct Wave wave;
 
-    // int i = 0;
-    // for (i = 0; i < argc; i++) {
-    //     printf("argv[%d] = %s\n", i, argv[i]);
-    // }
-
      WaveInitialization(&wave, argc, argv);
     // PCIeInitialization(hdl);
      GenerateWave(&wave);

@@ -1,12 +1,12 @@
 #ifndef __ENUM_H
 #define __ENUM_H
 
-enum waveform
+enum Waveform
 {
     Sine,
     Rectangle,
-    Sawtooth,
     Triangle,
+    Sawtooth,
 };
 
 #endif

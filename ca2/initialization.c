@@ -82,7 +82,7 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv)
                 has_frequency_arg = true;
             }
         } else {
-            fprintf(stderr, "Unexpected argument exists!\n");
+            fprintf(stderr, "Unexpected or incomplete argument exists!\n");
             exit(1);
         }
     }

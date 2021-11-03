@@ -5,7 +5,7 @@
 
 struct Wave
 {
-    enum waveform waveform;
+    enum Waveform waveform;
     double amplitude;
     double frequency;
 };
