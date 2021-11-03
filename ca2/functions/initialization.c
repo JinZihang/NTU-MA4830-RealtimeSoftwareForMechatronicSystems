@@ -5,7 +5,6 @@
 
 #include "../datatypes/struct.h"
 #include "helper.h"
-
 void WaveInitialization(struct Wave *wave, int argc, char **argv) {
     unsigned int i;
     char *arg_waveform, *arg_amplitude, *arg_frequency;
@@ -43,7 +42,7 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
                 wave->waveform = Sawtooth;
                 has_waveform_arg = true;
             } else {
-                fprintf(stderr, "Wrong waveform parameter\n");
+                fprintf(stderr, "Wrong waveform parameter!\n");
                 exit(1);
             }
         } else if (strncmp(argv[i], "--amplitude=", 12) == 0) {
@@ -67,6 +66,9 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
                     fprintf(stderr, "Negative amplitude value not allowed!\n");
                     exit(1);
                 }
+            } else {
+                fprintf(stderr, "Use a numeric amplitude value!\n");
+                exit(1);
             }
         } else if (strncmp(argv[i], "--frequency=", 12) == 0) {
             if (strlen(argv[i]) == 12) {
@@ -89,6 +91,9 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
                     fprintf(stderr, "Negative frequency value not allowed!\n");
                     exit(1);
                 }
+            } else {
+                fprintf(stderr, "Use a numeric frequency value!\n");
+                exit(1);
             }
         } else {
             fprintf(stderr, "Unexpected or incomplete argument(s) exists!\n");
