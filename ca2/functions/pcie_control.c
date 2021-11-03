@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define USING_LAB_PC 1
+#define USING_LAB_PC 0
 #if USING_LAB_PC
 #include <unistd.h>
 #include <hw/pci.h>
@@ -80,7 +80,7 @@ void PCIeInitialization(void *hdl)
     }
 
     printf("Initialization completed.");
-#elif
+#else
     printf("Not attached to PCIe\n");
     exit(1);
 #endif
