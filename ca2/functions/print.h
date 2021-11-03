@@ -7,9 +7,7 @@ void DisplayTitle(char *filename);
 
 void ArgumentInstructions();
 
-void Error_UnexpectedOrIncompleteDeclaration();
-
-void Error_DuplicateDeclaration();
+void Error_InvalidArgument();
 
 void Error_InvalidValue();
 

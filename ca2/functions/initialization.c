@@ -12,7 +12,7 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
     bool has_waveform_arg = false, has_amplitude_arg = false, has_frequency_arg = false;
 
     if (argc > 4) {
-        Error_UnexpectedOrIncompleteDeclaration();
+        Error_InvalidArgument();
         exit(1);
     }
 
@@ -27,12 +27,12 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
         for (i = 1; i < argc; i++) {
             if (strncmp(argv[i], "--w=", 4) == 0) {
                 if (strlen(argv[i]) == 4) {
-                    Error_UnexpectedOrIncompleteDeclaration();
+                    Error_InvalidArgument();
                     exit(1);
                 }
 
                 if (has_waveform_arg == true) {
-                    Error_DuplicateDeclaration();
+                    Error_InvalidArgument();
                     exit(1);
                 }
 
@@ -56,18 +56,18 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
                 }
             } else if (strncmp(argv[i], "--a=", 4) == 0) {
                 if (strlen(argv[i]) == 4) {
-                    Error_UnexpectedOrIncompleteDeclaration();
+                    Error_InvalidArgument();
                     exit(1);
                 }
 
                 if (has_amplitude_arg == true) {
-                    Error_DuplicateDeclaration();
+                    Error_InvalidArgument();
                     exit(1);
                 }
 
                 arg_amplitude = SliceString(argv[i], 4);
 
-                if (IsFloat(arg_amplitude) & atof(arg_amplitude) > 0) {
+                if (IsFloat(arg_amplitude) & (atof(arg_amplitude) > 0)) {
                     wave->amplitude = atof(arg_amplitude);
                     has_amplitude_arg = true;
                 } else {
@@ -76,18 +76,18 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
                 }
             } else if (strncmp(argv[i], "--f=", 4) == 0) {
                 if (strlen(argv[i]) == 4) {
-                    Error_UnexpectedOrIncompleteDeclaration();
+                    Error_InvalidArgument();
                     exit(1);
                 }
 
                 if (has_frequency_arg == true) {
-                    Error_DuplicateDeclaration();
+                    Error_InvalidArgument();
                     exit(1);
                 }
 
                 arg_frequency = SliceString(argv[i], 4);
 
-                if (IsFloat(arg_frequency) & atof(arg_frequency) > 0) {
+                if (IsFloat(arg_frequency) & (atof(arg_frequency) > 0)) {
                     wave->frequency = atof(arg_frequency);
                     has_frequency_arg = true;
                 } else {
@@ -95,7 +95,7 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv) {
                     exit(1);
                 }
             } else {
-                Error_UnexpectedOrIncompleteDeclaration();
+                Error_InvalidArgument();
                 exit(1);
             }
         }
