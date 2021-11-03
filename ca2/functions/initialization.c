@@ -88,5 +88,10 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv)
             exit(1);
         }
     }
-    return;
+
+    if (!has_waveform_arg) wave->waveform = Sine;
+    if (!has_amplitude_arg) wave->amplitude = 10;
+    if (!has_frequency_arg) wave->frequency = 15;
+
+    printf("Wave initialization finished.");
 }
