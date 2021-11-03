@@ -17,7 +17,7 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv)
         exit(1);
     }
 
-    for (i = 0; i < argc; i++) {
+    for (i = 1; i < argc; i++) {
         if (strncmp(argv[i], "waveform=", 9) == 0) {
             if (strlen(argv[i]) == 9) {
                 fprintf(stderr, "Empty declaration not allowed!\n");
