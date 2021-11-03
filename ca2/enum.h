@@ -1,5 +1,5 @@
-#ifndef __ENUM_H
-#define __ENUM_H
+#ifndef METRONOME_ENUM_H
+#define METRONOME_ENUM_H
 
 enum Waveform
 {
