@@ -47,7 +47,7 @@ include/divisible/*
 !.vscode/settings.json
 
 # Local History for Visual Studio Code
-.idea/*.xml
+.**/idea
 tempCodeRunnerFile.c
 build/**/*
 
