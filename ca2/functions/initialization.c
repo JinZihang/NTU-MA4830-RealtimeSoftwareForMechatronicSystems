@@ -6,8 +6,7 @@
 #include "../datatypes/struct.h"
 #include "helper.h"
 
-void WaveInitialization(struct Wave *wave, int argc, char **argv)
-{
+void WaveInitialization(struct Wave *wave, int argc, char **argv) {
     unsigned int i;
     char *arg_waveform, *arg_amplitude, *arg_frequency;
     bool has_waveform_arg = false, has_amplitude_arg = false, has_frequency_arg = false;
@@ -18,20 +17,18 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv)
     }
 
     for (i = 1; i < argc; i++) {
-        if (strncmp(argv[i], "waveform=", 9) == 0) {
-            if (strlen(argv[i]) == 9) {
+        if (strncmp(argv[i], "--waveform=", 11) == 0) {
+            if (strlen(argv[i]) == 11) {
                 fprintf(stderr, "Empty declaration not allowed!\n");
                 exit(1);
             }
 
             if (has_waveform_arg == true) {
-                fprintf(stderr, "Duplicate waveform input!\n");
+                fprintf(stderr, "Duplicate waveform declaration!\n");
                 exit(1);
             }
 
-            arg_waveform = SliceString(argv[i], 9);
-
-//            printf("after slice: %s\n", arg_waveform);
+            arg_waveform = SliceString(argv[i], 11);
 
             if (strcmp(arg_waveform, "sine") == 0) {
                 wave->waveform = Sine;
@@ -49,44 +46,59 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv)
                 fprintf(stderr, "Wrong waveform parameter\n");
                 exit(1);
             }
-        } else if (strncmp(argv[i], "amplitude=", 10) == 0) {
-            if (strlen(argv[i]) == 10) {
+        } else if (strncmp(argv[i], "--amplitude=", 12) == 0) {
+            if (strlen(argv[i]) == 12) {
                 fprintf(stderr, "Empty declaration not allowed!\n");
                 exit(1);
             }
 
             if (has_amplitude_arg == true) {
-                fprintf(stderr, "Duplicate amplitude input!\n");
+                fprintf(stderr, "Duplicate amplitude declaration!\n");
                 exit(1);
             }
 
-            arg_amplitude = SliceString(argv[i], 10);
+            arg_amplitude = SliceString(argv[i], 12);
 
             if (IsFloat(arg_amplitude)) {
-                wave->amplitude = atof(arg_amplitude);
-                has_amplitude_arg = true;
+                if (atof(arg_amplitude) > 0) {
+                    wave->amplitude = atof(arg_amplitude);
+                    has_amplitude_arg = true;
+                } else {
+                    fprintf(stderr, "Negative amplitude value not allowed!\n");
+                    exit(1);
+                }
             }
-        } else if (strncmp(argv[i], "frequency=", 10) == 0) {
-            if (strlen(argv[i]) == 10) {
+        } else if (strncmp(argv[i], "--frequency=", 12) == 0) {
+            if (strlen(argv[i]) == 12) {
                 fprintf(stderr, "Empty frequency not allowed!\n");
                 exit(1);
             }
 
             if (has_frequency_arg == true) {
-                fprintf(stderr, "Duplicate frequency input!\n");
+                fprintf(stderr, "Duplicate frequency declaration!\n");
                 exit(1);
             }
 
-            arg_frequency = SliceString(argv[i], 10);
+            arg_frequency = SliceString(argv[i], 12);
 
             if (IsFloat(arg_frequency)) {
-                wave->frequency = atof(arg_frequency);
-                has_frequency_arg = true;
+                if (atof(arg_frequency) > 0) {
+                    wave->frequency = atof(arg_frequency);
+                    has_frequency_arg = true;
+                } else {
+                    fprintf(stderr, "Negative frequency value not allowed!\n");
+                    exit(1);
+                }
             }
         } else {
-            fprintf(stderr, "Unexpected or incomplete argument exists!\n");
+            fprintf(stderr, "Unexpected or incomplete argument(s) exists!\n");
             exit(1);
         }
     }
-    return;
+
+    if (!has_waveform_arg) wave->waveform = Sine;
+    if (!has_amplitude_arg) wave->amplitude = 10;
+    if (!has_frequency_arg) wave->frequency = 15;
+
+    printf("Wave initialization finished.");
 }
