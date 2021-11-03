@@ -3,4 +3,4 @@
 
 void WaveInitialization(struct Wave *wave, int argc, char **argv);
 
-#endif #__INITIALIZATION_H
+#endif
