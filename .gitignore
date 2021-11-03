@@ -29,6 +29,13 @@
 *.out
 *.app
 
+# VsCode
+.vscode/
+!.vscode/settings.json
+tempCodeRunnerFile.c
+build/**/*
+
+# CMake files
 **/cmake-build-debug
 **/CMakeCache.txt
 **/cmake_install.cmake
@@ -40,18 +47,11 @@
 **/CMakeScripts
 **/compile_commands.json
 
-include/divisible/*
-
-# VsCode
-.vscode/
-!.vscode/settings.json
-
-# Local History for Visual Studio Code
-.**/idea
-tempCodeRunnerFile.c
-build/**/*
+# CLion
+**/.idea
 
 include/*
 lib/*
 bin/*
 test/test_runner
+
