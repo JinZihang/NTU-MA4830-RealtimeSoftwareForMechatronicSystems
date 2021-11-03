@@ -31,7 +31,7 @@ void WaveInitialization(struct Wave *wave, int argc, char **argv)
 
             arg_waveform = SliceString(argv[i], 9);
 
-            printf("after slice: %s\n", arg_waveform);
+//            printf("after slice: %s\n", arg_waveform);
 
             if (strcmp(arg_waveform, "sine") == 0) {
                 wave->waveform = Sine;
