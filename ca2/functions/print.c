@@ -23,7 +23,7 @@ void DisplayTitle(char *filename) {
 void ArgumentInstructions() {
     printf("help\n");
     printf("\t\t--h\tshow program argument instructions\n");
-    printf("\t\t--f\trun a file (only support .txt)\n");
+    printf("\t\t--f\trun the program based on the data from a specific file\n");
     printf("\t\t--w\tselect a waveform (sine/rectangle/triangle/sawtooth) (default is sine)\n");
     printf("\t\t--a\treplace the default wave amplitude with your own value (default is 10)\n");
     printf("\t\t--f\treplace the default wave frequency with your own value (default is 10)\n");
