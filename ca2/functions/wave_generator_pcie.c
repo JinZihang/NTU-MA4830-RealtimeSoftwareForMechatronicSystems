@@ -4,14 +4,11 @@
 #include <math.h>
 #include "../datatypes/struct.h"
 
-#define USING_LAB_PC 0
-#if USING_LAB_PC
-#include <unistd.h>
-#include <hw/pci.h>
-#include <hw/inout.h>
-#include <sys/neutrino.h>
-#include <sys/mman.h>
-#endif
+//#include <unistd.h>
+//#include <hw/pci.h>
+//#include <hw/inout.h>
+//#include <sys/neutrino.h>
+//#include <sys/mman.h>
 
 // Define registers for PCIe-DAS1602
 #define    INTERRUPT    iobase[1] + 4       // Badr1 + 4 - PCIe 32-bit

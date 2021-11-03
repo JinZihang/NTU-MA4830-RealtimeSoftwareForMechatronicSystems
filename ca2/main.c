@@ -4,11 +4,7 @@
 #include "functions/initialization.h"
 #include "functions/wave_generator_pcie.h"
 
-#define USING_LAB_PC 0
-
-#if USING_LAB_PC
-#include <hw/pci.h>
-#endif
+// #include <hw/pci.h>
 
 int main(int argc, char **argv) 
 {
@@ -20,10 +16,6 @@ int main(int argc, char **argv)
      GenerateWave(&wave);
 
     printf("Program ended.\n");
-
-    #if USING_LAB_PC
-        pci_detach_device(hdl);
-    #endif
-
+    //pci_detach_device(hdl);
     return 0;
 }
