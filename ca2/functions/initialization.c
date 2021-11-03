@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "struct.h"
+#include "../datatypes/struct.h"
 #include "helper.h"
 
 void WaveInitialization(struct Wave *wave, int argc, char **argv)

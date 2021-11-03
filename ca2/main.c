@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#include "struct.h"
-#include "initialization.h"
-#include "wave_generator_pcie.h"
+#include "datatypes/struct.h"
+#include "functions/initialization.h"
+#include "functions/wave_generator_pcie.h"
 
 #define USING_LAB_PC 0
 

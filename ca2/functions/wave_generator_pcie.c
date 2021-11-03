@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "struct.h"
+#include "../datatypes/struct.h"
 
 #define USING_LAB_PC 0
 #if USING_LAB_PC
