@@ -1,6 +1,6 @@
-#ifndef __INITIALIZATION_H
-#define __INITIALIZATION_H
+#ifndef METRONOME_INITIALIZATION_H
+#define METRONOME_INITIALIZATION_H
 
-void WaveInitialization(struct Wave *wave, int argc, char **argv);
+int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv);
 
 #endif

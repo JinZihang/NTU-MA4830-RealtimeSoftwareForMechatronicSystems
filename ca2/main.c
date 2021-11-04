@@ -1,31 +1,30 @@
 #include <stdio.h>
 
 #include "datatypes/struct.h"
-#include "functions/initialization.h"
-#include "functions/wave_generator_pcie.h"
-#include "functions/pcie_control.h"
 #include "functions/print.h"
-
-#define USING_LAB_PC 0
-
-#if USING_LAB_PC
-#include <hw/pci.h>
-#endif
+#include "functions/initialization.h"
 
 int main(int argc, char **argv) {
-    void *hdl;
+    int i, wave_count;
+    FILE *fp;
     struct Wave wave;
-    uintptr_t iobase[6];
 
     // CMake path, use different path to run from different directory.
     DisplayTitle("../assets/title.txt");
 
-    WaveInitialization(&wave, argc, argv);
-//    PCIeInitialization(&hdl, &iobase);
+    wave_count = WaveInitialization(fp, &wave, argc, argv);
 
-//    GenerateWave(&wave);
+    for (i=0; i<wave_count; i++) {
+        if (wave_count != 1) {
+            printf("Initializing wave for row %d...\n", i);
+            // initialize the wave for the ith row
+            // WIP by Zihang
+        }
+        printf("Running the program...\n");
+        // run the program
+    }
 
     printf("Program ended.\n");
-//    pci_detach_device(hdl);
+    fclose(fp);
     return 0;
 }
