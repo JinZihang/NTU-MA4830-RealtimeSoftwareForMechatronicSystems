@@ -14,14 +14,17 @@ int main(int argc, char **argv) {
 
     wave_count = WaveInitialization(fp, &wave, argc, argv);
 
-    for (i=0; i<wave_count; i++) {
-        if (wave_count != 1) {
+    for (i = 0; i < wave_count; i++) {
+        if (wave_count != 1 && i != 0) {
             printf("Initializing wave for row %d...\n", i);
             // initialize the wave for the ith row
             // WIP by Zihang
         }
-        printf("Running the program...\n");
-        // run the program
+
+        if (!(wave_count != 1 && i == 0)) {
+            printf("Running the program...\n");
+            // put the main body here
+        }
     }
 
     printf("Program ended.\n");
