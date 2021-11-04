@@ -11,6 +11,10 @@ void Error_InvalidArgument();
 
 void Error_InvalidValue();
 
+void Error_CannotOpenFile();
+
+void Error_WrongFileData();
+
 void WaveInitializationComplete(struct Wave *wave);
 
 #endif

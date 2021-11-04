@@ -8,8 +8,10 @@
 #include "helper.h"
 
 int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
-    int i;
-    char *arg_file_name, *arg_waveform, *arg_amplitude, *arg_frequency;
+    int i, j;
+    int file_r_count, file_data_reader;
+    double file_data[10][3]; // read maximum 10 rows
+    char *arg_waveform, *arg_amplitude, *arg_frequency;
     bool has_waveform_arg = false, has_amplitude_arg = false, has_frequency_arg = false;
 
     if (argc > 4) {
@@ -27,11 +29,30 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
                 exit(1);
             }
 
-            arg_file_name = SliceString(argv[1], 5);
+            if ((fp = fopen(SliceString(argv[1], 5), "r")) == NULL) {
+                Error_CannotOpenFile();
+                exit(1);
+            }
 
-            // WIP by Zihang
+            for (i = 0; i < 10; i++) { // read maximum 10 rows
+                for (j = 0; j < 3; j++) {
+                    file_data_reader = fscanf(fp, "%lf", &file_data[i][j]);
+                    switch (file_data_reader) {
+                        case -1:
+                            break;
+                        case 1:
+                            file_r_count = i + 1;
+                            break;
+                        default:
+                            Error_WrongFileData();
+                            fclose(fp);
+                            exit(1);
+                    }
+                }
+            }
 
-            // return valid_file_row-1;
+            return file_r_count + 1;
+            // to create a difference between the 1 wave from file and from argument
         }
     }
 
@@ -39,13 +60,11 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
         if (strncmp(argv[i], "--w=", 4) == 0) {
             if (strlen(argv[i]) == 4) {
                 Error_InvalidArgument();
-                fclose(fp);
                 exit(1);
             }
 
             if (has_waveform_arg == true) {
                 Error_InvalidArgument();
-                fclose(fp);
                 exit(1);
             }
 
@@ -65,19 +84,16 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
                 has_waveform_arg = true;
             } else { // waveform does not match any pre-defined type
                 Error_InvalidValue();
-                fclose(fp);
                 exit(1);
             }
         } else if (strncmp(argv[i], "--a=", 4) == 0) {
             if (strlen(argv[i]) == 4) {
                 Error_InvalidArgument();
-                fclose(fp);
                 exit(1);
             }
 
             if (has_amplitude_arg == true) {
                 Error_InvalidArgument();
-                fclose(fp);
                 exit(1);
             }
 
@@ -88,19 +104,16 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
                 has_amplitude_arg = true;
             } else { // value is not positive & numeric
                 Error_InvalidValue();
-                fclose(fp);
                 exit(1);
             }
         } else if (strncmp(argv[i], "--f=", 4) == 0) {
             if (strlen(argv[i]) == 4) {
                 Error_InvalidArgument();
-                fclose(fp);
                 exit(1);
             }
 
             if (has_frequency_arg == true) {
                 Error_InvalidArgument();
-                fclose(fp);
                 exit(1);
             }
 
@@ -111,7 +124,6 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
                 has_frequency_arg = true;
             } else { // value is not positive & numeric
                 Error_InvalidValue();
-                fclose(fp);
                 exit(1);
             }
         } else {

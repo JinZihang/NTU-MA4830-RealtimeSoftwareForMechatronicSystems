@@ -10,7 +10,7 @@ void DisplayImage(FILE *fptr) {
 
     while (fgets(readString, sizeof(readString), fptr) != NULL)
         printf("%s", readString);
-    printf("\n");
+    printf("\n\n");
 }
 
 void DisplayTitle(char *filename) {
@@ -34,8 +34,24 @@ void ArgumentInstructions() {
     printf("\t\t*\t--h, --fn cannot be used together with other arguments\n");
     printf("\t\t*\tincomplete or duplicate declarations are not allowed\n");
     printf("\t\t*\tamplitude and frequency arguments only accept positive numeric values\n");
+    printf("\t\t*\tfile\n");
+    printf("\t\t\t\t**\teach row defines a wave, maximum 10 rows\n");
+    printf("\t\t\t\t**\tthe first column defines waveform,\n");
+    printf("\t\t\t\t\t\t1 -> sine\n\t\t\t\t\t\t2 -> rectangle\n\t\t\t\t\t\t3 -> triangle\n\t\t\t\t\t\t4 -> sawtooth\n");
+    printf("\t\t\t\t\tthe second column defines wave amplitude,\n");
+    printf("\t\t\t\t\tand the third column defines wave frequency\n");
+    printf("\t\t\t\t\t(use 0 for default settings)\n");
+    printf("\t\t\t\t**\tfile example\n");
+    printf("\t\t\t\t\t--------------------\n");
+    printf("\t\t\t\t\t../data.dat\n");
+    printf("\t\t\t\t\t--------------------\n");
+    printf("\t\t\t\t\t0\t\t0\t\t0\n");
+    printf("\t\t\t\t\t3\t\t3.12\t0\n");
+    printf("\t\t\t\t\t1\t\t6\t\t5\n");
+    printf("\t\t\t\t\t1\t\t0\t\t8.62\n");
+    printf("\t\t\t\t\t--------------------\n");
     printf("examples\n");
-    printf("\t\tvalid:\t\t./main --fn=../data.txt\n\t\tvalid:\t\t./main --w=sine --f=16.5\n");
+    printf("\t\tvalid:\t\t./main --fn=../data.dat\n\t\tvalid:\t\t./main --w=sine --f=16.5\n");
     printf("\t\tinvalid:\t./main --fn --f=16.5\n\t\tinvalid:\t./main --w=sine --w=rectangle\n");
 }
 
@@ -48,6 +64,15 @@ void Error_InvalidArgument() {
 void Error_InvalidValue() {
     fprintf(stderr, "Invalid parameter value exists!\n");
     fprintf(stderr, "Use --h to view program argument instructions.\n");
+}
+
+void Error_CannotOpenFile() {
+    perror("Cannot open the file specified");
+}
+
+void Error_WrongFileData() {
+    fprintf(stderr, "Something wrong with the file data!\n");
+    fprintf(stderr, "Use --h to view file data instructions.\n");
 }
 
 void WaveInitializationComplete(struct Wave *wave) {
