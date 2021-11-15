@@ -8,6 +8,7 @@
 #include "functions/initialization.h"
 #include "functions/pcie_control.h"
 #include "functions/wave_generator_pcie.h"
+#include "functions/input.h"
 
 int main(int argc, char **argv) {
     int i, j, wave_count;
@@ -84,6 +85,7 @@ int main(int argc, char **argv) {
         printf("Running the program...\n\n");
         // put the main body here
         GenerateWave(&wave);
+        ReadSwitch();
     }
 
     printf("Program ended.\n");

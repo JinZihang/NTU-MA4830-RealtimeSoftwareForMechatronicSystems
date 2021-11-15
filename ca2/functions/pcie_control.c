@@ -69,3 +69,7 @@ void PCIeInitialization() {
     exit(1);
 #endif
 }
+
+void DIOInitialization()
+{
+}

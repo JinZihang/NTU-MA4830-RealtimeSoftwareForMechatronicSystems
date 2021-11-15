@@ -35,4 +35,6 @@ unsigned int i;
 
 void PCIeInitialization();
 
+void DIOIniialization();
+
 #endif
