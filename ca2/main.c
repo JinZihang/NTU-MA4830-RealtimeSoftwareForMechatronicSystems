@@ -6,6 +6,8 @@
 #include "functions/print.h"
 #include "functions/helper.h"
 #include "functions/initialization.h"
+#include "functions/pcie_control.h"
+#include "functions/wave_generator_pcie.h"
 
 int main(int argc, char **argv) {
     int i, j, wave_count;
@@ -18,6 +20,8 @@ int main(int argc, char **argv) {
     DisplayTitle("../assets/title.txt");
 
     wave_count = WaveInitialization(fp, &wave, argc, argv);
+
+    PCIeInitialization();
 
     if (wave_count > 1) { // input is from file
         ran_by_file = true;
@@ -79,6 +83,7 @@ int main(int argc, char **argv) {
 
         printf("Running the program...\n\n");
         // put the main body here
+        GenerateWave(&wave);
     }
 
     printf("Program ended.\n");
