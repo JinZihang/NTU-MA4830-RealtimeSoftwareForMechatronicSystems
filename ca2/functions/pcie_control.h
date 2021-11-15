@@ -29,8 +29,7 @@ void *hdl;
 uintptr_t iobase[6];
 
 uintptr_t dio_switch;
-int switch0;
-int switch0_prev;
+uintptr_t switch0_prev;
 unsigned int i;
 
 void PCIeInitialization();

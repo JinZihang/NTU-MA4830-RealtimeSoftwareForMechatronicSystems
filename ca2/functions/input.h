@@ -3,4 +3,4 @@
 
 #endif //METRONOME_INPUT_H
 
-void ReadSwitch();
+void *ReadSwitch();

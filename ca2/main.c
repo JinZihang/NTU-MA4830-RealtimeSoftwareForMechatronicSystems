@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <pthread.h>
 
 #include "datatypes/struct.h"
 #include "functions/print.h"
@@ -18,7 +19,7 @@ int main(int argc, char **argv) {
     struct Wave wave;
 
     // CMake path, use different path to run from different directory.
-    DisplayTitle("../assets/title.txt");
+    DisplayTitle("assets/title.txt");
 
     wave_count = WaveInitialization(fp, &wave, argc, argv);
 
@@ -84,8 +85,8 @@ int main(int argc, char **argv) {
 
         printf("Running the program...\n\n");
         // put the main body here
+        pthread_create( NULL, NULL, &ReadSwitch, NULL );
         GenerateWave(&wave);
-        ReadSwitch();
     }
 
     printf("Program ended.\n");
