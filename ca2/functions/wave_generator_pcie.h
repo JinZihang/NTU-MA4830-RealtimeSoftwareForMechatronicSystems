@@ -22,6 +22,6 @@ void GenerateSawtoothWave();
 
 void GenerateTriangleWave();
 
-void GenerateWave(struct Wave *wave);
+void* GenerateWave();
 
 #endif

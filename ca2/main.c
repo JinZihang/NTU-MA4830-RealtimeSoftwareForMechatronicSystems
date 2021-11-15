@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
 
-    wave_count = WaveInitialization(fp, &wave, argc, argv);
+    wave_count = WaveInitialization(fp, argc, argv);
 
     PCIeInitialization();
 
@@ -82,13 +82,17 @@ int main(int argc, char **argv) {
                 exit(1);
             }
 
-            WaveInitializationComplete(&wave);
+            WaveInitializationComplete();
         }
 
         printf("Running the program...\n\n");
         // put the main body here
         pthread_create( NULL, NULL, &ReadSwitch, NULL );
-        GenerateWave(&wave);
+        pthread_create( NULL, NULL, &GenerateWave, NULL );
+
+        while (1)
+        {
+        }
     }
 
     printf("Program ended.\n");

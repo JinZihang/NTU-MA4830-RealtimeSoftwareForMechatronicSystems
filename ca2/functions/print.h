@@ -15,6 +15,6 @@ void Error_CannotOpenFile();
 
 void Error_WrongFileData();
 
-void WaveInitializationComplete(struct Wave *wave);
+void WaveInitializationComplete();
 
 #endif

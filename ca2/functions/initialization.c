@@ -6,8 +6,9 @@
 #include "../datatypes/struct.h"
 #include "print.h"
 #include "helper.h"
+#include "../main.h"
 
-int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
+int WaveInitialization(FILE *fp, int argc, char **argv) {
     int i, j;
     int file_r_count, file_data_reader;
     double file_data[10][3]; // read maximum 10 rows
@@ -71,16 +72,16 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
             arg_waveform = SliceString(argv[i], 4);
 
             if (strcmp(arg_waveform, "sine") == 0) {
-                wave->waveform = Sine;
+                wave.waveform = Sine;
                 has_waveform_arg = true;
             } else if (strcmp(arg_waveform, "rectangle") == 0) {
-                wave->waveform = Rectangle;
+                wave.waveform = Rectangle;
                 has_waveform_arg = true;
             } else if (strcmp(arg_waveform, "triangle") == 0) {
-                wave->waveform = Triangle;
+                wave.waveform = Triangle;
                 has_waveform_arg = true;
             } else if (strcmp(arg_waveform, "sawtooth") == 0) {
-                wave->waveform = Sawtooth;
+                wave.waveform = Sawtooth;
                 has_waveform_arg = true;
             } else { // waveform does not match any pre-defined type
                 Error_InvalidValue();
@@ -100,7 +101,7 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
             arg_amplitude = SliceString(argv[i], 4);
 
             if (IsFloat(arg_amplitude) & (atof(arg_amplitude) > 0)) {
-                wave->amplitude = atof(arg_amplitude);
+                wave.amplitude = atof(arg_amplitude);
                 has_amplitude_arg = true;
             } else { // value is not positive & numeric
                 Error_InvalidValue();
@@ -120,7 +121,7 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
             arg_frequency = SliceString(argv[i], 4);
 
             if (IsFloat(arg_frequency) & (atof(arg_frequency) > 0)) {
-                wave->frequency = atof(arg_frequency);
+                wave.frequency = atof(arg_frequency);
                 has_frequency_arg = true;
             } else { // value is not positive & numeric
                 Error_InvalidValue();
@@ -132,11 +133,11 @@ int WaveInitialization(FILE *fp, struct Wave *wave, int argc, char **argv) {
         }
     }
 
-    if (!has_waveform_arg) wave->waveform = Sine;
-    if (!has_amplitude_arg) wave->amplitude = 10;
-    if (!has_frequency_arg) wave->frequency = 10;
+    if (!has_waveform_arg) wave.waveform = Sine;
+    if (!has_amplitude_arg) wave.amplitude = 10;
+    if (!has_frequency_arg) wave.frequency = 10;
 
-    WaveInitializationComplete(wave);
+    WaveInitializationComplete();
 
     return 1;
 }

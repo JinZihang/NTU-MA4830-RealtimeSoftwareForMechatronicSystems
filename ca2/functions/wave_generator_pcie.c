@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <pthread.h>
 
 #define _USE_MATH_DEFINES
 
@@ -7,6 +8,7 @@
 #include "../datatypes/struct.h"
 #include "wave_generator_pcie.h"
 #include "pcie_control.h"
+#include "../main.h"
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
@@ -37,7 +39,7 @@ void GenerateSineWave(double amplitude, double frequency) {
         printf("%f\n", dummy);
     }
 
-    for (i = 0; i < 100000000; i++) {
+    for (i = 0; i < 1; i++) {
         for (j = 0; j < 100; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, data[j]);
@@ -55,7 +57,7 @@ void GenerateRectangleWave() {
 
     printf("Generating rectangle wave.\n");
 
-    for (i = 0; i < 0xfffffff; i++) {
+    for (i = 0; i < 1; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, ((j > 0x0800) ? 0 : 0x0fff));
@@ -73,7 +75,7 @@ void GenerateSawtoothWave() {
 
     printf("Generating sawtooth wave.\n");
 
-    for (i = 0; i < 0xfffffff; i++) {
+    for (i = 0; i < 1; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, (i & 0x0fff));
@@ -92,7 +94,7 @@ void GenerateTriangleWave() {
 
     printf("Generating triangle wave.\n");
 
-    for (i = 0; i < 0xfffffff; i++) {
+    for (i = 0; i < 1; i++) {
         for (j = 0x0000; j < 0x0fff; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
@@ -106,25 +108,39 @@ void GenerateTriangleWave() {
     printf("Triangle wave output ended.\n");
 }
 
-void GenerateWave(struct Wave *wave) {
-    switch (wave->waveform) {
-        case Sine:
-            printf("Sine\n");
-            GenerateSineWave(wave->amplitude, wave->frequency);
-            break;
-        case Rectangle:
-            printf("Rectangle\n");
-            GenerateRectangleWave();
-            break;
-        case Triangle:
-            printf("Triangle\n");
-            GenerateTriangleWave();
-            break;
-        case Sawtooth:
-            printf("Sawtooth\n");
-            GenerateSawtoothWave();
-            break;
-        default:
-            break;
+void GenerateEmptyWave()
+{
+    out16(DAC0_Data, 0x000);
+}
+
+void* GenerateWave() {
+    while(1)
+    {
+        pthread_mutex_lock(&mutex);
+        switch (wave.waveform) {
+            case Sine:
+                printf("Sine\n");
+                GenerateSineWave(wave.amplitude, wave.frequency);
+                break;
+            case Rectangle:
+                printf("Rectangle\n");
+                GenerateRectangleWave();
+                break;
+            case Triangle:
+                printf("Triangle\n");
+                GenerateTriangleWave();
+                break;
+            case Sawtooth:
+                printf("Sawtooth\n");
+                GenerateSawtoothWave();
+                break;
+            default:
+                printf("Empty");
+                GenerateEmptyWave();
+                break;
+        }
+        pthread_mutex_unlock(&mutex);
+        delay(1);
     }
+    return 0;
 }

@@ -19,10 +19,26 @@ void* ReadSwitch(void* arg)
 {
     while (1)
     {
+        pthread_mutex_lock(&mutex);
         dio_switch= in8(DIO_Data);	// read switch
         out8(DIO_Data,dio_switch); //update LED light
-        printf("switch: %d\n", dio_switch);
-        pthread_mutex_lock(&mutex);
+        switch (dio_switch)
+        {
+            case 1:
+                wave.waveform = Sine;
+                break;
+            case 2:
+                wave.waveform = Rectangle;
+                break;
+            case 4:
+                wave.waveform = Triangle;
+                break;
+            case 8:
+                wave.waveform = Sawtooth;
+                break;
+            default:
+                wave.waveform = NULL;
+        }
         pthread_mutex_unlock(&mutex);
         delay(1);
 //        if (dio_switch != switch0_prev) {

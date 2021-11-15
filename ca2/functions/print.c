@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "../datatypes/struct.h"
+#include "../main.h"
 
 #define MAX_LEN 128
 
@@ -75,11 +76,11 @@ void Error_WrongFileData() {
     fprintf(stderr, "Use --h to view file data instructions.\n");
 }
 
-void WaveInitializationComplete(struct Wave *wave) {
+void WaveInitializationComplete() {
     printf("Wave initialization finished.\n");
     printf("____________________________\n");
     printf("\tWaveform:\t");
-    switch (wave->waveform) {
+    switch (wave.waveform) {
         case Sine:
             printf("Sine\n");
             break;
@@ -93,7 +94,7 @@ void WaveInitializationComplete(struct Wave *wave) {
             printf("Sawtooth\n");
             break;
     }
-    printf("\tAmplitude:\t%.2lf\n", wave->amplitude);
-    printf("\tFrequency:\t%.2lf\n", wave->frequency);
+    printf("\tAmplitude:\t%.2lf\n", wave.amplitude);
+    printf("\tFrequency:\t%.2lf\n", wave.frequency);
     printf("____________________________\n");
 }
