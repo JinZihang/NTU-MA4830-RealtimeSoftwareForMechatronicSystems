@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 #include "input.h"
 #include "pcie_control.h"
+#include "../main.h"
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
@@ -13,12 +15,16 @@
 #include <sys/mman.h>
 #endif
 
-void *ReadSwitch()
+void* ReadSwitch(void* arg)
 {
     while (1)
     {
         dio_switch= in8(DIO_Data);	// read switch
         out8(DIO_Data,dio_switch); //update LED light
+        printf("switch: %d\n", dio_switch);
+        pthread_mutex_lock(&mutex);
+        pthread_mutex_unlock(&mutex);
+        delay(1);
 //        if (dio_switch != switch0_prev) {
 //            //DEBOUNCING
 //            delay(1);

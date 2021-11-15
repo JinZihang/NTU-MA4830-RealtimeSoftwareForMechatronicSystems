@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <pthread.h>
 
+#include "main.h"
 #include "datatypes/struct.h"
 #include "functions/print.h"
 #include "functions/helper.h"
@@ -11,12 +12,13 @@
 #include "functions/wave_generator_pcie.h"
 #include "functions/input.h"
 
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
 int main(int argc, char **argv) {
     int i, j, wave_count;
     FILE *fp;
     bool ran_by_file = false;
     double file_data[10][3]; // read maximum 10 rows
-    struct Wave wave;
 
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
