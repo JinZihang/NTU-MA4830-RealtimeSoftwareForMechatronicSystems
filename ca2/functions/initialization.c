@@ -24,7 +24,7 @@ int WaveInitialization(FILE *fp, int argc, char **argv) {
         if (strcmp(argv[1], "--h") == 0) {
             ArgumentInstructions();
             exit(0);
-        } else if (strncmp(argv[1], "--fn=", 5) == 0) {
+        } else if (strncmp(argv[1], "--fp=", 5) == 0) {
             if (strlen(argv[1]) == 4) {
                 Error_InvalidArgument();
                 exit(1);
