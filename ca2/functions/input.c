@@ -118,6 +118,8 @@ frequencyRange.max = 300;
 void* ReadArrowkey(void* arg){
     while (1)
     {
+        int input; 
+        int status = 1;
         pthread_mutex_lock(&mutex);
         input = readArrow();
         switch (input)
@@ -127,9 +129,9 @@ void* ReadArrowkey(void* arg){
             if (wave.frequency + 20 < frequencyRange.max)
             {
                 wave.frequency = wave.frequency + 20;
-                // if (UpdateTimer(.........) {        //signal handler
-                // printf( "\n[ERROR] Fail to set timer!\n" );
-                // TerminateProgram();}
+                if (UpdateTimer() == -1) {
+                    printf( "\n[ERROR] Fail to set timer!\n");
+                    TerminateProgram();
             }
             else
             {
@@ -141,9 +143,10 @@ void* ReadArrowkey(void* arg){
             if (frequencyRange.min < wave.frequency - 20)
             {
                 wave.frequency = wave.frequency - 20;
-                // if (UpdateTimer(..........) {       //signal handler
-                // printf(KRED "\n[ERROR] Fail to set timer!\n" KNRM);
-                // TerminateProgram();}
+                if (UpdateTimer() == -1) {
+                    printf( "\n[ERROR] Fail to set timer!\n");
+                    TerminateProgram();
+                }
             }
             else
             {   

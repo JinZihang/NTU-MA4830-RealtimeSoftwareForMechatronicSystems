@@ -15,6 +15,23 @@
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 struct Wave wave;
 
+time_t timerid;    
+struct timespec now;      
+struct itimerspec timer;  
+long timesec, timeint;
+int rtn;
+
+
+int UpdateTimer() {
+    struct itimerspec timerInfo;
+    timerInfo.it_value.tv_sec = 1;
+    timerInfo.it_value.tv_nsec = 0;
+    timerInfo.it_interval.tv_sec = 10;
+    timerInfo.it_interval.tv_nsec = 0;
+    return timer_settime(timerid, 0, &timerInfo, NULL);
+}
+
+
 int main(int argc, char **argv) {
     int i, j, wave_count;
     FILE *fp;
@@ -95,6 +112,26 @@ int main(int argc, char **argv) {
         printf("Running the program...\n\n");
         // put the main body here
         
+        signal(SIGALRM, alarm_handler);    //////////
+
+        // Create the timer, binding to the event
+        if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1)
+        {
+            printf("Error: failed to create timer\n");
+            exit(-1);
+        }
+
+        timerInfo.it_value.tv_sec= 1;
+        timerInfo.it_value.tv_nsec = 0;
+        timerInfo.it_interval.tv_sec = 10;
+        timerInfo.it_interval.tv_nsec = 0;
+        rtn = timer_settime(timerid, 0, &timerInfo, NULL);
+        if( rtn == -1 ) {
+            printf( "\nError setting timer!\n" ); exit(1); }
+        while(1) {
+            sleep(1);
+        }
+
         pthread_create( NULL, NULL, &ReadSwitch, NULL );
         pthread_create( NULL, NULL, &GenerateWave, NULL );
         pthread_create( NULL, NULL, &ReadArrowkey, NULL );
