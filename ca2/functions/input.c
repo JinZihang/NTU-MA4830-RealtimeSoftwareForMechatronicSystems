@@ -83,27 +83,12 @@ void *ReadSwitch(void *arg) {
     }
 }
 
-int readArrow()
-{   
-    // Read the up and down arrow key to adjust frequency
-    int int_1 = 0;
-    int int_2 = 0;
-    int int_3 = 0;
-
-    printf("Please using up and down key to adjust the frequency you want.\n");
-    system("/bin/stty raw");
-    scanf("%d", &int_3);
-    int_1 = getchar();
-    if (int_1 == 27)
-    {
-        int_2 = getchar();
-        int_3 = getchar();
-        printf("\r          ");
-    }
-    system("/bin/stty cooked");
-
-    return int_3;
-}
+typedef struct
+{
+    char modetemp[1024];
+    int modenum;
+    int frequency;
+} setting;
 
 typedef struct
 {
@@ -111,42 +96,58 @@ typedef struct
     int max;
 } freqLimit;
 
-freqLimit frequencyRange;
-frequencyRange.min = 0;
-frequencyRange.max = 300;
+int readArrow();
 
-void* ReadArrowkey(void* arg){
-    while (1)
+int readArrow()
+{   
+    int int_1 = 0;
+    int int_2 = 0;
+    int int_3 = 0;
+
+    printf("\nPlease using up and down key to adjust the frequency you want.");
+    system("/bin/stty raw");
+    scanf("%d", &int_3);
+    int_1 = getchar();
+    if (int_1 == 27)
     {
-        int input; 
-        int status = 1;
-        pthread_mutex_lock(&mutex);
+        int_2 = getchar();
+        int_3 = getchar();
+    }
+    system("/bin/stty edit");
+
+    return int_3;
+}
+
+void* ReadArrowkey(void* arg)
+{
+    int input;
+    int status = 1;
+
+    freqLimit frequencyRange;
+    frequencyRange.min = 1;
+    frequencyRange.max = 300;
+    wave.frequency = 50; //initialized or default 
+    while (status)
+    {
         input = readArrow();
         switch (input)
         {
-            case 65:
+        case 65:
             printf("\n");
-            if (wave.frequency + 20 < frequencyRange.max)
+            if (wave.frequency < frequencyRange.max)
             {
-                wave.frequency = wave.frequency + 20;
-                if (UpdateTimer() == -1) {
-                    printf( "\n[ERROR] Fail to set timer!\n");
-                    TerminateProgram();
+                wave.frequency=wave.frequency+20;
             }
             else
             {
                 printf( "[WARN]   Maximum limit reached, can't add more.\n" );
-                }
+            }
             break;
         case 66:
             printf("\n");
-            if (frequencyRange.min < wave.frequency - 20)
+            if (frequencyRange.min < wave.frequency)
             {
-                wave.frequency = wave.frequency - 20;
-                if (UpdateTimer() == -1) {
-                    printf( "\n[ERROR] Fail to set timer!\n");
-                    TerminateProgram();
-                }
+                wave.frequency=wave.frequency-20;
             }
             else
             {   
@@ -154,10 +155,10 @@ void* ReadArrowkey(void* arg){
             }
             break;
         case 67:
-            printf("Right Arrow key!\n");
+            printf("Right!\n");
             break;
         case 68:
-            printf("Left Arrow key!\n");
+            printf("Left!\n");
             break;
         case 'q':
             status = 0;
@@ -166,9 +167,10 @@ void* ReadArrowkey(void* arg){
             status = 0;
             printf("end editing\n");
             break;
-
-        printf("The current frequency is %d.\n", wave.frequency);
-        
+        }
+        printf("The current frequency is %d.", wave.frequency);
+        fflush(stdout);
     }
-    
-}
+
+    return wave.frequency;
+};
