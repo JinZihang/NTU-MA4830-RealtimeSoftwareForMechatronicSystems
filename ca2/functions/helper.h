@@ -5,6 +5,4 @@ char *SliceString(char *ori_str, int start_index);
 
 bool IsFloat(char *str);
 
-void SoundGenerator(double amplitude);
-
 #endif

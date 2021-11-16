@@ -9,4 +9,4 @@ int readArrow();
 
 void *ReadPot(void *arg);
 
-#endif //METRONOME_INPUT_H
+#endif

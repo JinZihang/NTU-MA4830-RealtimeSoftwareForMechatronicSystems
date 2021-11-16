@@ -1,10 +1,11 @@
-#include <stdio.h>
+#include "main.h"
+
 #include <stdlib.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <pthread.h>
 #include <signal.h>
 
-#include "main.h"
 #include "datatypes/struct.h"
 #include "functions/print.h"
 #include "functions/helper.h"

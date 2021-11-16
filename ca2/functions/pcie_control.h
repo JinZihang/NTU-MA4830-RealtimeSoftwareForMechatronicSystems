@@ -14,16 +14,11 @@
 #define    ADC_Enable   iobase[3] + 6       // Badr3 + 6 - Brst_off Conv_EN:0x01
 #define    ADC_Gain     iobase[3] + 7       // Badr3 + 7 - unipolar 5V : 0x01
 
-#define USING_LAB_PC 1
-#if USING_LAB_PC
-
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
-
-#endif
 
 int badr[5];    // PCI 2.2 assigns 6 IO base addresses
 struct pci_dev_info info;

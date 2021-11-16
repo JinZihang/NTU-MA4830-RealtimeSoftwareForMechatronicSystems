@@ -1,21 +1,16 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <pthread.h>
-
-#include "input.h"
-#include "pcie_control.h"
-#include "../main.h"
-
-#define USING_LAB_PC 1
-#if USING_LAB_PC
-
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
 
-#endif
+#include "input.h"
+#include "pcie_control.h"
+
+#include "../main.h"
 
 void *ReadSwitch(void *arg) {
     while (1) {
@@ -183,8 +178,7 @@ void *ReadPot(void *arg) {
 
         //printf("Chan#0 : %04x Chan#1 : %04x\n", adc_in[0], adc_in[1]);
 
-        if (abs(prev_adc0 - adc_in[0]) > 30)
-        {
+        if (abs(prev_adc0 - adc_in[0]) > 30) {
             // not noise
             dummy = (adc_in[0] / (float) 65525) * 2.5;
             if (dummy > 2.5) {
@@ -193,8 +187,7 @@ void *ReadPot(void *arg) {
             wave.amplitude = dummy;
         }
 
-        if (abs(prev_adc1 - adc_in[1]) > 30)
-        {
+        if (abs(prev_adc1 - adc_in[1]) > 30) {
             // not noise
             dummy = (adc_in[1] / (float) 65525) * 300;
             if (dummy > 300) {

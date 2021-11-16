@@ -10,5 +10,5 @@ add_library(metronome_lib
         functions/helper.c functions/pcie_control.c
         functions/pcie_control.h
         functions/print.c
-        functions/input.c)
+        functions/input.c functions/sound.c functions/sound.h)
 target_link_libraries(metronome metronome_lib)

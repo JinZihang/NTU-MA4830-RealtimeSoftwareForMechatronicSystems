@@ -1,7 +1,8 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "../datatypes/struct.h"
+
 #include "../main.h"
 
 #define MAX_LEN 128

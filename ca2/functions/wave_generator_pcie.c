@@ -8,20 +8,15 @@
 
 #include <math.h>
 #include "../datatypes/struct.h"
-#include "helper.h"
+#include "sound.h"
 #include "pcie_control.h"
 #include "../main.h"
-
-#define USING_LAB_PC 1
-#if USING_LAB_PC
 
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
-
-#endif
 
 //******************************************************************************
 // D/A Port Functions
@@ -67,7 +62,7 @@ void GenerateRectangleWave() {
     printf("Generating rectangle wave.\n");
 
     for (i = 0; i < samples; i++) {
-        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0x0fff / (float)5);
+        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0x0fff / (float) 5);
 //        dummy = ((i < 50) ? 0 : 0x0fff);
         data[i] = (unsigned) dummy;
         printf("%f\n", dummy);
@@ -187,7 +182,6 @@ void *GenerateWave() {
     return 0;
 }
 
-void* ResetTimer()
-{
+void *ResetTimer() {
 
 }

@@ -2,6 +2,7 @@
 #define METRONOME_MAIN_H
 
 #include <pthread.h>
+
 #include "datatypes/struct.h"
 
 extern struct Wave wave;

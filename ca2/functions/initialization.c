@@ -1,11 +1,12 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
 
 #include "../datatypes/struct.h"
 #include "print.h"
 #include "helper.h"
+
 #include "../main.h"
 
 int WaveInitialization(FILE *fp, int argc, char **argv) {
@@ -127,7 +128,7 @@ int WaveInitialization(FILE *fp, int argc, char **argv) {
 
             if (IsFloat(arg_frequency) & (atof(arg_frequency) > 0)) {
                 if (atof(arg_frequency) > 300) {
-                    wave.frequency =  300;
+                    wave.frequency = 300;
                     Warning_ValueExceededLimit();
                 } else {
                     wave.frequency = atof(arg_frequency);
