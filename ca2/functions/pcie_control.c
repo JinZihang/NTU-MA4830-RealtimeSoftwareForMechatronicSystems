@@ -5,11 +5,13 @@
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
+
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+
 #endif
 
 void PCIeInitialization() {
@@ -17,8 +19,7 @@ void PCIeInitialization() {
     printf("\fInitializing PCIe-DAS1602.\n");
 
     memset(&info, 0, sizeof(info));
-    if (pci_attach(0) < 0)
-    {
+    if (pci_attach(0) < 0) {
         perror("pci_attach");
         exit(EXIT_FAILURE);
     }
@@ -70,6 +71,5 @@ void PCIeInitialization() {
 #endif
 }
 
-void DIOInitialization()
-{
+void DIOInitialization() {
 }

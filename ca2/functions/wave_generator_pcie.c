@@ -12,11 +12,13 @@
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
+
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+
 #endif
 
 //******************************************************************************
@@ -24,6 +26,10 @@
 // Set to 5V, Unipolar 16 bit offset map. 0V->0x0000 mid >0x7fff 5V->0xffff
 // PCIe: 12 bit
 //******************************************************************************
+
+void SoundGenerator(double amplitude) {
+
+}
 
 void GenerateSineWave(double amplitude, double frequency) {
     unsigned int i, j, data[100];
@@ -108,17 +114,14 @@ void GenerateSawtoothWave() {
     printf("Sawtooth wave output ended.\n");
 }
 
-void GenerateEmptyWave()
-{
-    while (wave.waveform == Empty)
-    {
+void GenerateEmptyWave() {
+    while (wave.waveform == Empty) {
         out16(DAC0_Data, 0x000);
     }
 }
 
-void* GenerateWave() {
-    while(1)
-    {
+void *GenerateWave() {
+    while (1) {
         switch (wave.waveform) {
             case Sine:
                 printf("Sine\n");
