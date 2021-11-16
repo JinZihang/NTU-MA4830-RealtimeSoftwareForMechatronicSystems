@@ -18,7 +18,7 @@ struct Wave wave;
 
 void signal_handler( int signum )
 {
-    printf( "\nSignal raised. " );
+    printf( "\nSignal raised.\n" );
     exit(EXIT_SUCCESS);
 }
 
@@ -107,8 +107,8 @@ int main(int argc, char **argv) {
         // put the main body here
         
         pthread_create( NULL, NULL, &ReadSwitch, NULL );
-        //pthread_create( NULL, NULL, &GenerateWave, NULL );
-        //pthread_create( NULL, NULL, &ReadArrowKey, NULL );
+        pthread_create( NULL, NULL, &GenerateWave, NULL );
+        //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
         pthread_create( NULL, NULL, &ReadPot, NULL );
 
         while (1) {
