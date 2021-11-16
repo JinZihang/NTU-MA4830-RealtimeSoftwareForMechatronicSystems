@@ -39,10 +39,10 @@ void GenerateSineWave() {
 
     delta = 1 / (100 * wave.frequency);
     for (i = 0; i < 100; i++) {
-        dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0xFFFF / 5);
-//        dummy = ((sinf((float) (i * 2 * M_PI / 100))) + 1.0) * 0x0800;
+        //dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0xFFFF / 5);
+        dummy = ((sinf((float) (i * 2 * M_PI / 100))) + 1.0) * 0x0800;
         data[i] = (unsigned) dummy;
-        printf("%f\n", dummy);
+        //printf("%f\n", dummy);
     }
 
     while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.001)) {
@@ -55,6 +55,7 @@ void GenerateSineWave() {
             delay(delta * 1000);
         }
         prev_amp = wave.amplitude;
+        delay(10);
     }
 
     printf("Sine wave output ended.\n");
@@ -149,6 +150,8 @@ void GenerateSawtoothWave() {
 }
 
 void GenerateEmptyWave() {
+    printf("Generating empty wave.\n");
+
     while (wave.waveform == Empty) {
         out16(DAC0_Data, 0x000);
     }
@@ -159,7 +162,7 @@ void *GenerateWave() {
         switch (wave.waveform) {
             case Sine:
                 printf("Sine\n");
-                //GenerateSineWave();
+                GenerateSineWave();
                 break;
             case Rectangle:
                 printf("Rectangle\n");
@@ -174,8 +177,8 @@ void *GenerateWave() {
                 //GenerateSawtoothWave();
                 break;
             default:
-                printf("Empty");
-                //GenerateEmptyWave();
+                printf("Empty\n");
+                GenerateEmptyWave();
                 break;
         }
         delay(1);

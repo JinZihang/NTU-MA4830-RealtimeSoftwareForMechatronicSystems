@@ -18,7 +18,7 @@ struct Wave wave;
 
 void signal_handler( int signum )
 {
-    printf( "\nSignal raised. " );
+    printf( "\nSignal raised.\n" );
     exit(EXIT_SUCCESS);
 }
 
