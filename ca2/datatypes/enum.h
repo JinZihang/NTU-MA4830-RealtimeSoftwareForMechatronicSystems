@@ -7,6 +7,7 @@ enum Waveform
     Rectangle,
     Triangle,
     Sawtooth,
+    Empty
 };
 
 #endif
