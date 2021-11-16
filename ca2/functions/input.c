@@ -105,67 +105,86 @@ int readArrow()
     return int_3;
 }
 
-typedef struct
-{
-    int min;
-    int max;
-} freqLimit;
-
-freqLimit frequencyRange;
-frequencyRange.min = 0;
-frequencyRange.max = 300;
+//typedef struct
+//{
+//    int min;
+//    int max;
+//} freqLimit;
+//
+//freqLimit frequencyRange;
+//frequencyRange.min = 0;
+//frequencyRange.max = 300;
 
 void* ReadArrowkey(void* arg){
-    while (1)
-    {
+    int input;
+    int status = 1;
+    int frequencyMax = 300;
+    int frequencyMin = 0;
+
+    while (1) {
         pthread_mutex_lock(&mutex);
         input = readArrow();
-        switch (input)
-        {
+        switch (input) {
             case 65:
-            printf("\n");
-            if (wave.frequency + 20 < frequencyRange.max)
-            {
-                wave.frequency = wave.frequency + 20;
-                // if (UpdateTimer(.........) {        //signal handler
-                // printf( "\n[ERROR] Fail to set timer!\n" );
-                // TerminateProgram();}
-            }
-            else
-            {
-                printf( "[WARN]   Maximum limit reached, can't add more.\n" );
+                printf("\n");
+                if (wave.frequency + 20 < frequencyMax) {
+                    wave.frequency = wave.frequency + 20;
+                    // if (UpdateTimer(.........) {        //signal handler
+                    // printf( "\n[ERROR] Fail to set timer!\n" );
+                    // TerminateProgram();}
+                } else {
+                    printf("[WARN]   Maximum limit reached, can't add more.\n");
                 }
-            break;
-        case 66:
-            printf("\n");
-            if (frequencyRange.min < wave.frequency - 20)
-            {
-                wave.frequency = wave.frequency - 20;
-                // if (UpdateTimer(..........) {       //signal handler
-                // printf(KRED "\n[ERROR] Fail to set timer!\n" KNRM);
-                // TerminateProgram();}
-            }
-            else
-            {   
-                printf( "[WARN]   Minimum limit reached, can't reduce more.\n" );
-            }
-            break;
-        case 67:
-            printf("Right Arrow key!\n");
-            break;
-        case 68:
-            printf("Left Arrow key!\n");
-            break;
-        case 'q':
-            status = 0;
-            break;
-        default:
-            status = 0;
-            printf("end editing\n");
-            break;
+                break;
+            case 66:
+                printf("\n");
+                if (frequencyMin < wave.frequency - 20) {
+                    wave.frequency = wave.frequency - 20;
+                    // if (UpdateTimer(..........) {       //signal handler
+                    // printf(KRED "\n[ERROR] Fail to set timer!\n" KNRM);
+                    // TerminateProgram();}
+                } else {
+                    printf("[WARN]   Minimum limit reached, can't reduce more.\n");
+                }
+                break;
+            case 67:
+                printf("Right Arrow key!\n");
+                break;
+            case 68:
+                printf("Left Arrow key!\n");
+                break;
+            case 'q':
+                status = 0;
+                break;
+            default:
+                status = 0;
+                printf("end editing\n");
+                break;
 
-        printf("The current frequency is %d.\n", wave.frequency);
-        
+                printf("The current frequency is %d.\n", wave.frequency);
+
+        }
     }
-    
+}
+
+void* ReadPot(void* arg)
+{
+    while (1) {
+        pthread_mutex_lock(&mutex);
+        out16(ADC_Data,0);		// Initiate Read #0
+        delay(1);
+        while(in8(ADC_Stat2) >0x80);
+        adc_in[0]=in16(ADC_Data);
+
+        out16(ADC_Data,0);		// Initiate Read #1
+        delay(1);
+        while(in8(ADC_Stat2) >0x80);
+        adc_in[1]=in16(ADC_Data);
+
+        printf("Chan#0 : %04x Chan#1 : %04x\n",adc_in[0],adc_in[1]);
+        delay(100);
+
+        pthread_mutex_unlock(&mutex);
+        delay(1);
+    }
 }

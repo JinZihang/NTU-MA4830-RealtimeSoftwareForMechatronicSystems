@@ -27,6 +27,7 @@ int main(int argc, char **argv) {
     wave_count = WaveInitialization(fp, argc, argv);
 
     PCIeInitialization();
+    DIOInitialization();
 
     if (wave_count > 1) { // input is from file
         ran_by_file = true;
@@ -98,6 +99,7 @@ int main(int argc, char **argv) {
         pthread_create( NULL, NULL, &ReadSwitch, NULL );
         pthread_create( NULL, NULL, &GenerateWave, NULL );
         pthread_create( NULL, NULL, &ReadArrowkey, NULL );
+        pthread_create( NULL, NULL, &ReadPot, NULL );
 
         while (1) {
         }

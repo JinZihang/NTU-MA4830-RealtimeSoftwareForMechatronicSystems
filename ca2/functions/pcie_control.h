@@ -34,9 +34,10 @@ uintptr_t dio_switch;
 uintptr_t switch0_prev;
 unsigned int i, j, stat1, stat2;
 unsigned int data[100];
+unsigned int adc_in[2];
 
 void PCIeInitialization();
 
-void DIOIniialization();
+void DIOInitialization();
 
 #endif
