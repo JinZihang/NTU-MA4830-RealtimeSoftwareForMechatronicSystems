@@ -40,7 +40,7 @@ void *ReadSwitch(void *arg) {
                 break;
         }
         pthread_mutex_unlock(&mutex);
-        delay(1);   
+        delay(1);
 //        if (dio_switch != switch0_prev) {
 //            //DEBOUNCING
 //            delay(1);
@@ -84,8 +84,7 @@ void *ReadSwitch(void *arg) {
     }
 }
 
-int readArrow()
-{   
+int readArrow() {
     // Read the up and down arrow key to adjust frequency
     int int_1 = 0;
     int int_2 = 0;
@@ -95,8 +94,7 @@ int readArrow()
     system("/bin/stty raw");
     scanf("%d", &int_3);
     int_1 = getchar();
-    if (int_1 == 27)
-    {
+    if (int_1 == 27) {
         int_2 = getchar();
         int_3 = getchar();
         printf("\r          ");
@@ -116,7 +114,7 @@ int readArrow()
 //frequencyRange.min = 0;
 //frequencyRange.max = 300;
 
-void* ReadArrowkey(void* arg){
+void *ReadArrowKey(void *arg) {
     int input;
     int status = 1;
     int frequencyMax = 300;
@@ -168,26 +166,24 @@ void* ReadArrowkey(void* arg){
     }
 }
 
-void* ReadPot(void* arg)
-{
+void *ReadPot(void *arg) {
     double dummy;
     while (1) {
         pthread_mutex_lock(&mutex);
-        out16(ADC_Data,0);		// Initiate Read #0
+        out16(ADC_Data, 0);        // Initiate Read #0
         delay(1);
-        while(in8(ADC_Stat2) >0x80);
-        adc_in[0]=in16(ADC_Data);
+        while (in8(ADC_Stat2) > 0x80);
+        adc_in[0] = in16(ADC_Data);
 
-        out16(ADC_Data,0);		// Initiate Read #1
+        out16(ADC_Data, 0);        // Initiate Read #1
         delay(1);
-        while(in8(ADC_Stat2) >0x80);
-        adc_in[1]=in16(ADC_Data);
+        while (in8(ADC_Stat2) > 0x80);
+        adc_in[1] = in16(ADC_Data);
 
-        printf("Chan#0 : %04x Chan#1 : %04x\n",adc_in[0],adc_in[1]);
+        printf("Chan#0 : %04x Chan#1 : %04x\n", adc_in[0], adc_in[1]);
 
         dummy = (adc_in[0] / (float) 65525) * 2.5;
-        if (dummy > 2.5)
-        {
+        if (dummy > 2.5) {
             dummy = 2.5;
         }
         wave.amplitude = dummy;
