@@ -27,22 +27,26 @@
 // PCIe: 12 bit
 //******************************************************************************
 
+int samples = 100;
+
 void GenerateSineWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
 
     printf("Generating sine wave.\n");
 
-    delta = 1 / (100 * wave.frequency);
-    for (i = 0; i < 100; i++) {
+    for (i = 0; i < samples; i++) {
         //dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0xFFFF / 5);
-        dummy = ((sinf((float) (i * 2 * M_PI / 100))) + 1.0) * 0x0800;
+        dummy = ((sinf((float) (i * 2 * M_PI / (samples - 1)))) + 1.0) * 0x0800;
         data[i] = (unsigned) dummy;
         //printf("%f\n", dummy);
     }
 
-    while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.05)) {
-        for (j = 0; j < 100; j++) {
+    while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
+        delta = 1 / ((samples - 1) * wave.frequency);
+        prev_amp = wave.amplitude;
+
+        for (j = 0; j < samples; j++) {
             if (j == 24) {
                 SoundGenerator(wave.amplitude);
             }
@@ -50,8 +54,6 @@ void GenerateSineWave() {
             out16(DAC0_Data, data[j]);
             delay(delta * 1000);
         }
-        prev_amp = wave.amplitude;
-        delay(100);
     }
 
     printf("Sine wave output ended.\n");
