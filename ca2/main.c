@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <pthread.h>
+#include <signal.h>
 
 #include "main.h"
 #include "datatypes/struct.h"
@@ -15,6 +16,12 @@
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 struct Wave wave;
 
+void signal_handler( int signum )
+{
+    printf( "\nSignal raised. " );
+    exit(EXIT_SUCCESS);
+}
+
 int main(int argc, char **argv) {
     int i, j, wave_count;
     FILE *fp;
@@ -23,6 +30,9 @@ int main(int argc, char **argv) {
 
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
+
+    //attach signal_handler to catch SIGINT
+    signal(SIGINT, signal_handler);
 
     wave_count = WaveInitialization(fp, argc, argv);
 
@@ -97,8 +107,8 @@ int main(int argc, char **argv) {
         // put the main body here
         
         pthread_create( NULL, NULL, &ReadSwitch, NULL );
-        pthread_create( NULL, NULL, &GenerateWave, NULL );
-        pthread_create( NULL, NULL, &ReadArrowkey, NULL );
+        //pthread_create( NULL, NULL, &GenerateWave, NULL );
+        //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
         pthread_create( NULL, NULL, &ReadPot, NULL );
 
         while (1) {

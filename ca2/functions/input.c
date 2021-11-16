@@ -183,7 +183,8 @@ void* ReadPot(void* arg)
         adc_in[1]=in16(ADC_Data);
 
         printf("Chan#0 : %04x Chan#1 : %04x\n",adc_in[0],adc_in[1]);
-        delay(100);
+
+        wave.amplitude = (adc_in[0] * 2.5)/65525;
 
         pthread_mutex_unlock(&mutex);
         delay(1);

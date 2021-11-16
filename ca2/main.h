@@ -7,5 +7,7 @@
 extern struct Wave wave;
 extern pthread_mutex_t mutex;
 
+void signal_handler( int signum );
+
 #endif //METRONOME_MAIN_H
 
