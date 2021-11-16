@@ -7,6 +7,7 @@
 #include <sys/neutrino.h>
 #include <sys/mman.h>
 
+#include "../datatypes/struct.h"
 #include "print.h"
 #include "input.h"
 #include "pcie_control.h"
@@ -16,8 +17,8 @@
 void *ReadSwitch(void *arg) {
     while (1) {
         pthread_mutex_lock(&mutex);
-        dio_switch = in8(DIO_Data);    // read switch
-        out8(DIO_Data, dio_switch); //update LED light
+        dio_switch = in8(DIO_Data);     // read switch
+        out8(DIO_Data, dio_switch);     // update LED light
         switch (dio_switch) {
             case 1:
                 wave.waveform = Sine;
@@ -96,8 +97,6 @@ void *ReadPot(void *arg) {
         delay(1);
         while (in8(ADC_Stat2) > 0x80);
         adc_in[1] = in16(ADC_Data);
-
-        //printf("Chan#0 : %04x Chan#1 : %04x\n", adc_in[0], adc_in[1]);
 
         if (abs(prev_adc0 - adc_in[0]) > 30) {
             // not noise
