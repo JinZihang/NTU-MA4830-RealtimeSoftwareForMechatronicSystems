@@ -3,10 +3,10 @@
 
 void *ReadSwitch(void *arg);
 
-void *ReadArrowKey(void *arg);
+void *ReadPot(void *arg);
 
 int readArrow();
 
-void *ReadPot(void *arg);
+void *ReadArrowKey(void *arg);
 
 #endif
