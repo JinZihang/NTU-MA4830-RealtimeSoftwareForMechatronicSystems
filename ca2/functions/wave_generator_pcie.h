@@ -18,9 +18,9 @@ void GenerateSineWave();
 
 void GenerateRectangleWave();
 
-void GenerateSawtoothWave();
-
 void GenerateTriangleWave();
+
+void GenerateSawtoothWave();
 
 void* GenerateWave();
 
