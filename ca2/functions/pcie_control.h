@@ -32,7 +32,8 @@ uintptr_t iobase[6];
 
 uintptr_t dio_switch;
 uintptr_t switch0_prev;
-unsigned int i;
+unsigned int i, j;
+unsigned int data[100];
 
 void PCIeInitialization();
 

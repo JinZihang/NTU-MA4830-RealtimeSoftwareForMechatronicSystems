@@ -14,9 +14,7 @@
 #define    ADC_Enable   iobase[3] + 6       // Badr3 + 6 - Brst_off Conv_EN:0x01
 #define    ADC_Gain     iobase[3] + 7       // Badr3 + 7 - unipolar 5V : 0x01
 
-void SoundGenerator(double amplitude);
-
-void GenerateSineWave(double amplitude, double frequency);
+void GenerateSineWave();
 
 void GenerateRectangleWave();
 
@@ -24,6 +22,6 @@ void GenerateTriangleWave();
 
 void GenerateSawtoothWave();
 
-void *GenerateWave();
+void* GenerateWave();
 
 #endif
