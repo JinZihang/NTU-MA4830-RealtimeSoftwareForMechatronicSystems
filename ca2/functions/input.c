@@ -170,6 +170,7 @@ void* ReadArrowkey(void* arg){
 
 void* ReadPot(void* arg)
 {
+    double dummy;
     while (1) {
         pthread_mutex_lock(&mutex);
         out16(ADC_Data,0);		// Initiate Read #0
@@ -184,7 +185,12 @@ void* ReadPot(void* arg)
 
         printf("Chan#0 : %04x Chan#1 : %04x\n",adc_in[0],adc_in[1]);
 
-        wave.amplitude = (adc_in[0] * 2.5)/65525;
+        dummy = (adc_in[0] / (float) 65525) * 2.5;
+        if (dummy > 2.5)
+        {
+            dummy = 2.5;
+        }
+        wave.amplitude = dummy;
 
         pthread_mutex_unlock(&mutex);
         delay(1);
