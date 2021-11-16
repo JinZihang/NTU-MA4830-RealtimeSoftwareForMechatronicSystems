@@ -8,22 +8,21 @@
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
+
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+
 #endif
 
-void* ReadSwitch(void* arg)
-{
-    while (1)
-    {
+void *ReadSwitch(void *arg) {
+    while (1) {
         pthread_mutex_lock(&mutex);
-        dio_switch= in8(DIO_Data);	// read switch
-        out8(DIO_Data,dio_switch); //update LED light
-        switch (dio_switch)
-        {
+        dio_switch = in8(DIO_Data);    // read switch
+        out8(DIO_Data, dio_switch); //update LED light
+        switch (dio_switch) {
             case 1:
                 wave.waveform = Sine;
                 break;

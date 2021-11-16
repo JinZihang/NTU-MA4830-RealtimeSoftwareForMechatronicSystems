@@ -16,11 +16,13 @@
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
+
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+
 #endif
 
 int badr[5];    // PCI 2.2 assigns 6 IO base addresses
@@ -30,7 +32,7 @@ uintptr_t iobase[6];
 
 uintptr_t dio_switch;
 uintptr_t switch0_prev;
-unsigned int i, j;
+unsigned int i, j, stat1, stat2;
 unsigned int data[100];
 
 void PCIeInitialization();

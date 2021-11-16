@@ -94,12 +94,12 @@ int main(int argc, char **argv) {
 
         printf("Running the program...\n\n");
         // put the main body here
+        
         pthread_create( NULL, NULL, &ReadSwitch, NULL );
         pthread_create( NULL, NULL, &GenerateWave, NULL );
         pthread_create( NULL, NULL, &ReadArrowkey, NULL );
 
-        while (1)
-        {
+        while (1) {
         }
     }
 

@@ -12,11 +12,13 @@
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
+
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+
 #endif
 
 //******************************************************************************
@@ -31,9 +33,9 @@ void GenerateSineWave() {
 
     printf("Generating sine wave.\n");
 
-    delta = 1/(100 * wave.frequency);
+    delta = 1 / (100 * wave.frequency);
     for (i = 0; i < 100; i++) {
-        dummy = (((sinf((float)((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0xFFFF/5);
+        dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0xFFFF / 5);
 //        dummy = ((sinf((float) (i * 2 * M_PI / 100))) + 1.0) * 0x0800;
         data[i] = (unsigned) dummy;
         printf("%f\n", dummy);
@@ -55,9 +57,9 @@ void GenerateRectangleWave() {
     double prev_amp;
     printf("Generating rectangle wave.\n");
 
-    delta = 1/(100 * wave.frequency);
+    delta = 1 / (100 * wave.frequency);
     for (i = 0; i < 100; i++) {
-        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0xFFFF/5);
+        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0xFFFF / 5);
         data[i] = (unsigned) dummy;
         printf("%f\n", dummy);
     }
@@ -126,17 +128,14 @@ void GenerateTriangleWave() {
     printf("Triangle wave output ended.\n");
 }
 
-void GenerateEmptyWave()
-{
-    while (wave.waveform == Empty)
-    {
+void GenerateEmptyWave() {
+    while (wave.waveform == Empty) {
         out16(DAC0_Data, 0x000);
     }
 }
 
-void* GenerateWave() {
-    while(1)
-    {
+void *GenerateWave() {
+    while (1) {
         switch (wave.waveform) {
             case Sine:
                 printf("Sine\n");

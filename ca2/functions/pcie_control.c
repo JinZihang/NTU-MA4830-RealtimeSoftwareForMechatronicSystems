@@ -5,11 +5,13 @@
 
 #define USING_LAB_PC 1
 #if USING_LAB_PC
+
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+
 #endif
 
 void PCIeInitialization() {
@@ -17,8 +19,7 @@ void PCIeInitialization() {
     printf("\fInitializing PCIe-DAS1602.\n");
 
     memset(&info, 0, sizeof(info));
-    if (pci_attach(0) < 0)
-    {
+    if (pci_attach(0) < 0) {
         perror("pci_attach");
         exit(EXIT_FAILURE);
     }
@@ -72,4 +73,12 @@ void PCIeInitialization() {
 
 void DIOInitialization()
 {
+    out8(CLK_Pace,0x00);		// set to SW pacing & verify
+    stat1 = in32(INTERRUPT);
+    stat2 = in8(CLK_Pace);
+    printf("Interrupt Regs : %08x ADC Regs %02x\n",	stat1,stat2);
+
+    out8(ADC_Enable,0x01);		// set bursting off, conversions on
+    out8(ADC_Gain,0x01);		// set range : 5V
+    out8(MUXCHAN,0x10);		// set mux for single channel scan : 1
 }
