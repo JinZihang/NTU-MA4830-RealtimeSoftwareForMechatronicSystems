@@ -35,7 +35,7 @@ void SoundGenerator(double amplitude) {
     system_control = in8(kbd + 1);
     out8(kbd + 1, system_control | 0x03);
 
-    // load the control word for 8254
+    // load control word of 8254
     out8(ctr + 3, 0xb7);
 
     // divide 8254 clock (1.1892 MHz) by 2702 to get 440Hz tone
