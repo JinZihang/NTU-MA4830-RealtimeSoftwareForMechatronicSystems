@@ -45,8 +45,8 @@ void GenerateSineWave() {
     }
 
     while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
-        delta = 1 / ((samples - 1) * wave.frequency);
         prev_amp = wave.amplitude;
+        delta = 1 / ((samples - 1) * wave.frequency);
 
         for (j = 0; j < samples; j++) {
             if (j == 24) {
@@ -63,18 +63,20 @@ void GenerateSineWave() {
 
 void GenerateRectangleWave() {
     double dummy, delta;
-    double prev_amp;
+    double prev_amp = wave.amplitude;
     printf("Generating rectangle wave.\n");
 
-    delta = 1 / (100 * wave.frequency);
-    for (i = 0; i < 100; i++) {
-        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0xFFFF / 5);
+    for (i = 0; i < samples; i++) {
+        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0x0fff / (float)5);
+//        dummy = ((i < 50) ? 0 : 0x0fff);
         data[i] = (unsigned) dummy;
         printf("%f\n", dummy);
     }
 
-    while (wave.waveform == Rectangle && wave.amplitude == prev_amp) {
-        for (j = 0; j < 100; j++) {
+    while ((wave.waveform == Rectangle) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
+        prev_amp = wave.amplitude;
+        delta = 1 / ((samples - 1) * wave.frequency);
+        for (j = 0; j < samples; j++) {
             if (j == 49) {
                 SoundGenerator(wave.amplitude);
             }
@@ -82,7 +84,6 @@ void GenerateRectangleWave() {
             out16(DAC0_Data, data[j]);
             delay(delta * 1000);
         }
-        prev_amp = wave.amplitude;
     }
 //
 //    while (wave.waveform == Rectangle) {
@@ -166,7 +167,7 @@ void *GenerateWave() {
                 break;
             case Rectangle:
                 printf("Rectangle\n");
-                //GenerateRectangleWave();
+                GenerateRectangleWave();
                 break;
             case Triangle:
                 printf("Triangle\n");
@@ -184,4 +185,9 @@ void *GenerateWave() {
         delay(1);
     }
     return 0;
+}
+
+void* ResetTimer()
+{
+
 }
