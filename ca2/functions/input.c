@@ -40,7 +40,7 @@ void* ReadSwitch(void* arg)
                 wave.waveform = Empty;
         }
         pthread_mutex_unlock(&mutex);
-        delay(1);
+        delay(1);   
 //        if (dio_switch != switch0_prev) {
 //            //DEBOUNCING
 //            delay(1);
@@ -82,4 +82,10 @@ void* ReadSwitch(void* arg)
 //            }
 //        }
     }
+}
+
+void* ReadArrowkey(void* arg){
+
+
+
 }
