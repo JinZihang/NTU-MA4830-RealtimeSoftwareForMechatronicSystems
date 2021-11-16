@@ -39,7 +39,7 @@ void *ReadSwitch(void *arg) {
                 wave.waveform = Empty;
         }
         pthread_mutex_unlock(&mutex);
-        delay(1);
+        delay(1);   
 //        if (dio_switch != switch0_prev) {
 //            //DEBOUNCING
 //            delay(1);
@@ -81,4 +81,91 @@ void *ReadSwitch(void *arg) {
 //            }
 //        }
     }
+}
+
+int readArrow()
+{   
+    // Read the up and down arrow key to adjust frequency
+    int int_1 = 0;
+    int int_2 = 0;
+    int int_3 = 0;
+
+    printf("Please using up and down key to adjust the frequency you want.\n");
+    system("/bin/stty raw");
+    scanf("%d", &int_3);
+    int_1 = getchar();
+    if (int_1 == 27)
+    {
+        int_2 = getchar();
+        int_3 = getchar();
+        printf("\r          ");
+    }
+    system("/bin/stty cooked");
+
+    return int_3;
+}
+
+typedef struct
+{
+    int min;
+    int max;
+} freqLimit;
+
+freqLimit frequencyRange;
+frequencyRange.min = 0;
+frequencyRange.max = 300;
+
+void* ReadArrowkey(void* arg){
+    while (1)
+    {
+        pthread_mutex_lock(&mutex);
+        input = readArrow();
+        switch (input)
+        {
+            case 65:
+            printf("\n");
+            if (wave.frequency + 20 < frequencyRange.max)
+            {
+                wave.frequency = wave.frequency + 20;
+                // if (UpdateTimer(.........) {        //signal handler
+                // printf( "\n[ERROR] Fail to set timer!\n" );
+                // TerminateProgram();}
+            }
+            else
+            {
+                printf( "[WARN]   Maximum limit reached, can't add more.\n" );
+                }
+            break;
+        case 66:
+            printf("\n");
+            if (frequencyRange.min < wave.frequency - 20)
+            {
+                wave.frequency = wave.frequency - 20;
+                // if (UpdateTimer(..........) {       //signal handler
+                // printf(KRED "\n[ERROR] Fail to set timer!\n" KNRM);
+                // TerminateProgram();}
+            }
+            else
+            {   
+                printf( "[WARN]   Minimum limit reached, can't reduce more.\n" );
+            }
+            break;
+        case 67:
+            printf("Right Arrow key!\n");
+            break;
+        case 68:
+            printf("Left Arrow key!\n");
+            break;
+        case 'q':
+            status = 0;
+            break;
+        default:
+            status = 0;
+            printf("end editing\n");
+            break;
+
+        printf("The current frequency is %d.\n", wave.frequency);
+        
+    }
+    
 }
