@@ -39,8 +39,8 @@ void SoundGenerator(double amplitude) {
     out8(ctr + 3, 0xb7);
 
     // divide 8254 clock (1.1892 MHz) by 2702 to get 440Hz tone
-    out8(ctr + 2, 0x02);
-    out8(ctr + 2, amplitude * amplitude);
+    out8(ctr + 2, 0);
+    out8(ctr + 2, amplitude * (245 - 5) / 2.5 + 5);
 
     delay(75);
 
