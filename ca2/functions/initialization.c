@@ -101,7 +101,12 @@ int WaveInitialization(FILE *fp, int argc, char **argv) {
             arg_amplitude = SliceString(argv[i], 4);
 
             if (IsFloat(arg_amplitude) & (atof(arg_amplitude) > 0)) {
-                wave.amplitude = atof(arg_amplitude);
+                if (atof(arg_amplitude) > 2.5) {
+                    wave.amplitude = 2.5;
+                    Warning_ValueExceededLimit();
+                } else {
+                    wave.amplitude = atof(arg_amplitude);
+                }
                 has_amplitude_arg = true;
             } else { // value is not positive & numeric
                 Error_InvalidValue();
@@ -121,7 +126,12 @@ int WaveInitialization(FILE *fp, int argc, char **argv) {
             arg_frequency = SliceString(argv[i], 4);
 
             if (IsFloat(arg_frequency) & (atof(arg_frequency) > 0)) {
-                wave.frequency = atof(arg_frequency);
+                if (atof(arg_frequency) > 300) {
+                    wave.frequency =  300;
+                    Warning_ValueExceededLimit();
+                } else {
+                    wave.frequency = atof(arg_frequency);
+                }
                 has_frequency_arg = true;
             } else { // value is not positive & numeric
                 Error_InvalidValue();
@@ -134,8 +144,8 @@ int WaveInitialization(FILE *fp, int argc, char **argv) {
     }
 
     if (!has_waveform_arg) wave.waveform = Sine;
-    if (!has_amplitude_arg) wave.amplitude = 10;
-    if (!has_frequency_arg) wave.frequency = 10;
+    if (!has_amplitude_arg) wave.amplitude = 1;
+    if (!has_frequency_arg) wave.frequency = 100;
 
     WaveInitializationComplete();
 

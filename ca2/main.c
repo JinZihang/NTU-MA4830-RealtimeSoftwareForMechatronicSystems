@@ -63,7 +63,10 @@ int main(int argc, char **argv) {
                 exit(1);
             }
 
-            if (file_data[i][1] > 0) {
+            if (file_data[i][1] > 2.5) {
+                wave.amplitude = 2.5;
+                Warning_ValueExceededLimit();
+            } else if (file_data[i][1] > 0) {
                 wave.amplitude = file_data[i][1];
             } else if (file_data[i][1] == 0) {
                 wave.amplitude = 10;
@@ -73,7 +76,10 @@ int main(int argc, char **argv) {
                 exit(1);
             }
 
-            if (file_data[i][2] > 0) {
+            if (file_data[i][2] > 300) {
+                wave.frequency = 300;
+                Warning_ValueExceededLimit();;
+            } else if (file_data[i][2] > 0) {
                 wave.frequency = file_data[i][2];
             } else if (file_data[i][2] == 0) {
                 wave.frequency = 10;
