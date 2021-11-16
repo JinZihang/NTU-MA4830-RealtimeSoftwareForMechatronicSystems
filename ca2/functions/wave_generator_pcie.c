@@ -70,24 +70,6 @@ void GenerateRectangleWave() {
     printf("Rectangle wave output ended.\n");
 }
 
-void GenerateSawtoothWave() {
-    unsigned int i, j;
-
-    printf("Generating sawtooth wave.\n");
-
-    while (wave.waveform == Sawtooth) {
-        for (j = 0x0000; j < 0x0fff; j++) {
-#if USING_LAB_PC
-            out16(DAC0_Data, (i & 0x0fff));
-#else
-            printf("Output to DAC0_Data: %x\n", (i & 0x0fff));
-#endif
-        }
-    }
-
-    printf("Sawtooth wave output ended.\n");
-}
-
 void GenerateTriangleWave() {
     unsigned int i, j;
     bool slope_dir = true;
@@ -106,6 +88,24 @@ void GenerateTriangleWave() {
     }
 
     printf("Triangle wave output ended.\n");
+}
+
+void GenerateSawtoothWave() {
+    unsigned int i, j;
+
+    printf("Generating sawtooth wave.\n");
+
+    while (wave.waveform == Sawtooth) {
+        for (j = 0x0000; j < 0x0fff; j++) {
+#if USING_LAB_PC
+            out16(DAC0_Data, (i & 0x0fff));
+#else
+            printf("Output to DAC0_Data: %x\n", (i & 0x0fff));
+#endif
+        }
+    }
+
+    printf("Sawtooth wave output ended.\n");
 }
 
 void GenerateEmptyWave()

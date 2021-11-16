@@ -18,9 +18,9 @@ void GenerateSineWave(double amplitude, double frequency);
 
 void GenerateRectangleWave();
 
-void GenerateSawtoothWave();
-
 void GenerateTriangleWave();
+
+void GenerateSawtoothWave();
 
 void* GenerateWave();
 
