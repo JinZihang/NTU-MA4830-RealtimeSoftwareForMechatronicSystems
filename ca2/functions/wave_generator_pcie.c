@@ -1,3 +1,5 @@
+#include "wave_generator_pcie.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <pthread.h>
@@ -6,7 +8,7 @@
 
 #include <math.h>
 #include "../datatypes/struct.h"
-#include "wave_generator_pcie.h"
+#include "helper.h"
 #include "pcie_control.h"
 #include "../main.h"
 
