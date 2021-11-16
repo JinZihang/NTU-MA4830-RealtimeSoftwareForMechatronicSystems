@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
         
         pthread_create( NULL, NULL, &ReadSwitch, NULL );
         //pthread_create( NULL, NULL, &GenerateWave, NULL );
-        //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
+        //pthread_create( NULL, NULL, &ReadArrowKey, NULL );
         pthread_create( NULL, NULL, &ReadPot, NULL );
 
         while (1) {
