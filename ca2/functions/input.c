@@ -168,6 +168,7 @@ void *ReadArrowKey(void *arg) {
 
 void *ReadPot(void *arg) {
     double dummy;
+    unsigned int prev_adc0;
     while (1) {
         pthread_mutex_lock(&mutex);
         out16(ADC_Data, 0);        // Initiate Read #0
@@ -180,14 +181,19 @@ void *ReadPot(void *arg) {
         while (in8(ADC_Stat2) > 0x80);
         adc_in[1] = in16(ADC_Data);
 
-        printf("Chan#0 : %04x Chan#1 : %04x\n", adc_in[0], adc_in[1]);
+        //printf("Chan#0 : %04x Chan#1 : %04x\n", adc_in[0], adc_in[1]);
 
-        dummy = (adc_in[0] / (float) 65525) * 2.5;
-        if (dummy > 2.5) {
-            dummy = 2.5;
+        if (abs(prev_adc0 - adc_in[0]) > 30)
+        {
+            // not noise
+            dummy = (adc_in[0] / (float) 65525) * 2.5;
+            if (dummy > 2.5) {
+                dummy = 2.5;
+            }
+            wave.amplitude = dummy;
         }
-        wave.amplitude = dummy;
 
+        prev_adc0 = adc_in[0];
         pthread_mutex_unlock(&mutex);
         delay(1);
     }

@@ -45,7 +45,7 @@ void GenerateSineWave() {
         printf("%f\n", dummy);
     }
 
-    while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
+    while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.001)) {
         for (j = 0; j < 100; j++) {
             if (j == 24) {
                 SoundGenerator(wave.amplitude);
