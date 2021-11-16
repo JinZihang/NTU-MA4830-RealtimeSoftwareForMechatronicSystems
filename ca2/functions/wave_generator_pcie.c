@@ -159,23 +159,23 @@ void *GenerateWave() {
         switch (wave.waveform) {
             case Sine:
                 printf("Sine\n");
-                GenerateSineWave();
+                //GenerateSineWave();
                 break;
             case Rectangle:
                 printf("Rectangle\n");
-                GenerateRectangleWave();
+                //GenerateRectangleWave();
                 break;
             case Triangle:
                 printf("Triangle\n");
-                GenerateTriangleWave();
+                //GenerateTriangleWave();
                 break;
             case Sawtooth:
                 printf("Sawtooth\n");
-                GenerateSawtoothWave();
+                //GenerateSawtoothWave();
                 break;
             default:
                 printf("Empty");
-                GenerateEmptyWave();
+                //GenerateEmptyWave();
                 break;
         }
         delay(1);
