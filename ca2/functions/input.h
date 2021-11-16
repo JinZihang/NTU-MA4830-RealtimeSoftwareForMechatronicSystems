@@ -3,10 +3,10 @@
 
 void *ReadSwitch(void *arg);
 
-void* ReadArrowkey(void* arg);
+void *ReadArrowKey(void *arg);
 
 int readArrow();
 
-void* ReadPot(void* arg);
+void *ReadPot(void *arg);
 
 #endif //METRONOME_INPUT_H
