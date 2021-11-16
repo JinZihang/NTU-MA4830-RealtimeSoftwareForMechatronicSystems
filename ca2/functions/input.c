@@ -37,6 +37,7 @@ void *ReadSwitch(void *arg) {
                 break;
             default:
                 wave.waveform = Empty;
+                break;
         }
         pthread_mutex_unlock(&mutex);
         delay(1);   

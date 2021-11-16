@@ -27,6 +27,10 @@
 // PCIe: 12 bit
 //******************************************************************************
 
+void SoundGenerator(double amplitude) {
+
+}
+
 void GenerateSineWave() {
     double dummy, delta;
     double prev_amp;
@@ -43,6 +47,10 @@ void GenerateSineWave() {
 
     while (wave.waveform == Sine && wave.amplitude == prev_amp) {
         for (j = 0; j < 100; j++) {
+            if (j == 24) {
+                SoundGenerator(wave.amplitude);
+            }
+
             out16(DAC0_Data, data[j]);
             delay(delta * 1000);
         }
@@ -66,6 +74,10 @@ void GenerateRectangleWave() {
 
     while (wave.waveform == Rectangle && wave.amplitude == prev_amp) {
         for (j = 0; j < 100; j++) {
+            if (j == 49) {
+                SoundGenerator(wave.amplitude);
+            }
+
             out16(DAC0_Data, data[j]);
             delay(delta * 1000);
         }
@@ -80,6 +92,26 @@ void GenerateRectangleWave() {
 //    }
 
     printf("Rectangle wave output ended.\n");
+}
+
+void GenerateTriangleWave() {
+    bool slope_dir = true;
+
+    printf("Generating triangle wave.\n");
+
+    while (wave.waveform == Triangle) {
+        for (j = 0x0000; j < 0x0fff; j++) {
+            if (j == 0x0ffe) {
+                SoundGenerator(wave.amplitude);
+            }
+
+            out16(DAC0_Data, slope_dir ? (j & 0x0fff) : 0x0fff - (j & 0x0fff));
+            printf("Output to DAC0_Data: %x\n", slope_dir ? (j & 0x0fff) : 0x0fff - (j & 0x0fff));
+        }
+        slope_dir = !slope_dir;
+    }
+
+    printf("Triangle wave output ended.\n");
 }
 
 void GenerateSawtoothWave() {
@@ -104,28 +136,16 @@ void GenerateSawtoothWave() {
 
     while (wave.waveform == Sawtooth) {
         for (j = 0x0000; j < 0x0fff; j++) {
+            if (j == 0x0ffe) {
+                SoundGenerator(wave.amplitude);
+            }
+
             out16(DAC0_Data, (j & 0x0fff));
             printf("Output to DAC0_Data: %x\n", (j & 0x0fff));
         }
     }
 
     printf("Sawtooth wave output ended.\n");
-}
-
-void GenerateTriangleWave() {
-    bool slope_dir = true;
-
-    printf("Generating triangle wave.\n");
-
-    while (wave.waveform == Triangle) {
-        for (j = 0x0000; j < 0x0fff; j++) {
-            out16(DAC0_Data, slope_dir ? (j & 0x0fff) : 0x0fff - (j & 0x0fff));
-            printf("Output to DAC0_Data: %x\n", slope_dir ? (j & 0x0fff) : 0x0fff - (j & 0x0fff));
-        }
-        slope_dir = !slope_dir;
-    }
-
-    printf("Triangle wave output ended.\n");
 }
 
 void GenerateEmptyWave() {
