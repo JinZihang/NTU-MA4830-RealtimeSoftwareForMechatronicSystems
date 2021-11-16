@@ -17,9 +17,8 @@
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 struct Wave wave;
 
-void signal_handler( int signum )
-{
-    printf( "\nSignal raised.\n" );
+void signal_handler(int signum) {
+    printf("\nSignal raised.\n");
     exit(EXIT_SUCCESS);
 }
 
@@ -106,11 +105,11 @@ int main(int argc, char **argv) {
 
         printf("Running the program...\n\n");
         // put the main body here
-        
-        pthread_create( NULL, NULL, &ReadSwitch, NULL );
-        pthread_create( NULL, NULL, &GenerateWave, NULL );
+
+        pthread_create(NULL, NULL, &ReadSwitch, NULL);
+        pthread_create(NULL, NULL, &GenerateWave, NULL);
         //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
-        pthread_create( NULL, NULL, &ReadPot, NULL );
+        pthread_create(NULL, NULL, &ReadPot, NULL);
 
         while (1) {
         }
