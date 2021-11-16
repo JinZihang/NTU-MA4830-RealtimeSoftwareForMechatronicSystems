@@ -168,7 +168,7 @@ void *ReadArrowKey(void *arg) {
 
 void *ReadPot(void *arg) {
     double dummy;
-    unsigned int prev_adc0;
+    unsigned int prev_adc0, prev_adc1;
     while (1) {
         pthread_mutex_lock(&mutex);
         out16(ADC_Data, 0);        // Initiate Read #0
@@ -193,7 +193,18 @@ void *ReadPot(void *arg) {
             wave.amplitude = dummy;
         }
 
+        if (abs(prev_adc1 - adc_in[1]) > 30)
+        {
+            // not noise
+            dummy = (adc_in[1] / (float) 65525) * 300;
+            if (dummy > 300) {
+                dummy = 300;
+            }
+            wave.frequency = dummy;
+        }
+
         prev_adc0 = adc_in[0];
+        prev_adc1 = adc_in[1];
         pthread_mutex_unlock(&mutex);
         delay(1);
     }
