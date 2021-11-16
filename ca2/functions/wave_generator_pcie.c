@@ -39,7 +39,7 @@ void GenerateSineWave(double amplitude, double frequency) {
         printf("%f\n", dummy);
     }
 
-    for (i = 0; i < 1; i++) {
+    while (wave.waveform == Sine) {
         for (j = 0; j < 100; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, data[j]);
@@ -57,7 +57,7 @@ void GenerateRectangleWave() {
 
     printf("Generating rectangle wave.\n");
 
-    for (i = 0; i < 1; i++) {
+    while (wave.waveform == Rectangle) {
         for (j = 0x0000; j < 0x0fff; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, ((j > 0x0800) ? 0 : 0x0fff));
@@ -75,7 +75,7 @@ void GenerateSawtoothWave() {
 
     printf("Generating sawtooth wave.\n");
 
-    for (i = 0; i < 1; i++) {
+    while (wave.waveform == Sawtooth) {
         for (j = 0x0000; j < 0x0fff; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, (i & 0x0fff));
@@ -94,7 +94,7 @@ void GenerateTriangleWave() {
 
     printf("Generating triangle wave.\n");
 
-    for (i = 0; i < 1; i++) {
+    while (wave.waveform == Triangle) {
         for (j = 0x0000; j < 0x0fff; j++) {
 #if USING_LAB_PC
             out16(DAC0_Data, slope_dir ? (i & 0x0fff) : 0x0fff - (i & 0x0fff));
@@ -110,13 +110,15 @@ void GenerateTriangleWave() {
 
 void GenerateEmptyWave()
 {
-    out16(DAC0_Data, 0x000);
+    while (wave.waveform == Empty)
+    {
+        out16(DAC0_Data, 0x000);
+    }
 }
 
 void* GenerateWave() {
     while(1)
     {
-        pthread_mutex_lock(&mutex);
         switch (wave.waveform) {
             case Sine:
                 printf("Sine\n");
@@ -139,7 +141,6 @@ void* GenerateWave() {
                 GenerateEmptyWave();
                 break;
         }
-        pthread_mutex_unlock(&mutex);
         delay(1);
     }
     return 0;

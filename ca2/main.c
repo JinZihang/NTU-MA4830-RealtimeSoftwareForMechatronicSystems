@@ -13,6 +13,7 @@
 #include "functions/input.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+struct Wave wave;
 
 int main(int argc, char **argv) {
     int i, j, wave_count;

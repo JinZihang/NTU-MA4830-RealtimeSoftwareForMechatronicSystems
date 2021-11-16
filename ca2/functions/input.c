@@ -37,7 +37,7 @@ void* ReadSwitch(void* arg)
                 wave.waveform = Sawtooth;
                 break;
             default:
-                wave.waveform = NULL;
+                wave.waveform = Empty;
         }
         pthread_mutex_unlock(&mutex);
         delay(1);

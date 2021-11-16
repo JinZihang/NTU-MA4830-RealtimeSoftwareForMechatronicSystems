@@ -4,7 +4,7 @@
 #include <pthread.h>
 #include "datatypes/struct.h"
 
-struct Wave wave;
+extern struct Wave wave;
 extern pthread_mutex_t mutex;
 
 #endif //METRONOME_MAIN_H
