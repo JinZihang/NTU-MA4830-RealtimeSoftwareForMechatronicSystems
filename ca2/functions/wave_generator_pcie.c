@@ -27,10 +27,6 @@
 // PCIe: 12 bit
 //******************************************************************************
 
-void SoundGenerator(double amplitude) {
-
-}
-
 void GenerateSineWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
