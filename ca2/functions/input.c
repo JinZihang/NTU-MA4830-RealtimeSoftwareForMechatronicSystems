@@ -155,7 +155,7 @@ void *ReadArrowKey(void *arg) {
             case 65:
                 printf("\n");
                 if (wave.frequency < frequencyRange.max) {
-                    wave.frequency = wave.frequency + 20;
+                    wave.frequency = wave.frequency + 1;
                 } else {
                     Warning_ValueExceededLimit();
                 }
@@ -163,7 +163,7 @@ void *ReadArrowKey(void *arg) {
             case 66:
                 printf("\n");
                 if (frequencyRange.min < wave.frequency) {
-                    wave.frequency = wave.frequency - 20;
+                    wave.frequency = wave.frequency - 1;
                 } else {
                     Warning_ValueExceededLimit();
                 }
