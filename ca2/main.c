@@ -23,6 +23,7 @@ double file_data[10][3]; // read maximum 10 rows
 struct Wave wave;
 struct Wave previousWave;
 
+timer_t timerid;
 bool timer_initialized = false, count_down_finished = false;
 
 void termination_signal_handler(int signum) {
@@ -31,15 +32,17 @@ void termination_signal_handler(int signum) {
 }
 
 void timer_signal_handler(int signum) {
-    if (timer_initialized) count_down_finished = true;
-    timer_initialized = true;
+    if (timer_initialized) {
+        count_down_finished = true;
+    } else {
+        timer_initialized = true;
+    }
 }
 
 int main(int argc, char **argv) {
     int wave_index, wave_count;
     bool ran_by_file = false;
 
-    timer_t timerid;
     struct itimerspec timer; // Timer structure
     int rtn;
 
@@ -63,12 +66,10 @@ int main(int argc, char **argv) {
             WaveInitializationByFile(wave_index);
         }
 
-        count_down_finished = false;
-
         printf("Running the program...\n\n");
 
         if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
-            printf("Error: failed to create timer\n");
+            printf("Error: failed to create a timer\n");
             exit(1);
         }
 
@@ -92,9 +93,12 @@ int main(int argc, char **argv) {
         while (1) {
             if (count_down_finished) break;
         }
+
+        count_down_finished = false;
     }
 
     printf("Program ended.\n");
     if (ran_by_file) fclose(fp);
+    timer_delete(timerid);
     return 0;
 }
