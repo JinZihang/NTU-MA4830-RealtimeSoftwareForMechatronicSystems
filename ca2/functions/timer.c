@@ -1,7 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include <time.h>
+#include <unistd.h>
 
+#include "../datatypes/struct.h"
 #include "print.h"
 #include "../main.h"
 
@@ -17,9 +20,14 @@ void TimerInitialization() {
 }
 
 void *UpdateTimer() {
-    if (previousWave.waveform != wave.waveform
-        && previousWave.amplitude != wave.amplitude
-        && previousWave.frequency != wave.frequency) {
-        count_down = 0;
+    struct Wave previousWave = wave;
+    while(1) {
+        if ((previousWave.waveform != wave.waveform)
+            || (fabs(previousWave.amplitude - wave.amplitude) > 0.01)
+            || (fabs(previousWave.frequency - wave.frequency) > 0.01)) {
+            count_down = 10;
+        }
+        previousWave = wave;
+        delay(10);
     }
 }

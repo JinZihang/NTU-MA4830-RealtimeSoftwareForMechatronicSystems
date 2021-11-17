@@ -21,7 +21,6 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 FILE *fp;
 double file_data[10][3]; // read maximum 10 rows
 struct Wave wave;
-struct Wave previousWave;
 
 timer_t timerid;
 struct itimerspec timer;
