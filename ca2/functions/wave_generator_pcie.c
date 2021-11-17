@@ -3,20 +3,18 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <pthread.h>
-
 #define _USE_MATH_DEFINES
-
 #include <math.h>
-#include "../datatypes/struct.h"
-#include "sound.h"
-#include "pcie_control.h"
-#include "../main.h"
-
 #include <unistd.h>
 #include <hw/pci.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+
+#include "../datatypes/struct.h"
+#include "sound.h"
+#include "pcie_control.h"
+#include "../main.h"
 
 //******************************************************************************
 // D/A Port Functions

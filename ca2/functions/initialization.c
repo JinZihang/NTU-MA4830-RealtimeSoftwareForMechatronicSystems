@@ -6,7 +6,6 @@
 #include "../datatypes/struct.h"
 #include "print.h"
 #include "helper.h"
-
 #include "../main.h"
 
 int WaveInitialization(int argc, char **argv) {

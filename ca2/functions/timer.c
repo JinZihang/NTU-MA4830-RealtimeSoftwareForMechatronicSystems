@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include <time.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "../datatypes/struct.h"
 #include "print.h"

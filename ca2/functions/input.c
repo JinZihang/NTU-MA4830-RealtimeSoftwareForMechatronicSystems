@@ -11,7 +11,6 @@
 #include "print.h"
 #include "input.h"
 #include "pcie_control.h"
-
 #include "../main.h"
 
 void *ReadSwitch(void *arg) {
