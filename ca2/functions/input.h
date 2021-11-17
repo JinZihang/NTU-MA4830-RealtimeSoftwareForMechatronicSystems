@@ -5,7 +5,7 @@ void *ReadSwitch(void *arg);
 
 void *ReadPot(void *arg);
 
-int readArrow();
+int ReadArrow();
 
 void *ReadArrowKey(void *arg);
 

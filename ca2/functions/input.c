@@ -124,7 +124,7 @@ void *ReadPot(void *arg) {
     }
 }
 
-int readArrow() {
+int ReadArrow() {
     int int_1 = 0;
     int int_2 = 0;
     int int_3 = 0;
@@ -149,7 +149,7 @@ void *ReadArrowKey(void *arg) {
     frequencyRange.max = 300;
 
     while (status) {
-        input = readArrow();
+        input = ReadArrow();
         switch (input) {
             case 65:
                 printf("\n");
