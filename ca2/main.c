@@ -110,6 +110,7 @@ int main(int argc, char **argv) {
         pthread_create(NULL, NULL, &GenerateWave, NULL);
         //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
         pthread_create(NULL, NULL, &ReadPot, NULL);
+        pthread_create(NULL, NULL, &Timer, NULL);
 
         while (1) {
         }
