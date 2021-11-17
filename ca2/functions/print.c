@@ -28,7 +28,7 @@ void DisplayTitle(char *filename) {
 void ArgumentInstructions() {
     printf("help\n");
     printf("\t\t--h\t\tshow program argument instructions\n");
-    printf("\t\t--fp\trun the program based on the data from a specific file\n");
+    printf("\t\t--fp\t\trun the program based on the data from a specific file\n");
     printf("\t\t--w\t\tselect a waveform (sine/rectangle/triangle/sawtooth) (default is sine)\n");
     printf("\t\t--a\t\treplace the default wave amplitude with your own value (default is 1)\n");
     printf("\t\t--f\t\treplace the default wave frequency with your own value (default is 100)\n");
@@ -50,7 +50,7 @@ void ArgumentInstructions() {
     printf("\t\t\t\t\t../data.dat\n");
     printf("\t\t\t\t\t--------------------\n");
     printf("\t\t\t\t\t0\t\t0\t\t0\n");
-    printf("\t\t\t\t\t3\t\t3\t0\n");
+    printf("\t\t\t\t\t3\t\t3\t\t0\n");
     printf("\t\t\t\t\t1\t\t1.25\t\t300\n");
     printf("\t\t\t\t\t1\t\t0\t\t60\n");
     printf("\t\t\t\t\t--------------------\n");

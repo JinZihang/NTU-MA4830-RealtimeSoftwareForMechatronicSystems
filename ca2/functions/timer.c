@@ -5,6 +5,7 @@
 int *UpdateTimer() {
     int *dummy;
     struct itimerspec timerInfo;
+    timer_t timerid;
 
     if (previousWave.waveform != wave.waveform
         && previousWave.amplitude != wave.amplitude
