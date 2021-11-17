@@ -129,15 +129,12 @@ int main(int argc, char **argv) {
         if( rtn == -1 ) {
         printf( "\nError setting timer!\n\n" );
         exit(EXIT_SUCCESS);}
-        
-
-
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
         pthread_create(NULL, NULL, &GenerateWave, NULL);
         //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
         pthread_create(NULL, NULL, &ReadPot, NULL);
-        pthread_create(NULL, NULL, &Timer, NULL);
+        pthread_create(NULL, NULL, &UpdateTimer, NULL);
 
         while (1) {
         }
