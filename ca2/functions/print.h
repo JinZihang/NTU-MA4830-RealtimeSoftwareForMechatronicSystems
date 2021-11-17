@@ -19,4 +19,6 @@ void Error_WrongFileData();
 
 void WaveInitializationComplete();
 
+void Error_CannotCreateTimer();
+
 #endif

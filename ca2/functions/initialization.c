@@ -153,6 +153,8 @@ int WaveInitialization(int argc, char **argv) {
 }
 
 void WaveInitializationByFile(int i) {
+    printf("Initializing wave for file row %d...\n", i);
+
     if (file_data[i][0] == 0 | file_data[i][0] == 1) {
         wave.waveform = Sine;
     } else if (file_data[i][0] == 2) {

@@ -6,10 +6,11 @@
 
 #include "datatypes/struct.h"
 
+extern pthread_mutex_t mutex;
 extern FILE *fp;
 extern double file_data[10][3]; // read maximum 10 rows
 extern struct Wave wave;
-extern pthread_mutex_t mutex;
+extern struct Wave previousWave;
 
 void signal_handler(int signum);
 

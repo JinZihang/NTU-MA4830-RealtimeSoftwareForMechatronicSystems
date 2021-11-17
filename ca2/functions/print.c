@@ -105,3 +105,7 @@ void WaveInitializationComplete() {
     printf("\tFrequency:\t%.2lf\n", wave.frequency);
     printf("____________________________\n");
 }
+
+void Error_CannotCreateTimer() {
+    fprintf(stderr, "Failed to create a timer!\n");
+}

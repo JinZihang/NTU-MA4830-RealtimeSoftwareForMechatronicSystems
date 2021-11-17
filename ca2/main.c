@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <pthread.h>
 #include <signal.h>
+#include <time.h>
+#include <unistd.h>
 
 #include "datatypes/struct.h"
 #include "functions/print.h"
@@ -13,10 +15,13 @@
 #include "functions/pcie_control.h"
 #include "functions/wave_generator_pcie.h"
 #include "functions/input.h"
+#include "functions/timer.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+FILE *fp;
+double file_data[10][3]; // read maximum 10 rows
 struct Wave wave;
-struct Wave PreviousWave;
+struct Wave previousWave;
 
 void signal_handler(int signum) {
     printf("\nSignal raised.\n");
@@ -24,15 +29,13 @@ void signal_handler(int signum) {
 }
 
 int main(int argc, char **argv) {
-    int wave_index, wave_count;
+    int wave_index, wave_count, rtn;
     bool ran_by_file = false;
 
-    char input[80];
     timer_t timerid;
-    struct timespec now;     // Time structure
+//    struct timespec now;     // Time structure
     struct itimerspec timer; // Timer structure
-    long timesec, timeint;
-    int rtn;
+//    long timesec, timeint;
 
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
@@ -45,14 +48,13 @@ int main(int argc, char **argv) {
     PCIeInitialization();
     DIOInitialization();
 
-    if (wave_count > 1) { // input is from file
+    if (wave_count > 1) {
         ran_by_file = true;
         wave_count--;
     }
 
     for (wave_index = 0; wave_index < wave_count; wave_index++) {
         if (ran_by_file) {
-            printf("Initializing wave for file row %d...\n", wave_index);
             WaveInitializationByFile(wave_index);
         }
 
@@ -80,10 +82,10 @@ int main(int argc, char **argv) {
 //        PreviousWave = wave; // save wave config
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
-        pthread_create(NULL, NULL, &GenerateWave, NULL);
-        //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
         pthread_create(NULL, NULL, &ReadPot, NULL);
 //        pthread_create(NULL, NULL, &UpdateTimer, NULL);
+//        pthread_create(NULL, NULL, &ReadArrowKey, NULL);
+        pthread_create(NULL, NULL, &GenerateWave, NULL);
 
         while(1) {}
     }
