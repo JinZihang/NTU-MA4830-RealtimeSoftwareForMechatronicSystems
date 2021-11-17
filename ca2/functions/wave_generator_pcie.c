@@ -110,16 +110,16 @@ void GenerateTriangleWave() {
 
 void GenerateSawtoothWave() {
     double dummy, delta;
-    double prev_amp;
+    double prev_amp = wave.amplitude;
     printf("Generating sawtooth wave.\n");
 
     for (i = 0; i < samples; i++)
     {
-        dummy = ((wave.amplitude * i)/(float) (samples- 1)) * (0x0fff / (float) 5);
+        dummy = ((2 * wave.amplitude * i)/(float) (samples- 1)) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
     }
 
-    while ((wave.waveform == Triangle) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
+    while ((wave.waveform == Sawtooth) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
