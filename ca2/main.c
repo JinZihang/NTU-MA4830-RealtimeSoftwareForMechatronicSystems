@@ -28,16 +28,21 @@ int main(int argc, char **argv) {
     bool ran_by_file = false;
     double file_data[10][3]; // read maximum 10 rows
 
+    char input[80];
+    timer_t timerid;
+    struct timespec now;     // Time structure
+    struct itimerspec timer; // Timer structure
+    long timesec, timeint;
+    int rtn;
+
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
-
-    //attach signal_handler to catch SIGINT
-    signal(SIGINT, signal_handler);
 
     wave_count = WaveInitialization(fp, argc, argv);
 
     PCIeInitialization();
     DIOInitialization();
+
 
     if (wave_count > 1) { // input is from file
         ran_by_file = true;
@@ -105,6 +110,16 @@ int main(int argc, char **argv) {
 
         printf("Running the program...\n\n");
         // put the main body here
+        
+        //attach signal_handler to catch SIGINT
+        signal( SIGALRM, alarm_handler );  
+        if( timer_create( CLOCK_REALTIME, NULL, &timerid ) == -1 )
+        {
+        printf( "Error: failed to create timer\n" );
+        exit(EXIT_SUCCESS);
+        }
+
+
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
         pthread_create(NULL, NULL, &GenerateWave, NULL);
