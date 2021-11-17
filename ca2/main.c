@@ -16,6 +16,7 @@
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 struct Wave wave;
+struct Wave PreviousWave;
 
 void signal_handler(int signum) {
     printf("\nSignal raised.\n");
@@ -129,6 +130,8 @@ int main(int argc, char **argv) {
         if( rtn == -1 ) {
         printf( "\nError setting timer!\n\n" );
         exit(EXIT_SUCCESS);}
+
+        PreviousWave = wave; // save wave config
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
         pthread_create(NULL, NULL, &GenerateWave, NULL);

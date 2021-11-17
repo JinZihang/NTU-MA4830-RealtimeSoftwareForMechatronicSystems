@@ -180,8 +180,11 @@ void *ReadArrowKey(void *arg) {
 
 int *UpdateTimer() {
     //previous wave and current wave comparison 
-
     
+    wave.waveform
+    wave.amplitude
+    wave.frequency
+
     struct itimerspec timerInfo;
     timerInfo.it_value.tv_sec = 0;
     timerInfo.it_value.tv_nsec = 0;
