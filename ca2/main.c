@@ -18,8 +18,8 @@
 #include "functions/timer.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-extern FILE *fp;
-extern double file_data[10][3]; // read maximum 10 rows
+FILE *fp;
+double file_data[10][3]; // read maximum 10 rows
 struct Wave wave;
 struct Wave previousWave;
 
