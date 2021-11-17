@@ -43,9 +43,9 @@ void PCIeInitialization() {
         printf("Badr[%d] : %x\n", i, badr[i]);
     }
 
-    printf("\nReconfirm Iobase:\n");// map I/O base address to user space
+    printf("\nReconfirm Iobase:\n");    // map I/O base address to user space
 
-    for (i = 0; i < 5; i++) {    // expect CpuBaseAddress to be the same as iobase for PC
+    for (i = 0; i < 5; i++) {           // expect CpuBaseAddress to be the same as iobase for PC
         iobase[i] = mmap_device_io(0x0f, badr[i]);
         printf("Index %d : Address : %x ", i, badr[i]);
         printf("IOBASE  : %x \n", iobase[i]);
@@ -61,12 +61,12 @@ void PCIeInitialization() {
 }
 
 void DIOInitialization() {
-    out8(CLK_Pace, 0x00);        // set to SW pacing & verify
+    out8(CLK_Pace, 0x00);           // set to SW pacing & verify
     stat1 = in32(INTERRUPT);
     stat2 = in8(CLK_Pace);
     printf("Interrupt Regs : %08x ADC Regs %02x\n", stat1, stat2);
 
-    out8(ADC_Enable, 0x01);        // set bursting off, conversions on
-    out8(ADC_Gain, 0x01);        // set range : 5V
-    out8(MUXCHAN, 0x10);        // set mux for single channel scan : 1
+    out8(ADC_Enable, 0x01);         // set bursting off, conversions on
+    out8(ADC_Gain, 0x01);           // set range : 5V
+    out8(MUXCHAN, 0x10);            // set mux for single channel scan : 1
 }

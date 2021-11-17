@@ -16,6 +16,7 @@
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 struct Wave wave;
+struct Wave PreviousWave;
 
 void signal_handler(int signum) {
     printf("\nSignal raised.\n");
@@ -23,18 +24,20 @@ void signal_handler(int signum) {
 }
 
 int main(int argc, char **argv) {
-    int i, j, wave_count;
-    FILE *fp;
+    int wave_index, wave_count;
     bool ran_by_file = false;
-    double file_data[10][3]; // read maximum 10 rows
+
+    char input[80];
+    timer_t timerid;
+    struct timespec now;     // Time structure
+    struct itimerspec timer; // Timer structure
+    long timesec, timeint;
+    int rtn;
 
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
 
-    //attach signal_handler to catch SIGINT
-    signal(SIGINT, signal_handler);
-
-    wave_count = WaveInitialization(fp, argc, argv);
+    wave_count = WaveInitialization(argc, argv);
 
     PCIeInitialization();
     DIOInitialization();
@@ -42,77 +45,44 @@ int main(int argc, char **argv) {
     if (wave_count > 1) { // input is from file
         ran_by_file = true;
         wave_count--;
-
-        if ((fp = fopen(SliceString(argv[1], 5), "r")) == NULL) {
-            Error_CannotOpenFile();
-            exit(1);
-        }
-
-        for (i = 0; i < wave_count; i++) {
-            for (j = 0; j < 3; j++) {
-                if (fscanf(fp, "%lf", &file_data[i][j]) != 1) {
-                    break;
-                }
-            }
-        }
     }
 
-    for (i = 0; i < wave_count; i++) {
+    for (wave_index = 0; wave_index < wave_count; wave_index++) {
         if (ran_by_file) {
-            printf("Initializing wave for file row %d...\n", i);
-            if (file_data[i][0] == 0 | file_data[i][0] == 1) {
-                wave.waveform = Sine;
-            } else if (file_data[i][0] == 2) {
-                wave.waveform = Rectangle;
-            } else if (file_data[i][0] == 3) {
-                wave.waveform = Triangle;
-            } else if (file_data[i][0] == 4) {
-                wave.waveform = Sawtooth;
-            } else {
-                Error_WrongFileData();
-                fclose(fp);
-                exit(1);
-            }
-
-            if (file_data[i][1] > 2.5) {
-                wave.amplitude = 2.5;
-                Warning_ValueExceededLimit();
-            } else if (file_data[i][1] > 0) {
-                wave.amplitude = file_data[i][1];
-            } else if (file_data[i][1] == 0) {
-                wave.amplitude = 10;
-            } else {
-                Error_WrongFileData();
-                fclose(fp);
-                exit(1);
-            }
-
-            if (file_data[i][2] > 300) {
-                wave.frequency = 300;
-                Warning_ValueExceededLimit();;
-            } else if (file_data[i][2] > 0) {
-                wave.frequency = file_data[i][2];
-            } else if (file_data[i][2] == 0) {
-                wave.frequency = 10;
-            } else {
-                Error_WrongFileData();
-                fclose(fp);
-                exit(1);
-            }
-
-            WaveInitializationComplete();
+            printf("Initializing wave for file row %d...\n", wave_index);
+            WaveInitializationByFile(wave_index);
         }
 
         printf("Running the program...\n\n");
-        // put the main body here
+
+        //attach signal_handler to catch SIGINT
+        signal( SIGALRM, alarm_handler );
+        if( timer_create( CLOCK_REALTIME, NULL, &timerid ) == -1 )
+        {
+        printf( "Error: failed to create timer\n" );
+        exit(EXIT_SUCCESS);
+        }
+          //*************After 1s, the first signal will occur and after 10s, the same signal will occur periodly
+        timer.it_value.tv_sec = 1;
+ 	    timer.it_value.tv_nsec = 0;
+
+        timer.it_interval.tv_sec =10;
+	    timer.it_interval.tv_nsec = 0;
+
+        rtn = timer_settime( timerid, 0, &timer, NULL );
+        if( rtn == -1 ) {
+        printf( "\nError setting timer!\n\n" );
+        exit(EXIT_SUCCESS);}
+
+        PreviousWave = wave; // save wave config
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
         pthread_create(NULL, NULL, &GenerateWave, NULL);
         //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
         pthread_create(NULL, NULL, &ReadPot, NULL);
+        pthread_create(NULL, NULL, &UpdateTimer, NULL);
 
-        while (1) {
-        }
+//        while(1) {}
     }
 
     printf("Program ended.\n");
