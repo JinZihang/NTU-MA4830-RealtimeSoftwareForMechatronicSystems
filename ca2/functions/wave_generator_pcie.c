@@ -113,21 +113,22 @@ void GenerateSawtoothWave() {
     double prev_amp;
     printf("Generating sawtooth wave.\n");
 
-    for (i = 0; i < samples/2; i++)
+    for (i = 0; i < samples; i++)
     {
-        dummy = ((4 * wave.amplitude * i)/(float) (samples - 1)) * (0x0fff / (float) 5);
+        dummy = ((wave.amplitude * i)/(float) (samples- 1)) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
-        data[samples - 1 - i] = (unsigned) dummy;
     }
 
-    while (wave.waveform == Sawtooth) {
-        for (j = 0x0000; j < 0x0fff; j++) {
-            if (j == 0x0ffe) {
+    while ((wave.waveform == Triangle) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
+        prev_amp = wave.amplitude;
+        delta = 1 / ((samples - 1) * wave.frequency);
+        for (j = 0; j < samples; j++) {
+            if (j == 99) {
                 SoundGenerator(wave.amplitude);
             }
 
-            out16(DAC0_Data, (j & 0x0fff));
-            printf("Output to DAC0_Data: %x\n", (j & 0x0fff));
+            out16(DAC0_Data, data[j]);
+            delay(delta * 1000);
         }
     }
 
@@ -146,23 +147,18 @@ void *GenerateWave() {
     while (1) {
         switch (wave.waveform) {
             case Sine:
-                printf("Sine\n");
                 GenerateSineWave();
                 break;
             case Rectangle:
-                printf("Rectangle\n");
                 GenerateRectangleWave();
                 break;
             case Triangle:
-                printf("Triangle\n");
-                //GenerateTriangleWave();
+                GenerateTriangleWave();
                 break;
             case Sawtooth:
-                printf("Sawtooth\n");
-                //GenerateSawtoothWave();
+                GenerateSawtoothWave();
                 break;
             default:
-                printf("Empty\n");
                 GenerateEmptyWave();
                 break;
         }
