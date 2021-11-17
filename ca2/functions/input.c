@@ -102,6 +102,7 @@ void *ReadPot(void *arg) {
             // not noise
             dummy = (adc_in[0] / (float) 65525) * 2.5;
             if (dummy > 2.5) {
+                Warning_ValueExceededLimit();
                 dummy = 2.5;
             }
             wave.amplitude = dummy;
@@ -111,6 +112,7 @@ void *ReadPot(void *arg) {
             // not noise
             dummy = (adc_in[1] / (float) 65525) * 300;
             if (dummy > 300) {
+                Warning_ValueExceededLimit();
                 dummy = 300;
             }
             wave.frequency = dummy;
