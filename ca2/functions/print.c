@@ -109,3 +109,7 @@ void WaveInitializationComplete() {
 void Error_CannotCreateTimer() {
     fprintf(stderr, "Failed to create a timer!\n");
 }
+
+void Error_CannotSetTimer() {
+    fprintf(stderr, "Failed to set the timer!\n");
+}

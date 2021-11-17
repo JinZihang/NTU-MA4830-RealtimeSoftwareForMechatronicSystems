@@ -24,6 +24,7 @@ struct Wave wave;
 struct Wave previousWave;
 
 timer_t timerid;
+struct itimerspec timer;
 bool timer_initialized = false, count_down_finished = false;
 
 void termination_signal_handler(int signum) {
@@ -43,9 +44,6 @@ int main(int argc, char **argv) {
     int wave_index, wave_count;
     bool ran_by_file = false;
 
-    struct itimerspec timer; // Timer structure
-    int rtn;
-
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
 
@@ -55,6 +53,11 @@ int main(int argc, char **argv) {
     wave_count = WaveInitialization(argc, argv);
     PCIeInitialization();
     DIOInitialization();
+
+    if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
+        Error_CannotCreateTimer();
+        exit(1);
+    }
 
     if (wave_count > 1) {
         ran_by_file = true;
@@ -68,21 +71,7 @@ int main(int argc, char **argv) {
 
         printf("Running the program...\n\n");
 
-        if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
-            printf("Error: failed to create a timer\n");
-            exit(1);
-        }
-
-        timer.it_value.tv_sec = 1;
-        timer.it_value.tv_nsec = 0;
-        timer.it_interval.tv_sec = 10;
-        timer.it_interval.tv_nsec = 0;
-
-        rtn = timer_settime(timerid, 0, &timer, NULL);
-        if (rtn == -1) {
-            printf("Error setting the timer!\n");
-            exit(1);
-        }
+        TimerInitialization();
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
         pthread_create(NULL, NULL, &ReadPot, NULL);

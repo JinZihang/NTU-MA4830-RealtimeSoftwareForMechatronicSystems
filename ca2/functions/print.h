@@ -21,4 +21,6 @@ void WaveInitializationComplete();
 
 void Error_CannotCreateTimer();
 
+void Error_CannotSetTimer();
+
 #endif
