@@ -25,7 +25,7 @@ struct Wave previousWave;
 
 timer_t timerid;
 struct itimerspec timer;
-bool timer_initialized = false, count_down_finished = false;
+int count_down = 10;
 
 void termination_signal_handler(int signum) {
     printf("Program terminated.\n");
@@ -33,11 +33,8 @@ void termination_signal_handler(int signum) {
 }
 
 void timer_signal_handler(int signum) {
-    if (timer_initialized) {
-        count_down_finished = true;
-    } else {
-        timer_initialized = true;
-    }
+    printf("Count down: %d sec\n", count_down);
+    count_down--;
 }
 
 int main(int argc, char **argv) {
@@ -80,10 +77,12 @@ int main(int argc, char **argv) {
         pthread_create(NULL, NULL, &GenerateWave, NULL);
 
         while (1) {
-            if (count_down_finished) break;
+            if (count_down == 0) {
+                break;
+            }
         }
 
-        count_down_finished = false;
+        count_down = 10;
     }
 
     printf("Program ended.\n");

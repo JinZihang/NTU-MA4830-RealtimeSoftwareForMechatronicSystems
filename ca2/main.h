@@ -14,6 +14,7 @@ extern struct Wave wave;
 extern struct Wave previousWave;
 extern timer_t timerid;
 extern struct itimerspec timer;
+extern int count_down;
 
 void termination_signal_handler(int signum);
 
