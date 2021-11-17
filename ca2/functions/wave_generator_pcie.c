@@ -33,10 +33,8 @@ void GenerateSineWave() {
     printf("Generating sine wave.\n");
 
     for (i = 0; i < samples; i++) {
-        //dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0xFFFF / 5);
-        dummy = ((sinf((float) (i * 2 * M_PI / (samples - 1)))) + 1.0) * 0x0800;
+        dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
-        //printf("%f\n", dummy);
     }
 
     while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
@@ -63,9 +61,7 @@ void GenerateRectangleWave() {
 
     for (i = 0; i < samples; i++) {
         dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0x0fff / (float) 5);
-//        dummy = ((i < 50) ? 0 : 0x0fff);
         data[i] = (unsigned) dummy;
-        printf("%f\n", dummy);
     }
 
     while ((wave.waveform == Rectangle) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
@@ -80,13 +76,6 @@ void GenerateRectangleWave() {
             delay(delta * 1000);
         }
     }
-//
-//    while (wave.waveform == Rectangle) {
-//        for (j = 0x0000; j < 0x0fff; j++) {
-//            out16(DAC0_Data, ((j > 0x0800) ? 0 : 0x0fff));
-//            printf("Output to DAC0_Data: %x\n", ((j > 0x0800) ? 0 : 0x0fff));
-//        }
-//    }
 
     printf("Rectangle wave output ended.\n");
 }
