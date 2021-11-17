@@ -71,7 +71,7 @@ void Error_InvalidValue() {
 }
 
 void Warning_ValueExceededLimit() {
-    printf("Value exceeded limit! Continuing with the allowed maximum value.");
+    printf("Value exceeded limit! Continuing with the allowed maximum value.\n");
 }
 
 void Error_CannotOpenFile() {
