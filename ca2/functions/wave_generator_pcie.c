@@ -81,20 +81,28 @@ void GenerateRectangleWave() {
 }
 
 void GenerateTriangleWave() {
-    bool slope_dir = true;
-
+    double dummy, delta;
+    double prev_amp = wave.amplitude;
     printf("Generating triangle wave.\n");
 
-    while (wave.waveform == Triangle) {
-        for (j = 0x0000; j < 0x0fff; j++) {
-            if (j == 0x0ffe) {
+    for (i = 0; i < samples/2; i++)
+    {
+        dummy = ((4 * wave.amplitude * i)/(float) (samples - 1)) * (0x0fff / (float) 5);
+        data[i] = (unsigned) dummy;
+        data[samples - 1 - i] = (unsigned) dummy;
+    }
+
+    while ((wave.waveform == Triangle) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
+        prev_amp = wave.amplitude;
+        delta = 1 / ((samples - 1) * wave.frequency);
+        for (j = 0; j < samples; j++) {
+            if (j == 49) {
                 SoundGenerator(wave.amplitude);
             }
 
-            out16(DAC0_Data, slope_dir ? (j & 0x0fff) : 0x0fff - (j & 0x0fff));
-            printf("Output to DAC0_Data: %x\n", slope_dir ? (j & 0x0fff) : 0x0fff - (j & 0x0fff));
+            out16(DAC0_Data, data[j]);
+            delay(delta * 1000);
         }
-        slope_dir = !slope_dir;
     }
 
     printf("Triangle wave output ended.\n");
@@ -105,20 +113,12 @@ void GenerateSawtoothWave() {
     double prev_amp;
     printf("Generating sawtooth wave.\n");
 
-//    delta = 1/(100 * wave.frequency);
-//    for (i = 0; i < 100; i++) {
-//        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0xFFFF/5);
-//        data[i] = (unsigned) dummy;
-//        printf("%f\n", dummy);
-//    }
-//
-//    while (wave.waveform == Sawtooth && wave.amplitude == prev_amp) {
-//        for (j = 0; j < 100; j++) {
-//            out16(DAC0_Data, data[j]);
-//            delay(delta * 1000);
-//        }
-//        prev_amp = wave.amplitude;
-//    }
+    for (i = 0; i < samples/2; i++)
+    {
+        dummy = ((4 * wave.amplitude * i)/(float) (samples - 1)) * (0x0fff / (float) 5);
+        data[i] = (unsigned) dummy;
+        data[samples - 1 - i] = (unsigned) dummy;
+    }
 
     while (wave.waveform == Sawtooth) {
         for (j = 0x0000; j < 0x0fff; j++) {
