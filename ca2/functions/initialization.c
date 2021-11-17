@@ -9,10 +9,9 @@
 
 #include "../main.h"
 
-int WaveInitialization(FILE *fp, int argc, char **argv) {
+int WaveInitialization(int argc, char **argv) {
     int i, j;
     int file_r_count, file_data_reader;
-    double file_data[10][3]; // read maximum 10 rows
     char *arg_waveform, *arg_amplitude, *arg_frequency;
     bool has_waveform_arg = false, has_amplitude_arg = false, has_frequency_arg = false;
 
@@ -151,4 +150,48 @@ int WaveInitialization(FILE *fp, int argc, char **argv) {
     WaveInitializationComplete();
 
     return 1;
+}
+
+void WaveInitializationByFile(int i) {
+    if (file_data[i][0] == 0 | file_data[i][0] == 1) {
+        wave.waveform = Sine;
+    } else if (file_data[i][0] == 2) {
+        wave.waveform = Rectangle;
+    } else if (file_data[i][0] == 3) {
+        wave.waveform = Triangle;
+    } else if (file_data[i][0] == 4) {
+        wave.waveform = Sawtooth;
+    } else {
+        Error_WrongFileData();
+        fclose(fp);
+        exit(1);
+    }
+
+    if (file_data[i][1] > 2.5) {
+        wave.amplitude = 2.5;
+        Warning_ValueExceededLimit();
+    } else if (file_data[i][1] > 0) {
+        wave.amplitude = file_data[i][1];
+    } else if (file_data[i][1] == 0) {
+        wave.amplitude = 10;
+    } else {
+        Error_WrongFileData();
+        fclose(fp);
+        exit(1);
+    }
+
+    if (file_data[i][2] > 300) {
+        wave.frequency = 300;
+        Warning_ValueExceededLimit();;
+    } else if (file_data[i][2] > 0) {
+        wave.frequency = file_data[i][2];
+    } else if (file_data[i][2] == 0) {
+        wave.frequency = 10;
+    } else {
+        Error_WrongFileData();
+        fclose(fp);
+        exit(1);
+    }
+
+    WaveInitializationComplete();
 }
