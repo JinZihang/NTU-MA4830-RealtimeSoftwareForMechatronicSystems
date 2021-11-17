@@ -37,6 +37,9 @@ int main(int argc, char **argv) {
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
 
+    //attach signal_handler to catch SIGINT
+    signal(SIGINT, signal_handler);
+
     wave_count = WaveInitialization(argc, argv);
 
     PCIeInitialization();
