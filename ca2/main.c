@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <pthread.h>
 #include <signal.h>
+#include <time.h>
+#include <unistd.h>
 
 #include "datatypes/struct.h"
 #include "functions/print.h"
@@ -13,10 +15,13 @@
 #include "functions/pcie_control.h"
 #include "functions/wave_generator_pcie.h"
 #include "functions/input.h"
+#include "functions/timer.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+extern FILE *fp;
+extern double file_data[10][3]; // read maximum 10 rows
 struct Wave wave;
-struct Wave PreviousWave;
+struct Wave previousWave;
 
 void signal_handler(int signum) {
     printf("\nSignal raised.\n");
@@ -24,15 +29,13 @@ void signal_handler(int signum) {
 }
 
 int main(int argc, char **argv) {
-    int wave_index, wave_count;
+    int wave_index, wave_count, rtn;
     bool ran_by_file = false;
 
-    char input[80];
     timer_t timerid;
-    struct timespec now;     // Time structure
+//    struct timespec now;     // Time structure
     struct itimerspec timer; // Timer structure
-    long timesec, timeint;
-    int rtn;
+//    long timesec, timeint;
 
     // CMake path, use different path to run from different directory.
     DisplayTitle("assets/title.txt");
@@ -42,47 +45,47 @@ int main(int argc, char **argv) {
     PCIeInitialization();
     DIOInitialization();
 
-    if (wave_count > 1) { // input is from file
+    if (wave_count > 1) {
         ran_by_file = true;
         wave_count--;
     }
 
     for (wave_index = 0; wave_index < wave_count; wave_index++) {
         if (ran_by_file) {
-            printf("Initializing wave for file row %d...\n", wave_index);
             WaveInitializationByFile(wave_index);
         }
 
         printf("Running the program...\n\n");
 
-        //attach signal_handler to catch SIGINT
-        signal( SIGALRM, alarm_handler );
-        if( timer_create( CLOCK_REALTIME, NULL, &timerid ) == -1 )
-        {
-        printf( "Error: failed to create timer\n" );
-        exit(EXIT_SUCCESS);
+        // attach signal_handler to catch SIGINT
+        signal(SIGALRM, alarm_handler);
+        if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
+            Error_CannotCreateTimer();
+            exit(1);
         }
-          //*************After 1s, the first signal will occur and after 10s, the same signal will occur periodly
+
+        //*************After 1s, the first signal will occur and after 10s, the same signal will occur period
         timer.it_value.tv_sec = 1;
- 	    timer.it_value.tv_nsec = 0;
+        timer.it_value.tv_nsec = 0;
 
-        timer.it_interval.tv_sec =10;
-	    timer.it_interval.tv_nsec = 0;
+        timer.it_interval.tv_sec = 10;
+        timer.it_interval.tv_nsec = 0;
 
-        rtn = timer_settime( timerid, 0, &timer, NULL );
-        if( rtn == -1 ) {
-        printf( "\nError setting timer!\n\n" );
-        exit(EXIT_SUCCESS);}
+        rtn = timer_settime(timerid, 0, &timer, NULL);
+        if (rtn == -1) {
+            printf("\nError setting timer!\n\n");
+            exit(1);
+        }
 
-        PreviousWave = wave; // save wave config
+        previousWave = wave;
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
-        pthread_create(NULL, NULL, &GenerateWave, NULL);
-        //pthread_create( NULL, NULL, &ReadArrowkey, NULL );
         pthread_create(NULL, NULL, &ReadPot, NULL);
+//        pthread_create(NULL, NULL, &ReadArrowKey, NULL);
+        pthread_create(NULL, NULL, &GenerateWave, NULL);
         pthread_create(NULL, NULL, &UpdateTimer, NULL);
 
-//        while(1) {}
+        while(1) {}
     }
 
     printf("Program ended.\n");
