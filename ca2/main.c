@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
         pthread_create(NULL, NULL, &ReadPot, NULL);
         pthread_create(NULL, NULL, &UpdateTimer, NULL);
 
-//        while(1) {}
+        while(1) {}
     }
 
     printf("Program ended.\n");
