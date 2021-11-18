@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
             pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
             while (1) {
-                if (count_down == 0) {
+                if (count_down == -1) {
                     break;
                 }
             }
@@ -90,7 +90,7 @@ int main(int argc, char **argv) {
 //            pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
             while (1) {
-                if (count_down == 0) {
+                if (count_down == -1) {
                     break;
                 }
             }
