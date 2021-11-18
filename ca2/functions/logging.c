@@ -19,7 +19,7 @@ void ncursesInitialization()
 
     keypad(win, TRUE);
 
-    mvwprintw(win, 1, x_max / 2 - 4, "Pendulum");
+    mvwprintw(win, 1, x_max / 2 - 4, "Metronome");
     mvwhline(win, 2, 1, '-', x_max - 2);
 
     wrefresh(win);

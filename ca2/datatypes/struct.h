@@ -9,9 +9,4 @@ struct Wave {
     double frequency;
 };
 
-struct FreqLimit {
-    int min;
-    int max;
-};
-
 #endif

@@ -128,22 +128,21 @@ void *ReadPot(void *arg) {
 
 void *ReadArrowKey(void *arg) {
     int input;
-    struct FreqLimit frequencyRange;
-    frequencyRange.min = 1;
-    frequencyRange.max = 300;
+    int frequencyMin = 1;
+    int frequencyMax = 300;
 
     while (1) {
         input = wgetch(win);
         switch (input) {
             case KEY_UP:
-                if (wave.frequency < frequencyRange.max) {
+                if (wave.frequency < frequencyMax) {
                     wave.frequency = wave.frequency + 0.1;
                 } else {
                     Warning_ValueExceededLimit();
                 }
                 break;
             case KEY_DOWN:
-                if (frequencyRange.min < wave.frequency) {
+                if (frequencyMin < wave.frequency) {
                     wave.frequency = wave.frequency - 0.1;
                 } else {
                     Warning_ValueExceededLimit();
