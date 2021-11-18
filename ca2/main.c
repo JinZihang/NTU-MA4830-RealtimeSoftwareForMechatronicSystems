@@ -86,8 +86,8 @@ int main(int argc, char **argv) {
                 WaveInitializationByFile(wave_index);
             }
 
-//            pthread_create(NULL, NULL, &GenerateWave, NULL);
-//            pthread_create(NULL, NULL, &UpdateDisplay, NULL);
+            pthread_create(NULL, NULL, &GenerateWave, NULL);
+            pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
             while (1) {
                 if (count_down == 0) {
