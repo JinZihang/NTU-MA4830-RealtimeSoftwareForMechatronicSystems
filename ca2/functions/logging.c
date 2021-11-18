@@ -157,5 +157,7 @@ void *UpdateDisplay() {
         attroff(A_INVIS);
         mvprintw(20, 64, "|");
         mvprintw(21, 24, "0                                     100");
+
+        refresh();
     }
 }

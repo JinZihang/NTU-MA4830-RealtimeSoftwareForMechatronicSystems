@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
     mvprintw(5, 2, "* Total Wave Count:\t%d", wave_count);
 
     for (wave_index = 0; wave_index < wave_count; wave_index++) {
-        mvprintw(6, 2, "* Current Wave Index:\t%d", wave_index);
+        mvprintw(6, 2, "* Current Wave Index:\t%d", wave_index + 1);
         TimerInitialization();
 
         if (argc == 1) {
