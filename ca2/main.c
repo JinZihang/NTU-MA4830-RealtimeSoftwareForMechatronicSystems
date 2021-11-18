@@ -2,11 +2,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include <pthread.h>
 #include <signal.h>
 #include <time.h>
 #include <unistd.h>
+#include <ncurses.h>
 
 #include "datatypes/struct.h"
 #include "functions/print.h"
@@ -16,6 +16,7 @@
 #include "functions/wave_generator_pcie.h"
 #include "functions/input.h"
 #include "functions/timer.h"
+#include "functions/logging.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 FILE *fp;
@@ -26,22 +27,25 @@ timer_t timerid;
 struct itimerspec timer;
 int count_down = 10;
 
+WINDOW *win;
+int y_min, x_min, y_max, x_max;
+
 void termination_signal_handler(int signum) {
-    printf("Program terminated.\n");
+//    printf("Program terminated.\n");
     exit(0);
 }
 
 void timer_signal_handler(int signum) {
-    printf("Count down: %d sec\n", count_down);
+//    printf("Count down: %d sec\n", count_down);
     count_down--;
 }
 
 int main(int argc, char **argv) {
     int wave_index, wave_count;
-    bool ran_by_file = false;
+    int ran_by_file = 0;
 
     // CMake path, use different path to run from different directory.
-    DisplayTitle("assets/title.txt");
+//    DisplayTitle("assets/title.txt");
 
     signal(SIGINT, termination_signal_handler);
     signal(SIGALRM, timer_signal_handler);
@@ -49,6 +53,7 @@ int main(int argc, char **argv) {
     wave_count = WaveInitialization(argc, argv);
     PCIeInitialization();
     DIOInitialization();
+    ncursesInitialization();
 
     if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
         Error_CannotCreateTimer();
@@ -56,7 +61,7 @@ int main(int argc, char **argv) {
     }
 
     if (wave_count > 1) {
-        ran_by_file = true;
+        ran_by_file = 1;
         wave_count--;
     }
 
@@ -65,7 +70,7 @@ int main(int argc, char **argv) {
             WaveInitializationByFile(wave_index);
         }
 
-        printf("Running the program...\n\n");
+//        printf("Running the program...\n\n");
 
         TimerInitialization();
 
@@ -84,7 +89,7 @@ int main(int argc, char **argv) {
         count_down = 10;
     }
 
-    printf("Program ended.\n");
+//    printf("Program ended.\n");
     if (ran_by_file) fclose(fp);
     timer_delete(timerid);
     return 0;

@@ -7,8 +7,11 @@ add_executable(metronome main.c)
 add_library(metronome_lib
         functions/initialization.c
         functions/wave_generator_pcie.c
-        functions/helper.c functions/pcie_control.c
-        functions/pcie_control.h
+        functions/helper.c
+        functions/pcie_control.c
         functions/print.c
-        functions/input.c functions/sound.c functions/sound.h functions/timer.c functions/timer.h)
+        functions/input.c
+        functions/sound.c
+        functions/timer.c
+        functions/logging.c)
 target_link_libraries(metronome metronome_lib)

@@ -28,7 +28,7 @@ void GenerateSineWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
 
-    printf("Generating sine wave.\n");
+//    printf("Generating sine wave.\n");
 
     for (i = 0; i < samples; i++) {
         dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0x0fff / (float) 5);
@@ -49,13 +49,13 @@ void GenerateSineWave() {
         }
     }
 
-    printf("Sine wave output ended.\n");
+//    printf("Sine wave output ended.\n");
 }
 
 void GenerateRectangleWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
-    printf("Generating rectangle wave.\n");
+//    printf("Generating rectangle wave.\n");
 
     for (i = 0; i < samples; i++) {
         dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0x0fff / (float) 5);
@@ -75,13 +75,13 @@ void GenerateRectangleWave() {
         }
     }
 
-    printf("Rectangle wave output ended.\n");
+//    printf("Rectangle wave output ended.\n");
 }
 
 void GenerateTriangleWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
-    printf("Generating triangle wave.\n");
+//    printf("Generating triangle wave.\n");
 
     for (i = 0; i < samples/2; i++)
     {
@@ -103,13 +103,13 @@ void GenerateTriangleWave() {
         }
     }
 
-    printf("Triangle wave output ended.\n");
+//    printf("Triangle wave output ended.\n");
 }
 
 void GenerateSawtoothWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
-    printf("Generating sawtooth wave.\n");
+//    printf("Generating sawtooth wave.\n");
 
     for (i = 0; i < samples; i++)
     {
@@ -130,11 +130,11 @@ void GenerateSawtoothWave() {
         }
     }
 
-    printf("Sawtooth wave output ended.\n");
+//    printf("Sawtooth wave output ended.\n");
 }
 
 void GenerateEmptyWave() {
-    printf("Generating empty wave.\n");
+//    printf("Generating empty wave.\n");
 
     while (wave.waveform == Empty) {
         out16(DAC0_Data, 0x000);
@@ -163,8 +163,4 @@ void *GenerateWave() {
         delay(1);
     }
     return 0;
-}
-
-void *ResetTimer() {
-
 }

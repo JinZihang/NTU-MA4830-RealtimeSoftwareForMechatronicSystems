@@ -152,7 +152,7 @@ void *ReadArrowKey(void *arg) {
         input = ReadArrow();
         switch (input) {
             case 65:
-                printf("\n");
+//                printf("\n");
                 if (wave.frequency < frequencyRange.max) {
                     wave.frequency = wave.frequency + 1;
                 } else {
@@ -160,7 +160,7 @@ void *ReadArrowKey(void *arg) {
                 }
                 break;
             case 66:
-                printf("\n");
+//                printf("\n");
                 if (frequencyRange.min < wave.frequency) {
                     wave.frequency = wave.frequency - 1;
                 } else {
