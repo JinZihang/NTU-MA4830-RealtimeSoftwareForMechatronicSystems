@@ -60,7 +60,11 @@ int main(int argc, char **argv) {
         wave_count--;
     }
 
+    mvprintw(5, 2, "* Total Wave Count:\t%d", wave_count);
+
     for (wave_index = 0; wave_index < wave_count; wave_index++) {
+        mvprintw(6, 2, "* Current Wave Index:\t%d", wave_index);
+
         if (ran_by_file) {
             WaveInitializationByFile(wave_index);
         }
