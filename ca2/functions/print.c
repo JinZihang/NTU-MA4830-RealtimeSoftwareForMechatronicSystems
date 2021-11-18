@@ -5,26 +5,6 @@
 
 #include "../main.h"
 
-#define MAX_LEN 128
-
-void DisplayImage(FILE *fptr) {
-    char readString[MAX_LEN];
-
-    while (fgets(readString, sizeof(readString), fptr) != NULL)
-        printf("%s", readString);
-    printf("\n\n");
-}
-
-void DisplayTitle(char *filename) {
-    FILE *fptr = NULL;
-
-    if ((fptr = fopen(filename, "r")) == NULL) {
-        fprintf(stderr, "Error opening %s!\n", filename);
-        exit(1);
-    }
-    DisplayImage(fptr);
-}
-
 void ArgumentInstructions() {
 //    printf("help\n");
 //    printf("\t\t--h\t\tshow program argument instructions\n");
@@ -108,8 +88,4 @@ void WaveInitializationComplete() {
 
 void Error_CannotCreateTimer() {
 //    fprintf(stderr, "Failed to create a timer!\n");
-}
-
-void Error_CannotSetTimer() {
-//    fprintf(stderr, "Failed to set the timer!\n");
 }

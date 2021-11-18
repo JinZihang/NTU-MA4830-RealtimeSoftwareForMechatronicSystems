@@ -5,4 +5,8 @@ void NcursesInitialization();
 
 void *UpdateDisplay();
 
+void ClearLoggingLine();
+
+void Error_SetTimer();
+
 #endif
