@@ -1,11 +1,24 @@
-<mxfile host="app.diagrams.net" modified="2021-11-18T09:52:11.373Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="iik-Lh1n4cUz-yIrYJAj" version="15.8.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-18T09:54:51.685Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="Z9WecT5RuGWytxSoiS6G" version="15.8.2" type="github">
   <diagram id="RDyM5Sn1KwQpERf3-6v_" name="Page-1">
     <mxGraphModel dx="1146" dy="526" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="QhxnlMzqvn4maWAdjBox-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="D086AMLhP0JBdoeUekMZ-2" target="QhxnlMzqvn4maWAdjBox-3">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="QhxnlMzqvn4maWAdjBox-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.855;exitY=0.855;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="D086AMLhP0JBdoeUekMZ-2" target="QhxnlMzqvn4maWAdjBox-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="338" y="90" />
+              <mxPoint x="370" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QhxnlMzqvn4maWAdjBox-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.145;exitY=0.855;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="D086AMLhP0JBdoeUekMZ-2" target="QhxnlMzqvn4maWAdjBox-27">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="217" y="90" />
+              <mxPoint x="195" y="90" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="D086AMLhP0JBdoeUekMZ-2" value="Start the Program&amp;nbsp;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="192.5" y="10" width="170" height="70" as="geometry" />
@@ -16,8 +29,10 @@
         <mxCell id="D086AMLhP0JBdoeUekMZ-3" value="Wave Initialisation" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="222.5" y="310" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="D086AMLhP0JBdoeUekMZ-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.1;exitY=0.15;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="D086AMLhP0JBdoeUekMZ-4" target="D086AMLhP0JBdoeUekMZ-10" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="D086AMLhP0JBdoeUekMZ-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="D086AMLhP0JBdoeUekMZ-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="590" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="D086AMLhP0JBdoeUekMZ-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="D086AMLhP0JBdoeUekMZ-34" target="D086AMLhP0JBdoeUekMZ-7" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -30,12 +45,14 @@
         <mxCell id="D086AMLhP0JBdoeUekMZ-4" value="For Each Wave" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.loop_limit;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="227.5" y="475" width="100" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="D086AMLhP0JBdoeUekMZ-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="D086AMLhP0JBdoeUekMZ-6" target="D086AMLhP0JBdoeUekMZ-4" edge="1">
+        <mxCell id="D086AMLhP0JBdoeUekMZ-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="D086AMLhP0JBdoeUekMZ-6" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="210" y="575" />
-              <mxPoint x="210" y="495" />
+              <mxPoint x="150" y="575" />
+              <mxPoint x="150" y="380" />
+              <mxPoint x="200" y="380" />
             </Array>
+            <mxPoint x="200" y="330" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="D086AMLhP0JBdoeUekMZ-31" value="Continue to the Next Wave" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="D086AMLhP0JBdoeUekMZ-30" vertex="1" connectable="0">
@@ -89,7 +106,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="QhxnlMzqvn4maWAdjBox-3" value="User input parameters from command line&amp;nbsp; &amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="222.5" y="100" width="110" height="50" as="geometry" />
+          <mxGeometry x="315" y="110" width="110" height="50" as="geometry" />
         </mxCell>
         <mxCell id="QhxnlMzqvn4maWAdjBox-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.318;entryY=-0.016;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="QhxnlMzqvn4maWAdjBox-7" target="D086AMLhP0JBdoeUekMZ-3">
           <mxGeometry relative="1" as="geometry" />
@@ -120,7 +137,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="QhxnlMzqvn4maWAdjBox-14" value="Auto-fill up undefiend parameters" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="267" y="260" width="141" height="40" as="geometry" />
+          <mxGeometry x="267" y="251" width="141" height="40" as="geometry" />
         </mxCell>
         <mxCell id="QhxnlMzqvn4maWAdjBox-18" value="PCIe Initialisation" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="222.5" y="350" width="110" height="30" as="geometry" />
@@ -142,6 +159,17 @@
         </mxCell>
         <mxCell id="QhxnlMzqvn4maWAdjBox-24" value="Timer Initialisation" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="222.5" y="430" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QhxnlMzqvn4maWAdjBox-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="QhxnlMzqvn4maWAdjBox-27" target="D086AMLhP0JBdoeUekMZ-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="160" />
+              <mxPoint x="180" y="325" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QhxnlMzqvn4maWAdjBox-27" value="User input batch file with wave parameters&amp;nbsp;&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="140" y="110" width="110" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
