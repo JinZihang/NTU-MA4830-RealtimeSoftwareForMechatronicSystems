@@ -64,27 +64,31 @@ int main(int argc, char **argv) {
 
     for (wave_index = 0; wave_index < wave_count; wave_index++) {
         mvprintw(6, 2, "* Current Wave Index:\t%d", wave_index);
-
-        if (ran_by_file) {
-            WaveInitializationByFile(wave_index);
-        }
-
         TimerInitialization();
 
-        pthread_create(NULL, NULL, &ReadSwitch, NULL);
-        pthread_create(NULL, NULL, &ReadPot, NULL);
-        pthread_create(NULL, NULL, &ReadArrowKey, NULL);
-        pthread_create(NULL, NULL, &UpdateTimer, NULL);
-        pthread_create(NULL, NULL, &GenerateWave, NULL);
-        pthread_create(NULL, NULL, &UpdateDisplay, NULL);
+        if (argc == 1) {
+            // stream processing (taking input from sensors)
+            pthread_create(NULL, NULL, &ReadSwitch, NULL);
+            pthread_create(NULL, NULL, &ReadPot, NULL);
+            pthread_create(NULL, NULL, &ReadArrowKey, NULL);
+            pthread_create(NULL, NULL, &UpdateTimer, NULL);
+            pthread_create(NULL, NULL, &GenerateWave, NULL);
+            pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
-        while (1) {
-            if (count_down == 0) {
-                break;
+            while (1) {
+                if (count_down == 0) {
+                    break;
+                }
             }
-        }
+        } else {
+            // batch processing (taking input from parameters given)
+            if (ran_by_file) {
+                WaveInitializationByFile(wave_index);
+            }
 
-        count_down = 30;
+//            pthread_create(NULL, NULL, &GenerateWave, NULL);
+//            pthread_create(NULL, NULL, &UpdateDisplay, NULL);
+        }
     }
 
     if (ran_by_file) fclose(fp);
