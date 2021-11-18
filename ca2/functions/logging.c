@@ -19,7 +19,7 @@ void ncursesInitialization()
 
     keypad(win, TRUE);
 
-    printw("Start\n");
+    wprintw(win, "Start\n");
 
     refresh();
 }
