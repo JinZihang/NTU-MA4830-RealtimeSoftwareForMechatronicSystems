@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
     mvprintw(5, 2, "* Total Wave Count:\t%d", wave_count);
 
     for (wave_index = 0; wave_index < wave_count; wave_index++) {
-        mvprintw(6, 2, "* Current Wave Index:\t%d", wave_index);
+        mvprintw(6, 2, "* Current Wave Index:\t%d", wave_index + 1);
         TimerInitialization();
 
         if (argc == 1) {
@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
             pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
             while (1) {
-                if (count_down == 0) {
+                if (count_down == -1) {
                     break;
                 }
             }
@@ -90,7 +90,7 @@ int main(int argc, char **argv) {
             pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
             while (1) {
-                if (count_down == 0) {
+                if (count_down == -1) {
                     break;
                 }
             }
