@@ -13,6 +13,4 @@ void Error_CannotOpenFile();
 
 void Error_WrongFileData();
 
-void WaveInitializationComplete();
-
 #endif

@@ -62,26 +62,3 @@ void Error_WrongFileData() {
 //    fprintf(stderr, "Something wrong with the file data!\n");
 //    fprintf(stderr, "Use --h to view file data instructions.\n");
 }
-
-void WaveInitializationComplete() {
-//    printf("Wave initialization finished.\n");
-//    printf("____________________________\n");
-//    printf("\tWaveform:\t");
-//    switch (wave.waveform) {
-//        case Sine:
-//            printf("Sine\n");
-//            break;
-//        case Rectangle:
-//            printf("Rectangle\n");
-//            break;
-//        case Triangle:
-//            printf("Triangle\n");
-//            break;
-//        case Sawtooth:
-//            printf("Sawtooth\n");
-//            break;
-//    }
-//    printf("\tAmplitude:\t%.2lf\n", wave.amplitude);
-//    printf("\tFrequency:\t%.2lf\n", wave.frequency);
-//    printf("____________________________\n");
-}
