@@ -5,7 +5,7 @@
 #include "logging.h"
 #include "../main.h"
 
-void ncursesInitialization() {
+void NcursesInitialization() {
     int y_min, x_min, y_max, x_max, i;
 
     initscr();
@@ -38,5 +38,31 @@ void ncursesInitialization() {
     mvprintw(1, x_max / 2 - 4, "Metronome");
     mvhline(2, 1, '-', x_max - 2);
 
+    // process information
+    mvprintw(3, 5, "Process Information");
+    mvhline(4, 1, '-', 26);
+    mvvline(3, 27, '|', 6);
+
+    // adjust instruction
+    mvprintw(3, (x_max - 27) / 2 + 16, "Adjust Wave Attributes");
+    mvhline(4, 28, '-', x_max - 29);
+    mvprintw(5, 29, "* Waveform:\tSwitches");
+    mvprintw(6, 29, "* Amplitude:\tPotentiometer-0");
+    mvprintw(7, 29, "* Frequency:\tPotentiometer-1");
+    mvprintw(8, 29, "\t\t\tor Vertical Arrow Keys");
+    mvhline(9, 1, '-', x_max - 2);
+
+    // realtime wave attributes
+    mvprintw(10, x_max / 2 - 12, "Realtime Wave Attributes");
+    mvhline(11, 1, '-', x_max - 2);
+
+    // logging
+    mvprintw(20, x_max / 2 - 3, "Logging");
+    mvhline(21, 1, '-', x_max - 2);
+
     refresh();
+}
+
+void *UpdateDisplay() {
+
 }

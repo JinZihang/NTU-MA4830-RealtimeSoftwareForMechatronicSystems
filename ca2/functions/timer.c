@@ -25,7 +25,7 @@ void *UpdateTimer() {
         if ((previousWave.waveform != wave.waveform)
             || (fabs(previousWave.amplitude - wave.amplitude) > 0.01)
             || (fabs(previousWave.frequency - wave.frequency) > 0.01)) {
-            count_down = 10;
+            count_down = 30;
         }
         previousWave = wave;
         delay(10);

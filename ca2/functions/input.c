@@ -13,7 +13,6 @@
 #include "input.h"
 #include "pcie_control.h"
 #include "../main.h"
-#include "logging.h"
 
 void *ReadSwitch(void *arg) {
     while (1) {
@@ -132,7 +131,7 @@ void *ReadArrowKey(void *arg) {
     int frequencyMax = 300;
 
     while (1) {
-        input = wgetch(win);
+        input = getch();
         switch (input) {
             case KEY_UP:
                 if (wave.frequency < frequencyMax) {

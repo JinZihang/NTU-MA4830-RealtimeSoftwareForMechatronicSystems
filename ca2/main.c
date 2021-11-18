@@ -25,7 +25,7 @@ struct Wave wave;
 
 timer_t timerid;
 struct itimerspec timer;
-int count_down = 10;
+int count_down = 30;
 
 void termination_signal_handler(int signum) {
 //    printf("Program terminated.\n");
@@ -42,16 +42,13 @@ int main(int argc, char **argv) {
     int wave_index, wave_count;
     int ran_by_file = 0;
 
-    // CMake path, use different path to run from different directory.
-//    DisplayTitle("assets/title.txt");
-
     signal(SIGINT, termination_signal_handler);
     signal(SIGALRM, timer_signal_handler);
 
     wave_count = WaveInitialization(argc, argv);
     PCIeInitialization();
     DIOInitialization();
-    ncursesInitialization();
+    NcursesInitialization();
 
     if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
         Error_CannotCreateTimer();
@@ -68,8 +65,6 @@ int main(int argc, char **argv) {
             WaveInitializationByFile(wave_index);
         }
 
-//        printf("Running the program...\n\n");
-
         TimerInitialization();
 
         pthread_create(NULL, NULL, &ReadSwitch, NULL);
@@ -77,6 +72,7 @@ int main(int argc, char **argv) {
         pthread_create(NULL, NULL, &ReadArrowKey, NULL);
         pthread_create(NULL, NULL, &UpdateTimer, NULL);
         pthread_create(NULL, NULL, &GenerateWave, NULL);
+        pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
         while (1) {
             if (count_down == 0) {
@@ -84,10 +80,9 @@ int main(int argc, char **argv) {
             }
         }
 
-        count_down = 10;
+        count_down = 30;
     }
 
-//    printf("Program ended.\n");
     if (ran_by_file) fclose(fp);
     timer_delete(timerid);
     endwin();
