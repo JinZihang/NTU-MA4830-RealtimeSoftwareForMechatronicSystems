@@ -9,7 +9,7 @@
 
 extern pthread_mutex_t mutex;
 extern FILE *fp;
-extern double file_data[10][3]; // read maximum 10 rows
+extern double file_data[10][4]; // read maximum 10 rows
 extern struct Wave wave;
 extern timer_t timerid;
 extern struct itimerspec timer;

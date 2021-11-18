@@ -9,4 +9,6 @@ void ClearLoggingLine();
 
 void Error_SetTimer();
 
+void Error_CannotCreateTimer();
+
 #endif

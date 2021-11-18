@@ -35,7 +35,7 @@ int WaveInitialization(int argc, char **argv) {
             }
 
             for (i = 0; i < 10; i++) { // read maximum 10 rows
-                for (j = 0; j < 3; j++) {
+                for (j = 0; j < 4; j++) {
                     file_data_reader = fscanf(fp, "%lf", &file_data[i][j]);
                     switch (file_data_reader) {
                         case -1:
@@ -156,18 +156,14 @@ int WaveInitialization(int argc, char **argv) {
                 if (atof(arg_duty_cycle) > 100) {
                     wave.duty_cycle = 100;
                     Warning_ValueExceededLimit();
-                } else if (atof(arg_duty_cycle) < 1) {
-                    wave.duty_cycle = 1;
-                    Warning_ValueExceededLimit();
                 } else {
-                    wave.duty_cycle = atof(arg_duty_cycle);
+                    wave.frequency = atof(arg_duty_cycle);
                 }
                 has_duty_cycle_arg = true;
             } else { // value is not positive & numeric
                 Error_InvalidValue();
                 exit(1);
             }
-
         } else {
             Error_InvalidArgument();
             exit(1);
@@ -179,14 +175,10 @@ int WaveInitialization(int argc, char **argv) {
     if (!has_frequency_arg) wave.frequency = 1;
     if (!has_duty_cycle_arg) wave.duty_cycle = 1;
 
-    WaveInitializationComplete();
-
     return 1;
 }
 
 void WaveInitializationByFile(int i) {
-//    printf("Initializing wave for file row %d...\n", i);
-
     if (file_data[i][0] == 0 | file_data[i][0] == 1) {
         wave.waveform = Sine;
     } else if (file_data[i][0] == 2) {
@@ -227,5 +219,16 @@ void WaveInitializationByFile(int i) {
         exit(1);
     }
 
-    WaveInitializationComplete();
+    if (file_data[i][3] > 100) {
+        wave.duty_cycle = 100;
+        Warning_ValueExceededLimit();;
+    } else if (file_data[i][3] > 0) {
+        wave.duty_cycle = file_data[i][3];
+    } else if (file_data[i][3] == 0) {
+        wave.duty_cycle = 10;
+    } else {
+        Error_WrongFileData();
+        fclose(fp);
+        exit(1);
+    }
 }
