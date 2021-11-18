@@ -38,7 +38,7 @@ void GenerateSineWave() {
         delta = 1 / ((samples - 1) * wave.frequency);
 
         for (j = 0; j < samples; j++) {
-            if (j == 24) {
+            if (data[j] == 0xfff) {
                 SoundGenerator(wave.amplitude);
             }
 
@@ -51,17 +51,21 @@ void GenerateSineWave() {
 void GenerateRectangleWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
+    double prev_duty_cycle = wave.duty_cycle;
 
     for (i = 0; i < samples; i++) {
         dummy = ((i > (int) wave.duty_cycle) ? 0 : 2 * wave.amplitude) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
     }
 
-    while ((wave.waveform == Rectangle) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
+    while ((wave.waveform == Rectangle) &&
+            (fabs(wave.amplitude - prev_amp) < 0.01) &&
+            (fabs(wave.duty_cycle - prev_duty_cycle) < 0.01)) {
         prev_amp = wave.amplitude;
+        prev_duty_cycle = wave.duty_cycle;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
-            if (j == 49) {
+            if (data[j] == 0xfff) {
                 SoundGenerator(wave.amplitude);
             }
 
@@ -86,7 +90,7 @@ void GenerateTriangleWave() {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
-            if (j == 49) {
+            if (j == data[j] == 0xfff) {
                 SoundGenerator(wave.amplitude);
             }
 
@@ -110,7 +114,7 @@ void GenerateSawtoothWave() {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
-            if (j == 99) {
+            if (data[j] == 0xfff) {
                 SoundGenerator(wave.amplitude);
             }
 
