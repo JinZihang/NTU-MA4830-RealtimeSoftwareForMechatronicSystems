@@ -106,7 +106,7 @@ void *UpdateDisplay() {
         mvprintw(14, 24, "|");
         attron(A_INVIS);
         for (i = 0; i < 40; i++) {
-            if (i < (int) wave.amplitude * 40 / 2.5) {
+            if (i < wave.amplitude * 40 / 2.5) {
                 attron(COLOR_PAIR(3));
                 mvprintw(14, 25 + i, "/");
                 attroff(COLOR_PAIR(3));
@@ -125,7 +125,7 @@ void *UpdateDisplay() {
         mvprintw(17, 24, "|");
         attron(A_INVIS);
         for (i = 0; i < 40; i++) {
-            if (i < (int) wave.frequency * 40 / 300) {
+            if (i < wave.frequency * 40 / 300) {
                 attron(COLOR_PAIR(3));
                 mvprintw(17, 25 + i, "/");
                 attroff(COLOR_PAIR(3));
@@ -144,7 +144,7 @@ void *UpdateDisplay() {
         mvprintw(20, 24, "|");
         attron(A_INVIS);
         for (i = 0; i < 40; i++) {
-            if (i < (int) wave.duty_cycle * 40 / 100) {
+            if (i < wave.duty_cycle * 40 / 100) {
                 attron(COLOR_PAIR(3));
                 mvprintw(20, 25 + i, "/");
                 attroff(COLOR_PAIR(3));
