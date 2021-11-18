@@ -53,7 +53,7 @@ void GenerateRectangleWave() {
     double prev_amp = wave.amplitude;
 
     for (i = 0; i < samples; i++) {
-        dummy = ((i < 50) ? 0 : 2 * wave.amplitude) * (0x0fff / (float) 5);
+        dummy = ((i > (int) wave.duty_cycle) ? 0 : 2 * wave.amplitude) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
     }
 
