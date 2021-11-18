@@ -170,6 +170,7 @@ int WaveInitialization(int argc, char **argv) {
     if (!has_waveform_arg) wave.waveform = Sine;
     if (!has_amplitude_arg) wave.amplitude = 1;
     if (!has_frequency_arg) wave.frequency = 1;
+    if (!has_duty_cycle_arg) wave.duty_cycle = 1;
 
     return 1;
 }
@@ -195,7 +196,7 @@ void WaveInitializationByFile(int i) {
     } else if (file_data[i][1] > 0) {
         wave.amplitude = file_data[i][1];
     } else if (file_data[i][1] == 0) {
-        wave.amplitude = 10;
+        wave.amplitude = 1;
     } else {
         Error_WrongFileData();
         fclose(fp);
@@ -208,7 +209,7 @@ void WaveInitializationByFile(int i) {
     } else if (file_data[i][2] > 0) {
         wave.frequency = file_data[i][2];
     } else if (file_data[i][2] == 0) {
-        wave.frequency = 10;
+        wave.frequency = 1;
     } else {
         Error_WrongFileData();
         fclose(fp);
@@ -221,7 +222,7 @@ void WaveInitializationByFile(int i) {
     } else if (file_data[i][3] > 0) {
         wave.duty_cycle = file_data[i][3];
     } else if (file_data[i][3] == 0) {
-        wave.duty_cycle = 10;
+        wave.duty_cycle = 1;
     } else {
         Error_WrongFileData();
         fclose(fp);
