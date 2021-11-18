@@ -45,25 +45,20 @@ int main(int argc, char **argv) {
     signal(SIGINT, termination_signal_handler);
     signal(SIGALRM, timer_signal_handler);
 
-    wave_count = WaveInitialization(argc, argv);
+    //wave_count = WaveInitialization(argc, argv);
     PCIeInitialization();
     DIOInitialization();
     NcursesInitialization();
 
-    if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
-        Error_CannotCreateTimer();
-        exit(1);
-    }
-
-    if (wave_count > 1) {
-        ran_by_file = 1;
-        wave_count--;
-    }
-
-    for (wave_index = 0; wave_index < wave_count; wave_index++) {
-        if (ran_by_file) {
-            WaveInitializationByFile(wave_index);
+    if (argc == 1) {
+        // stream processing (taking input from sensors)
+        if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
+            Error_CannotCreateTimer();
+            exit(1);
         }
+
+        // stream initialization
+        wave.frequency = 1;
 
         TimerInitialization();
 
@@ -79,9 +74,41 @@ int main(int argc, char **argv) {
                 break;
             }
         }
-
-        count_down = 30;
     }
+    else {
+        // batch processing (taking input from parameters given)
+
+    }
+
+
+
+//    if (wave_count > 1) {
+//        ran_by_file = 1;
+//        wave_count--;
+//    }
+
+//    for (wave_index = 0; wave_index < wave_count; wave_index++) {
+//        if (ran_by_file) {
+//            WaveInitializationByFile(wave_index);
+//        }
+//
+//        TimerInitialization();
+//
+//        pthread_create(NULL, NULL, &ReadSwitch, NULL);
+//        pthread_create(NULL, NULL, &ReadPot, NULL);
+//        pthread_create(NULL, NULL, &ReadArrowKey, NULL);
+//        pthread_create(NULL, NULL, &UpdateTimer, NULL);
+//        pthread_create(NULL, NULL, &GenerateWave, NULL);
+//        pthread_create(NULL, NULL, &UpdateDisplay, NULL);
+//
+//        while (1) {
+//            if (count_down == 0) {
+//                break;
+//            }
+//        }
+//
+//        count_down = 30;
+//    }
 
     if (ran_by_file) fclose(fp);
     timer_delete(timerid);
