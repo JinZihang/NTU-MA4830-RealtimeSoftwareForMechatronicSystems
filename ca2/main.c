@@ -88,6 +88,13 @@ int main(int argc, char **argv) {
 
 //            pthread_create(NULL, NULL, &GenerateWave, NULL);
 //            pthread_create(NULL, NULL, &UpdateDisplay, NULL);
+
+            while (1) {
+                if (count_down == 0) {
+                    break;
+                }
+            }
+            count_down = 30;
         }
     }
 
