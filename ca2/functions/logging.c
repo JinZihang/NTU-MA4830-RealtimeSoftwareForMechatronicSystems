@@ -6,7 +6,7 @@
 #include "../main.h"
 
 void NcursesInitialization() {
-    int y_min, x_min, y_max, x_max, i;
+    int y_min, x_min, y_max, x_max;
 
     initscr();
     clear();
@@ -65,6 +65,8 @@ void NcursesInitialization() {
 }
 
 void *UpdateDisplay() {
+    int i;
+
     init_pair(2, COLOR_WHITE, COLOR_BLACK); // selected waveform
     init_pair(3, COLOR_BLACK, COLOR_GREEN); // percentage bar-positive
     init_pair(4, COLOR_BLACK, COLOR_RED);   // percentage bar-negative
