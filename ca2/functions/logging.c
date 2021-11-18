@@ -191,3 +191,25 @@ void Error_CannotCreateTimer() {
     getch();
     exit(1);
 }
+
+void Error_WrongFileData() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Something wrong with the file data!. Use --h to view file data instructions.");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Error_CannotOpenFile() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Cannot open the file specified");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}

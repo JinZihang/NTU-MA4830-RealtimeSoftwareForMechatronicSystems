@@ -53,12 +53,3 @@ void Error_InvalidValue() {
 void Warning_ValueExceededLimit() {
 //    printf("Value exceeded limit! Continuing with the allowed maximum value.\n");
 }
-
-void Error_CannotOpenFile() {
-//    perror("Cannot open the file specified");
-}
-
-void Error_WrongFileData() {
-//    fprintf(stderr, "Something wrong with the file data!\n");
-//    fprintf(stderr, "Use --h to view file data instructions.\n");
-}

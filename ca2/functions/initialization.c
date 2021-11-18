@@ -7,6 +7,7 @@
 #include "print.h"
 #include "helper.h"
 #include "../main.h"
+#include "logging.h"
 
 int WaveInitialization(int argc, char **argv) {
     int i, j;

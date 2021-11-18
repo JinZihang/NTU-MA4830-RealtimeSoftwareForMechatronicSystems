@@ -11,4 +11,8 @@ void Error_SetTimer();
 
 void Error_CannotCreateTimer();
 
+void Error_WrongFileData();
+
+void Error_CannotOpenFile();
+
 #endif
