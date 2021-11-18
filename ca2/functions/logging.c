@@ -176,7 +176,18 @@ void Error_SetTimer() {
     attron(COLOR_PAIR(6));
     mvprintw(25, 2, "[Error] Failed to set the timer!");
     attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
 
+void Error_CannotCreateTimer() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Failed to create a timer!");
+    attroff(COLOR_PAIR(6));
+    refresh();
     getch();
     exit(1);
 }

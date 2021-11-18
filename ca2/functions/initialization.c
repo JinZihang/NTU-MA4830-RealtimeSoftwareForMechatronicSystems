@@ -128,6 +128,9 @@ int WaveInitialization(int argc, char **argv) {
                 if (atof(arg_frequency) > 300) {
                     wave.frequency = 300;
                     Warning_ValueExceededLimit();
+                } else if (atof(arg_frequency) < 1) {
+                    wave.frequency = 1;
+                    Warning_ValueExceededLimit();
                 } else {
                     wave.frequency = atof(arg_frequency);
                 }
