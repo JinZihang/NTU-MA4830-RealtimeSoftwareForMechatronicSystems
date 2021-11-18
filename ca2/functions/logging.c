@@ -29,6 +29,11 @@ void NcursesInitialization() {
     }
     start_color();
     init_pair(1, COLOR_BLACK, COLOR_WHITE); // general
+    init_pair(2, COLOR_WHITE, COLOR_BLACK); // selected waveform
+    init_pair(3, COLOR_BLACK, COLOR_GREEN); // percentage bar-positive
+    init_pair(4, COLOR_BLACK, COLOR_RED);   // percentage bar-negative
+    init_pair(5, COLOR_YELLOW, COLOR_WHITE); // warning message
+    init_pair(6, COLOR_RED, COLOR_WHITE); // error message
 
     // general
     box(stdscr, 0, 0);
@@ -66,10 +71,6 @@ void NcursesInitialization() {
 
 void *UpdateDisplay() {
     int i;
-
-    init_pair(2, COLOR_WHITE, COLOR_BLACK); // selected waveform
-    init_pair(3, COLOR_BLACK, COLOR_GREEN); // percentage bar-positive
-    init_pair(4, COLOR_BLACK, COLOR_RED);   // percentage bar-negative
 
     while (1) {
         // process information
@@ -160,4 +161,22 @@ void *UpdateDisplay() {
 
         refresh();
     }
+}
+
+void ClearLoggingLine() {
+    int i;
+    for (i=0; i< getmaxx(stdscr) - 2; i++) {
+        mvprintw(25, 2+i, " ");
+    }
+}
+
+void Error_SetTimer() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Failed to set the timer!");
+    attroff(COLOR_PAIR(6));
+
+    getch();
+    exit(1);
 }
