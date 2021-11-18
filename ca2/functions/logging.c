@@ -19,7 +19,8 @@ void ncursesInitialization()
 
     keypad(win, TRUE);
 
-    wprintw(win, "Start\n");
+    mvwprintw(win, 1, x_max / 2 - 4, "Pendulum");
+    mvwhline(win, 2, 1, '-', x_max - 2);
 
-    refresh();
+    wrefresh(win);
 }

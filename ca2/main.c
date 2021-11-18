@@ -32,6 +32,7 @@ int y_min, x_min, y_max, x_max;
 
 void termination_signal_handler(int signum) {
 //    printf("Program terminated.\n");
+    delwin(win);
     exit(0);
 }
 
