@@ -27,12 +27,9 @@ timer_t timerid;
 struct itimerspec timer;
 int count_down = 10;
 
-WINDOW *win;
-int y_min, x_min, y_max, x_max;
-
 void termination_signal_handler(int signum) {
 //    printf("Program terminated.\n");
-    delwin(win);
+    endwin();
     exit(0);
 }
 
@@ -93,5 +90,6 @@ int main(int argc, char **argv) {
 //    printf("Program ended.\n");
     if (ran_by_file) fclose(fp);
     timer_delete(timerid);
+    endwin();
     return 0;
 }
