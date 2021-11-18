@@ -6,12 +6,14 @@
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+#include <ncurses.h>
 
 #include "../datatypes/struct.h"
 #include "print.h"
 #include "input.h"
 #include "pcie_control.h"
 #include "../main.h"
+#include "logging.h"
 
 void *ReadSwitch(void *arg) {
     while (1) {
@@ -124,57 +126,32 @@ void *ReadPot(void *arg) {
     }
 }
 
-int ReadArrow() {
-    int int_1 = 0;
-    int int_2 = 0;
-    int int_3 = 0;
-
-    system("/bin/stty raw");
-    scanf("%d", &int_3);
-    int_1 = getchar();
-    if (int_1 == 27) {
-        int_2 = getchar();
-        int_3 = getchar();
-    }
-    system("/bin/stty edit");
-
-    return int_3;
-}
-
 void *ReadArrowKey(void *arg) {
     int input;
-    int status = 1;
     struct FreqLimit frequencyRange;
     frequencyRange.min = 1;
     frequencyRange.max = 300;
 
-    while (status) {
-        input = ReadArrow();
+    while (1) {
+        input = wgetch(win);
         switch (input) {
-            case 65:
-//                printf("\n");
+            case KEY_UP:
                 if (wave.frequency < frequencyRange.max) {
-                    wave.frequency = wave.frequency + 1;
+                    wave.frequency = wave.frequency + 0.1;
                 } else {
                     Warning_ValueExceededLimit();
                 }
                 break;
-            case 66:
-//                printf("\n");
+            case KEY_DOWN:
                 if (frequencyRange.min < wave.frequency) {
-                    wave.frequency = wave.frequency - 1;
+                    wave.frequency = wave.frequency - 0.1;
                 } else {
                     Warning_ValueExceededLimit();
                 }
-                break;
-            case 'q':
-                status = 0;
                 break;
             default:
                 break;
         }
-
-        fflush(stdout);
     }
 }
 

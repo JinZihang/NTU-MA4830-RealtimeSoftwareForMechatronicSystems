@@ -8,13 +8,18 @@
 void ncursesInitialization()
 {
     initscr();
-    refresh();
+    clear();
+    noecho();
+    cbreak();
 
     getbegyx(stdscr, y_min, x_min);
     getmaxyx(stdscr, y_max, x_max);
 
-    printw("Hello\n");
-    printw("Y min %d\n", y_min);
+    win = newwin(y_max - y_min, x_max - x_min, 0, 0);
+
+    keypad(win, TRUE);
+
+    printw("Start\n");
 
     refresh();
 }

@@ -5,8 +5,6 @@ void *ReadSwitch(void *arg);
 
 void *ReadPot(void *arg);
 
-int ReadArrow();
-
 void *ReadArrowKey(void *arg);
 
 #endif
