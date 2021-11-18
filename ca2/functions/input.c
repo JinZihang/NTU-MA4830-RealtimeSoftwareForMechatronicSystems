@@ -111,12 +111,12 @@ void *ReadPot(void *arg) {
 
         if (abs(prev_adc1 - adc_in[1]) > 30) {
             // not noise
-            dummy = (adc_in[1] / (float) 65525) * 300;
-            if (dummy > 300) {
+            dummy = (adc_in[1] / (float) 65525) * 100;
+            if (dummy > 100) {
                 Warning_ValueExceededLimit();
-                dummy = 300;
+                dummy = 100;
             }
-            wave.frequency = dummy;
+            wave.duty_cycle = dummy;
         }
 
         prev_adc0 = adc_in[0];
