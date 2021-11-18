@@ -144,7 +144,7 @@ int WaveInitialization(int argc, char **argv) {
 
     if (!has_waveform_arg) wave.waveform = Sine;
     if (!has_amplitude_arg) wave.amplitude = 1;
-    if (!has_frequency_arg) wave.frequency = 100;
+    if (!has_frequency_arg) wave.frequency = 1;
 
     WaveInitializationComplete();
 
