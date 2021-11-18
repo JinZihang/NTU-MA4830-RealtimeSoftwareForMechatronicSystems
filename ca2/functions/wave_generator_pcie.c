@@ -1,7 +1,6 @@
 #include "wave_generator_pcie.h"
 
 #include <stdio.h>
-#include <stdbool.h>
 #include <pthread.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -10,11 +9,13 @@
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+#include <ncurses.h>
 
 #include "../datatypes/struct.h"
 #include "sound.h"
 #include "pcie_control.h"
 #include "../main.h"
+#include "logging.h"
 
 //******************************************************************************
 // D/A Port Functions
@@ -38,8 +39,8 @@ void GenerateSineWave() {
         delta = 1 / ((samples - 1) * wave.frequency);
 
         for (j = 0; j < samples; j++) {
-            if (data[j] == 0xfff) {
-                SoundGenerator(wave.amplitude);
+            if (j == 24) {
+                pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 
             out16(DAC0_Data, data[j]);
@@ -60,13 +61,13 @@ void GenerateRectangleWave() {
 
     while ((wave.waveform == Rectangle) &&
             (fabs(wave.amplitude - prev_amp) < 0.01) &&
-            (fabs(wave.duty_cycle - prev_duty_cycle) < 0.01)) {
+            (fabs(wave.duty_cycle - prev_duty_cycle) < 1)) {
         prev_amp = wave.amplitude;
         prev_duty_cycle = wave.duty_cycle;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
-            if (data[j] == 0xfff) {
-                SoundGenerator(wave.amplitude);
+            if (j == 0) {
+                pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 
             out16(DAC0_Data, data[j]);
@@ -90,8 +91,8 @@ void GenerateTriangleWave() {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
-            if (j == data[j] == 0xfff) {
-                SoundGenerator(wave.amplitude);
+            if (j == 0) {
+                pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 
             out16(DAC0_Data, data[j]);
@@ -114,8 +115,8 @@ void GenerateSawtoothWave() {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
-            if (data[j] == 0xfff) {
-                SoundGenerator(wave.amplitude);
+            if (j == 0) {
+                pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 
             out16(DAC0_Data, data[j]);

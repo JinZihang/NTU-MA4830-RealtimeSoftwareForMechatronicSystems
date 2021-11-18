@@ -1,6 +1,6 @@
 #ifndef METRONOME_SOUND_H
 #define METRONOME_SOUND_H
 
-void SoundGenerator(double amplitude);
+void* SoundGenerator(void* amplitude);
 
 #endif
