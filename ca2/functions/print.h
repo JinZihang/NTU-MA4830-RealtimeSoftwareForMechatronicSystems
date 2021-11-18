@@ -7,6 +7,4 @@ void Error_InvalidArgument();
 
 void Error_InvalidValue();
 
-void Warning_ValueExceededLimit();
-
 #endif

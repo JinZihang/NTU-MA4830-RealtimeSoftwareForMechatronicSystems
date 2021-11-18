@@ -49,7 +49,3 @@ void Error_InvalidValue() {
 //    fprintf(stderr, "Invalid parameter value exists!\n");
 //    fprintf(stderr, "Use --h to view program argument instructions.\n");
 }
-
-void Warning_ValueExceededLimit() {
-//    printf("Value exceeded limit! Continuing with the allowed maximum value.\n");
-}

@@ -15,4 +15,6 @@ void Error_WrongFileData();
 
 void Error_CannotOpenFile();
 
+void Warning_ValueExceededLimit();
+
 #endif

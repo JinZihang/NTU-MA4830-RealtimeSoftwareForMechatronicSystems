@@ -13,6 +13,7 @@
 #include "input.h"
 #include "pcie_control.h"
 #include "../main.h"
+#include "logging.h"
 
 void *ReadSwitch(void *arg) {
     while (1) {

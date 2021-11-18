@@ -213,3 +213,14 @@ void Error_CannotOpenFile() {
     getch();
     exit(1);
 }
+
+void Warning_ValueExceededLimit() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(5));
+    mvprintw(25, 2, "[Warning] Value exceeded limit! Continuing with the allowed maximum value.");
+    attroff(COLOR_PAIR(5));
+    refresh();
+    getch();
+    exit(1);
+}
