@@ -19,6 +19,7 @@ void TimerInitialization() {
 void *UpdateTimer() {
     struct Wave previousWave = wave;
     while(1) {
+        // if wave configuration changes, trigger update timer 
         if ((previousWave.waveform != wave.waveform)
             || (fabs(previousWave.amplitude - wave.amplitude) > 0.01)
             || (fabs(previousWave.frequency - wave.frequency) > 0.01)
