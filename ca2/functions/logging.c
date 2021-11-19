@@ -190,8 +190,29 @@ void Info_ProgramTerminated() {
     refresh();
     exit(1);
 }
+void Error_PCIAttach() {
+    ClearLoggingLine();
 
-void Error_ThreadControl() {
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] PCIe pci_attach() error!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Error_PCIAttachDevice() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] PCIe pci_attach_device() error!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Error_PCIThreadControl() {
     ClearLoggingLine();
 
     attron(COLOR_PAIR(6));
