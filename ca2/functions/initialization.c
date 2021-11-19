@@ -14,25 +14,14 @@ int WaveInitialization(int argc, char **argv) {
     char *arg_waveform, *arg_amplitude, *arg_frequency, *arg_duty_cycle;
     bool has_waveform_arg = false, has_amplitude_arg = false, has_frequency_arg = false, has_duty_cycle_arg = false;
 
-    if (argc > 5) {
-        Error_InvalidArguments();
-        exit(1);
-    }
+    if (argc > 5) Error_InvalidArguments();
 
     if (argc == 2) {
         if (strcmp(argv[1], "--h") == 0) {
             ArgumentInstructions();
-            exit(0);
         } else if (strncmp(argv[1], "--fp=", 5) == 0) {
-            if (strlen(argv[1]) == 4) {
-                Error_InvalidArguments();
-                exit(1);
-            }
-
-            if ((fp = fopen(SliceString(argv[1], 5), "r")) == NULL) {
-                Error_CannotOpenFile();
-                exit(1);
-            }
+            if (strlen(argv[1]) == 4) Error_InvalidArguments();
+            if ((fp = fopen(SliceString(argv[1], 5), "r")) == NULL) Error_CannotOpenFile();
 
             for (i = 0; i < 10; i++) { // read maximum 10 rows
                 for (j = 0; j < 4; j++) {
@@ -45,8 +34,6 @@ int WaveInitialization(int argc, char **argv) {
                             break;
                         default:
                             Error_WrongFileData();
-                            fclose(fp);
-                            exit(1);
                     }
                 }
             }
@@ -58,15 +45,8 @@ int WaveInitialization(int argc, char **argv) {
 
     for (i = 1; i < argc; i++) {
         if (strncmp(argv[i], "--w=", 4) == 0) {
-            if (strlen(argv[i]) == 4) {
-                Error_InvalidArguments();
-                exit(1);
-            }
-
-            if (has_waveform_arg == true) {
-                Error_InvalidArguments();
-                exit(1);
-            }
+            if (strlen(argv[i]) == 4) Error_InvalidArguments();
+            if (has_waveform_arg == true) Error_InvalidArguments();
 
             arg_waveform = SliceString(argv[i], 4);
 
@@ -82,20 +62,12 @@ int WaveInitialization(int argc, char **argv) {
             } else if (strcmp(arg_waveform, "sawtooth") == 0) {
                 wave.waveform = Sawtooth;
                 has_waveform_arg = true;
-            } else { // waveform does not match any pre-defined type
+            } else {
                 Error_InvalidValue();
-                exit(1);
             }
         } else if (strncmp(argv[i], "--a=", 4) == 0) {
-            if (strlen(argv[i]) == 4) {
-                Error_InvalidArguments();
-                exit(1);
-            }
-
-            if (has_amplitude_arg == true) {
-                Error_InvalidArguments();
-                exit(1);
-            }
+            if (strlen(argv[i]) == 4) Error_InvalidArguments();
+            if (has_amplitude_arg == true) Error_InvalidArguments();
 
             arg_amplitude = SliceString(argv[i], 4);
 
@@ -107,20 +79,12 @@ int WaveInitialization(int argc, char **argv) {
                     wave.amplitude = atof(arg_amplitude);
                 }
                 has_amplitude_arg = true;
-            } else { // value is not positive & numeric
+            } else {
                 Error_InvalidValue();
-                exit(1);
             }
         } else if (strncmp(argv[i], "--f=", 4) == 0) {
-            if (strlen(argv[i]) == 4) {
-                Error_InvalidArguments();
-                exit(1);
-            }
-
-            if (has_frequency_arg == true) {
-                Error_InvalidArguments();
-                exit(1);
-            }
+            if (strlen(argv[i]) == 4) Error_InvalidArguments();
+            if (has_frequency_arg == true) Error_InvalidArguments();
 
             arg_frequency = SliceString(argv[i], 4);
 
@@ -135,20 +99,12 @@ int WaveInitialization(int argc, char **argv) {
                     wave.frequency = atof(arg_frequency);
                 }
                 has_frequency_arg = true;
-            } else { // value is not positive & numeric
+            } else {
                 Error_InvalidValue();
-                exit(1);
             }
         } else if (strncmp(argv[i], "--d=", 4) == 0) {
-            if (strlen(argv[i]) == 4) {
-                Error_InvalidArguments();
-                exit(1);
-            }
-
-            if (has_duty_cycle_arg == true) {
-                Error_InvalidArguments();
-                exit(1);
-            }
+            if (strlen(argv[i]) == 4) Error_InvalidArguments();
+            if (has_duty_cycle_arg == true) Error_InvalidArguments();
 
             arg_duty_cycle = SliceString(argv[i], 4);
 
@@ -160,13 +116,11 @@ int WaveInitialization(int argc, char **argv) {
                     wave.frequency = atof(arg_duty_cycle);
                 }
                 has_duty_cycle_arg = true;
-            } else { // value is not positive & numeric
+            } else {
                 Error_InvalidValue();
-                exit(1);
             }
         } else {
             Error_InvalidArguments();
-            exit(1);
         }
     }
 
@@ -189,8 +143,6 @@ void WaveInitializationByFile(int i) {
         wave.waveform = Sawtooth;
     } else {
         Error_WrongFileData();
-        fclose(fp);
-        exit(1);
     }
 
     if (file_data[i][1] > 2.5) {
@@ -202,8 +154,6 @@ void WaveInitializationByFile(int i) {
         wave.amplitude = 1;
     } else {
         Error_WrongFileData();
-        fclose(fp);
-        exit(1);
     }
 
     if (file_data[i][2] > 300) {
@@ -215,8 +165,6 @@ void WaveInitializationByFile(int i) {
         wave.frequency = 1;
     } else {
         Error_WrongFileData();
-        fclose(fp);
-        exit(1);
     }
 
     if (file_data[i][3] > 100) {
@@ -228,7 +176,5 @@ void WaveInitializationByFile(int i) {
         wave.duty_cycle = 1;
     } else {
         Error_WrongFileData();
-        fclose(fp);
-        exit(1);
     }
 }
