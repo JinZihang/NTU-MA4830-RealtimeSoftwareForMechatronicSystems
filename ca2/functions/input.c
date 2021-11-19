@@ -9,10 +9,10 @@
 #include <ncurses.h>
 
 #include "../datatypes/struct.h"
-#include "input.h"
-#include "pcie_control.h"
-#include "../main.h"
 #include "logging.h"
+#include "pcie_control.h"
+#include "input.h"
+#include "../main.h"
 
 void *ReadSwitch(void *arg) {
     while (1) {
