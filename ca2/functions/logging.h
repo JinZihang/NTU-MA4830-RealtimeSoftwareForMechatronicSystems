@@ -13,7 +13,7 @@ void Error_InvalidArguments();
 
 void Error_CannotOpenFile();
 
-void Error_WrongFileData();g
+void Error_WrongFileData();
 
 void Error_InvalidValue();
 
