@@ -47,9 +47,7 @@ int main(int argc, char **argv) {
 
     wave_count = WaveInitialization(argc, argv);
 
-    if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
-        Error_CreateTimer();
-    }
+    if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) Error_CreateTimer();
 
     if (wave_count > 1) {
         ran_by_file = 1;
@@ -72,23 +70,17 @@ int main(int argc, char **argv) {
             pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
             while (1) {
-                if (count_down == -1) {
-                    break;
-                }
+                if (count_down == -1) break;
             }
         } else {
             // batch processing (taking input from parameters given)
-            if (ran_by_file) {
-                WaveInitializationByFile(wave_index);
-            }
+            if (ran_by_file) WaveInitializationByFile(wave_index);
 
             pthread_create(NULL, NULL, &GenerateWave, NULL);
             pthread_create(NULL, NULL, &UpdateDisplay, NULL);
 
             while (1) {
-                if (count_down == -1) {
-                    break;
-                }
+                if (count_down == -1) break;
             }
             count_down = 30;
         }
