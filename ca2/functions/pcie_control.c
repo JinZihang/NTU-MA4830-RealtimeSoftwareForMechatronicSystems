@@ -22,7 +22,6 @@ void PCIeInitialization() {
         badr[i] = PCI_IO_ADDR(info.CpuBaseAddress[i]);
     }
 
-
     // map I/O base address to user space
     for (i = 0; i < 5; i++) {
         iobase[i] = mmap_device_io(0x0f, badr[i]);
