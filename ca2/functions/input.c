@@ -58,9 +58,9 @@ void *ReadPot(void *arg) {
         while (in8(ADC_Stat2) > 0x80);
         adc_in[1] = in16(ADC_Data);
 
-        if (abs(prev_adc0 - adc_in[0]) > 30) {
+        if (abs(prev_adc0 - adc_in[0]) > 30) {      // analog filter to handle noises
             // not noise
-            dummy = (adc_in[0] / (float) 65525) * amp_max;
+            dummy = (adc_in[0] / (float) 65525) * amp_max;  // analog conversion 
             if (dummy > amp_max) {
                 dummy = amp_max;
             } else if (dummy < amp_min) {
@@ -69,9 +69,9 @@ void *ReadPot(void *arg) {
             wave.amplitude = dummy;
         }
 
-        if (abs(prev_adc1 - adc_in[1]) > 30) {
+        if (abs(prev_adc1 - adc_in[1]) > 30) {     // analog filter to handle noises
             // not noise
-            dummy = (adc_in[1] / (float) 65525) * duty_cycle_max;
+            dummy = (adc_in[1] / (float) 65525) * duty_cycle_max;   // analog conversion 
             if (dummy > duty_cycle_max) {
                 dummy = duty_cycle_max;
             } else if (dummy < duty_cycle_min) {

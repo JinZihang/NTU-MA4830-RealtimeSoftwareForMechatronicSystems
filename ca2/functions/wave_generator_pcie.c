@@ -30,16 +30,19 @@ void GenerateSineWave() {
     double prev_amp = wave.amplitude;
 
     for (i = 0; i < samples; i++) {
-        dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0x0fff / (float) 5);
+        // wave caluculation and re-scaling 
+        dummy = (((sinf((float) ((i * 2 * M_PI) / 100))) * wave.amplitude) + wave.amplitude) * (0x0fff / (float) 5); 
         data[i] = (unsigned) dummy;
     }
 
+    // analog filter 
     while ((wave.waveform == Sine) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
 
         for (j = 0; j < samples; j++) {
             if (j == 24) {
+                // sound triggered at wave peak 
                 pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 
@@ -55,10 +58,12 @@ void GenerateRectangleWave() {
     double prev_duty_cycle = wave.duty_cycle;
 
     for (i = 0; i < samples; i++) {
+        // wave caluculation and re-scaling 
         dummy = ((i > (int) wave.duty_cycle) ? 0 : 2 * wave.amplitude) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
     }
 
+    // analog filter 
     while ((wave.waveform == Rectangle) &&
             (fabs(wave.amplitude - prev_amp) < 0.01) &&
             (fabs(wave.duty_cycle - prev_duty_cycle) < 1)) {
@@ -67,6 +72,7 @@ void GenerateRectangleWave() {
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
             if (j == 0) {
+                 // sound triggered at wave peak 
                 pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 
@@ -80,18 +86,20 @@ void GenerateTriangleWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
 
-    for (i = 0; i < samples/2; i++)
-    {
+    for (i = 0; i < samples/2; i++){
+        // wave caluculation and re-scaling 
         dummy = ((4 * wave.amplitude * i)/(float) (samples - 1)) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
         data[samples - 1 - i] = (unsigned) dummy;
     }
 
+    // analog filter 
     while ((wave.waveform == Triangle) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
             if (j == 0) {
+                 // sound triggered at wave peak 
                 pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 
@@ -105,17 +113,19 @@ void GenerateSawtoothWave() {
     double dummy, delta;
     double prev_amp = wave.amplitude;
 
-    for (i = 0; i < samples; i++)
-    {
+    for (i = 0; i < samples; i++){
+        // wave caluculation and re-scaling 
         dummy = ((2 * wave.amplitude * i)/(float) (samples- 1)) * (0x0fff / (float) 5);
         data[i] = (unsigned) dummy;
     }
 
+    // analog filter    
     while ((wave.waveform == Sawtooth) && (fabs(wave.amplitude - prev_amp) < 0.01)) {
         prev_amp = wave.amplitude;
         delta = 1 / ((samples - 1) * wave.frequency);
         for (j = 0; j < samples; j++) {
             if (j == 0) {
+                 // sound triggered at wave peak 
                 pthread_create(NULL, NULL, &SoundGenerator, &wave.amplitude);
             }
 

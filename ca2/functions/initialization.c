@@ -37,13 +37,13 @@ int WaveInitialization(int argc, char **argv) {
                     }
                 }
             }
-
-            return file_r_count + 1;
-            // to create a difference between the 1 wave from file and from argument
+            // to create a difference between the 1 wave from file and from parameter argument
+            return file_r_count + 1;            
         }
     }
 
     for (i = 1; i < argc; i++) {
+        // Parameter argument passing mode 
         if (strncmp(argv[i], "--w=", 4) == 0) {
             if (strlen(argv[i]) == 4) Error_ProgramArguments();
             if (has_waveform_arg == true) Error_ProgramArguments();
@@ -120,6 +120,7 @@ int WaveInitialization(int argc, char **argv) {
         }
     }
 
+    // auto-fill undefined configurations
     if (!has_waveform_arg) wave.waveform = Sine;
     if (!has_amplitude_arg) wave.amplitude = 1;
     if (!has_frequency_arg) wave.frequency = 1;
@@ -129,6 +130,7 @@ int WaveInitialization(int argc, char **argv) {
 }
 
 void WaveInitializationByFile(int i) {
+    // Batch file passing mode 
     if (file_data[i][0] == 0 | file_data[i][0] == 1) {
         wave.waveform = Sine;
     } else if (file_data[i][0] == 2) {
