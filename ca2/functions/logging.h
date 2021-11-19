@@ -1,3 +1,11 @@
+//******************************************************************************
+// Ncurses Related Functions
+// NcursesInitialization: Initialize ncurses window with default static attributes
+// ClearLoggingLine: Clear one logs line in the logging box
+// Error_SliceString: Logs an error if there is an error when slicing a string
+// ArgumentInstructions: Logs help instructions for using the application
+//******************************************************************************
+
 #ifndef METRONOME_LOGGING_H
 #define METRONOME_LOGGING_H
 
