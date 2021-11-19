@@ -1,3 +1,12 @@
+//******************************************************************************
+// Wave Generator Functions
+// GenerateWave: General generate wave functions
+// GenerateSineWave: Generate Sine wave
+// GenerateRectangleWave: Generate Rectangle wave
+// GenerateTriangleWave: Generate Triangle wave
+// GenerateSawtoothWave: Generate Sawtooth wave
+//******************************************************************************
+
 #ifndef METRONOME_WAVE_GENERATOR_PCIE_H
 #define METRONOME_WAVE_GENERATOR_PCIE_H
 
