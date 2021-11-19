@@ -20,7 +20,7 @@
 #include <sys/neutrino.h>
 #include <sys/mman.h>
 
-int badr[5];    // PCI 2.2 assigns 6 IO base addresses
+int badr[5];
 struct pci_dev_info info;
 void *hdl;
 uintptr_t iobase[6];

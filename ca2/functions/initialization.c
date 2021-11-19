@@ -23,7 +23,7 @@ int WaveInitialization(int argc, char **argv) {
             if (strlen(argv[1]) == 4) Error_InvalidArguments();
             if ((fp = fopen(SliceString(argv[1], 5), "r")) == NULL) Error_CannotOpenFile();
 
-            for (i = 0; i < 10; i++) { // read maximum 10 rows
+            for (i = 0; i < 10; i++) {
                 for (j = 0; j < 4; j++) {
                     file_data_reader = fscanf(fp, "%lf", &file_data[i][j]);
                     switch (file_data_reader) {
