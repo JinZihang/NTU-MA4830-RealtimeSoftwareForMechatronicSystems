@@ -246,7 +246,15 @@ void Error_InvalidArguments() {
     refresh();
     getch();
     exit(1);
-//    fprintf(stderr, "Invalid program arguments!\n");
-//    fprintf(stderr, "Check whether there exists any incomplete, duplicate, or incompatible declaration.\n");
-//    fprintf(stderr, "Use --h to view program argument instructions.\n");
+}
+
+void Error_InvalidValue() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Invalid value exists!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
 }

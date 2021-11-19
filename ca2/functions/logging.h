@@ -21,4 +21,6 @@ void Info_ProgramTerminated();
 
 void Error_InvalidArguments();
 
+void Error_InvalidValue();
+
 #endif

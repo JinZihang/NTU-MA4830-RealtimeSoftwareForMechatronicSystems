@@ -39,7 +39,3 @@ void ArgumentInstructions() {
 //    printf("\t\t*\tinvalid:\t./main --fp --f=16.5\n\t\t*\tinvalid:\t./main --w=sine --w=rectangle\n");
 }
 
-void Error_InvalidValue() {
-//    fprintf(stderr, "Invalid parameter value exists!\n");
-//    fprintf(stderr, "Use --h to view program argument instructions.\n");
-}

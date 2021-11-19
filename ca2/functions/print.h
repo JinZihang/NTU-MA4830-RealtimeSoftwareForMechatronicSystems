@@ -3,6 +3,4 @@
 
 void ArgumentInstructions();
 
-void Error_InvalidValue();
-
 #endif

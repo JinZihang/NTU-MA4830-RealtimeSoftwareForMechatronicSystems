@@ -42,10 +42,11 @@ int main(int argc, char **argv) {
     signal(SIGINT, termination_signal_handler);
     signal(SIGALRM, timer_signal_handler);
 
-    wave_count = WaveInitialization(argc, argv);
     PCIeInitialization();
     DIOInitialization();
     NcursesInitialization();
+
+    wave_count = WaveInitialization(argc, argv);
 
     if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
         Error_CannotCreateTimer();
