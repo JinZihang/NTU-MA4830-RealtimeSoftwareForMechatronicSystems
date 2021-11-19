@@ -9,7 +9,6 @@ add_library(metronome_lib
         functions/wave_generator_pcie.c
         functions/helper.c
         functions/pcie_control.c
-        functions/print.c
         functions/input.c
         functions/sound.c
         functions/timer.c

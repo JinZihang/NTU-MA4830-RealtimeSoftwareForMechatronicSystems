@@ -9,7 +9,6 @@
 #include <ncurses.h>
 
 #include "datatypes/struct.h"
-#include "functions/print.h"
 #include "functions/helper.h"
 #include "functions/initialization.h"
 #include "functions/pcie_control.h"
