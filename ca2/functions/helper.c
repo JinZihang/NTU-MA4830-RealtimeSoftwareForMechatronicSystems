@@ -3,9 +3,11 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "logging.h"
+
 char *SliceString(char *ori_str, int start_index) {
     if (strlen(ori_str) - 1 < start_index) {
-//        fprintf(stderr, "SliceString: Start position is greater than the string length!\n");
+        Error_SliceString();
         exit(1);
     }
 

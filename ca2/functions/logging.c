@@ -298,3 +298,14 @@ void ArgumentInstructions() {
     refresh();
     exit(0);
 }
+
+void Error_SliceString() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Invalid SliceString() arguments!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}

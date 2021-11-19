@@ -25,4 +25,6 @@ void Error_InvalidValue();
 
 void ArgumentInstructions();
 
+void Error_SliceString();
+
 #endif
