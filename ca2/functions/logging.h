@@ -23,4 +23,6 @@ void Error_InvalidArguments();
 
 void Error_InvalidValue();
 
+void ArgumentInstructions();
+
 #endif

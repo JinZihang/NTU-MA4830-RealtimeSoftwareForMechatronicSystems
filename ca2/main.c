@@ -50,7 +50,6 @@ int main(int argc, char **argv) {
 
     if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
         Error_CannotCreateTimer();
-        exit(1);
     }
 
     if (wave_count > 1) {
