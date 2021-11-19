@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-19T01:42:50.885Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="ZS25kwDlHwQFBaldkTFy" version="15.8.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-19T01:47:39.526Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="iZyuSFfKP4KHKsr88yx7" version="15.8.2" type="github">
   <diagram id="C0jShdZbNCZTeaW72jgo" name="Page-1">
     <mxGraphModel dx="1065" dy="456" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -13,10 +13,10 @@
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-2" value="Mutex Lock" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="100" y="180" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-3" value="Read in switches status" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-3" value="Read in digital switches status" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="230" y="180" width="145" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-4" value="Update the waveform setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-4" value="Update the &lt;b&gt;waveform &lt;/b&gt;setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="390" y="180" width="145" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-5" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
@@ -70,13 +70,13 @@
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-19" target="8Cn6V3oNNJaS4RiiW8ja-25">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-19" value="Update the amplitude setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-19" value="Update the&lt;b&gt; amplitude&lt;/b&gt; setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="230" y="450" width="145" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-20" target="8Cn6V3oNNJaS4RiiW8ja-25">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-20" value="Update the duty cycle setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-20" value="Update the &lt;b&gt;duty cycle &lt;/b&gt;setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="230" y="500" width="145" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-22" target="8Cn6V3oNNJaS4RiiW8ja-24">
@@ -85,17 +85,56 @@
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-22" value="Analog Filter &lt;br&gt;to handle noise" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="420" y="360" width="145" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-24" target="8Cn6V3oNNJaS4RiiW8ja-19">
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-40" target="8Cn6V3oNNJaS4RiiW8ja-19">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-24" target="8Cn6V3oNNJaS4RiiW8ja-20">
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-40" target="8Cn6V3oNNJaS4RiiW8ja-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-24" target="8Cn6V3oNNJaS4RiiW8ja-40">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-24" value="Analog Conversion" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="420" y="470" width="145" height="30" as="geometry" />
+          <mxGeometry x="420" y="430" width="145" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-25" value="Mutex Unlock" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="80" y="460" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-38" value="Keyboard arrow key Input Thread" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="585" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-39" target="8Cn6V3oNNJaS4RiiW8ja-45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-39" value="Mutex Lock" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="650" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-40" target="8Cn6V3oNNJaS4RiiW8ja-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-40" value="Check Range Limitation" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="480" width="145" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-42" value="Warning" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="480" width="117.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-44" value="Read in digital Arrow Kay Up/Down" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="650" width="145" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-45" target="8Cn6V3oNNJaS4RiiW8ja-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-50" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-45" target="8Cn6V3oNNJaS4RiiW8ja-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-45" value="Check Range Limitation" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="650" width="145" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-46" value="Warning" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="650" width="117.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-47" value="Update the &lt;b&gt;frequency&amp;nbsp;&lt;/b&gt;setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="710" width="145" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
