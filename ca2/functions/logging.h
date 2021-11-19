@@ -29,7 +29,11 @@ void Warning_ValueExceededLimit();
 
 void Info_ProgramTerminated();
 
-void Error_ThreadControl();
+void Error_PCIAttach();
+
+void Error_PCIAttachDevice();
+
+void Error_PCIThreadControl();
 
 void Error_CreateTimer();
 
