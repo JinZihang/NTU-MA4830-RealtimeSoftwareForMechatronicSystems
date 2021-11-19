@@ -1,1 +1,58 @@
-<mxfile host="app.diagrams.net" modified="2021-11-19T01:55:49.498Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" version="15.8.2" etag="5dUVy0qERvlEwa9fypVy" type="github"><diagram id="T_mlSjZvgJVOOnmQrZL6">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-11-19T02:58:13.388Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="vCOxocPFA73BBiwRyNdZ" version="15.8.2" type="github">
+  <diagram id="T_mlSjZvgJVOOnmQrZL6" name="Page-1">
+    <mxGraphModel dx="1065" dy="456" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-1" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="232.5" width="20" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-2" value="Sine" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="326" y="220" width="59" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-3" value="Rectangle" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="326" y="250" width="59" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="zt6Q4ycrNxSVF0H1JpQQ-5" target="zt6Q4ycrNxSVF0H1JpQQ-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-5" value="Sawtooth" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="326" y="280" width="59" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-6" value="Triangle" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="326" y="310" width="59" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-7" value="Empty" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="326" y="340" width="59" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-8" value="Wave generation thread" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="263" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-9" value="Corresponds calculation and re-scale to analog range" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="414" y="263" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="zt6Q4ycrNxSVF0H1JpQQ-10" target="zt6Q4ycrNxSVF0H1JpQQ-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-10" value="Analog Filter to due with noise" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="262.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zt6Q4ycrNxSVF0H1JpQQ-13" target="zt6Q4ycrNxSVF0H1JpQQ-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-13" value="create sound generation thread" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zt6Q4ycrNxSVF0H1JpQQ-15" target="zt6Q4ycrNxSVF0H1JpQQ-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-15" value="Play sound at the consecutive wave peak&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zt6Q4ycrNxSVF0H1JpQQ-16" value="&lt;p class=&quot;MsoNormal&quot;&gt;introduce &lt;b&gt;delay &lt;/b&gt;in Relationship with frequency between 2 consecutive points&lt;b&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
