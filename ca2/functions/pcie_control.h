@@ -13,7 +13,7 @@
 #include <sys/neutrino.h>
 #include <sys/mman.h>
 
-// Define registers for PCIe-DAS1602
+// define registers for PCIe-DAS1602
 #define    INTERRUPT    iobase[1] + 4       // Badr1 + 4 - PCIe 32-bit
 #define    ADC_Data     iobase[2] + 0       // Badr2 + 0 - PCIe 16-bit w->srt
 #define    DAC0_Data    iobase[2] + 2       // Badr2 + 2 - PCIe 12-bit

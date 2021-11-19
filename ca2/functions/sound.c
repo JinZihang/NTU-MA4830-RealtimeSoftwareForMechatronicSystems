@@ -3,7 +3,7 @@
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 
-void* SoundGenerator(void* amplitude) {
+void *SoundGenerator(void *amplitude) {
     int i, kbd, ctr, system_control = 0;
 
     ThreadCtl(_NTO_TCTL_IO, 0);

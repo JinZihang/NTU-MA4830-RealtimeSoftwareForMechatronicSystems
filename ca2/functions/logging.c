@@ -72,8 +72,8 @@ void NcursesInitialization() {
 
 void ClearLoggingLine() {
     int i;
-    for (i=0; i< getmaxx(stdscr) - 2; i++) {
-        mvprintw(25, 2+i, " ");
+    for (i = 0; i < getmaxx(stdscr) - 2; i++) {
+        mvprintw(25, 2 + i, " ");
     }
 }
 
@@ -181,6 +181,7 @@ void Info_ProgramTerminated() {
     refresh();
     exit(1);
 }
+
 void Error_PCIAttach() {
     ClearLoggingLine();
 

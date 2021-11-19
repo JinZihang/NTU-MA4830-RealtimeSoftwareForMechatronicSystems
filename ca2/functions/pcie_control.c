@@ -19,7 +19,7 @@ void PCIeInitialization() {
 
     if ((hdl = pci_attach_device(0, PCI_SHARE | PCI_INIT_ALL, 0, &info)) == 0) Error_PCIAttachDevice();
 
-    // Assign BADRn IO addresses for PCIe-DAS1602
+    // assign BADRn IO addresses for PCIe-DAS1602
     for (i = 0; i < 5; i++) {
         badr[i] = PCI_IO_ADDR(info.CpuBaseAddress[i]);
     }
@@ -29,7 +29,7 @@ void PCIeInitialization() {
         iobase[i] = mmap_device_io(0x0f, badr[i]);
     }
 
-    // Modify thread control privity.
+    // modify thread control privity
     if (ThreadCtl(_NTO_TCTL_IO, 0) == -1) Error_PCIThreadControl();
 }
 

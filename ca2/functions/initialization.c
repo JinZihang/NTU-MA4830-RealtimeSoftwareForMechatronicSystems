@@ -38,7 +38,7 @@ int WaveInitialization(int argc, char **argv) {
                 }
             }
             // to create a difference between the 1 wave from file and from parameter argument
-            return file_r_count + 1;            
+            return file_r_count + 1;
         }
     }
 
