@@ -8,14 +8,16 @@
 #include <sys/neutrino.h>
 #include <sys/mman.h>
 
+#include "logging.h"
+
 void PCIeInitialization() {
     memset(&info, 0, sizeof(info));
-    if (pci_attach(0) < 0) exit(EXIT_FAILURE);
+    if (pci_attach(0) < 0) exit(1);
 
     info.VendorId = 0x1307;
     info.DeviceId = 0x115;
 
-    if ((hdl = pci_attach_device(0, PCI_SHARE | PCI_INIT_ALL, 0, &info)) == 0) exit(EXIT_FAILURE);
+    if ((hdl = pci_attach_device(0, PCI_SHARE | PCI_INIT_ALL, 0, &info)) == 0) exit(1);
 
     // Assign BADRn IO addresses for PCIe-DAS1602
     for (i = 0; i < 5; i++) {
@@ -28,9 +30,7 @@ void PCIeInitialization() {
     }
 
     // Modify thread control privity.
-    if (ThreadCtl(_NTO_TCTL_IO, 0) == -1) {
-        exit(1);
-    }
+    if (ThreadCtl(_NTO_TCTL_IO, 0) == -1) Error_ThreadControl();
 }
 
 void DIOInitialization() {

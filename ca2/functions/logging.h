@@ -29,6 +29,8 @@ void Warning_ValueExceededLimit();
 
 void Info_ProgramTerminated();
 
+void Error_ThreadControl();
+
 void Error_CreateTimer();
 
 void Error_SetTimer();

@@ -191,6 +191,17 @@ void Info_ProgramTerminated() {
     exit(1);
 }
 
+void Error_ThreadControl() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] PCIe ThreadCtl() error!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
 void Error_CreateTimer() {
     ClearLoggingLine();
 
