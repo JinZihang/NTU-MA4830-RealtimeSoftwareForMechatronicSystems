@@ -231,7 +231,6 @@ void Info_ProgramTerminated() {
     mvprintw(25, 2, "[Info] Program terminated!");
     attroff(COLOR_PAIR(7));
     refresh();
-    getch();
     exit(1);
 }
 
