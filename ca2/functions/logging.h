@@ -25,8 +25,6 @@ void Error_FileData();
 
 void Error_ArgumentValue();
 
-void Warning_ValueExceededLimit();
-
 void Info_ProgramTerminated();
 
 void Error_PCIAttach();

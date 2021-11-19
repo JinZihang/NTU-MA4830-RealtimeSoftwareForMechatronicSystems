@@ -74,7 +74,6 @@ int WaveInitialization(int argc, char **argv) {
             if (IsFloat(arg_amplitude) & (atof(arg_amplitude) > 0)) {
                 if (atof(arg_amplitude) > 2.5) {
                     wave.amplitude = 2.5;
-                    Warning_ValueExceededLimit();
                 } else {
                     wave.amplitude = atof(arg_amplitude);
                 }
@@ -91,10 +90,8 @@ int WaveInitialization(int argc, char **argv) {
             if (IsFloat(arg_frequency) & (atof(arg_frequency) > 0)) {
                 if (atof(arg_frequency) > 300) {
                     wave.frequency = 300;
-                    Warning_ValueExceededLimit();
                 } else if (atof(arg_frequency) < 1) {
                     wave.frequency = 1;
-                    Warning_ValueExceededLimit();
                 } else {
                     wave.frequency = atof(arg_frequency);
                 }
@@ -111,7 +108,6 @@ int WaveInitialization(int argc, char **argv) {
             if (IsFloat(arg_duty_cycle) & (atof(arg_duty_cycle) > 0)) {
                 if (atof(arg_duty_cycle) > 100) {
                     wave.duty_cycle = 100;
-                    Warning_ValueExceededLimit();
                 } else {
                     wave.frequency = atof(arg_duty_cycle);
                 }
@@ -147,7 +143,6 @@ void WaveInitializationByFile(int i) {
 
     if (file_data[i][1] > 2.5) {
         wave.amplitude = 2.5;
-        Warning_ValueExceededLimit();
     } else if (file_data[i][1] > 0) {
         wave.amplitude = file_data[i][1];
     } else if (file_data[i][1] == 0) {
@@ -158,7 +153,6 @@ void WaveInitializationByFile(int i) {
 
     if (file_data[i][2] > 300) {
         wave.frequency = 300;
-        Warning_ValueExceededLimit();
     } else if (file_data[i][2] > 0) {
         wave.frequency = file_data[i][2];
     } else if (file_data[i][2] == 0) {
@@ -169,7 +163,6 @@ void WaveInitializationByFile(int i) {
 
     if (file_data[i][3] > 100) {
         wave.duty_cycle = 100;
-        Warning_ValueExceededLimit();
     } else if (file_data[i][3] > 0) {
         wave.duty_cycle = file_data[i][3];
     } else if (file_data[i][3] == 0) {

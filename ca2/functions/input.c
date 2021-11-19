@@ -44,6 +44,8 @@ void *ReadSwitch(void *arg) {
 void *ReadPot(void *arg) {
     double dummy;
     unsigned int prev_adc0, prev_adc1;
+    double amp_max = 2.5, amp_min = 0, duty_cycle_max = 100, duty_cycle_min = 0;
+
     while (1) {
         pthread_mutex_lock(&mutex);
         out16(ADC_Data, 0);        // Initiate Read #0
@@ -58,20 +60,22 @@ void *ReadPot(void *arg) {
 
         if (abs(prev_adc0 - adc_in[0]) > 30) {
             // not noise
-            dummy = (adc_in[0] / (float) 65525) * 2.5;
-            if (dummy > 2.5) {
-                Warning_ValueExceededLimit();
-                dummy = 2.5;
+            dummy = (adc_in[0] / (float) 65525) * amp_max;
+            if (dummy > amp_max) {
+                dummy = amp_max;
+            } else if (dummy < amp_min) {
+                dummy = amp_min;
             }
             wave.amplitude = dummy;
         }
 
         if (abs(prev_adc1 - adc_in[1]) > 30) {
             // not noise
-            dummy = (adc_in[1] / (float) 65525) * 100;
-            if (dummy > 100) {
-                Warning_ValueExceededLimit();
-                dummy = 100;
+            dummy = (adc_in[1] / (float) 65525) * duty_cycle_max;
+            if (dummy > duty_cycle_max) {
+                dummy = duty_cycle_max;
+            } else if (dummy < duty_cycle_min) {
+                dummy = duty_cycle_min;
             }
             wave.duty_cycle = dummy;
         }
@@ -85,24 +89,23 @@ void *ReadPot(void *arg) {
 
 void *ReadArrowKey(void *arg) {
     int input;
-    int frequencyMin = 1;
-    int frequencyMax = 300;
+    double freq_max = 300, freq_min = 1;
 
     while (1) {
         input = getch();
         switch (input) {
             case KEY_UP:
-                if (wave.frequency < frequencyMax) {
-                    wave.frequency = wave.frequency + 0.1;
+                if (wave.frequency < freq_max) {
+                    wave.frequency += 0.1;
                 } else {
-                    Warning_ValueExceededLimit();
+                    wave.frequency = freq_max;
                 }
                 break;
             case KEY_DOWN:
-                if (frequencyMin < wave.frequency) {
-                    wave.frequency = wave.frequency - 0.1;
+                if (freq_min < wave.frequency) {
+                    wave.frequency -= 0.1;
                 } else {
-                    Warning_ValueExceededLimit();
+                    wave.frequency = freq_min;
                 }
                 break;
             default:

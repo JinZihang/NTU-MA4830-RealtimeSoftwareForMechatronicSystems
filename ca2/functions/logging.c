@@ -172,15 +172,6 @@ void Error_ArgumentValue() {
     exit(1);
 }
 
-void Warning_ValueExceededLimit() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(5));
-    mvprintw(25, 2, "[Warning] Value exceeded limit!");
-    attroff(COLOR_PAIR(5));
-    refresh();
-}
-
 void Info_ProgramTerminated() {
     ClearLoggingLine();
 
