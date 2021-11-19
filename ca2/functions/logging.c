@@ -222,8 +222,6 @@ void Warning_ValueExceededLimit() {
     mvprintw(25, 2, "[Warning] Value exceeded limit!");
     attroff(COLOR_PAIR(5));
     refresh();
-    getch();
-    exit(1);
 }
 
 void Info_ProgramTerminated() {
