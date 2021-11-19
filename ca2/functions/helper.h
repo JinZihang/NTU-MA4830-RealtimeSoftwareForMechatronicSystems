@@ -1,5 +1,5 @@
 //******************************************************************************
-// Helper Function to prevent code duplication
+// Helper Functions to prevent code duplication
 // SliceString: get a subset of a string
 // IsFloat: check if a string is a float
 //******************************************************************************
