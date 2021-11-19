@@ -6,10 +6,7 @@
 #include "logging.h"
 
 char *SliceString(char *ori_str, int start_index) {
-    if (strlen(ori_str) - 1 < start_index) {
-        Error_SliceString();
-        exit(1);
-    }
+    if (strlen(ori_str) - 1 < start_index) Error_SliceString();
 
     return ori_str + start_index;
 }
