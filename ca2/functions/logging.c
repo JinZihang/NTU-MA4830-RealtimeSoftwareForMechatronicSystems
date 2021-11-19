@@ -70,6 +70,149 @@ void NcursesInitialization() {
     refresh();
 }
 
+void ClearLoggingLine() {
+    int i;
+    for (i=0; i< getmaxx(stdscr) - 2; i++) {
+        mvprintw(25, 2+i, " ");
+    }
+}
+
+void Error_SliceString() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Invalid SliceString() arguments!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void ArgumentInstructions() {
+    clear();
+    printw("help\n");
+    printw("\t\t--h\t\tshow program argument instructions\n");
+    printw("\t\t--fp\t\trun the program based on the data from a specific file\n");
+    printw("\t\t--w\t\tselect a waveform (sine/rectangle/triangle/sawtooth) (default is sine)\n");
+    printw("\t\t--a\t\treplace the default wave amplitude with your own value (default is 1)\n");
+    printw("\t\t--f\t\treplace the default wave frequency with your own value (default is 1)\n");
+    printw("\t\t--d\t\treplace the default wave duty cycle with your own value (default is 50)\n");
+    printw("notes\n");
+    printw("\t\t*\t--h, --fp cannot be used together with other arguments\n");
+    printw("\t\t*\tincomplete or duplicate declarations are not allowed\n");
+    printw("\t\t*\twave amplitude and frequency arguments only accept positive numeric values\n");
+    printw("\t\t*\tthe allowed maximum amplitude and frequency are 2.5 and 300 correspondingly (if the input value\n");
+    printw("\t\t\tis greater than the allowed maximum value, program will continue with the maximum value)\n");
+    printw("\t\t*\tfile\n");
+    printw("\t\t\t\t**\teach row defines a wave, maximum 10 rows\n");
+    printw("\t\t\t\t**\tthe first column defines waveform,\n");
+    printw("\t\t\t\t\t\t1 -> sine\n\t\t\t\t\t\t2 -> rectangle\n\t\t\t\t\t\t3 -> triangle\n\t\t\t\t\t\t4 -> sawtooth\n");
+    printw("\t\t\t\t\tthe second column defines wave amplitude,\n");
+    printw("\t\t\t\t\tthe third column defines wave frequency\n");
+    printw("\t\t\t\t\tand the fourth column defines wave duty cycle\n");
+    printw("\t\t\t\t\t(use 0 for default settings)\n");
+    printw("\t\t\t\t**\tfile example\n");
+    printw("\t\t\t\t\t--------------------\n");
+    printw("\t\t\t\t\t../data.dat\n");
+    printw("\t\t\t\t\t--------------------\n");
+    printw("\t\t\t\t\t1\t\t2.5\t\t0\t\t40\n");
+    printw("\t\t\t\t\t3\t\t2.32\t\t150.2\t\t60.2\n");
+    printw("\t\t\t\t\t0\t\t0\t\t300.5\t\t0\n");
+    printw("\t\t\t\t\t1\t\t3.5\t\t100\t\t23.3\n");
+    printw("\t\t\t\t\t--------------------\n");
+    printw("examples\n");
+    printw("\t\t*\tvalid:\t\t./main --fp=../data.dat\n\t\t*\tvalid:\t\t./main --w=sine --f=16.5\n");
+    printw("\t\t*\tinvalid:\t./main --fp --f=16.5\n\t\t*\tinvalid:\t./main --w=sine --w=rectangle\n");
+
+    refresh();
+    exit(0);
+}
+
+void Error_InvalidArguments() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Invalid program arguments!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Error_CannotOpenFile() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Cannot open the file specified");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Error_WrongFileData() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Something wrong with the file data!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Error_InvalidValue() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Invalid value exists!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Warning_ValueExceededLimit() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(5));
+    mvprintw(25, 2, "[Warning] Value exceeded limit!");
+    attroff(COLOR_PAIR(5));
+    refresh();
+}
+
+void Info_ProgramTerminated() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(7));
+    mvprintw(25, 2, "[Info] Program terminated!");
+    attroff(COLOR_PAIR(7));
+    refresh();
+    exit(1);
+}
+
+void Error_CannotCreateTimer() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Failed to create a timer!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Error_SetTimer() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(6));
+    mvprintw(25, 2, "[Error] Failed to set the timer!");
+    attroff(COLOR_PAIR(6));
+    refresh();
+    getch();
+    exit(1);
+}
+
 void *UpdateDisplay() {
     int i;
 
@@ -162,147 +305,4 @@ void *UpdateDisplay() {
 
         refresh();
     }
-}
-
-void ClearLoggingLine() {
-    int i;
-    for (i=0; i< getmaxx(stdscr) - 2; i++) {
-        mvprintw(25, 2+i, " ");
-    }
-}
-
-void Error_SetTimer() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(6));
-    mvprintw(25, 2, "[Error] Failed to set the timer!");
-    attroff(COLOR_PAIR(6));
-    refresh();
-    getch();
-    exit(1);
-}
-
-void Error_CannotCreateTimer() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(6));
-    mvprintw(25, 2, "[Error] Failed to create a timer!");
-    attroff(COLOR_PAIR(6));
-    refresh();
-    getch();
-    exit(1);
-}
-
-void Error_WrongFileData() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(6));
-    mvprintw(25, 2, "[Error] Something wrong with the file data!");
-    attroff(COLOR_PAIR(6));
-    refresh();
-    getch();
-    exit(1);
-}
-
-void Error_CannotOpenFile() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(6));
-    mvprintw(25, 2, "[Error] Cannot open the file specified");
-    attroff(COLOR_PAIR(6));
-    refresh();
-    getch();
-    exit(1);
-}
-
-void Warning_ValueExceededLimit() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(5));
-    mvprintw(25, 2, "[Warning] Value exceeded limit!");
-    attroff(COLOR_PAIR(5));
-    refresh();
-}
-
-void Info_ProgramTerminated() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(7));
-    mvprintw(25, 2, "[Info] Program terminated!");
-    attroff(COLOR_PAIR(7));
-    refresh();
-    exit(1);
-}
-
-void Error_InvalidArguments() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(6));
-    mvprintw(25, 2, "[Error] Invalid program arguments!");
-    attroff(COLOR_PAIR(6));
-    refresh();
-    getch();
-    exit(1);
-}
-
-void Error_InvalidValue() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(6));
-    mvprintw(25, 2, "[Error] Invalid value exists!");
-    attroff(COLOR_PAIR(6));
-    refresh();
-    getch();
-    exit(1);
-}
-
-void ArgumentInstructions() {
-    clear();
-    printw("help\n");
-    printw("\t\t--h\t\tshow program argument instructions\n");
-    printw("\t\t--fp\t\trun the program based on the data from a specific file\n");
-    printw("\t\t--w\t\tselect a waveform (sine/rectangle/triangle/sawtooth) (default is sine)\n");
-    printw("\t\t--a\t\treplace the default wave amplitude with your own value (default is 1)\n");
-    printw("\t\t--f\t\treplace the default wave frequency with your own value (default is 1)\n");
-    printw("\t\t--d\t\treplace the default wave duty cycle with your own value (default is 50)\n");
-    printw("notes\n");
-    printw("\t\t*\t--h, --fp cannot be used together with other arguments\n");
-    printw("\t\t*\tincomplete or duplicate declarations are not allowed\n");
-    printw("\t\t*\twave amplitude and frequency arguments only accept positive numeric values\n");
-    printw("\t\t*\tthe allowed maximum amplitude and frequency are 2.5 and 300 correspondingly (if the input value\n");
-    printw("\t\t\tis greater than the allowed maximum value, program will continue with the maximum value)\n");
-    printw("\t\t*\tfile\n");
-    printw("\t\t\t\t**\teach row defines a wave, maximum 10 rows\n");
-    printw("\t\t\t\t**\tthe first column defines waveform,\n");
-    printw("\t\t\t\t\t\t1 -> sine\n\t\t\t\t\t\t2 -> rectangle\n\t\t\t\t\t\t3 -> triangle\n\t\t\t\t\t\t4 -> sawtooth\n");
-    printw("\t\t\t\t\tthe second column defines wave amplitude,\n");
-    printw("\t\t\t\t\tthe third column defines wave frequency\n");
-    printw("\t\t\t\t\tand the fourth column defines wave duty cycle\n");
-    printw("\t\t\t\t\t(use 0 for default settings)\n");
-    printw("\t\t\t\t**\tfile example\n");
-    printw("\t\t\t\t\t--------------------\n");
-    printw("\t\t\t\t\t../data.dat\n");
-    printw("\t\t\t\t\t--------------------\n");
-    printw("\t\t\t\t\t1\t\t2.5\t\t0\t\t40\n");
-    printw("\t\t\t\t\t3\t\t2.32\t\t150.2\t\t60.2\n");
-    printw("\t\t\t\t\t0\t\t0\t\t300.5\t\t0\n");
-    printw("\t\t\t\t\t1\t\t3.5\t\t100\t\t23.3\n");
-    printw("\t\t\t\t\t--------------------\n");
-    printw("examples\n");
-    printw("\t\t*\tvalid:\t\t./main --fp=../data.dat\n\t\t*\tvalid:\t\t./main --w=sine --f=16.5\n");
-    printw("\t\t*\tinvalid:\t./main --fp --f=16.5\n\t\t*\tinvalid:\t./main --w=sine --w=rectangle\n");
-
-    refresh();
-    exit(0);
-}
-
-void Error_SliceString() {
-    ClearLoggingLine();
-
-    attron(COLOR_PAIR(6));
-    mvprintw(25, 2, "[Error] Invalid SliceString() arguments!");
-    attroff(COLOR_PAIR(6));
-    refresh();
-    getch();
-    exit(1);
 }

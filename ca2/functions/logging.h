@@ -3,28 +3,28 @@
 
 void NcursesInitialization();
 
-void *UpdateDisplay();
-
 void ClearLoggingLine();
 
-void Error_SetTimer();
+void Error_SliceString();
 
-void Error_CannotCreateTimer();
+void ArgumentInstructions();
 
-void Error_WrongFileData();
+void Error_InvalidArguments();
 
 void Error_CannotOpenFile();
+
+void Error_WrongFileData();g
+
+void Error_InvalidValue();
 
 void Warning_ValueExceededLimit();
 
 void Info_ProgramTerminated();
 
-void Error_InvalidArguments();
+void Error_CannotCreateTimer();
 
-void Error_InvalidValue();
+void Error_SetTimer();
 
-void ArgumentInstructions();
-
-void Error_SliceString();
+void *UpdateDisplay();
 
 #endif
