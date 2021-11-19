@@ -6,11 +6,12 @@
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #include <sys/mman.h>
+#include <ncurses.h>
 
 #include "../datatypes/struct.h"
-#include "print.h"
-#include "input.h"
+#include "logging.h"
 #include "pcie_control.h"
+#include "input.h"
 #include "../main.h"
 
 void *ReadSwitch(void *arg) {
@@ -37,54 +38,14 @@ void *ReadSwitch(void *arg) {
         }
         pthread_mutex_unlock(&mutex);
         delay(1);
-        /*
-        if (dio_switch != switch0_prev) {
-            //DEBOUNCING
-            delay(1);
-            //read SWITCH0 again
-            dio_switch = in8(DIO_Data);
-            if (switch0_value(dio_switch) == switch0)
-            {
-                //change detected from 0 to 1
-                if (switch0 == 0)    //0=keyboard input
-                {
-
-                    //input from keyboard
-                    input_mode = 0;
-
-                    delay(1000);
-
-                    //kill hardware_input thread, spawn keyboard_input thread
-
-                    pthread_create(&keyboard_input_thread_ID, NULL, &keyboard_input_thread,
-                                   NULL);   //keyboard_input_thread
-
-                }
-                    //change detected from 1 to 0
-                else if (switch0 == 1)    //1=hardware input
-                {
-                    //input from hardware
-                    input_mode = 1;
-
-                    delay(1000);
-
-                    //keyboard_input thread terminates itself, spawn hardware_input thread
-                    pthread_cancel(keyboard_input_thread_ID);
-                    pthread_create(&hardware_input_thread_ID, NULL, &hardware_input_thread,
-                                   NULL);   //hardware_input_thread
-                }
-                //update switch0_prev
-                switch0_prev = switch0;
-
-            }
-        }
-        */
     }
 }
 
 void *ReadPot(void *arg) {
     double dummy;
     unsigned int prev_adc0, prev_adc1;
+    double amp_max = 2.5, amp_min = 0, duty_cycle_max = 100, duty_cycle_min = 0;
+
     while (1) {
         pthread_mutex_lock(&mutex);
         out16(ADC_Data, 0);        // Initiate Read #0
@@ -99,22 +60,24 @@ void *ReadPot(void *arg) {
 
         if (abs(prev_adc0 - adc_in[0]) > 30) {
             // not noise
-            dummy = (adc_in[0] / (float) 65525) * 2.5;
-            if (dummy > 2.5) {
-                Warning_ValueExceededLimit();
-                dummy = 2.5;
+            dummy = (adc_in[0] / (float) 65525) * amp_max;
+            if (dummy > amp_max) {
+                dummy = amp_max;
+            } else if (dummy < amp_min) {
+                dummy = amp_min;
             }
             wave.amplitude = dummy;
         }
 
         if (abs(prev_adc1 - adc_in[1]) > 30) {
             // not noise
-            dummy = (adc_in[1] / (float) 65525) * 300;
-            if (dummy > 300) {
-                Warning_ValueExceededLimit();
-                dummy = 300;
+            dummy = (adc_in[1] / (float) 65525) * duty_cycle_max;
+            if (dummy > duty_cycle_max) {
+                dummy = duty_cycle_max;
+            } else if (dummy < duty_cycle_min) {
+                dummy = duty_cycle_min;
             }
-            wave.frequency = dummy;
+            wave.duty_cycle = dummy;
         }
 
         prev_adc0 = adc_in[0];
@@ -124,57 +87,30 @@ void *ReadPot(void *arg) {
     }
 }
 
-int ReadArrow() {
-    int int_1 = 0;
-    int int_2 = 0;
-    int int_3 = 0;
-
-    system("/bin/stty raw");
-    scanf("%d", &int_3);
-    int_1 = getchar();
-    if (int_1 == 27) {
-        int_2 = getchar();
-        int_3 = getchar();
-    }
-    system("/bin/stty edit");
-
-    return int_3;
-}
-
 void *ReadArrowKey(void *arg) {
     int input;
-    int status = 1;
-    struct FreqLimit frequencyRange;
-    frequencyRange.min = 1;
-    frequencyRange.max = 300;
+    double freq_max = 300, freq_min = 1;
 
-    while (status) {
-        input = ReadArrow();
+    while (1) {
+        input = getch();
         switch (input) {
-            case 65:
-                printf("\n");
-                if (wave.frequency < frequencyRange.max) {
-                    wave.frequency = wave.frequency + 1;
+            case KEY_UP:
+                if (wave.frequency < freq_max) {
+                    wave.frequency += 0.1;
                 } else {
-                    Warning_ValueExceededLimit();
+                    wave.frequency = freq_max;
                 }
                 break;
-            case 66:
-                printf("\n");
-                if (frequencyRange.min < wave.frequency) {
-                    wave.frequency = wave.frequency - 1;
+            case KEY_DOWN:
+                if (freq_min < wave.frequency) {
+                    wave.frequency -= 0.1;
                 } else {
-                    Warning_ValueExceededLimit();
+                    wave.frequency = freq_min;
                 }
-                break;
-            case 'q':
-                status = 0;
                 break;
             default:
                 break;
         }
-
-        fflush(stdout);
     }
 }
 

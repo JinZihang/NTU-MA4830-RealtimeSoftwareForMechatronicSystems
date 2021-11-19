@@ -7,11 +7,7 @@ struct Wave {
     enum Waveform waveform;
     double amplitude;
     double frequency;
-};
-
-struct FreqLimit {
-    int min;
-    int max;
+    double duty_cycle;
 };
 
 #endif

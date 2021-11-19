@@ -2,14 +2,14 @@
 #define METRONOME_MAIN_H
 
 #include <stdio.h>
-#include <time.h>
 #include <pthread.h>
+#include <time.h>
 
 #include "datatypes/struct.h"
 
 extern pthread_mutex_t mutex;
 extern FILE *fp;
-extern double file_data[10][3]; // read maximum 10 rows
+extern double file_data[10][4];
 extern struct Wave wave;
 extern timer_t timerid;
 extern struct itimerspec timer;

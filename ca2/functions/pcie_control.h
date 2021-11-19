@@ -1,5 +1,17 @@
+//******************************************************************************
+// PCIE Initialization Functions
+// PCIeInitialization: Initialize PCIe base registers
+// DIOInitialization: Initialize PCIe io registers configuration
+//******************************************************************************
+
 #ifndef METRONOME_PCIE_CONTROL_H
 #define METRONOME_PCIE_CONTROL_H
+
+#include <unistd.h>
+#include <hw/pci.h>
+#include <hw/inout.h>
+#include <sys/neutrino.h>
+#include <sys/mman.h>
 
 // Define registers for PCIe-DAS1602
 #define    INTERRUPT    iobase[1] + 4       // Badr1 + 4 - PCIe 32-bit
@@ -14,19 +26,12 @@
 #define    ADC_Enable   iobase[3] + 6       // Badr3 + 6 - Brst_off Conv_EN:0x01
 #define    ADC_Gain     iobase[3] + 7       // Badr3 + 7 - unipolar 5V : 0x01
 
-#include <unistd.h>
-#include <hw/pci.h>
-#include <hw/inout.h>
-#include <sys/neutrino.h>
-#include <sys/mman.h>
-
-int badr[5];    // PCI 2.2 assigns 6 IO base addresses
+int badr[5];
 struct pci_dev_info info;
 void *hdl;
 uintptr_t iobase[6];
 
 uintptr_t dio_switch;
-uintptr_t switch0_prev;
 unsigned int i, j, stat1, stat2;
 unsigned int data[100];
 unsigned int adc_in[2];

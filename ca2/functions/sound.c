@@ -3,7 +3,7 @@
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 
-void SoundGenerator(double amplitude) {
+void* SoundGenerator(void* amplitude) {
     int i, kbd, ctr, system_control = 0;
 
     ThreadCtl(_NTO_TCTL_IO, 0);
@@ -19,7 +19,7 @@ void SoundGenerator(double amplitude) {
 
     // divide 8254 clock (1.1892 MHz) by 2702 to get 440Hz tone
     out8(ctr + 2, 0);
-    out8(ctr + 2, amplitude * (245 - 5) / 2.5 + 5);
+    out8(ctr + 2, *((double *) amplitude) * (245 - 5) / 2.5 + 5);
 
     delay(75);
 
