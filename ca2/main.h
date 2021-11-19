@@ -2,8 +2,8 @@
 #define METRONOME_MAIN_H
 
 #include <stdio.h>
-#include <time.h>
 #include <pthread.h>
+#include <time.h>
 
 #include "datatypes/struct.h"
 

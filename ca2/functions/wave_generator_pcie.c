@@ -12,10 +12,10 @@
 #include <ncurses.h>
 
 #include "../datatypes/struct.h"
+#include "logging.h"
 #include "sound.h"
 #include "pcie_control.h"
 #include "../main.h"
-#include "logging.h"
 
 //******************************************************************************
 // D/A Port Functions

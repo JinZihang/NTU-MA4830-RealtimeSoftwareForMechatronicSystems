@@ -9,13 +9,13 @@
 #include <ncurses.h>
 
 #include "datatypes/struct.h"
+#include "functions/logging.h"
 #include "functions/helper.h"
 #include "functions/initialization.h"
 #include "functions/pcie_control.h"
-#include "functions/wave_generator_pcie.h"
 #include "functions/input.h"
+#include "functions/wave_generator_pcie.h"
 #include "functions/timer.h"
-#include "functions/logging.h"
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 FILE *fp;

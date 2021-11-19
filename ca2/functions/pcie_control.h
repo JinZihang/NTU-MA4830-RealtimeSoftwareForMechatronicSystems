@@ -1,6 +1,12 @@
 #ifndef METRONOME_PCIE_CONTROL_H
 #define METRONOME_PCIE_CONTROL_H
 
+#include <unistd.h>
+#include <hw/pci.h>
+#include <hw/inout.h>
+#include <sys/neutrino.h>
+#include <sys/mman.h>
+
 // Define registers for PCIe-DAS1602
 #define    INTERRUPT    iobase[1] + 4       // Badr1 + 4 - PCIe 32-bit
 #define    ADC_Data     iobase[2] + 0       // Badr2 + 0 - PCIe 16-bit w->srt
@@ -13,12 +19,6 @@
 #define    CLK_Pace     iobase[3] + 5       // Badr3 + 5 - S/W Pacer : XXXX XX0X
 #define    ADC_Enable   iobase[3] + 6       // Badr3 + 6 - Brst_off Conv_EN:0x01
 #define    ADC_Gain     iobase[3] + 7       // Badr3 + 7 - unipolar 5V : 0x01
-
-#include <unistd.h>
-#include <hw/pci.h>
-#include <hw/inout.h>
-#include <sys/neutrino.h>
-#include <sys/mman.h>
 
 int badr[5];
 struct pci_dev_info info;
