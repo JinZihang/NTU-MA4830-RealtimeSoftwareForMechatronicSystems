@@ -109,7 +109,7 @@ int WaveInitialization(int argc, char **argv) {
                 if (atof(arg_duty_cycle) > 100) {
                     wave.duty_cycle = 100;
                 } else {
-                    wave.frequency = atof(arg_duty_cycle);
+                    wave.duty_cycle = atof(arg_duty_cycle);
                 }
                 has_duty_cycle_arg = true;
             } else {
