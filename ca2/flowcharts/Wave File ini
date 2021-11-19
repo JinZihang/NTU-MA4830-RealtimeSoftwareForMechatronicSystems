@@ -1,17 +1,14 @@
-<mxfile host="app.diagrams.net" modified="2021-11-19T01:47:39.526Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="iZyuSFfKP4KHKsr88yx7" version="15.8.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-19T01:49:39.196Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="nII0W1ulRZDqDblWsD2I" version="15.8.2" type="github">
   <diagram id="C0jShdZbNCZTeaW72jgo" name="Page-1">
     <mxGraphModel dx="1065" dy="456" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-1" value="Switch Input Thread" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="120" y="105" width="180" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-2" target="8Cn6V3oNNJaS4RiiW8ja-4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-2" value="Mutex Lock" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="100" y="180" width="110" height="30" as="geometry" />
+          <mxGeometry x="110" y="180" width="110" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-3" value="Read in digital switches status" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="230" y="180" width="145" height="30" as="geometry" />
@@ -42,9 +39,6 @@
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-11" value="Mutex Unlock" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="650" y="180" width="110" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-15" value="Potentiometer Input Thread" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="130" y="290" width="180" height="30" as="geometry" />
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.002;entryY=0.582;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="8Cn6V3oNNJaS4RiiW8ja-16" target="8Cn6V3oNNJaS4RiiW8ja-17">
           <mxGeometry relative="1" as="geometry" />
@@ -135,6 +129,12 @@
         </mxCell>
         <mxCell id="8Cn6V3oNNJaS4RiiW8ja-47" value="Update the &lt;b&gt;frequency&amp;nbsp;&lt;/b&gt;setting" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="410" y="710" width="145" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-51" value="&lt;span&gt;Potentiometer Input Thread&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="304" y="290" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="8Cn6V3oNNJaS4RiiW8ja-52" value="&lt;span&gt;Switch Input Thread&lt;/span&gt;" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="315" y="72.5" width="220" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
