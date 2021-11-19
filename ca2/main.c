@@ -28,13 +28,10 @@ struct itimerspec timer;
 int count_down = 30;
 
 void termination_signal_handler(int signum) {
-//    printf("Program terminated.\n");
-    endwin();
-    exit(0);
+    Info_ProgramTerminated();
 }
 
 void timer_signal_handler(int signum) {
-//    printf("Count down: %d sec\n", count_down);
     count_down--;
 }
 

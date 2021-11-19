@@ -34,6 +34,7 @@ void NcursesInitialization() {
     init_pair(4, COLOR_BLACK, COLOR_RED);   // percentage bar-negative
     init_pair(5, COLOR_YELLOW, COLOR_WHITE); // warning message
     init_pair(6, COLOR_RED, COLOR_WHITE); // error message
+    init_pair(7, COLOR_BLUE, COLOR_WHITE); // info message
 
     // general
     box(stdscr, 0, 0);
@@ -220,6 +221,17 @@ void Warning_ValueExceededLimit() {
     attron(COLOR_PAIR(5));
     mvprintw(25, 2, "[Warning] Value exceeded limit! Continuing with the allowed maximum value.");
     attroff(COLOR_PAIR(5));
+    refresh();
+    getch();
+    exit(1);
+}
+
+void Info_ProgramTerminated() {
+    ClearLoggingLine();
+
+    attron(COLOR_PAIR(7));
+    mvprintw(25, 2, "[Info] Program terminated!");
+    attroff(COLOR_PAIR(7));
     refresh();
     getch();
     exit(1);

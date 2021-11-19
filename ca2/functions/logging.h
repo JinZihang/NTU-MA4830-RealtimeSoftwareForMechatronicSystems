@@ -17,4 +17,6 @@ void Error_CannotOpenFile();
 
 void Warning_ValueExceededLimit();
 
+void Info_ProgramTerminated();
+
 #endif
