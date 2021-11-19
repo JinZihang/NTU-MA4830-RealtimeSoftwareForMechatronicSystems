@@ -19,4 +19,6 @@ void Warning_ValueExceededLimit();
 
 void Info_ProgramTerminated();
 
+void Error_InvalidArguments();
+
 #endif

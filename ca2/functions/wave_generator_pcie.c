@@ -152,5 +152,4 @@ void *GenerateWave() {
         }
         delay(1);
     }
-    return 0;
 }

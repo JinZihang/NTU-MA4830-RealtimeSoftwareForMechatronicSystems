@@ -16,7 +16,7 @@ int WaveInitialization(int argc, char **argv) {
     bool has_waveform_arg = false, has_amplitude_arg = false, has_frequency_arg = false, has_duty_cycle_arg = false;
 
     if (argc > 5) {
-        Error_InvalidArgument();
+        Error_InvalidArguments();
         exit(1);
     }
 
@@ -26,7 +26,7 @@ int WaveInitialization(int argc, char **argv) {
             exit(0);
         } else if (strncmp(argv[1], "--fp=", 5) == 0) {
             if (strlen(argv[1]) == 4) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
@@ -60,12 +60,12 @@ int WaveInitialization(int argc, char **argv) {
     for (i = 1; i < argc; i++) {
         if (strncmp(argv[i], "--w=", 4) == 0) {
             if (strlen(argv[i]) == 4) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
             if (has_waveform_arg == true) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
@@ -89,12 +89,12 @@ int WaveInitialization(int argc, char **argv) {
             }
         } else if (strncmp(argv[i], "--a=", 4) == 0) {
             if (strlen(argv[i]) == 4) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
             if (has_amplitude_arg == true) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
@@ -114,12 +114,12 @@ int WaveInitialization(int argc, char **argv) {
             }
         } else if (strncmp(argv[i], "--f=", 4) == 0) {
             if (strlen(argv[i]) == 4) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
             if (has_frequency_arg == true) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
@@ -142,12 +142,12 @@ int WaveInitialization(int argc, char **argv) {
             }
         } else if (strncmp(argv[i], "--d=", 4) == 0) {
             if (strlen(argv[i]) == 4) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
             if (has_duty_cycle_arg == true) {
-                Error_InvalidArgument();
+                Error_InvalidArguments();
                 exit(1);
             }
 
@@ -166,7 +166,7 @@ int WaveInitialization(int argc, char **argv) {
                 exit(1);
             }
         } else {
-            Error_InvalidArgument();
+            Error_InvalidArguments();
             exit(1);
         }
     }
@@ -174,7 +174,7 @@ int WaveInitialization(int argc, char **argv) {
     if (!has_waveform_arg) wave.waveform = Sine;
     if (!has_amplitude_arg) wave.amplitude = 1;
     if (!has_frequency_arg) wave.frequency = 1;
-    if (!has_duty_cycle_arg) wave.duty_cycle = 1;
+    if (!has_duty_cycle_arg) wave.duty_cycle = 50;
 
     return 1;
 }
