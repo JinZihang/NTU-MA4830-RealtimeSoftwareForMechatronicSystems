@@ -128,7 +128,7 @@ void ArgumentInstructions() {
     exit(0);
 }
 
-void Error_InvalidArguments() {
+void Error_ProgramArguments() {
     ClearLoggingLine();
 
     attron(COLOR_PAIR(6));
@@ -139,7 +139,7 @@ void Error_InvalidArguments() {
     exit(1);
 }
 
-void Error_CannotOpenFile() {
+void Error_OpenFile() {
     ClearLoggingLine();
 
     attron(COLOR_PAIR(6));
@@ -150,7 +150,7 @@ void Error_CannotOpenFile() {
     exit(1);
 }
 
-void Error_WrongFileData() {
+void Error_FileData() {
     ClearLoggingLine();
 
     attron(COLOR_PAIR(6));
@@ -161,7 +161,7 @@ void Error_WrongFileData() {
     exit(1);
 }
 
-void Error_InvalidValue() {
+void Error_ArgumentValue() {
     ClearLoggingLine();
 
     attron(COLOR_PAIR(6));
@@ -191,7 +191,7 @@ void Info_ProgramTerminated() {
     exit(1);
 }
 
-void Error_CannotCreateTimer() {
+void Error_CreateTimer() {
     ClearLoggingLine();
 
     attron(COLOR_PAIR(6));

@@ -17,19 +17,19 @@ void Error_SliceString();
 
 void ArgumentInstructions();
 
-void Error_InvalidArguments();
+void Error_ProgramArguments();
 
-void Error_CannotOpenFile();
+void Error_OpenFile();
 
-void Error_WrongFileData();
+void Error_FileData();
 
-void Error_InvalidValue();
+void Error_ArgumentValue();
 
 void Warning_ValueExceededLimit();
 
 void Info_ProgramTerminated();
 
-void Error_CannotCreateTimer();
+void Error_CreateTimer();
 
 void Error_SetTimer();
 

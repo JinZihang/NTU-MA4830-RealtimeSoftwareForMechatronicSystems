@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
     wave_count = WaveInitialization(argc, argv);
 
     if (timer_create(CLOCK_REALTIME, NULL, &timerid) == -1) {
-        Error_CannotCreateTimer();
+        Error_CreateTimer();
     }
 
     if (wave_count > 1) {

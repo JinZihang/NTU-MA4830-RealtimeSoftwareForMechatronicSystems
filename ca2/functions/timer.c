@@ -13,10 +13,7 @@ void TimerInitialization() {
     timer.it_value.tv_nsec = 0;
     timer.it_interval.tv_sec = 1;
     timer.it_interval.tv_nsec = 0;
-    if (timer_settime(timerid, 0, &timer, NULL) == -1) {
-        Error_SetTimer();
-        exit(1);
-    }
+    if (timer_settime(timerid, 0, &timer, NULL) == -1) Error_SetTimer();
 }
 
 void *UpdateTimer() {
