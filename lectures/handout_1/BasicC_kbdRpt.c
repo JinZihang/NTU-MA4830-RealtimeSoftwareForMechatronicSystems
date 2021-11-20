@@ -7,9 +7,9 @@ int main() {
 
     for (i = 0; i < 50; i++) {
         c = getchar();
+
         if (c == EOF) break;
         if (c == '\n') continue;
-
         switch (c) {
             case ' ':
                 n_spaces++;
@@ -21,8 +21,8 @@ int main() {
             default :
                 n_chars++;
         }
-
     }
     printf("Chars: %d spaces: %d symbols %d\n", n_chars, n_spaces, n_symbols);
+
     exit(0);
 }

@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 int main() {
-
     char data[] = {0x18, 0x18, 0x18, 0xff, 0xff, 0x18, 0x18, 0x18};
     char msk;
     int i, j;
@@ -16,4 +15,5 @@ int main() {
         putchar('\n');
     }
 
+    exit(0);
 }

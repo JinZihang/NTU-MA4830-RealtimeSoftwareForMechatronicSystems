@@ -42,18 +42,18 @@ int main() {
     printf("After swapneg:a = %d, b = %d\n", a, b);
 
     pb = &s;
-    (*pb).y = 8;//modify field
-    pb->y = 8;//equivalent statement
+    (*pb).y = 8;    //modify field
+    pb->y = 8;      //equivalent statement
 
     const int result = 5;
-    //result=10;illegal
+    //result=10; illegal
     printf("result=%d\n", result);
 
     const char *answer_ptr = "Five";
     printf("Before answer_ptr=%s\n", answer_ptr);
-    answer_ptr = (char *) 0x1234;//legal
+    answer_ptr = (char *) 0x1234; // legal
     printf("After answer_ptr=%s\n", answer_ptr);
-    //*answer_ptr='X';illegal
-    exit(0);
+    //*answer_ptr='X'; illegal
 
+    exit(0);
 }

@@ -16,4 +16,6 @@ int main() {
     printf("i = %d\n", i);
     a = (x < 2) ? 5 : 12;
     printf("a = %d\n", a); // assume x = 2
+
+    exit(0);
 }

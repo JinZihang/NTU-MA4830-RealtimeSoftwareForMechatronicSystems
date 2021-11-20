@@ -17,7 +17,7 @@ typedef struct point Point;
 
 int main() {
     int i;
-    union option xo;//assigning 'x' results in error dur to conflicts
+    union option xo; // assigning 'x' results in error dur to conflicts
     struct point a, b;
     integer x;
     array d;
@@ -27,7 +27,7 @@ int main() {
     a.x = 12;
     b = a;
 
-    xo.number = 13;//assign value to union members negative example
+    xo.number = 13; // assign value to union members negative example
     xo.price = 12.5;
     printf("xo.number = %d\n", xo.number);
     printf("xo.price = %f\n", xo.price);
@@ -61,6 +61,6 @@ int main() {
         c[i].y = 17;
         printf("c[%d].x=%d, c[%d].y=%d\n", i, c[i].x, i, c[i].y);
     }
-    exit(0);
 
+    exit(0);
 }

@@ -16,4 +16,5 @@ main() {
     }
     printf("Global count=%d\n", count);
 
+    exit(0);
 }

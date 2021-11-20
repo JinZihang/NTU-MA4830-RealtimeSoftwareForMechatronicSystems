@@ -8,7 +8,7 @@ int main() {
         sum += i;
         i++;
     } while (i < 5);
-
     printf("Summation is %d\n", sum);
+
     exit(0);
 }

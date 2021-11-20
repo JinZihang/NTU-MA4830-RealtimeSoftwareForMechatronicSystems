@@ -9,5 +9,6 @@ int main() {
         i++;
     }
     printf("Summation is %d\n", sum);
+
     exit(0);
 }
