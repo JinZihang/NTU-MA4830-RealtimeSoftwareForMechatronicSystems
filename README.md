@@ -1,1 +1,1 @@
-# Nanyang Technological Univerysity-Realtime Software for Mechatronics Systems (MA4830)
+# Nanyang Technological Univerysity-Realtime Software for Mechatronic Systems (MA4830)
