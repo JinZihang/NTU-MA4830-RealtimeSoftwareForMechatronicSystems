@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
 
 FILE *fp;
 float data[10];
@@ -13,11 +9,11 @@ struct person {
     char name[10];
     int age;
 };
+
 struct person x;
 
 int main() {
-
-    if ((fp = fopen("file.data", "w")) == NULL) {
+    if ((fp = fopen("fopenFwrite.txt", "w")) == NULL) {
         perror("cannot open");
         exit(1);
     }

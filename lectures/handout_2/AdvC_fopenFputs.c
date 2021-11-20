@@ -1,17 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
 
 int main() {
     int i;
     FILE *fp;
-    char *str[] = {"one", "two", "three"};
+    char *str[] = {"one\n", "two\n", "three\n"};
 
-    if ((fp = fopen("file.dat", "w")) == NULL) {
+    if ((fp = fopen("fopenFputs.txt", "w")) == NULL) {
         perror("cannot open");
         exit(1);
     }
@@ -22,5 +18,6 @@ int main() {
             exit(1);
         }
     fclose(fp);
+
     exit(0);
 }

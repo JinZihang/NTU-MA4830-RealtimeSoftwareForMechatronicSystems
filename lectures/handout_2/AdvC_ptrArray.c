@@ -17,13 +17,14 @@ int main() {
     int tt[] = {1, 2, 3, 4, 5, 6};
     int ss[2][3] = {{1, 2, 3},
                     {4, 5, 6}};
+
     printf("a[5]={");
+
     for (d = 0; d < 5; d++) {
         printf("%d", a[d]);
         if (d == 4)printf("}\n"); else printf(",");
     }
 
-//start 1st program
     p = &a[0];
     printf("p=&a[0],*p=%d\n", *p);
     p = a;
@@ -39,8 +40,6 @@ int main() {
     printf("p=&a[3],x=*(p-1)=%d\n", x);
     x = a[2];
     printf("x=a[2]=%d\n", x);
-
-//nxt program
 
     printf("\ntt[]={");
     for (j = 0; j < 6; j++) {
@@ -72,5 +71,6 @@ int main() {
     for (j = 0; j < 6; j++) printf("%2x ", ss[0][j]);
 
     printf("\n");
-    return (0);
+
+    exit(0);
 }

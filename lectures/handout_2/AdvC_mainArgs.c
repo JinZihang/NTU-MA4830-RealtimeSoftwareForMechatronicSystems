@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 int main(int argc, char *argv[]) {
     int a_option = 0, b_option = 0;
@@ -33,5 +32,6 @@ int main(int argc, char *argv[]) {
     printf("a option:%s\n", (a_option) ? "yes" : "no");
     printf("b option:%s\n", (b_option) ? "yes" : "no");
     printf("file:%s\n", *p_to_arg);
+
     exit(0);
 }

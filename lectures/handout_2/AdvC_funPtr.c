@@ -3,7 +3,6 @@
 #include <string.h>
 
 int main() {
-
     int (*p)(int, int);
 
     int add(int x, int y) {

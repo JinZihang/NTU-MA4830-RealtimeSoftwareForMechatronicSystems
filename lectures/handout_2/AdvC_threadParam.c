@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
+#include <pthread.h>
 
 #define NUM_THREADS 8
 
@@ -15,7 +15,6 @@ struct thread_data {
 struct thread_data thread_data_array[NUM_THREADS];
 
 void *PrintHello(void *threadarg) {
-
     int taskid, sum;
     char *hello_msg;
     struct thread_data *my_data;
@@ -50,4 +49,6 @@ int main(int argc, char *argv[]) {
         rc = pthread_create(&threads[t], NULL, &PrintHello, (void *) &thread_data_array[t]);
     }
     pthread_exit(NULL);
+
+    exit(0);
 }
