@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUM_THREADS    4
+#define NUM_THREADS 4
 
 void *BusyWork(void *t) {
     int i;
@@ -30,14 +30,14 @@ void *BusyWork(void *t) {
     pthread_exit((void *) t);
 }
 
-int main(int argc, char *argv[]) {
+int main() {
     pthread_t thread[NUM_THREADS];
     pthread_attr_t attr;
     int rc;
     long t;
     void *status;
 
-    /* Initialize and set thread detached attribute */
+    // initialize and set thread detached attribute
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
 
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    /* Free attribute and wait for the other threads */
+    // free attribute and wait for the other threads
     pthread_attr_destroy(&attr);
     for (t = 0; t < NUM_THREADS; t++) {
         rc = pthread_join(thread[t], &status);

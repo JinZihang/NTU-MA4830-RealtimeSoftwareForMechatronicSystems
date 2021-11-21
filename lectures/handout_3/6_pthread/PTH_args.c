@@ -1,18 +1,8 @@
-//**************************************************************
-//	Program : pt_args.c 
-//	Demonstrates a safe way to pass arguments to threads 
-//	during thread creation.  In this case, a structure is 
-// 	used to pass multiple arguments.
-//
-// 	2 October 20 : G.Seet
-// 	QNX 6.xx version - QNX example
-//****************************************************************/*****************************************************************************
-
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUM_THREADS    8
+#define NUM_THREADS 8
 
 char *messages[NUM_THREADS];
 
@@ -60,12 +50,12 @@ int main(int argc, char *argv[]) {
         thread_data_array[t].thread_id = t;
         thread_data_array[t].sum = sum;
         thread_data_array[t].message = messages[t];
+
         printf("Creating thread %d\n", t);
-        rc = pthread_create(&threads[t], NULL, PrintHello, (void *)
-                &thread_data_array[t]);
+        rc = pthread_create(&threads[t], NULL, PrintHello, (void *) &thread_data_array[t]);
         if (rc) {
             printf("ERROR; return code from pthread_create() is %d\n", rc);
-            exit(-1);
+            exit(1);
         }
     }
 

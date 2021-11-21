@@ -13,7 +13,7 @@
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 int count = 0;
 
-void *function1(void *arg) {
+void *function1() {
     int tmp = 0;
 
     while (1) {
@@ -21,15 +21,11 @@ void *function1(void *arg) {
         tmp = count++;
         pthread_mutex_unlock(&mutex);
         printf("Count is %d\n", tmp);
-
-        /* snooze for 1 second */
         sleep(1);
     }
-
-    return 0;
 }
 
-void *function2(void *arg) {
+void *function2() {
     int tmp = 0;
 
     while (1) {
@@ -38,18 +34,15 @@ void *function2(void *arg) {
         pthread_mutex_unlock(&mutex);
         printf("** Count is %d\n", tmp);
 
-        /* snooze for 2 seconds */
         sleep(2);
     }
-
-    return 0;
 }
 
 int main(void) {
     pthread_create(NULL, NULL, &function1, NULL);
     pthread_create(NULL, NULL, &function2, NULL);
 
-    /* Let the threads run for 20 seconds. */
+    // let the threads run for 20 seconds
     sleep(20);
 
     return 0;
