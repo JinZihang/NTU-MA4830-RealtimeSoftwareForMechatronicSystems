@@ -1,12 +1,5 @@
-//**********************************************************************
-// signal - Demostrated the seting up of a periodic timer and its use
-//				
-// Functions: timercreate, timersettime, signal
-//
-// October 2010, G.Seet
-//**********************************************************************
-
 #include <stdio.h>
+#include <stdlib.h>
 #include <signal.h>
 
 int signal_count, signal_number;
@@ -27,8 +20,8 @@ int main() {
 
     printf("Iteration:         ");
     for (i = 0; i < 100000; i++) {
-        printf("\b\b\b\b\b\b%6d", i);
-        flushall();
+        printf("\b\b\b\b\b\b%6d", i);   // '\b' makes cursor shift backwards
+        flushall();                     // flushes all buffer
 
         if (i == 90000) raise(SIGINT);
         if (signal_count > 0) break;
@@ -38,5 +31,5 @@ int main() {
     else if (i == 90000) printf("\nSignal %d was raised by raise() function.\n", signal_number);
     else printf("\nUser raised the signal.\n");
 
-    return 0;
+    exit(0);
 }
