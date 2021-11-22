@@ -1,17 +1,7 @@
-//**************************************************************
-//	Program : pt_join.c 
-//	Demonstrates how to "wait" for thread completions by using
-//   	the Pthread join routine.  Threads are explicitly created in a joinable
-//	state for portability reasons. 
-//	Use of the pthread_exit status argument is also shown. 
-//
-// 	2 October 20 : G.Seet
-// 	QNX 6.xx version - QNX example
-//****************************************************************/*****************************************************************************
-
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define NUM_THREADS 4
 
@@ -45,8 +35,8 @@ int main() {
         printf("Main: creating thread %ld\n", t);
         rc = pthread_create(&thread[t], &attr, BusyWork, (void *) t);
         if (rc) {
-            printf("ERROR; return code from pthread_create() is %d\n", rc);
-            exit(-1);
+            printf("ERROR: return code from pthread_create() is %d\n", rc);
+            exit(1);
         }
     }
 
@@ -55,8 +45,8 @@ int main() {
     for (t = 0; t < NUM_THREADS; t++) {
         rc = pthread_join(thread[t], &status);
         if (rc) {
-            printf("ERROR; return code from pthread_join() is %d\n", rc);
-            exit(-1);
+            printf("ERROR: return code from pthread_join() is %d\n", rc);
+            exit(1);
         }
         printf("Main: completed join with thread %ld having a status of %ld\n", t, (long) status);
     }

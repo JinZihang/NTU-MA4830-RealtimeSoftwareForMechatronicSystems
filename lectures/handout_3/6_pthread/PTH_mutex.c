@@ -1,11 +1,3 @@
-//**************************************************************
-//	Program : pt_mutex.c 
-//	Demonstrates the usage of pthread mutex variables
-//
-// 	2 October 20 : G.Seet
-// 	QNX 6.xx version - QNX example
-//****************************************************************
-
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
