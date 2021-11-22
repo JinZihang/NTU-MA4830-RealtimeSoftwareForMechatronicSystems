@@ -1,3 +1,18 @@
+//******************************************************************************
+// Selection Functions
+//******************************************************************************
+// Allow user to perform shape, object, dimension, unit and process selection
+// Functions:
+//      1) char *toLower(char *string)
+//      2) bool ShapeSelection(enum shape *shape)
+//      3) bool ObjectSelection(enum shape *shape)
+//      4) bool GeometrySelection(enum shape *shape, int dimension)
+//      5) void DimensionSelection(int *dimension)
+//      6) void UnitSelection(enum unit *unit)
+//      7) bool ProcessSelection()
+//      8) void ShapeAndObjectSelection(enum shape *shape)
+//******************************************************************************
+
 #ifndef SELECTION
 #define SELECTION
 

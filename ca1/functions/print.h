@@ -1,3 +1,29 @@
+//******************************************************************************
+// Print Functions
+//******************************************************************************
+// Print instructions to guide the user using this program
+// Functions:
+//      1) void DisplayImage(FILE *fptr)
+//      2) void DisplayTitle(char *filename)
+//      3) void NoMemoryAlert()
+//      4) void DimensionSelectionInstructions()
+//      5) void WrongDimensionInput()
+//      6) void ShapeSelectionInstructions()
+//      7) void WrongShapeInput()
+//      8) void ObjectSelectionInstructions()
+//      9) void WrongObjectInput()
+//      10) void UnitSelectionInstructions()
+//      11) void WrongUnitInput()
+//      12) void DisplayResults(enum shape shape, double result_1, double result_2)
+//      13) void ParameterSelectionInstructions(char *parameter)
+//      14) void NumericInputAlert(bool isNumeric)
+//      15) void ProcessSelectionInstructions()
+//      16) void WrongProcessInput()
+//      17) void ShapeAndObjectSelectionInstructions()
+//      18) void WrongShapeAndObjectInput()
+//      19) void DisplayHistoryTable(enum shape shape, struct History *history, double *means, double *stds)
+//******************************************************************************
+
 #ifndef PRINT
 #define PRINT
 
@@ -146,7 +172,7 @@ void DisplayResults(enum shape shape, double result_1, double result_2)
     }
 }
 
-void ParamaterSelectionInstructions(char *parameter)
+void ParameterSelectionInstructions(char *parameter)
 {
     printf("\nEnter the %s parameter\n", parameter);
     printf("Enter the value here: ");
