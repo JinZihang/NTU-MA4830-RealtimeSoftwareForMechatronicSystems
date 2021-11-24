@@ -3,5 +3,5 @@
 ### Overview
 
 * **ca1:** a geomery-property calculator.
-* **ca2:** a pendulum, requires QNX system and a PCIe board.
+* **ca2:** a digital pendulum, requires QNX system and a PCIe board.
 * **lectures:** refactored practical sessions' codes. Some requires QNX libraries, some requires a PCI/PCIe board.
